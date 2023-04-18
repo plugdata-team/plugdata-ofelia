@@ -20,17 +20,9 @@ jobs:
         with:
           submodules: recursive
 
-      # Install dependencies in order to be able to compile the project.
-      - name: Install openFrameworks dependencies
-        run: bash ./openFrameworks/scripts/linux/ubuntu/install_dependencies.sh -y
-
-      # Downloading additional libs for ofx
-      - name: Download openFrameworks libs
-        run: bash ./openFrameworks/scripts/linux/download_libs.sh
-
-      # Build openFrameworks
-      - name: Building openFrameworks
-        run: bash ./openFrameworks/scripts/linux/compileOF.sh
+      # Downloading additional libs for openFrameworks
+      - name: Installing dependencies
+        run: ./install_libs.sh
 
       # Building the project
       - name: Building Ofelia
@@ -54,20 +46,8 @@ jobs:
           submodules: recursive
 
       # Downloading additional libs for openFrameworks
-      - name: Download openFrameworks libs
-        run: bash ./openFrameworks/scripts/osx/download_libs.sh
-
-      - name: Install project generator
-        run: |
-          cd ./openFrameworks/
-          echo "Downloading projectGenerator from ci server"
-          wget http://ci.openframeworks.cc/projectGenerator/projectGenerator-osx.zip
-          unzip projectGenerator-osx.zip
-          rm projectGenerator-osx.zip
-
-      - name: Create project files for xcode
-        run: |
-          ./openFrameworks/projectGenerator-osx/projectGenerator.app/Contents/Resources/app/app/projectGenerator -o"./openFrameworks" -p"osx" ./iva/ivaApp
+      - name: Installing dependencies
+        run: ./install_libs.sh
 
       # Building the project
       - name: Building Ofelia
