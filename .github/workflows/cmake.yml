@@ -13,7 +13,6 @@ jobs:
 
     steps:
      - name: Update git
-        if: ${{ matrix.pacman == 'apt' }}
         run: apt update && DEBIAN_FRONTEND=noninteractive TZ="Europe/Amsterdam" apt install -y git build-essential
 
       - name: Checkout
