@@ -1,0 +1,85 @@
+name: build
+
+on: [push]
+
+jobs:
+  build-ubuntu:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      # Install dependencies in order to be able to compile the project.
+      - name: Install ofx dependencies
+        run: sudo bash ./ofx/scripts/linux/ubuntu/install_dependencies.sh -y
+
+      # Downloading additional libs for ofx
+      - name: Download ofx libs
+        run: bash ./ofx/scripts/linux/download_libs.sh
+
+      # Build openFrameworks
+      - name: Building openFrameworks
+        run: bash ./ofx/scripts/linux/compileOF.sh
+
+      - name: Copying library
+        working-directory: ${{github.workspace}}
+        run: cp -rf ./ofxOfelia ./openFrameworks/addons/ofxOfelia
+
+      # Building the project
+      - name: Building Ofelia
+        working-directory: ${{github.workspace}}/openFrameworks/addons/ofxOfelia
+        run: |
+          echo "test"
+
+      # Upload executable binaries to GitHub
+      #- name: Uploading artifacts
+      #  uses: actions/upload-artifact@v2
+      #  with:
+      #    name: Linux Artifacts
+      #    path: ./iva/ivaApp/bin/
+
+  build-mac:
+    # the build server's operating system
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      # Downloading additional libs for ofx
+      - name: Download ofx libs
+        run: bash ./ofx/scripts/osx/download_libs.sh
+
+      - name: Install project generator
+        run: |
+          cd ./ofx/
+          echo "Downloading projectGenerator from ci server"
+          wget http://ci.openframeworks.cc/projectGenerator/projectGenerator-osx.zip
+          unzip projectGenerator-osx.zip
+          rm projectGenerator-osx.zip
+
+      - name: Create project files for xcode
+        run: |
+          ./ofx/projectGenerator-osx/projectGenerator.app/Contents/Resources/app/app/projectGenerator -o"./ofx" -p"osx" ./iva/ivaApp
+
+      - name: Copying library
+        working-directory: ${{github.workspace}}
+        run: cp -rf ./ofxOfelia ./openFrameworks/addons/ofxOfelia
+
+      # Building the project
+      - name: Building Ofelia
+        working-directory: ${{github.workspace}}/openFrameworks/addons/ofxOfelia
+        run: |
+          echo "test"
+
+      # Upload executable binaries to GitHub
+      #- name: Uploading artifacts
+      #  uses: actions/upload-artifact@v2
+      #  with:
+      #    name: Mac Os Artifacts
+      #    path: ./iva/ivaApp/bin/
