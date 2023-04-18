@@ -22,7 +22,7 @@ jobs:
 
       # Install dependencies in order to be able to compile the project.
       - name: Install openFrameworks dependencies
-        run: sudo bash ./openFrameworks/scripts/linux/ubuntu/install_dependencies.sh -y
+        run: bash ./openFrameworks/scripts/linux/ubuntu/install_dependencies.sh -y
 
       # Downloading additional libs for ofx
       - name: Download openFrameworks libs
@@ -32,15 +32,9 @@ jobs:
       - name: Building openFrameworks
         run: bash ./openFrameworks/scripts/linux/compileOF.sh
 
-      - name: Copying library
-        working-directory: ${{github.workspace}}
-        run: cp -rf ./ofxOfelia ./openFrameworks/addons/ofxOfelia
-
       # Building the project
       - name: Building Ofelia
-        working-directory: ${{github.workspace}}/openFrameworks/addons/ofxOfelia
-        run: |
-          echo "test"
+        run: ./build.sh
 
       # Upload executable binaries to GitHub
       #- name: Uploading artifacts
@@ -75,15 +69,9 @@ jobs:
         run: |
           ./openFrameworks/projectGenerator-osx/projectGenerator.app/Contents/Resources/app/app/projectGenerator -o"./openFrameworks" -p"osx" ./iva/ivaApp
 
-      - name: Copying library
-        working-directory: ${{github.workspace}}
-        run: cp -rf ./ofxOfelia ./openFrameworks/addons/ofxOfelia
-
       # Building the project
       - name: Building Ofelia
-        working-directory: ${{github.workspace}}/openFrameworks/addons/ofxOfelia
-        run: |
-          echo "test"
+        run: ./build.sh
 
       # Upload executable binaries to GitHub
       #- name: Uploading artifacts
