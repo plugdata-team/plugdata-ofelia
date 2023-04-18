@@ -1,4 +1,5 @@
 #pragma once
+#include <functional>
 
 extern void ofelia_set_run_loop(std::function<void()>);
 extern void ofelia_call_async(std::function<void()>);
