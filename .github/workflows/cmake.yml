@@ -12,7 +12,7 @@ jobs:
         - /sys/fs/cgroup:/sys/fs/cgroup
 
     steps:
-     - name: Update git
+      - name: Update git
         run: apt update && DEBIAN_FRONTEND=noninteractive TZ="Europe/Amsterdam" apt install -y git build-essential
 
       - name: Checkout
