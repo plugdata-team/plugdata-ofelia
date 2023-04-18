@@ -13,16 +13,16 @@ jobs:
           submodules: recursive
 
       # Install dependencies in order to be able to compile the project.
-      - name: Install ofx dependencies
-        run: sudo bash ./ofx/scripts/linux/ubuntu/install_dependencies.sh -y
+      - name: Install openFrameworks dependencies
+        run: sudo bash ./openFrameworks/scripts/linux/ubuntu/install_dependencies.sh -y
 
       # Downloading additional libs for ofx
-      - name: Download ofx libs
-        run: bash ./ofx/scripts/linux/download_libs.sh
+      - name: Download openFrameworks libs
+        run: bash ./openFrameworks/scripts/linux/download_libs.sh
 
       # Build openFrameworks
       - name: Building openFrameworks
-        run: bash ./ofx/scripts/linux/compileOF.sh
+        run: bash ./openFrameworks/scripts/linux/compileOF.sh
 
       - name: Copying library
         working-directory: ${{github.workspace}}
@@ -51,13 +51,13 @@ jobs:
         with:
           submodules: recursive
 
-      # Downloading additional libs for ofx
-      - name: Download ofx libs
-        run: bash ./ofx/scripts/osx/download_libs.sh
+      # Downloading additional libs for openFrameworks
+      - name: Download openFrameworks libs
+        run: bash ./openFrameworks/scripts/osx/download_libs.sh
 
       - name: Install project generator
         run: |
-          cd ./ofx/
+          cd ./openFrameworks/
           echo "Downloading projectGenerator from ci server"
           wget http://ci.openframeworks.cc/projectGenerator/projectGenerator-osx.zip
           unzip projectGenerator-osx.zip
@@ -65,7 +65,7 @@ jobs:
 
       - name: Create project files for xcode
         run: |
-          ./ofx/projectGenerator-osx/projectGenerator.app/Contents/Resources/app/app/projectGenerator -o"./ofx" -p"osx" ./iva/ivaApp
+          ./openFrameworks/projectGenerator-osx/projectGenerator.app/Contents/Resources/app/app/projectGenerator -o"./openFrameworks" -p"osx" ./iva/ivaApp
 
       - name: Copying library
         working-directory: ${{github.workspace}}
