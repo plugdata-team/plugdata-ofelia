@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>CFBundleGetInfoString</key>
+  <string>ofelia.pd_darwin.app</string>
+  <key>CFBundleExecutable</key>
+  <string>ofelia.pd_darwin</string>
+  <key>CFBundleIdentifier</key>
+  <string>com.your-company-name.ofelia.pd_darwin</string>
+  <key>CFBundleName</key>
+  <string>ofelia.pd_darwin</string>
+  <key>CFBundleShortVersionString</key>
+  <string>0.01</string>
+  <key>CFBundleInfoDictionaryVersion</key>
+  <string>6.0</string>
+  <key>CFBundlePackageType</key>
+  <string>APPL</string>
+  <key>IFMajorVersion</key>
+  <integer>0</integer>
+  <key>IFMinorVersion</key>
+  <integer>1</integer>
+  <key>NSCameraUsageDescription</key>
+  <string>This app needs to access the camera</string>
+  <key>NSMicrophoneUsageDescription</key>
+  <string>This app needs to access the microphone</string>
+  <key>NSHighResolutionCapable</key>
+  <false/>
+</dict>
+</plist>
