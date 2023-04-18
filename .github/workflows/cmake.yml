@@ -4,7 +4,12 @@ on: [push]
 
 jobs:
   build-ubuntu:
-    runs-on: ubuntu-latest
+  runs-on: ubuntu-latest
+  container:
+    image: debian
+    options: --privileged
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup
 
     steps:
       - name: Checkout
