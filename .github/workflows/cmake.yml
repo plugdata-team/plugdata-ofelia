@@ -3,7 +3,7 @@ name: build
 on: [push]
 
 jobs:
-  build-ubuntu:
+  build-debian:
     runs-on: ubuntu-latest
     container:
       image: debian
