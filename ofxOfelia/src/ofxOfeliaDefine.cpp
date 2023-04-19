@@ -148,7 +148,7 @@ void ofxOfeliaDefine::clearMethod()
 void ofxOfeliaDefine::setMethod(t_symbol *s, int argc, t_atom *argv)
 {
     auto args = std::vector<t_atom>(argv, argv + argc);
-    ofxOfeliaAsync::callAsync([this, s, args]() mutable {
+    ofxOfeliaAsync::callAsync([this, args]() mutable {
         if (data.isDirectMode) return;
         binbuf_restore(data.binbuf, args.size(), args.data());
         data.textBuf.senditup();
