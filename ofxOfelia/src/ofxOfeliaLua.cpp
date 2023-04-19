@@ -337,14 +337,14 @@ bool ofxOfeliaLua::isFunction(t_symbol *s, int &top)
 
 void ofxOfeliaLua::pushUserData(t_gpointer *p)
 {
-    ofxOfeliaAsync::callAsync([this, p]() {
+    ofxOfeliaAsync::callAsync([p]() {
         lua_rawgeti(L, LUA_REGISTRYINDEX, static_cast<lua_Integer>(*reinterpret_cast<int *>(p)));
     });
 }
 
 void ofxOfeliaLua::setVariable(t_symbol *s)
 {
-    ofxOfeliaAsync::callAsync([this, s]() {
+    ofxOfeliaAsync::callAsync([s]() {
         lua_pushnil(L);
         lua_setfield(L, -3, s->s_name);
         lua_pop(L, 2);
@@ -353,7 +353,7 @@ void ofxOfeliaLua::setVariable(t_symbol *s)
 
 void ofxOfeliaLua::setVariable(t_symbol *s, bool b)
 {
-    ofxOfeliaAsync::callAsync([this, s, b]() {
+    ofxOfeliaAsync::callAsync([s, b]() {
         lua_pushboolean(L, static_cast<int>(b));
         lua_setfield(L, -3, s->s_name);
         lua_pop(L, 2);
@@ -362,7 +362,7 @@ void ofxOfeliaLua::setVariable(t_symbol *s, bool b)
 
 void ofxOfeliaLua::setVariable(t_symbol *s, t_floatarg f)
 {
-    ofxOfeliaAsync::callAsync([this, s, f]() {
+    ofxOfeliaAsync::callAsync([s, f]() {
         lua_pushnumber(L, static_cast<lua_Number>(f));
         lua_setfield(L, -3, s->s_name);
         lua_pop(L, 2);
@@ -371,7 +371,7 @@ void ofxOfeliaLua::setVariable(t_symbol *s, t_floatarg f)
 
 void ofxOfeliaLua::setVariable(t_symbol *s, t_symbol *s2)
 {
-    ofxOfeliaAsync::callAsync([this, s, s2]() {
+    ofxOfeliaAsync::callAsync([s, s2]() {
         lua_pushstring(L, s2->s_name);
         lua_setfield(L, -3, s->s_name);
         lua_pop(L, 2);

@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Update git
-        run: apt update && DEBIAN_FRONTEND=noninteractive TZ="Europe/Amsterdam" apt install -y git build-essential
+        run: apt update && DEBIAN_FRONTEND=noninteractive TZ="Europe/Amsterdam" apt install -y git build-essential pkg-config
 
       - name: Checkout
         uses: actions/checkout@v2
