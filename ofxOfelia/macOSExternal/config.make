@@ -11,8 +11,6 @@
 	PROJECT_OPTIMIZATION_CFLAGS_RELEASE = -O3 -DNDEBUG
 	MAC_OS_MIN_VERSION = 10.11
 	MAC_OS_CPP_VER = -std=c++17
-	CFLAGS += $(ARCHS)
-	LDFLAGS += $(ARCHS)
 ################################################################################
 # OF ROOT
 #   The location of your root openFrameworks installation
