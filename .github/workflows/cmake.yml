@@ -3,12 +3,12 @@ name: build
 on: [push]
 
 jobs:
-  build-debian:
+  build-ubuntu:
     runs-on: ubuntu-latest
 
     steps:
       - name: Install base dependencies
-        run: sudo apt update && sudo DEBIAN_FRONTEND=noninteractive TZ="Europe/Amsterdam" apt install -y git build-essential pkg-config wget rsync libassimp-dev
+        run: sudo apt update && sudo DEBIAN_FRONTEND=noninteractive TZ="Europe/Amsterdam" apt install -y git build-essential pkg-config wget rsync libassimp-dev libgstreamer1.0-0 gstreamer1.0-plugins-base libgstreamer-plugins-base1.0-dev gstreamer1.0*
 
       - name: Checkout
         uses: actions/checkout@v2
