@@ -27,7 +27,7 @@ jobs:
       - name: Uploading artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: plugdata-ofelia-macos
+          name: plugdata-ofelia-linux
           path: ./ofelia
 
   build-mac:
