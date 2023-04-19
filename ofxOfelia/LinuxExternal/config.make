@@ -18,11 +18,12 @@ ifeq ($(PLATFORM_OS),Linux)
         APPNAME = ofelia.pd_linux
     endif
     PROJECT_CFLAGS = -Wall -Wno-sign-compare -Wno-unused-variable -Wno-maybe-uninitialized -fPIC -I../libs/ofxPd/libs/libpd/pure-data/src -DGLM_FORCE_CXX03=1
-	  CXXFLAGS += -std=c++17
     PROJECT_LDFLAGS = -rdynamic -shared -Wl,-rpath,./libs
     PROJECT_EXTERNAL_SOURCE_PATHS = ../src
     PROJECT_DEFINES = LUA_USE_LINUX HAVE_LIBDL TARGET_EXTERNAL
     PROJECT_OPTIMIZATION_CFLAGS_RELEASE = -O3 -DNDEBUG
+	  CXXFLAGS += -std=c++17
+    USE_FMOD=0
 endif
 
 ################################################################################
