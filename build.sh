@@ -9,7 +9,7 @@ if [ "$(uname)" == "Darwin" ]; then
       cp -f ./bin/ofelia.pd_darwin.app/Contents/Frameworks/libfmod.dylib ../../ofelia/libs/libfmod.dylib
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
       cd ./ofxOfelia/LinuxExternal
-      make
+      CC=clang CXX=clang++ make
       cp -rf ../ofelia ../../
       cp -f ./bin/ofelia.pd_linux ../../ofelia/ofelia.pd_linux
       mkdir ../../ofelia/libs
