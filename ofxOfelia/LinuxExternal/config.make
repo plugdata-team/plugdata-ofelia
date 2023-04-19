@@ -23,7 +23,6 @@ ifeq ($(PLATFORM_OS),Linux)
     PROJECT_DEFINES = LUA_USE_LINUX HAVE_LIBDL TARGET_EXTERNAL
     PROJECT_OPTIMIZATION_CFLAGS_RELEASE = -O3 -DNDEBUG
 	  CXXFLAGS += -std=c++17
-    USE_FMOD=0
 endif
 
 ################################################################################
