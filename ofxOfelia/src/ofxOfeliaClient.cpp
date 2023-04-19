@@ -1,6 +1,7 @@
 #include "ofxOfeliaClient.h"
 #include "ofxOfeliaAsync.h"
 #include <cstring>
+#include <vector>
 
 bool ofxOfeliaClient::isDataValid()
 {
