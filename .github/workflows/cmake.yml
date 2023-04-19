@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: plugdata-ofelia-macos
-          path: ./bin
+          path: ./ofelia
 
   build-mac:
     # the build server's operating system
@@ -53,4 +53,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: plugdata-ofelia-macos
-          path: ./bin
+          path: ./ofelia
