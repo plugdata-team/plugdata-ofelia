@@ -16,8 +16,11 @@
 #define SWIG_LUA_TARGET SWIG_LUA_FLAVOR_LUA
 #define SWIG_LUA_MODULE_GLOBAL
 
-template<typename genType>
-genType fma2(genType const& a, genType const& b, genType const& c)
+// This function should be defined by GLM
+// However, relying on this lead to a linker error
+// So we'll just do it manually
+template<typename T>
+T fma2(T const& a, T const& b, T const& c)
 {
     return a * b + c;
 }
