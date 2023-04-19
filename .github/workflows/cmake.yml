@@ -5,15 +5,10 @@ on: [push]
 jobs:
   build-debian:
     runs-on: ubuntu-latest
-    container:
-      image: debian:oldstable
-      options: --privileged
-      volumes:
-        - /sys/fs/cgroup:/sys/fs/cgroup
 
     steps:
       - name: Install base dependencies
-        run: apt update && DEBIAN_FRONTEND=noninteractive TZ="Europe/Amsterdam" apt install -y git build-essential pkg-config wget rsync
+        run: sudo apt update && DEBIAN_FRONTEND=noninteractive TZ="Europe/Amsterdam" apt install -y git build-essential pkg-config wget rsync
 
       - name: Checkout
         uses: actions/checkout@v2
