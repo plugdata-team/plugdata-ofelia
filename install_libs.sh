@@ -6,5 +6,5 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
       echo $(gcc -v)
       sudo ./openFrameworks/scripts/linux/ubuntu/install_dependencies.sh -y
       ./openFrameworks/scripts/linux/download_libs.sh -a 64gcc6
-      CFLAGS=-fPIC ./openFrameworks/scripts/linux/compileOF.sh
+      CC=clang CXX=clang++ CFLAGS=-fPIC ./openFrameworks/scripts/linux/compileOF.sh
 fi
