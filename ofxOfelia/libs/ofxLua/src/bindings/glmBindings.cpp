@@ -16,6 +16,11 @@
 #define SWIG_LUA_TARGET SWIG_LUA_FLAVOR_LUA
 #define SWIG_LUA_MODULE_GLOBAL
 
+template<typename genType>
+genType fma2(genType const& a, genType const& b, genType const& c)
+{
+    return a * b + c;
+}
 
 #ifdef __cplusplus
 /* SwigValueWrapper is described in swig.swg */
@@ -7443,7 +7448,7 @@ static int _wrap_fma__SWIG_0(lua_State* L) { int SWIG_arg = 0; float *arg1 = 0 ;
   if(!lua_isnumber(L,2)) SWIG_fail_arg("glm::fma",2,"float const &");
   if(!lua_isnumber(L,3)) SWIG_fail_arg("glm::fma",3,"float const &"); temp1=(float)lua_tonumber(L,1); arg1=&temp1;
   temp2=(float)lua_tonumber(L,2); arg2=&temp2; temp3=(float)lua_tonumber(L,3); arg3=&temp3;
-  result = (float)glm::fma((float const &)*arg1,(float const &)*arg2,(float const &)*arg3);
+  result = (float)fma2((float const &)*arg1,(float const &)*arg2,(float const &)*arg3);
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++; return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
 static int _wrap_fma__SWIG_1(lua_State* L) { int SWIG_arg = 0; glm::vec2 *arg1 = 0 ; glm::vec2 *arg2 = 0 ; glm::vec2 *arg3 = 0 ;
   glm::vec2 result; SWIG_check_num_args("glm::fma",3,3)
@@ -7453,7 +7458,7 @@ static int _wrap_fma__SWIG_1(lua_State* L) { int SWIG_arg = 0; glm::vec2 *arg1 =
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_glm__vec2,0))){ SWIG_fail_ptr("fma",1,SWIGTYPE_p_glm__vec2); } 
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_glm__vec2,0))){ SWIG_fail_ptr("fma",2,SWIGTYPE_p_glm__vec2); } 
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_glm__vec2,0))){ SWIG_fail_ptr("fma",3,SWIGTYPE_p_glm__vec2); } 
-  result = glm::fma((glm::vec2 const &)*arg1,(glm::vec2 const &)*arg2,(glm::vec2 const &)*arg3); {
+  result = fma2((glm::vec2 const &)*arg1,(glm::vec2 const &)*arg2,(glm::vec2 const &)*arg3); {
     glm::vec2 * resultptr = new glm::vec2((const glm::vec2 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_glm__vec2,1); SWIG_arg++; }  return SWIG_arg; if(0) SWIG_fail; fail:
   lua_error(L); return SWIG_arg; }
@@ -7465,7 +7470,7 @@ static int _wrap_fma__SWIG_2(lua_State* L) { int SWIG_arg = 0; glm::vec3 *arg1 =
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_glm__vec3,0))){ SWIG_fail_ptr("fma",1,SWIGTYPE_p_glm__vec3); } 
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_glm__vec3,0))){ SWIG_fail_ptr("fma",2,SWIGTYPE_p_glm__vec3); } 
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_glm__vec3,0))){ SWIG_fail_ptr("fma",3,SWIGTYPE_p_glm__vec3); } 
-  result = glm::fma((glm::vec3 const &)*arg1,(glm::vec3 const &)*arg2,(glm::vec3 const &)*arg3); {
+  result = fma2((glm::vec3 const &)*arg1,(glm::vec3 const &)*arg2,(glm::vec3 const &)*arg3); {
     glm::vec3 * resultptr = new glm::vec3((const glm::vec3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_glm__vec3,1); SWIG_arg++; }  return SWIG_arg; if(0) SWIG_fail; fail:
   lua_error(L); return SWIG_arg; }
@@ -7477,7 +7482,7 @@ static int _wrap_fma__SWIG_3(lua_State* L) { int SWIG_arg = 0; glm::vec4 *arg1 =
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_glm__vec4,0))){ SWIG_fail_ptr("fma",1,SWIGTYPE_p_glm__vec4); } 
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_glm__vec4,0))){ SWIG_fail_ptr("fma",2,SWIGTYPE_p_glm__vec4); } 
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_glm__vec4,0))){ SWIG_fail_ptr("fma",3,SWIGTYPE_p_glm__vec4); } 
-  result = glm::fma((glm::vec4 const &)*arg1,(glm::vec4 const &)*arg2,(glm::vec4 const &)*arg3); {
+  result = fma2((glm::vec4 const &)*arg1,(glm::vec4 const &)*arg2,(glm::vec4 const &)*arg3); {
     glm::vec4 * resultptr = new glm::vec4((const glm::vec4 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_glm__vec4,1); SWIG_arg++; }  return SWIG_arg; if(0) SWIG_fail; fail:
   lua_error(L); return SWIG_arg; }
