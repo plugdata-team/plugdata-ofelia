@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Install base dependencies
-        run: apt update && DEBIAN_FRONTEND=noninteractive TZ="Europe/Amsterdam" apt install -y git build-essential pkg-config wget libcairo-dev
+        run: apt update && DEBIAN_FRONTEND=noninteractive TZ="Europe/Amsterdam" apt install -y git build-essential pkg-config wget rsync
 
       - name: Checkout
         uses: actions/checkout@v2
