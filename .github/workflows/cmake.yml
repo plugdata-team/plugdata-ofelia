@@ -15,6 +15,10 @@ jobs:
         with:
           submodules: recursive
 
+      # Downloading additional libs for openFrameworks
+      - name: Installing dependencies
+        run: ./install_libs.sh
+
       # Building the project
       - name: Building Ofelia
         run: ./build.sh
