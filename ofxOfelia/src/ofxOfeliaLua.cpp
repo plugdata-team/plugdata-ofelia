@@ -76,16 +76,17 @@ extern "C"
 /* redefined print function for the pd window */
 int l_my_print(lua_State *L)
 {
-    const ofxOfeliaLock ofxLock;
-    
-    int argc = lua_gettop(L);
-    if (argc) startpost(luaL_tolstring(L, 1, nullptr));
-    for (int i = 2; i <= argc; ++i)
-    {
-        poststring(luaL_tolstring(L, i, nullptr));
-        lua_pop(L, 1); /* remove the string */
-    }
-    endpost();
+    ofxOfeliaAsync::callAsync([L](){
+        int argc = lua_gettop(L);
+        if (argc) startpost(luaL_tolstring(L, 1, nullptr));
+        for (int i = 2; i <= argc; ++i)
+        {
+            poststring(luaL_tolstring(L, i, nullptr));
+            lua_pop(L, 1); /* remove the string */
+        }
+        endpost();
+    });
+
     return 0;
 }
 
@@ -97,56 +98,57 @@ const struct luaL_Reg printlib[] =
 
 int luaopen_print(lua_State *L)
 {
-    const ofxOfeliaLock ofxLock;
-    
-    lua_getglobal(L, "_G");
+    ofxOfeliaAsync::callAsync([L](){
+        
+        lua_getglobal(L, "_G");
 #if LUA_VERSION_NUM < 502
-    luaL_register(L, NULL, printlib);
+        luaL_register(L, NULL, printlib);
 #else
-    luaL_setfuncs(L, printlib, 0);
+        luaL_setfuncs(L, printlib, 0);
 #endif
-    lua_pop(L, 1);
+        lua_pop(L, 1);
+    });
     return 1;
 }
 
 void ofxOfeliaLua::unpackModule(lua_State *L, const std::string &moduleName, const std::string &prefix)
 {
-    const ofxOfeliaLock ofxLock;
-    
-    std::string upperPrefix = prefix;
-    std::transform(upperPrefix.begin(), upperPrefix.end(),upperPrefix.begin(), ::toupper);
-    upperPrefix += "_"; /* prefix for constants and enums */
-    lua_getglobal(L, moduleName.c_str());
-    lua_pushnil(L);
-    while (lua_next(L, -2) != 0)
-    {
-        const std::string &type = luaL_typename(L, -1);
-        const std::string &str = lua_tostring(L, -2);
-        std::string renamedStr;
-        lua_getfield(L, -3, str.c_str());
-        if ((type == "table" || type == "userdata") && (::isupper(str[0]) || ::isdigit(str[0]))) /* classes and structs */
-            renamedStr = prefix + str;
-        else if (type == "function") /* global functions */
+    ofxOfeliaAsync::callAsync([L, moduleName, prefix]() mutable {
+        std::string upperPrefix = prefix;
+        std::transform(upperPrefix.begin(), upperPrefix.end(),upperPrefix.begin(), ::toupper);
+        upperPrefix += "_"; /* prefix for constants and enums */
+        lua_getglobal(L, moduleName.c_str());
+        lua_pushnil(L);
+        while (lua_next(L, -2) != 0)
         {
-            renamedStr = str;
-            renamedStr[0] = static_cast<char>(::toupper(str[0]));
-            renamedStr = prefix + renamedStr;
-        }
-        else if (type == "number" || type == "string" || type == "boolean")
-        {
-            if (std::any_of(str.begin(), str.end(), ::islower)) /* static member variables */
+            const std::string &type = luaL_typename(L, -1);
+            const std::string &str = lua_tostring(L, -2);
+            std::string renamedStr;
+            lua_getfield(L, -3, str.c_str());
+            if ((type == "table" || type == "userdata") && (::isupper(str[0]) || ::isdigit(str[0]))) /* classes and structs */
                 renamedStr = prefix + str;
-            else /* constants or enums */
-                renamedStr = upperPrefix + str;
+            else if (type == "function") /* global functions */
+            {
+                renamedStr = str;
+                renamedStr[0] = static_cast<char>(::toupper(str[0]));
+                renamedStr = prefix + renamedStr;
+            }
+            else if (type == "number" || type == "string" || type == "boolean")
+            {
+                if (std::any_of(str.begin(), str.end(), ::islower)) /* static member variables */
+                    renamedStr = prefix + str;
+                else /* constants or enums */
+                    renamedStr = upperPrefix + str;
+            }
+            lua_setglobal(L, renamedStr.c_str());
+            lua_pop(L, 1);
+            lua_pushnil(L); /* assign nil to original element */
+            lua_setfield(L, -3, str.c_str());
         }
-        lua_setglobal(L, renamedStr.c_str());
         lua_pop(L, 1);
-        lua_pushnil(L); /* assign nil to original element */
-        lua_setfield(L, -3, str.c_str());
-    }
-    lua_pop(L, 1);
-    lua_pushnil(L); /* assign nil to module */
-    lua_setglobal(L, moduleName.c_str());
+        lua_pushnil(L); /* assign nil to module */
+        lua_setglobal(L, moduleName.c_str());
+    });
 }
 
 bool ofxOfeliaLua::addGlobals(lua_State *L)
