@@ -6,6 +6,7 @@
 #include <cctype>
 #include <deque>
 #include <cstring>
+#include <vector>
 #include <sstream>
 
 /*
