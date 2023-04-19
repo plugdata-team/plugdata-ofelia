@@ -24,6 +24,8 @@ ifeq ($(PLATFORM_OS),Linux)
     PROJECT_OPTIMIZATION_CFLAGS_RELEASE = -O3 -DNDEBUG
     PROJECT_CXX = clang++
     PROJECT_CC = clang
+    PLATFORM_CXX = clang++
+    PLATFORM_CC = clang
 	  CXXFLAGS += -std=c++17
 endif
 
