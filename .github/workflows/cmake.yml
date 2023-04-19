@@ -29,11 +29,11 @@ jobs:
         run: ./build.sh
 
       # Upload executable binaries to GitHub
-      #- name: Uploading artifacts
-      #  uses: actions/upload-artifact@v2
-      #  with:
-      #    name: Linux Artifacts
-      #    path: ./iva/ivaApp/bin/
+      - name: Uploading artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: plugdata-ofelia-macos
+          path: ./bin
 
   build-mac:
     # the build server's operating system
@@ -54,8 +54,8 @@ jobs:
         run: ./build.sh
 
       # Upload executable binaries to GitHub
-      #- name: Uploading artifacts
-      #  uses: actions/upload-artifact@v2
-      #  with:
-      #    name: Mac Os Artifacts
-      #    path: ./iva/ivaApp/bin/
+      - name: Uploading artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: plugdata-ofelia-macos
+          path: ./bin
