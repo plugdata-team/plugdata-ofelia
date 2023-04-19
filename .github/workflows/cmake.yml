@@ -12,8 +12,8 @@ jobs:
         - /sys/fs/cgroup:/sys/fs/cgroup
 
     steps:
-      - name: Update git
-        run: apt update && DEBIAN_FRONTEND=noninteractive TZ="Europe/Amsterdam" apt install -y git build-essential pkg-config
+      - name: Install base dependencies
+        run: apt update && DEBIAN_FRONTEND=noninteractive TZ="Europe/Amsterdam" apt install -y git build-essential pkg-config wget
 
       - name: Checkout
         uses: actions/checkout@v2
