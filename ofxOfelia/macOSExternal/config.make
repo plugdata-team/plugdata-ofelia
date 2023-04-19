@@ -4,8 +4,9 @@
 ################################################################################
 
 	APPNAME = ofelia.pd_darwin
-	PROJECT_CFLAGS = -Wall -Wno-sign-compare -Wno-unused-variable -Wno-maybe-uninitialized -fPIC -I../libs/ofxPd/libs/libpd/pure-data/src -I../libs/ofxLua/libs/lua
-	PROJECT_LDFLAGS = -shared -dynamiclib -undefined dynamic_lookup
+	PROJECT_CFLAGS = -Wall -Wno-sign-compare -Wno-unused-variable -Wno-maybe-uninitialized -fPIC -I../libs/ofxPd/libs/libpd/pure-data/src -I../libs/ofxLua/libs/lua -DGLM_HAS_CXX11_STL=0
+	CXXFLAGS += -std=c++17
+	PROJECT_LDFLAGS = -shared -dynamiclib
 	PROJECT_EXTERNAL_SOURCE_PATHS = ../src
 	PROJECT_DEFINES = LUA_USE_MACOSX HAVE_LIBDL TARGET_EXTERNAL
 	PROJECT_OPTIMIZATION_CFLAGS_RELEASE = -O3 -DNDEBUG

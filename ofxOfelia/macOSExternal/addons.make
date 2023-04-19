@@ -1,1 +1,1 @@
-../../addons/ofxOfelia/libs/ofxLua
+../libs/ofxLua
