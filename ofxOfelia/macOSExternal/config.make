@@ -5,7 +5,7 @@
 
 	APPNAME = ofelia.pd_darwin
 	ARCHS = -arch x86_64 -arch arm64
-	PROJECT_CFLAGS = -Wall -Wno-sign-compare -Wno-unused-variable -Wno-uninitialized -fPIC -I../libs/ofxPd/libs/libpd/pure-data/src -DGLM_FORCE_CXX03=1
+	PROJECT_CFLAGS = -Wall -Wno-sign-compare -Wno-unused-variable -Wno-uninitialized -fPIC -I../libs/ofxPd/libs/libpd/pure-data/src
 	PROJECT_LDFLAGS = -shared -dynamiclib -Wl,-rpath,./libs
 	PROJECT_EXTERNAL_SOURCE_PATHS = ../src
 	PROJECT_DEFINES = LUA_USE_MACOSX HAVE_LIBDL TARGET_EXTERNAL
@@ -149,5 +149,5 @@ PROJECT_LDFLAGS=-dynamiclib -undefined dynamic_lookup
 #		(default) PROJECT_CC = (blank)
 #   Note: Leave a leading space when adding list items with the += operator
 ################################################################################
-# PROJECT_CXX = 
-# PROJECT_CC = 
+PROJECT_CXX = clang++
+PROJECT_CC =  clang

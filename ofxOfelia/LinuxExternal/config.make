@@ -17,7 +17,7 @@ ifeq ($(PLATFORM_OS),Linux)
     else
         APPNAME = ofelia.pd_linux
     endif
-    PROJECT_CFLAGS = -Wall -Wno-sign-compare -Wno-unused-variable -Wno-maybe-uninitialized -fPIC -I../libs/ofxPd/libs/libpd/pure-data/src -DGLM_FORCE_CXX03=1
+    PROJECT_CFLAGS = -Wall -Wno-sign-compare -Wno-unused-variable -Wno-maybe-uninitialized -I../libs/ofxPd/libs/libpd/pure-data/src
     PROJECT_LDFLAGS = -rdynamic -shared -Wl,-rpath,./libs
     PROJECT_EXTERNAL_SOURCE_PATHS = ../src
     PROJECT_DEFINES = LUA_USE_LINUX HAVE_LIBDL TARGET_EXTERNAL
