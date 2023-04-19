@@ -2,6 +2,7 @@
 #include "ofxOfeliaAsync.h"
 #include <new>
 #include <cstring>
+#include <vector>
 
 t_class *ofxOfeliaDefine::pdClass;
 
