@@ -18,4 +18,5 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
       #cp -f ./bin/ofelia.pd_darwin.app/Contents/Frameworks/libfmodex.dylib ../../ofelia/ofelia.pd_darwin
 elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
       cd ./ofxOfelia/WindowsExternal
+      msbuild ofelia.vcxproj /p:configuration=release /p:PlatformToolset=v142 /p:platform=x64
 fi
