@@ -55,7 +55,6 @@ void ofxOfeliaGet::dspMethod(t_signal **sp)
 
 void ofxOfeliaGet::freeMethod()
 {
-    const ofxOfeliaLock ofxLock;
     client.freeMethod();
 }
 

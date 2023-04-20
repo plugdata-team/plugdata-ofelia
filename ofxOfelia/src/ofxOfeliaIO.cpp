@@ -10,8 +10,6 @@ void ofxOfeliaIO::newIO(int numInlets, int numOutlets)
 
 void ofxOfeliaIO::freeIO(int numInlets, int numOutlets)
 {
-    const ofxOfeliaAudioLock audioLock;
-    
     for (int i = 0; i < numInlets; ++i)
         inlet_free(inlets[i]);
     for (int i = 0; i < numOutlets; ++i)
@@ -72,7 +70,8 @@ void ofxOfeliaIO::addSignalIO()
 
 void ofxOfeliaIO::freeControlIO()
 {
-    const ofxOfeliaAudioLock audioLock;
+    // TODO: this causes a deadlock, but not having this isn't thread safe either!
+    //const ofxOfeliaAudioLock audioLock;
     
     int numInlets = this->numInlets;
     int numOutlets = this->numOutlets;
@@ -82,7 +81,7 @@ void ofxOfeliaIO::freeControlIO()
 
 void ofxOfeliaIO::freeSignalIO()
 {
-    const ofxOfeliaAudioLock audioLock;
+    //const ofxOfeliaAudioLock audioLock;
     
     int numInlets = this->numInlets;
     int numOutlets = this->numOutlets;
