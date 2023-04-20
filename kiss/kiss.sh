@@ -23,7 +23,7 @@ function download() {
 
 # prepare the build environment, executed inside the lib src dir
 function prepare() {
-	cp -Rv ../Makefile ./Makefile
+	cp -f Makefile ./kiss/Makefile
 }
 
 # executed inside the lib src dir
@@ -39,7 +39,7 @@ function copy() {
 	cp -v tools/kiss_fftr.h $1/include
 
 	mkdir -p $1/lib/linux64
-	cp -v lib/linux64/libkiss.a $1/lib/linux64/libkiss.a
+	cp -v lib/libkiss.a $1/lib/linux64/libkiss.a
 
 	# copy license file
 	rm -rf $1/license # remove any older files if exists
@@ -47,10 +47,13 @@ function copy() {
 	cp -v COPYING $1/license/
 }
 
+pushd kiss
+
 download
+prepare
 
 pushd kiss
-prepare
 build
 copy "./openFrameworks/libs"
+popd
 popd
