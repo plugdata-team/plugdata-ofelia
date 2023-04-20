@@ -66,13 +66,13 @@ jobs:
         run: ./install_libs.sh
 
       - uses: msys2/setup-msys2@v2
-              with:
-                update: true
-                install: >-
-                  git
-                  unzip
-                  rsync
-                  wget
+        with:
+          update: true
+          install: >-
+            git
+            unzip
+            rsync
+            wget
 
       - name: Install dependencies
               shell: msys2 {0}
