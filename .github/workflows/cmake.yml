@@ -73,13 +73,12 @@ jobs:
       - name: Install dependencies
         shell: msys2 {0}
         working-directory: ${{github.workspace}}/openFrameworks
-        run:
-          ./scripts/ci/vs/install.sh
+        run: ./scripts/ci/vs/install.sh
 
       - name: Build
-          shell: msys2 {0}
-          working-directory: ${{github.workspace}}
-          run: ./build.sh
+        shell: msys2 {0}
+        working-directory: ${{github.workspace}}
+        run: ./build.sh
 
 
 
