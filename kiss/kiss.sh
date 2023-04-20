@@ -45,9 +45,9 @@ function copy() {
 	cp -v lib/libkiss.a ${OF_ROOT}/kiss/lib/linux64/libkiss.a
 
 	# copy license file
-	rm -rf ${OF_ROOT}/license # remove any older files if exists
-	mkdir -p ${OF_ROOT}/license
-	cp -v COPYING ${OF_ROOT}/license/
+	rm -rf ${OF_ROOT}/kiss/license # remove any older files if exists
+	mkdir -p ${OF_ROOT}/kiss/license
+	cp -v COPYING ${OF_ROOT}/kiss/license/
 }
 
 pushd kiss
