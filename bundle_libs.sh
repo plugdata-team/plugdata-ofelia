@@ -12,4 +12,4 @@ join \
 #copy the lib selection to ./lib
 xargs -d '\n' -I{} cp --copy-contents {} ./ofelia/libs/
 #make the relative lib paths override the system lib path
-patchelf --set-rpath "\$ORIGIN/lib" "$1"
+patchelf --set-rpath "\$ORIGIN/libs" "$1"
