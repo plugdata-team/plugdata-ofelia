@@ -4,7 +4,6 @@ on: [push]
 
 jobs:
   build-mac:
-      # the build server's operating system
       runs-on: macos-latest
 
       steps:
@@ -53,6 +52,32 @@ jobs:
         with:
           name: plugdata-ofelia-linux
           path: ./ofelia
+
+  build-windows:
+      runs-on: windows-latest
+      steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      # Downloading additional libs for openFrameworks
+      - name: Installing dependencies
+        run: ./install_libs.sh
+
+      - uses: msys2/setup-msys2@v2
+              with:
+                update: true
+                install: >-
+                  git
+                  unzip
+                  rsync
+                  wget
+
+      - name: Install dependencies
+              shell: msys2 {0}
+              run:
+                ./openFrameworks/scripts/ci/vs/install.sh
 
 #  build-ubuntu-armv7:
 #    runs-on: ubuntu-20.04
