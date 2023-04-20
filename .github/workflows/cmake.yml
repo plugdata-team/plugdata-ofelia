@@ -72,8 +72,9 @@ jobs:
 
       - name: Install dependencies
         shell: msys2 {0}
+        working-directory: ${{github.workspace}}/openFrameworks
         run:
-          ./openFrameworks/scripts/ci/vs/install.sh
+          ./scripts/ci/vs/install.sh
 
 #  build-ubuntu-armv7:
 #    runs-on: ubuntu-20.04
