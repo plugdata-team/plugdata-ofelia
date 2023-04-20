@@ -16,8 +16,4 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
       cp -rf ./deps-scripts ../../ofelia
       cd ../../
       ./bundle_libs.sh ./ofelia/ofelia.pd_linux
-      echo "printing contents:"
-      ls
-      ls ./bin
-      cp -f ./bin/libfmodex.so ../../ofelia/ofelia.pd_darwin
 fi
