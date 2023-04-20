@@ -23,7 +23,7 @@ function download() {
 
 # prepare the build environment, executed inside the lib src dir
 function prepare() {
-	cp -Rv Makefile kiss/Makefile
+	cp -Rv ../Makefile ./Makefile
 }
 
 # executed inside the lib src dir
