@@ -31,20 +31,22 @@ function build() {
     make
 }
 
+OF_ROOT = $(realpath ./openFrameworks/libs)
+
 # executed inside the lib src dir, first arg $1 is the dest libs dir root
 function copy() {
 	# headers
-	mkdir -p $1/include
-	cp -v kiss_fft.h $1/include
-	cp -v tools/kiss_fftr.h $1/include
+	mkdir -p ${OF_ROOT}/include
+	cp -v kiss_fft.h ${OF_ROOT}/include
+	cp -v tools/kiss_fftr.h ${OF_ROOT}/include
 
-	mkdir -p $1/lib/linux64
-	cp -v lib/libkiss.a $1/lib/linux64/libkiss.a
+	mkdir -p ${OF_ROOT}/lib/linux64
+	cp -v lib/libkiss.a ${OF_ROOT}/lib/linux64/libkiss.a
 
 	# copy license file
-	rm -rf $1/license # remove any older files if exists
-	mkdir -p $1/license
-	cp -v COPYING $1/license/
+	rm -rf ${OF_ROOT}/license # remove any older files if exists
+	mkdir -p ${OF_ROOT}/license
+	cp -v COPYING ${OF_ROOT}/license/
 }
 
 pushd kiss
@@ -54,6 +56,6 @@ prepare
 
 pushd kiss
 build
-copy "./openFrameworks/libs"
+copy
 popd
 popd
