@@ -61,10 +61,6 @@ jobs:
         with:
           submodules: recursive
 
-      # Downloading additional libs for openFrameworks
-      - name: Installing dependencies
-        run: ./install_libs.sh
-
       - uses: msys2/setup-msys2@v2
         with:
           update: true
