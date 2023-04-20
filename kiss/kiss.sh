@@ -28,9 +28,7 @@ function prepare() {
 
 # executed inside the lib src dir
 function build() {
-		pushd kiss
     make
-		popd
 }
 
 # executed inside the lib src dir, first arg $1 is the dest libs dir root
@@ -50,6 +48,9 @@ function copy() {
 }
 
 download
+
+pushd kiss
 prepare
 build
 copy "./openFrameworks/libs"
+popd
