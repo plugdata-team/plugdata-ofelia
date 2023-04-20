@@ -5,11 +5,11 @@
 
 	APPNAME = ofelia.pd_darwin
 	PROJECT_CFLAGS = -Wall -Wno-sign-compare -Wno-unused-variable -Wno-uninitialized -fPIC -I../libs/ofxPd/libs/libpd/pure-data/src
-	PROJECT_LDFLAGS = -shared -dynamiclib -undefined dynamic_lookup
+	PROJECT_LDFLAGS = -rdynamic -shared
 	PROJECT_EXTERNAL_SOURCE_PATHS = ../src
 	PROJECT_DEFINES = LUA_USE_MACOSX HAVE_LIBDL TARGET_EXTERNAL
 	PROJECT_OPTIMIZATION_CFLAGS_RELEASE = -O3 -DNDEBUG
-	export MAC_OS_CPP_VER = -std=c++17
+	MAC_OS_CPP_VER = -std=c++17
 ################################################################################
 # OF ROOT
 #   The location of your root openFrameworks installation
