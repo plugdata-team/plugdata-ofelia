@@ -75,6 +75,9 @@ jobs:
         working-directory: ${{github.workspace}}/openFrameworks
         run: ./scripts/ci/vs/install.sh
 
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1.1
+
       - name: Build
         shell: msys2 {0}
         working-directory: ${{github.workspace}}
