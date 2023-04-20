@@ -79,8 +79,8 @@ jobs:
       - name: Build
           shell: msys2 {0}
           working-directory: ${{github.workspace}}
-          run:
-            ./build.sh
+          run: ./build.sh
+
 
 
 
