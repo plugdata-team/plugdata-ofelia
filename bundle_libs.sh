@@ -13,3 +13,8 @@ join \
 xargs -d '\n' -I{} cp --copy-contents {} ./ofelia/libs/
 #make the relative lib paths override the system lib path
 patchelf --set-rpath "\$ORIGIN/libs" "$1"
+
+# We can hopefully assume these libraries are already installed on the users' system
+rm ./ofelia/libs/libpthread.so.*
+rm ./ofelia/libs/libc.so.*
+rm ./ofelia/libs/libX11.so.*
