@@ -14,7 +14,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
       cp -f ./bin/ofelia.* ../../ofelia
       cp -rf ./deps-scripts ../../ofelia
       cd ../../
-      ./bundle_libs.sh ../../ofelia/ofelia.pd_linux
+      ./bundle_libs.sh ./ofelia/ofelia.pd_linux
       #cp -f ./bin/ofelia.pd_darwin.app/Contents/Frameworks/libfmodex.dylib ../../ofelia/ofelia.pd_darwin
 elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
       cd ./ofxOfelia/WindowsExternal
