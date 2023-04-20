@@ -18,3 +18,4 @@ patchelf --set-rpath "\$ORIGIN/libs" "$1"
 rm ./ofelia/libs/libpthread.so.*
 rm ./ofelia/libs/libc.so.*
 rm ./ofelia/libs/libX11.so.*
+rm ./ofelia/libs/libstdc++.so.6
