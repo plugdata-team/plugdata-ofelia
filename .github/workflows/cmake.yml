@@ -53,28 +53,29 @@ jobs:
         with:
           name: plugdata-ofelia-linux
           path: ./ofelia
-  ubuntu-armv7:
-      runs-on: ubuntu-20.04
-      name: ubuntu-arm-build
-      steps:
-        - uses: actions/checkout@v3
-        - uses: uraimo/run-on-arch-action@v2
-          name: Run commands
-          id: runcmd
-          with:
-            arch: armv7
-            distro: ubuntu20.04
 
-            # Mount the artifacts directory as /artifacts in the container
-            dockerRunArgs: |
-              --volume "${PWD}:/plugdata-ofelia"
+  build-ubuntu-armv7:
+    runs-on: ubuntu-20.04
+    name: ubuntu-arm-build
+    steps:
+      - uses: actions/checkout@v3
+      - uses: uraimo/run-on-arch-action@v2
+        name: Run commands
+        id: runcmd
+        with:
+          arch: armv7
+          distro: ubuntu20.04
 
-            # Set an output parameter `uname` for use in subsequent steps
-            run: |
-               sudo apt update && sudo DEBIAN_FRONTEND=noninteractive TZ="Europe/Amsterdam" apt install -y libunwind-dev clang git build-essential pkg-config wget rsync libassimp-dev libgstreamer1.0-0 gstreamer1.0-plugins-base libgstreamer-plugins-base1.0-dev gstreamer1.0-plugins-bad gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly libfreetype6-dev libx11-dev libxcomposite-dev libxcursor-dev libxcursor-dev libxext-dev libxinerama-dev libxrandr-dev libxrender-dev libglu1-mesa-dev mesa-common-dev
-               cd /plugdata-ofelia
-               ./install_libs.sh
-               ./build.sh
+          # Mount the artifacts directory as /artifacts in the container
+          dockerRunArgs: |
+            --volume "${PWD}:/plugdata-ofelia"
+
+          # Set an output parameter `uname` for use in subsequent steps
+          run: |
+             sudo apt update && sudo DEBIAN_FRONTEND=noninteractive TZ="Europe/Amsterdam" apt install -y libunwind-dev clang git build-essential pkg-config wget rsync libassimp-dev libgstreamer1.0-0 gstreamer1.0-plugins-base libgstreamer-plugins-base1.0-dev gstreamer1.0-plugins-bad gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly libfreetype6-dev libx11-dev libxcomposite-dev libxcursor-dev libxcursor-dev libxext-dev libxinerama-dev libxrandr-dev libxrender-dev libglu1-mesa-dev mesa-common-dev
+             cd /plugdata-ofelia
+             ./install_libs.sh
+             ./build.sh
 
       # Upload executable binaries to GitHub
       - name: Uploading artifacts
