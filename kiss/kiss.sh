@@ -31,7 +31,8 @@ function build() {
     make
 }
 
-OF_ROOT = $(realpath ./openFrameworks/libs)
+OF_ROOT=$(realpath ./openFrameworks/libs)
+echo ${OF_ROOT}
 
 # executed inside the lib src dir, first arg $1 is the dest libs dir root
 function copy() {
