@@ -3,6 +3,30 @@ name: build
 on: [push]
 
 jobs:
+  build-mac:
+      # the build server's operating system
+      runs-on: macos-latest
+
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+          with:
+            submodules: recursive
+
+        # Downloading additional libs for openFrameworks
+        - name: Installing dependencies
+          run: ./install_libs.sh
+
+        # Building the project
+        - name: Building Ofelia
+          run: ./build.sh
+
+        # Upload executable binaries to GitHub
+        - name: Uploading artifacts
+          uses: actions/upload-artifact@v2
+          with:
+            name: plugdata-ofelia-macos
+            path: ./ofelia
   build-ubuntu:
     runs-on: ubuntu-20.04
 
@@ -29,28 +53,32 @@ jobs:
         with:
           name: plugdata-ofelia-linux
           path: ./ofelia
+  ubuntu-armv7:
+      runs-on: ubuntu-20.04
+      name: ubuntu-arm-build
+      steps:
+        - uses: actions/checkout@v3
+        - uses: uraimo/run-on-arch-action@v2
+          name: Run commands
+          id: runcmd
+          with:
+            arch: armv7
+            distro: ubuntu20.04
 
-  build-mac:
-    # the build server's operating system
-    runs-on: macos-latest
+            # Mount the artifacts directory as /artifacts in the container
+            dockerRunArgs: |
+              --volume "${PWD}:/plugdata-ofelia"
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          submodules: recursive
-
-      # Downloading additional libs for openFrameworks
-      - name: Installing dependencies
-        run: ./install_libs.sh
-
-      # Building the project
-      - name: Building Ofelia
-        run: ./build.sh
+            # Set an output parameter `uname` for use in subsequent steps
+            run: |
+               sudo apt update && sudo DEBIAN_FRONTEND=noninteractive TZ="Europe/Amsterdam" apt install -y libunwind-dev clang git build-essential pkg-config wget rsync libassimp-dev libgstreamer1.0-0 gstreamer1.0-plugins-base libgstreamer-plugins-base1.0-dev gstreamer1.0-plugins-bad gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly libfreetype6-dev libx11-dev libxcomposite-dev libxcursor-dev libxcursor-dev libxext-dev libxinerama-dev libxrandr-dev libxrender-dev libglu1-mesa-dev mesa-common-dev
+               cd /plugdata-ofelia
+               ./install_libs.sh
+               ./build.sh
 
       # Upload executable binaries to GitHub
       - name: Uploading artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: plugdata-ofelia-macos
+          name: plugdata-ofelia-linux-arm
           path: ./ofelia
