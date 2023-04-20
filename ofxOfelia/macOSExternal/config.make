@@ -5,7 +5,7 @@
 
 	APPNAME = ofelia.pd_darwin
 	PROJECT_CFLAGS = -Wall -Wno-sign-compare -Wno-unused-variable -Wno-uninitialized -fPIC -I../libs/ofxPd/libs/libpd/pure-data/src
-	PROJECT_LDFLAGS = -rdynamic -shared
+	PROJECT_LDFLAGS = -rdynamic -shared -Wl,-rpath=./libs
 	PROJECT_EXTERNAL_SOURCE_PATHS = ../src
 	PROJECT_DEFINES = LUA_USE_MACOSX HAVE_LIBDL TARGET_EXTERNAL
 	PROJECT_OPTIMIZATION_CFLAGS_RELEASE = -O3 -DNDEBUG
