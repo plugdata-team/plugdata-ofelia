@@ -37,12 +37,12 @@ echo ${OF_ROOT}
 # executed inside the lib src dir, first arg $1 is the dest libs dir root
 function copy() {
 	# headers
-	mkdir -p ${OF_ROOT}/include
-	cp -v kiss_fft.h ${OF_ROOT}/include
-	cp -v tools/kiss_fftr.h ${OF_ROOT}/include
+	mkdir -p ${OF_ROOT}/kiss/include
+	cp -v kiss_fft.h ${OF_ROOT}/kiss/include
+	cp -v tools/kiss_fftr.h ${OF_ROOT}/kiss/include
 
-	mkdir -p ${OF_ROOT}/lib/linux64
-	cp -v lib/libkiss.a ${OF_ROOT}/lib/linux64/libkiss.a
+	mkdir -p ${OF_ROOT}/kiss/lib/linux64
+	cp -v lib/libkiss.a ${OF_ROOT}/kiss/lib/linux64/libkiss.a
 
 	# copy license file
 	rm -rf ${OF_ROOT}/license # remove any older files if exists
