@@ -75,9 +75,9 @@ jobs:
             wget
 
       - name: Install dependencies
-              shell: msys2 {0}
-              run:
-                ./openFrameworks/scripts/ci/vs/install.sh
+        shell: msys2 {0}
+        run:
+          ./openFrameworks/scripts/ci/vs/install.sh
 
 #  build-ubuntu-armv7:
 #    runs-on: ubuntu-20.04
