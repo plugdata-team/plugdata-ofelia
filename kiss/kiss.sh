@@ -23,15 +23,14 @@ function download() {
 
 # prepare the build environment, executed inside the lib src dir
 function prepare() {
-	cp -Rv $FORMULA_DIR/Makefile .
+	cp -Rv Makefile kiss/Makefile
 }
 
 # executed inside the lib src dir
 function build() {
-    if [ $CROSSCOMPILING -eq 1 ]; then
-        source ../../${TYPE}_configure.sh
-    fi
-    make  -j${PARALLEL_MAKE} TARGET_DIR=$TYPE
+		pushd kiss
+    make
+		popd
 }
 
 # executed inside the lib src dir, first arg $1 is the dest libs dir root
@@ -41,8 +40,8 @@ function copy() {
 	cp -v kiss_fft.h $1/include
 	cp -v tools/kiss_fftr.h $1/include
 
-	mkdir -p $1/lib/$TYPE
-	cp -v lib/$TYPE/libkiss.a $1/lib/$TYPE/libkiss.a
+	mkdir -p $1/lib/linux64
+	cp -v lib/linux64/libkiss.a $1/lib/linux64/libkiss.a
 
 	# copy license file
 	rm -rf $1/license # remove any older files if exists
