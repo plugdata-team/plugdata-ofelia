@@ -117,7 +117,7 @@
       <PreprocessorDefinitions>TARGET_EXTERNAL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>..\libs\ofxLua\src;..\libs\ofxLua\src\bindings;..\libs\ofxLua\src\bindings\desktop;..\libs\ofxLua\src\bindings\ios;..\libs\ofxLua\src\bindings\linuxarm;..\libs\ofxLua\libs\lua;..\libs\ofxPd\libs\libpd\pure-data\src;..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\libs\ofxLua\src;..\libs\ofxLua\src\bindings;..\libs\ofxLua\src\bindings\desktop;..\libs\ofxLua\src\bindings\ios;..\libs\ofxLua\src\bindings\linuxarm;..\libs\ofxLua\libs\lua;..\libs\ofxPd\libs\libpd\pure-data\src;..\src;..\..\openFrameworks\libs\fmod\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp14</LanguageStandard>
@@ -127,7 +127,7 @@
       <SubSystem>Console</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\openFrameworks\libs\fmod\lib\vs\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ForceFileOutput>UndefinedSymbolOnly</ForceFileOutput>
     </Link>
     <PostBuildEvent>
@@ -187,44 +187,111 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\libs\ofxLua\libs\lua\lapi.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\lauxlib.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\lbaselib.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\lbitlib.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\lcode.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\lcorolib.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\lctype.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\ldblib.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\ldebug.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\ldo.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\ldump.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\lfunc.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\lgc.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\linit.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\liolib.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\llex.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\lmathlib.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\lmem.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\loadlib.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\lobject.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\lopcodes.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\loslib.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\lparser.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\lstate.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\lstring.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\lstrlib.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\ltable.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\ltablib.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\ltm.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\lundump.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\lutf8lib.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\lvm.c" />
-    <ClCompile Include="..\libs\ofxLua\libs\lua\lzio.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lapi.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lauxlib.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lbaselib.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lbitlib.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lcode.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lcorolib.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lctype.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\ldblib.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\ldebug.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\ldo.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\ldump.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lfunc.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lgc.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\linit.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\liolib.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\llex.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lmathlib.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lmem.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\loadlib.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lobject.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lopcodes.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\loslib.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lparser.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lstate.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lstring.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lstrlib.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\ltable.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\ltablib.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\ltm.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lundump.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lutf8lib.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lvm.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lzio.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
     <ClCompile Include="..\libs\ofxLua\src\bindings\desktop\ofBindings.cpp" />
     <ClCompile Include="..\libs\ofxLua\src\bindings\glmBindings.cpp" />
     <ClCompile Include="..\libs\ofxLua\src\ofxLua.cpp" />
     <ClCompile Include="..\libs\ofxLua\src\ofxLuaFileWriter.cpp" />
     <ClCompile Include="..\src\ofxOfelia.cpp" />
+    <ClCompile Include="..\src\ofxOfeliaAsync.cpp" />
     <ClCompile Include="..\src\ofxOfeliaClient.cpp" />
     <ClCompile Include="..\src\ofxOfeliaCreator.cpp" />
     <ClCompile Include="..\src\ofxOfeliaData.cpp" />
@@ -274,6 +341,7 @@
     <ClInclude Include="..\libs\ofxLua\src\ofxLua.h" />
     <ClInclude Include="..\libs\ofxLua\src\ofxLuaFileWriter.h" />
     <ClInclude Include="..\src\ofxOfelia.h" />
+    <ClInclude Include="..\src\ofxOfeliaAsync.h" />
     <ClInclude Include="..\src\ofxOfeliaClient.h" />
     <ClInclude Include="..\src\ofxOfeliaCreator.h" />
     <ClInclude Include="..\src\ofxOfeliaData.h" />
