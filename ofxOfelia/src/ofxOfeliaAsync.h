@@ -9,47 +9,23 @@ extern void ofelia_audio_unlock();
 
 struct ofxOfeliaAudioLock
 {
-    ofxOfeliaAudioLock()
-    {
-        ofelia_audio_lock();
-    }
-
-    ~ofxOfeliaAudioLock()
-    {
-        ofelia_audio_unlock();
-    }
+    ofxOfeliaAudioLock();
+    ~ofxOfeliaAudioLock();
 };
 
 struct ofxOfeliaLock
 {
-    ofxOfeliaLock()
-    {
-        ofeliaLock.lock();
-    }
-
-    ~ofxOfeliaLock()
-    {
-        ofeliaLock.unlock();
-    }
+    ofxOfeliaLock();
+    ~ofxOfeliaLock();
     
-    static inline std::recursive_mutex ofeliaLock;
+    static std::recursive_mutex ofeliaLock;
 };
 
 struct ofxOfeliaAsync
 {
-    static void setRunLoop(std::function<void()> fn)
-    {
-        const ofxOfeliaLock ofxLock;
-        ofelia_set_run_loop(fn);
-    }
+    static void setRunLoop(std::function<void()> fn);
 
-    static void callAsync(std::function<void()> fn)
-    {
-        ofelia_call_async([fn](){
-            const ofxOfeliaLock ofxLock;
-            fn();
-        });
-    }
+    static void callAsync(std::function<void()> fn);
 };
 
 
