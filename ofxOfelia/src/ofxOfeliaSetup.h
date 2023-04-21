@@ -17,5 +17,9 @@ extern int ofeliaVersionBugFix;
 
 extern "C"
 {
+#ifdef _MSC_VER
+    __declspec(dllexport) void ofelia_setup();
+#else
     void ofelia_setup();
+#endif
 }
