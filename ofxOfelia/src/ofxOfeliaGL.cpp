@@ -3,7 +3,7 @@
 
 void ofxOfeliaGL::addDefines(lua_State *L)
 {
-
+    ofxOfeliaAsync::callAsync([L](){
         lua_pushnumber(L, 1);
         lua_setglobal(L, "GL_VERSION_1_1");
         lua_pushnumber(L, 0);
@@ -9074,4 +9074,5 @@ void ofxOfeliaGL::addDefines(lua_State *L)
         lua_setglobal(L, "GL_PHONG_HINT_WIN");
         lua_pushnumber(L, 0x80EC);
         lua_setglobal(L, "GL_FOG_SPECULAR_TEXTURE_WIN");
+    });
 }
