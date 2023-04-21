@@ -164,7 +164,7 @@ bool ofxOfeliaLua::addGlobals(lua_State *L)
     const int ret = luaL_dostring(L, s);
     if (ret != LUA_OK)
     {
-        pd_error("ofelia: %s", lua_tostring(L, -1));
+        pd_error(NULL, "ofelia: %s", lua_tostring(L, -1));
         lua_pop(L, 1);
         return false;
     }
@@ -179,7 +179,7 @@ bool ofxOfeliaLua::init()
     L = luaL_newstate();
     if (L == nullptr)
     {
-        pd_error("ofelia: failed initializing lua");
+        pd_error(NULL, "ofelia: failed initializing lua");
         return false;
     }
     /* open libs */
@@ -215,7 +215,7 @@ bool ofxOfeliaLua::require()
     lua_pushstring(L, dataPtr->sym->s_name);
     if (lua_pcall(L, 1, LUA_MULTRET, 0))
     {
-        pd_error("ofelia: %s", lua_tostring(L, -1));
+        pd_error(NULL, "ofelia: %s", lua_tostring(L, -1));
         lua_pop(L, 1);
         isChunkRun = false;
         return false;
@@ -565,7 +565,7 @@ void ofxOfeliaLua::callFunction(int top)
         /* note: it currently passes only one argument */
         if (lua_pcall(L, 1, LUA_MULTRET, 0))
         {
-            pd_error("ofelia: %s", lua_tostring(L, -1));
+            pd_error(NULL, "ofelia: %s", lua_tostring(L, -1));
             lua_pop(L, 1);
             return;
         }
@@ -762,7 +762,7 @@ void ofxOfeliaLua::doString(const char *s)
     const int ret = luaL_dostring(L, ss.str().c_str());
     if (ret != LUA_OK)
     {
-        pd_error("ofelia: %s", lua_tostring(L, -1));
+        pd_error(NULL, "ofelia: %s", lua_tostring(L, -1));
         lua_pop(L, 1);
         return;
     }
@@ -875,7 +875,7 @@ void ofxOfeliaLua::setVariableByArgs(t_symbol *s, int argc, t_atom *argv)
             else if (argv[0].a_type == A_FLOAT)
                 setVariable(s, argv[0].a_w.w_float != 0);
             else
-                pd_error("ofelia: failed to set the boolean variable '%s'", s->s_name);
+                pd_error(NULL, "ofelia: failed to set the boolean variable '%s'", s->s_name);
             break;
         case LUA_TNUMBER:
             if (!argc)
@@ -883,7 +883,7 @@ void ofxOfeliaLua::setVariableByArgs(t_symbol *s, int argc, t_atom *argv)
             else if (argv[0].a_type == A_FLOAT)
                 setVariable(s, argv[0].a_w.w_float);
             else
-                pd_error("ofelia: failed to set the number variable '%s'", s->s_name);
+                pd_error(NULL, "ofelia: failed to set the number variable '%s'", s->s_name);
             break;
         case LUA_TSTRING:
             if (!argc)
@@ -891,7 +891,7 @@ void ofxOfeliaLua::setVariableByArgs(t_symbol *s, int argc, t_atom *argv)
             else if (argv[0].a_type == A_SYMBOL)
                 setVariable(s, argv[0].a_w.w_symbol);
             else
-                pd_error("ofelia: failed to set the string variable '%s'", s->s_name);
+                pd_error(NULL, "ofelia: failed to set the string variable '%s'", s->s_name);
             break;
         case LUA_TUSERDATA:
             if (!argc)
@@ -899,7 +899,7 @@ void ofxOfeliaLua::setVariableByArgs(t_symbol *s, int argc, t_atom *argv)
             else if (argv[0].a_type == A_POINTER)
                 setVariable(s, argv[0].a_w.w_gpointer);
             else
-                pd_error("ofelia: failed to set the pointer variable '%s'", s->s_name);
+                pd_error(NULL, "ofelia: failed to set the pointer variable '%s'", s->s_name);
             break;
         case LUA_TTABLE:
             if (!argc)

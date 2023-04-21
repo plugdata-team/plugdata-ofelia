@@ -24,7 +24,7 @@ void *ofxOfeliaCreator::newWrapper(t_symbol *s, int argc, t_atom *argv)
             pd_this->pd_newest = static_cast<t_pd *>(ofxOfeliaExists::newWrapper(gensym("exists"), argc - 1, argv + 1));
         else
         {
-            pd_error("list %s: unknown function", str);
+            pd_error(NULL, "list %s: unknown function", str);
             pd_this->pd_newest = 0;
         }
     }
