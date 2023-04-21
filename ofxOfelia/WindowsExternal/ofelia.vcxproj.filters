@@ -1,171 +1,61 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lapi.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lauxlib.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lbaselib.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lbitlib.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lcode.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lcorolib.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lctype.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\ldblib.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\ldebug.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\ldo.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\ldump.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lfunc.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lgc.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\linit.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\liolib.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\llex.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lmathlib.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lmem.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\loadlib.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lobject.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lopcodes.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\loslib.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lparser.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lstate.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lstring.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lstrlib.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\ltable.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\ltablib.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\ltm.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lundump.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lutf8lib.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lvm.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lzio.c">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\src\ofxLua.cpp">
-      <Filter>addons\ofxOfelia\libs\ofxLua\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\src\ofxLuaFileWriter.cpp">
-      <Filter>addons\ofxOfelia\libs\ofxLua\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\src\bindings\glmBindings.cpp">
-      <Filter>addons\ofxOfelia\libs\ofxLua\src\bindings</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\src\bindings\desktop\ofBindings.cpp">
-      <Filter>addons\ofxOfelia\libs\ofxLua\src\bindings\desktop</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfelia.cpp">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaClient.cpp">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaCreator.cpp">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaData.cpp">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaDefine.cpp">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaEvents.cpp">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaExists.cpp">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaFunction.cpp">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaGet.cpp">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaGL.cpp">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaIO.cpp">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaLog.cpp">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaLua.cpp">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaPdBindings.cpp">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaSet.cpp">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaSetup.cpp">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaSignal.cpp">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaTextBuf.cpp">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClCompile>
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lapi.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lauxlib.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lbaselib.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lbitlib.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lcode.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lcorolib.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lctype.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\ldblib.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\ldebug.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\ldo.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\ldump.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lfunc.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lgc.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\linit.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\liolib.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\llex.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lmathlib.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lmem.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\loadlib.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lobject.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lopcodes.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\loslib.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lparser.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lstate.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lstring.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lstrlib.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\ltable.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\ltablib.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\ltm.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lundump.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lutf8lib.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lvm.c" />
+    <ClCompile Include="..\libs\ofxLua\libs\lua\lzio.c" />
+    <ClCompile Include="..\libs\ofxLua\src\bindings\desktop\ofBindings.cpp" />
+    <ClCompile Include="..\libs\ofxLua\src\bindings\glmBindings.cpp" />
+    <ClCompile Include="..\libs\ofxLua\src\ofxLua.cpp" />
+    <ClCompile Include="..\libs\ofxLua\src\ofxLuaFileWriter.cpp" />
+    <ClCompile Include="..\src\ofxOfelia.cpp" />
+    <ClCompile Include="..\src\ofxOfeliaClient.cpp" />
+    <ClCompile Include="..\src\ofxOfeliaCreator.cpp" />
+    <ClCompile Include="..\src\ofxOfeliaData.cpp" />
+    <ClCompile Include="..\src\ofxOfeliaDefine.cpp" />
+    <ClCompile Include="..\src\ofxOfeliaEvents.cpp" />
+    <ClCompile Include="..\src\ofxOfeliaExists.cpp" />
+    <ClCompile Include="..\src\ofxOfeliaFunction.cpp" />
+    <ClCompile Include="..\src\ofxOfeliaGet.cpp" />
+    <ClCompile Include="..\src\ofxOfeliaGL.cpp" />
+    <ClCompile Include="..\src\ofxOfeliaIO.cpp" />
+    <ClCompile Include="..\src\ofxOfeliaLog.cpp" />
+    <ClCompile Include="..\src\ofxOfeliaLua.cpp" />
+    <ClCompile Include="..\src\ofxOfeliaPdBindings.cpp" />
+    <ClCompile Include="..\src\ofxOfeliaSet.cpp" />
+    <ClCompile Include="..\src\ofxOfeliaSetup.cpp" />
+    <ClCompile Include="..\src\ofxOfeliaSignal.cpp" />
+    <ClCompile Include="..\src\ofxOfeliaTextBuf.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -203,147 +93,53 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lapi.h">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lauxlib.h">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lcode.h">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lctype.h">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\ldebug.h">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\ldo.h">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lfunc.h">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lgc.h">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\llex.h">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\llimits.h">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lmem.h">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lobject.h">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lopcodes.h">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lparser.h">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lprefix.h">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lstate.h">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lstring.h">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\ltable.h">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\ltm.h">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lua.h">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lua.hpp">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\luaconf.h">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lualib.h">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lundump.h">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lvm.h">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\libs\lua\lzio.h">
-      <Filter>addons\ofxOfelia\libs\ofxLua\libs\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\src\ofxLua.h">
-      <Filter>addons\ofxOfelia\libs\ofxLua\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\src\ofxLuaFileWriter.h">
-      <Filter>addons\ofxOfelia\libs\ofxLua\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\libs\ofxLua\src\bindings\ofBindings.h">
-      <Filter>addons\ofxOfelia\libs\ofxLua\src\bindings</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfelia.h">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaClient.h">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaCreator.h">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaData.h">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaDefine.h">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaEvents.h">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaExists.h">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaFunction.h">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaGet.h">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaGL.h">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaIO.h">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaLog.h">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaLua.h">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaPdBindings.h">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaSet.h">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaSetup.h">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaSignal.h">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\openFrameworks\addons\ofxOfelia\src\ofxOfeliaTextBuf.h">
-      <Filter>addons\ofxOfelia\src</Filter>
-    </ClInclude>
+    <ClInclude Include="..\libs\ofxLua\libs\lua\lapi.h" />
+    <ClInclude Include="..\libs\ofxLua\libs\lua\lauxlib.h" />
+    <ClInclude Include="..\libs\ofxLua\libs\lua\lcode.h" />
+    <ClInclude Include="..\libs\ofxLua\libs\lua\lctype.h" />
+    <ClInclude Include="..\libs\ofxLua\libs\lua\ldebug.h" />
+    <ClInclude Include="..\libs\ofxLua\libs\lua\ldo.h" />
+    <ClInclude Include="..\libs\ofxLua\libs\lua\lfunc.h" />
+    <ClInclude Include="..\libs\ofxLua\libs\lua\lgc.h" />
+    <ClInclude Include="..\libs\ofxLua\libs\lua\llex.h" />
+    <ClInclude Include="..\libs\ofxLua\libs\lua\llimits.h" />
+    <ClInclude Include="..\libs\ofxLua\libs\lua\lmem.h" />
+    <ClInclude Include="..\libs\ofxLua\libs\lua\lobject.h" />
+    <ClInclude Include="..\libs\ofxLua\libs\lua\lopcodes.h" />
+    <ClInclude Include="..\libs\ofxLua\libs\lua\lparser.h" />
+    <ClInclude Include="..\libs\ofxLua\libs\lua\lprefix.h" />
+    <ClInclude Include="..\libs\ofxLua\libs\lua\lstate.h" />
+    <ClInclude Include="..\libs\ofxLua\libs\lua\lstring.h" />
+    <ClInclude Include="..\libs\ofxLua\libs\lua\ltable.h" />
+    <ClInclude Include="..\libs\ofxLua\libs\lua\ltm.h" />
+    <ClInclude Include="..\libs\ofxLua\libs\lua\lua.h" />
+    <ClInclude Include="..\libs\ofxLua\libs\lua\lua.hpp" />
+    <ClInclude Include="..\libs\ofxLua\libs\lua\luaconf.h" />
+    <ClInclude Include="..\libs\ofxLua\libs\lua\lualib.h" />
+    <ClInclude Include="..\libs\ofxLua\libs\lua\lundump.h" />
+    <ClInclude Include="..\libs\ofxLua\libs\lua\lvm.h" />
+    <ClInclude Include="..\libs\ofxLua\libs\lua\lzio.h" />
+    <ClInclude Include="..\libs\ofxLua\src\bindings\ofBindings.h" />
+    <ClInclude Include="..\libs\ofxLua\src\ofxLua.h" />
+    <ClInclude Include="..\libs\ofxLua\src\ofxLuaFileWriter.h" />
+    <ClInclude Include="..\src\ofxOfelia.h" />
+    <ClInclude Include="..\src\ofxOfeliaClient.h" />
+    <ClInclude Include="..\src\ofxOfeliaCreator.h" />
+    <ClInclude Include="..\src\ofxOfeliaData.h" />
+    <ClInclude Include="..\src\ofxOfeliaDefine.h" />
+    <ClInclude Include="..\src\ofxOfeliaEvents.h" />
+    <ClInclude Include="..\src\ofxOfeliaExists.h" />
+    <ClInclude Include="..\src\ofxOfeliaFunction.h" />
+    <ClInclude Include="..\src\ofxOfeliaGet.h" />
+    <ClInclude Include="..\src\ofxOfeliaGL.h" />
+    <ClInclude Include="..\src\ofxOfeliaIO.h" />
+    <ClInclude Include="..\src\ofxOfeliaLog.h" />
+    <ClInclude Include="..\src\ofxOfeliaLua.h" />
+    <ClInclude Include="..\src\ofxOfeliaPdBindings.h" />
+    <ClInclude Include="..\src\ofxOfeliaSet.h" />
+    <ClInclude Include="..\src\ofxOfeliaSetup.h" />
+    <ClInclude Include="..\src\ofxOfeliaSignal.h" />
+    <ClInclude Include="..\src\ofxOfeliaTextBuf.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
