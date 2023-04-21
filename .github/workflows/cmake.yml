@@ -80,7 +80,7 @@ jobs:
 
       - name: Build
         working-directory: ${{github.workspace}}
-        run: ./build.sh
+        run: ./build.bat
 
 
 
