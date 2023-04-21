@@ -3,4 +3,4 @@ msbuild ofelia.sln /p:configuration=release /p:PlatformToolset=v142 /p:platform=
 DEL ".\bin\pd.dll"
 DEL ".\bin\pthreadVC3.dll"
 MOVE  "%CD%\..\ofelia" "%CD%\..\..\ofelia"
-COPY  "\bin\*.dll" "%CD%\..\..\ofelia\"
+COPY  "bin\*.dll" "%CD%\..\..\ofelia"
