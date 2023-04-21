@@ -172,7 +172,7 @@ ofxOfeliaData *ofxOfeliaData::getPtr(t_symbol *s)
             return x;
         else
         {
-            error("ofelia: couldn't find '%s'", s->s_name);
+            pd_error("ofelia: couldn't find '%s'", s->s_name);
             return nullptr;
         }
     }
