@@ -31,7 +31,7 @@
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
@@ -97,7 +97,7 @@
       <PreprocessorDefinitions>TARGET_EXTERNAL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>..\libs\ofxLua\src;..\libs\ofxLua\src\bindings;..\libs\ofxLua\src\bindings\desktop;..\libs\ofxLua\src\bindings\ios;..\libs\ofxLua\src\bindings\linuxarm;..\libs\ofxLua\libs\lua;..\libs\ofxPd\libs\libpd\pure-data\src;..\..\openFrameworks\addons/ofxOfelia/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\libs\ofxLua\src;..\libs\ofxLua\src\bindings;..\libs\ofxLua\src\bindings\desktop;..\libs\ofxLua\src\bindings\ios;..\libs\ofxLua\src\bindings\linuxarm;..\libs\ofxLua\libs\lua;..\libs\ofxPd\libs\libpd\pure-data\src;..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
@@ -117,7 +117,7 @@
       <PreprocessorDefinitions>TARGET_EXTERNAL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>..\libs\ofxLua\src;..\libs\ofxLua\src\bindings;..\libs\ofxLua\src\bindings\desktop;..\libs\ofxLua\src\bindings\ios;..\libs\ofxLua\src\bindings\linuxarm;..\libs\ofxLua\libs\lua;..\libs\ofxPd\libs\libpd\pure-data\src;..\..\openFrameworks\addons/ofxOfelia/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\libs\ofxLua\src;..\libs\ofxLua\src\bindings;..\libs\ofxLua\src\bindings\desktop;..\libs\ofxLua\src\bindings\ios;..\libs\ofxLua\src\bindings\linuxarm;..\libs\ofxLua\libs\lua;..\libs\ofxPd\libs\libpd\pure-data\src;..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp14</LanguageStandard>
@@ -128,6 +128,7 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ForceFileOutput>UndefinedSymbolOnly</ForceFileOutput>
     </Link>
     <PostBuildEvent>
     </PostBuildEvent>
@@ -138,7 +139,7 @@
       <PreprocessorDefinitions>TARGET_EXTERNAL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>..\libs\ofxLua\src;..\libs\ofxLua\src\bindings;..\libs\ofxLua\src\bindings\desktop;..\libs\ofxLua\libs\lua;..\libs\ofxPd\libs\libpd\pure-data\src;..\..\openFrameworks\addons/ofxOfelia/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\libs\ofxLua\src;..\libs\ofxLua\src\bindings;..\libs\ofxLua\src\bindings\desktop;..\libs\ofxLua\libs\lua;..\libs\ofxPd\libs\libpd\pure-data\src;..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>Default</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <Optimization>Full</Optimization>

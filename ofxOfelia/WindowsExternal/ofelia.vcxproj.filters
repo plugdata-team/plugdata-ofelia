@@ -64,32 +64,23 @@
     <Filter Include="addons">
       <UniqueIdentifier>{36c01286-804e-4115-80dc-882ba02ba3d9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="addons\ofxOfelia">
-      <UniqueIdentifier>{695a2602-6046-4092-af68-ae241e1c17c9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="addons\ofxOfelia\libs">
-      <UniqueIdentifier>{573ff490-8cc1-4142-ac08-dff509c26e43}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="addons\ofxOfelia\libs\ofxLua">
+    <Filter Include="..\libs\ofxLua">
       <UniqueIdentifier>{ea12ae9b-797d-4372-ae51-eb8ec5a0ee6f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="addons\ofxOfelia\libs\ofxLua\src">
+    <Filter Include="..\libs\ofxLua\src">
       <UniqueIdentifier>{252e21cb-39e5-47bd-a4bf-67539e153d38}</UniqueIdentifier>
     </Filter>
-    <Filter Include="addons\ofxOfelia\libs\ofxLua\src\bindings">
+    <Filter Include="..\libs\ofxLua\src\bindings">
       <UniqueIdentifier>{f2e439f6-ae48-4d56-89e9-77d9042c40d9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="addons\ofxOfelia\libs\ofxLua\src\bindings\desktop">
+    <Filter Include="..\libs\ofxLua\src\bindings\desktop">
       <UniqueIdentifier>{fb8c608c-dbe6-4a76-9373-2d273e1388fa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="addons\ofxOfelia\libs\ofxLua\libs">
+    <Filter Include="..\libs\ofxLua\libs">
       <UniqueIdentifier>{4d231016-e19d-497b-9e93-fb6564172e6a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="addons\ofxOfelia\libs\ofxLua\libs\lua">
+    <Filter Include="..\libs\ofxLua\libs\lua">
       <UniqueIdentifier>{60114ebb-73ac-48b6-a439-bf1a71867845}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="addons\ofxOfelia\src">
-      <UniqueIdentifier>{0e2221ef-fba5-47f2-b119-a20b9697395e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
