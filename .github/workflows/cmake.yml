@@ -82,7 +82,12 @@ jobs:
         working-directory: ${{github.workspace}}
         run: ./build.bat
 
-
+      # Upload executable binaries to GitHub
+      - name: Uploading artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: plugdata-ofelia-windows
+          path: ./ofelia
 
 
 #  build-ubuntu-armv7:

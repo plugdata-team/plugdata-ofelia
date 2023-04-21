@@ -13,7 +13,6 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
       CC=clang CXX=clang++ CFLAGS=-fPIC make
       cp -rf ../ofelia ../../
       cp -f ./bin/ofelia.* ../../ofelia
-      cp -rf ./deps-scripts ../../ofelia
       cd ../../
       ./bundle_libs.sh ./ofelia/ofelia.pd_linux
 fi
