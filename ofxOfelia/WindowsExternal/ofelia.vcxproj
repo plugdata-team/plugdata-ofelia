@@ -126,7 +126,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>"C:\Users\timschoen\PlugData\Build\Libraries\Debug\pd.lib";%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\openFrameworks\libs\fmod\lib\vs\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ForceFileOutput>UndefinedSymbolOnly</ForceFileOutput>
     </Link>
