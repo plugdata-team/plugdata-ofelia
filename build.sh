@@ -2,7 +2,7 @@
 
 if [ "$(uname)" == "Darwin" ]; then
       cd ./ofxOfelia/macOSExternal
-      make
+      make Debug
       cp -rf ../ofelia ../../
       cp -f ./bin/ofelia.pd_darwin.app/Contents/MacOS/ofelia.pd_darwin ../../ofelia/ofelia.pd_darwin
       mkdir -p ../../ofelia/libs
