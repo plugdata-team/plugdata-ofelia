@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>ARM64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{68EC7E80-13D2-362D-BD67-98F8BCA4ADF8}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>pd</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\bin</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pd.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pd</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\bin</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pd.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pd</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.\bin</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">pd.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">pd</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.\bin</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">pd.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">pd</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\libs\ofxPd\libs\libpd\pthread-win32;..\libs\ofxPd\libs\libpd\pure-data\src;..\libs\ofxPd\libs\libpd\pure-data\pure-data\extra;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;PD=1;USEAPI_DUMMY=1;PD_INTERNAL=1;LIBPD_EXTRA=1;WINVER=0x502;WIN32=1;_WIN32=1;PD_LONGINTTYPE=long long;HAVE_STRUCT_TIMESPEC=1;_CRT_SECURE_NO_WARNINGS=1;HAVE_ALLOCA=0;ENABLE_SFONT=1;PTW32_CLEANUP_C;_WINDLL;CMAKE_INTDIR="Debug";pd_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;PD=1;USEAPI_DUMMY=1;PD_INTERNAL=1;LIBPD_EXTRA=1;WINVER=0x502;WIN32=1;_WIN32=1;PD_LONGINTTYPE=long long;HAVE_STRUCT_TIMESPEC=1;_CRT_SECURE_NO_WARNINGS=1;HAVE_ALLOCA=0;ENABLE_SFONT=1;PTW32_CLEANUP_C;_WINDLL;CMAKE_INTDIR=\"Debug\";pd_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\libs\ofxPd\libs\libpd\pthread-win32;..\libs\ofxPd\libs\libpd\pure-data\src;..\libs\ofxPd\libs\libpd\pure-data\pure-data\extra;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>..\libs\ofxPd\libs\libpd\pthread-win32;..\libs\ofxPd\libs\libpd\pure-data\src;..\libs\ofxPd\libs\libpd\pure-data\pure-data\extra;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>pthreadVC3.lib;ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>./bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>./bin/pd.lib</ImportLibrary>
+      <SubSystem>Console</SubSystem>
+      <ForceFileOutput>UndefinedSymbolOnly</ForceFileOutput>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\libs\ofxPd\libs\libpd\pthread-win32;..\libs\ofxPd\libs\libpd\pure-data\src;..\libs\ofxPd\libs\libpd\pure-data\pure-data\extra;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;PD=1;USEAPI_DUMMY=1;PD_INTERNAL=1;LIBPD_EXTRA=1;WINVER=0x502;WIN32=1;_WIN32=1;PD_LONGINTTYPE=long long;HAVE_STRUCT_TIMESPEC=1;_CRT_SECURE_NO_WARNINGS=1;HAVE_ALLOCA=0;ENABLE_SFONT=1;PTW32_CLEANUP_C;_WINDLL;CMAKE_INTDIR="Release";pd_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;PD=1;USEAPI_DUMMY=1;PD_INTERNAL=1;LIBPD_EXTRA=1;WINVER=0x502;WIN32=1;_WIN32=1;PD_LONGINTTYPE=long long;HAVE_STRUCT_TIMESPEC=1;_CRT_SECURE_NO_WARNINGS=1;HAVE_ALLOCA=0;ENABLE_SFONT=1;PTW32_CLEANUP_C;_WINDLL;CMAKE_INTDIR=\"Release\";pd_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\libs\ofxPd\libs\libpd\pthread-win32;..\libs\ofxPd\libs\libpd\pure-data\src;..\libs\ofxPd\libs\libpd\pure-data\pure-data\extra;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>..\libs\ofxPd\libs\libpd\pthread-win32;..\libs\ofxPd\libs\libpd\pure-data\src;..\libs\ofxPd\libs\libpd\pure-data\pure-data\extra;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>pthread-win32\Release\pthreadVC3.lib;ws2_32.lib;Release\externals.lib;Release\fluidlite.lib;Release\lua.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>./bin/pd.lib</ImportLibrary>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\libs\ofxPd\libs\libpd\pthread-win32;..\libs\ofxPd\libs\libpd\pure-data\src;..\libs\ofxPd\libs\libpd\pure-data\pure-data\extra;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;PD=1;USEAPI_DUMMY=1;PD_INTERNAL=1;LIBPD_EXTRA=1;WINVER=0x502;WIN32=1;_WIN32=1;PD_LONGINTTYPE=long long;HAVE_STRUCT_TIMESPEC=1;_CRT_SECURE_NO_WARNINGS=1;HAVE_ALLOCA=0;ENABLE_SFONT=1;PTW32_CLEANUP_C;_WINDLL;CMAKE_INTDIR="MinSizeRel";pd_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;PD=1;USEAPI_DUMMY=1;PD_INTERNAL=1;LIBPD_EXTRA=1;WINVER=0x502;WIN32=1;_WIN32=1;PD_LONGINTTYPE=long long;HAVE_STRUCT_TIMESPEC=1;_CRT_SECURE_NO_WARNINGS=1;HAVE_ALLOCA=0;ENABLE_SFONT=1;PTW32_CLEANUP_C;_WINDLL;CMAKE_INTDIR=\"MinSizeRel\";pd_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\libs\ofxPd\libs\libpd\pthread-win32;..\libs\ofxPd\libs\libpd\pure-data\src;..\libs\ofxPd\libs\libpd\pure-data\pure-data\extra;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>..\libs\ofxPd\libs\libpd\pthread-win32;..\libs\ofxPd\libs\libpd\pure-data\src;..\libs\ofxPd\libs\libpd\pure-data\pure-data\extra;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>pthread-win32\MinSizeRel\pthreadVC3.lib;ws2_32.lib;MinSizeRel\externals.lib;MinSizeRel\fluidlite.lib;MinSizeRel\lua.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>./bin/pd.lib</ImportLibrary>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\libs\ofxPd\libs\libpd\pthread-win32;..\libs\ofxPd\libs\libpd\pure-data\src;..\libs\ofxPd\libs\libpd\pure-data\pure-data\extra;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;PD=1;USEAPI_DUMMY=1;PD_INTERNAL=1;LIBPD_EXTRA=1;WINVER=0x502;WIN32=1;_WIN32=1;PD_LONGINTTYPE=long long;HAVE_STRUCT_TIMESPEC=1;_CRT_SECURE_NO_WARNINGS=1;HAVE_ALLOCA=0;ENABLE_SFONT=1;PTW32_CLEANUP_C;_WINDLL;CMAKE_INTDIR="RelWithDebInfo";pd_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;PD=1;USEAPI_DUMMY=1;PD_INTERNAL=1;LIBPD_EXTRA=1;WINVER=0x502;WIN32=1;_WIN32=1;PD_LONGINTTYPE=long long;HAVE_STRUCT_TIMESPEC=1;_CRT_SECURE_NO_WARNINGS=1;HAVE_ALLOCA=0;ENABLE_SFONT=1;PTW32_CLEANUP_C;_WINDLL;CMAKE_INTDIR=\"RelWithDebInfo\";pd_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\libs\ofxPd\libs\libpd\pthread-win32;..\libs\ofxPd\libs\libpd\pure-data\src;..\libs\ofxPd\libs\libpd\pure-data\pure-data\extra;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>..\libs\ofxPd\libs\libpd\pthread-win32;..\libs\ofxPd\libs\libpd\pure-data\src;..\libs\ofxPd\libs\libpd\pure-data\pure-data\extra;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>pthread-win32\RelWithDebInfo\pthreadVC3.lib;ws2_32.lib;RelWithDebInfo\externals.lib;RelWithDebInfo\fluidlite.lib;RelWithDebInfo\lua.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>./bin/pd.lib</ImportLibrary>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\d_arithmetic.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\d_array.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\d_ctl.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\d_dac.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\d_delay.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\d_fft.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\d_fft_fftsg.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\d_filter.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\d_global.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\d_math.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\d_misc.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\d_osc.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\d_resample.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\d_soundfile.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\d_soundfile_aiff.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\d_soundfile_caf.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\d_soundfile_next.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\d_soundfile_wave.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\d_ugen.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\g_all_guis.c" />
+    <ClInclude Include="..\libs\ofxPd\libs\libpd\pure-data\src\g_all_guis.h" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\g_array.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\g_bang.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\g_canvas.c" />
+    <ClInclude Include="..\libs\ofxPd\libs\libpd\pure-data\src\g_canvas.h" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\g_clone.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\g_editor.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\g_editor_extras.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\g_graph.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\g_guiconnect.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\g_io.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\g_mycanvas.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\g_numbox.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\g_radio.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\g_readwrite.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\g_rtext.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\g_scalar.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\g_slider.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\g_template.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\g_text.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\g_toggle.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\g_traversal.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\g_undo.c" />
+    <ClInclude Include="..\libs\ofxPd\libs\libpd\pure-data\src\g_undo.h" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\g_vumeter.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\m_atom.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\m_binbuf.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\m_class.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\m_conf.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\m_glob.c" />
+    <ClInclude Include="..\libs\ofxPd\libs\libpd\pure-data\src\m_imp.h" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\m_memory.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\m_obj.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\m_pd.c" />
+    <ClInclude Include="..\libs\ofxPd\libs\libpd\pure-data\src\m_pd.h" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\m_sched.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\s_audio.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\s_audio_dummy.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\s_inter.c" />
+    <ClInclude Include="..\libs\ofxPd\libs\libpd\pure-data\src\s_inter.h" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\s_inter_gui.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\s_loader.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\s_main.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\s_net.c" />
+    <ClInclude Include="..\libs\ofxPd\libs\libpd\pure-data\src\s_net.h" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\s_path.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\s_print.c" />
+    <ClInclude Include="..\libs\ofxPd\libs\libpd\pure-data\src\s_stuff.h" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\s_utf8.c" />
+    <ClInclude Include="..\libs\ofxPd\libs\libpd\pure-data\src\s_utf8.h" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\x_acoustics.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\x_arithmetic.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\x_array.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\x_connective.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\x_file.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\x_gui.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\x_interface.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\x_list.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\x_midi.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\x_misc.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\x_net.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\x_scalar.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\x_text.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\x_time.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\x_vexp.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\x_vexp_fun.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\x_vexp_if.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\z_hooks.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\z_libpd.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\z_print_util.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\extra\bob~\bob~.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\extra\bonk~\bonk~.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\extra\choice\choice.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\extra\fiddle~\fiddle~.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\extra\loop~\loop~.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\extra\lrshift~\lrshift~.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\extra\pd~\pdsched.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\extra\pd~\pd~.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\extra\pique\pique.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\extra\sigmund~\sigmund~.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\extra\stdout\stdout.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="./pthreadVC3.vcxproj">
+      <Project>{9B2663C6-C660-3ADE-A9F1-1CDD4D7ADD6E}</Project>
+      <Name>pthreadVC3</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
