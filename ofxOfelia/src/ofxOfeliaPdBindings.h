@@ -598,7 +598,7 @@ private:
         if (x == nullptr) return false;
         if (!x->io.hasMultiControlInlets)
         {
-            error("ofelia: passive inlet does not exist");
+            pd_error(NULL, "ofelia: passive inlet does not exist");
             return false;
         }
         return true;
@@ -608,14 +608,14 @@ private:
         if (x == nullptr) return false;
         if (!x->isSignalObject)
         {
-            error("ofelia: signal inlet does not exist");
+            pd_error(NULL, "ofelia: signal inlet does not exist");
             return false;
         }
         return true;
     }
     void postWrongPassiveInletArgTypeError()
     {
-        error("ofelia: wrong passive inlet argument type to set");
+        pd_error(NULL, "ofelia: wrong passive inlet argument type to set");
     }
     ofxOfeliaData *x;
 };
@@ -684,12 +684,12 @@ private:
         if (x == nullptr) return false;
         if (!x->io.hasControlOutlet)
         {
-            error("ofelia: control outlet does not exist");
+            pd_error(NULL, "ofelia: control outlet does not exist");
             return false;
         }
         if (index < 0 || index >= x->io.numOutlets)
         {
-            error("ofelia: invalid outlet index '%d'", index);
+            pd_error(NULL, "ofelia: invalid outlet index '%d'", index);
             return false;
         }
         return true;
@@ -822,7 +822,7 @@ private:
     {
         if (!garray_getfloatwords(a, size, vec))
         {
-            error("ofelia: bad template for array '%s'", sym->s_name);
+            pd_error(NULL, "ofelia: bad template for array '%s'", sym->s_name);
             return false;
         }
         return true;
