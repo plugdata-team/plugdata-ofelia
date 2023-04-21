@@ -164,8 +164,6 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ImportLibrary>./bin/pthreadVC3.lib</ImportLibrary>
-      <ModuleDefinitionFile>..\libs\ofxPd\libs\libpd\pthread-win32/pthreadVC3.dir/Release/exports.def</ModuleDefinitionFile>
-      <ProgramDataBaseFile>..\libs\ofxPd\libs\libpd\pthread-win32/Release/pthreadVC3.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -209,8 +207,6 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ImportLibrary>./bin/pthreadVC3.lib</ImportLibrary>
-      <ModuleDefinitionFile>..\libs\ofxPd\libs\libpd\pthread-win32/pthreadVC3.dir/MinSizeRel/exports.def</ModuleDefinitionFile>
-      <ProgramDataBaseFile>..\libs\ofxPd\libs\libpd\pthread-win32/MinSizeRel/pthreadVC3.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -253,8 +249,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ImportLibrary>./bin/pthreadVC3.lib</ImportLibrary>
-      <ModuleDefinitionFile>..\libs\ofxPd\libs\libpd\pthread-win32/pthreadVC3.dir/RelWithDebInfo/exports.def</ModuleDefinitionFile>
-      <ProgramDataBaseFile>..\libs\ofxPd\libs\libpd\pthread-win32/RelWithDebInfo/pthreadVC3.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
