@@ -126,7 +126,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <AdditionalDependencies>"C:\Users\timschoen\PlugData\Build\Libraries\Debug\pd.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>".\bin\pd.lib";%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\openFrameworks\libs\fmod\lib\vs\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ForceFileOutput>UndefinedSymbolOnly</ForceFileOutput>
     </Link>
@@ -151,7 +151,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <AdditionalDependencies>..\libs\ofxPd\libs\libpd\lib\Win32\libpd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>./bin/pd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>/export:ofelia_setup %(AdditionalOptions)</AdditionalOptions>
     </Link>
@@ -177,7 +177,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <AdditionalDependencies>..\libs\ofxPd\libs\libpd\lib\Win64\libpd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>.\bin\pd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>
       </ImageHasSafeExceptionHandlers>
