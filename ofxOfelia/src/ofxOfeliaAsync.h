@@ -2,11 +2,6 @@
 #include <functional>
 #include <mutex>
 
-extern void ofelia_set_run_loop(std::function<void()>);
-extern void ofelia_call_async(std::function<void()>);
-extern void ofelia_audio_lock();
-extern void ofelia_audio_unlock();
-
 struct ofxOfeliaAudioLock
 {
     ofxOfeliaAudioLock();
