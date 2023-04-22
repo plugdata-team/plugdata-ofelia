@@ -23,7 +23,6 @@
 		AB77BBB229EF70E300CD9EF8 /* ofxOfeliaTextBuf.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOfeliaTextBuf.cpp; sourceTree = "<group>"; };
 		AB77BBB329EF70E300CD9EF8 /* ofxOfeliaData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOfeliaData.cpp; sourceTree = "<group>"; };
 		AB77BBB429EF70E300CD9EF8 /* ofxOfeliaCreator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOfeliaCreator.cpp; sourceTree = "<group>"; };
-		AB77BBB529EF70E300CD9EF8 /* libfmod.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfmod.dylib; sourceTree = "<group>"; };
 		AB77BBB629EF70E300CD9EF8 /* ofxOfeliaExists.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxOfeliaExists.h; sourceTree = "<group>"; };
 		AB77BBB729EF70E300CD9EF8 /* ofxOfeliaFunction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOfeliaFunction.cpp; sourceTree = "<group>"; };
 		AB77BBB829EF70E300CD9EF8 /* ofxOfeliaSet.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOfeliaSet.cpp; sourceTree = "<group>"; };
@@ -300,7 +299,6 @@
 				AB77BBB229EF70E300CD9EF8 /* ofxOfeliaTextBuf.cpp */,
 				AB77BBB329EF70E300CD9EF8 /* ofxOfeliaData.cpp */,
 				AB77BBB429EF70E300CD9EF8 /* ofxOfeliaCreator.cpp */,
-				AB77BBB529EF70E300CD9EF8 /* libfmod.dylib */,
 				AB77BBB629EF70E300CD9EF8 /* ofxOfeliaExists.h */,
 				AB77BBB729EF70E300CD9EF8 /* ofxOfeliaFunction.cpp */,
 				AB77BBB829EF70E300CD9EF8 /* ofxOfeliaSet.cpp */,
