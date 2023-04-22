@@ -5,6 +5,7 @@ end
 local canvas = ofCanvas(this)
 local clock = ofClock(this, "setup")
 local fontDir = canvas:getDir() .. "/data/"
+ofSetDataPathRoot(fontDir)
 local franklinBook = ofTrueTypeFont()
 local verdana = ofTrueTypeFont()
 local franklinBookLarge = ofTrueTypeFont()
@@ -32,8 +33,8 @@ end
 
 function M.setup()
   ofSetWindowTitle("fonts example")
-  franklinBook:load(fontDir .. "frabk.ttf", 32)
-  verdana:load(fontDir .. "verdana.ttf", 8, false, true)
+  franklinBook:load(ofToDataPath("frabk.ttf"), 32)
+  verdana:load(ofToDataPath("verdana.ttf"), 8, false, true)
   verdana:setLineHeight(20)
 end
 
