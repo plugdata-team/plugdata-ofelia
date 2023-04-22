@@ -1,5 +1,6 @@
 #include "ofxOfeliaSignal.h"
 #include "ofxOfeliaData.h"
+#include "ofxOfeliaAsync.h"
 
 void ofxOfeliaSignal::addDsp(t_signal **sp)
 {
@@ -16,6 +17,8 @@ void ofxOfeliaSignal::addDsp(t_signal **sp)
 
 t_int *ofxOfeliaSignal::perform(t_int *w)
 {
+    const ofxOfeliaLock ofxLock;  // because we touch lua stuff
+    
     ofxOfeliaData *x = reinterpret_cast<ofxOfeliaData *>(w[1]);
     const int nsamples = static_cast<int>(w[2]);
     lua_State *L = x->lua.L;
