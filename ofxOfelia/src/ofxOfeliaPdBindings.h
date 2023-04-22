@@ -87,7 +87,7 @@ public:
     {
         if (owner || exists) return;
         
-        ofxOfeliaAsync::callAsync([_this = WeakReference<pdWindow>(this), this](){
+        ofxOfeliaAsync::callAsync([_this = ofxOfeliaWeakReference<pdWindow>(this), this](){
         
             if(!_this) return;
 #if defined(TARGET_EXTERNAL)
