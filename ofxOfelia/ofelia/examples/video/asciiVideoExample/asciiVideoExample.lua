@@ -5,6 +5,7 @@ end
 local canvas = ofCanvas(this)
 local clock = ofClock(this, "setup")
 local fontDir = canvas:getDir() .. "/data/"
+ofSetDataPathRoot(fontDir)
 local vidGrabber = ofVideoGrabber()
 local camWidth, camHeight = 640, 480
 local asciiCharacters = ""
@@ -39,7 +40,7 @@ function M.setup()
   ofSetFrameRate(10)
   ofBackground(0, 0, 0)
   vidGrabber:setup(camWidth, camHeight)
-  font:load(fontDir .. "Courier New Bold.ttf", 9)
+  font:load(ofToDataPath("Courier New Bold.ttf"), 9)
   asciiCharacters = "  ..,,,'''``--_::^^**" .. '""=+<>iv%&xclrs)/){}I?!][1taeo7zjLunT#@JCwfy325Fp6mqSghVd4EgXPGZbYkOA8U$KHDBWNMR0Q'
   ofEnableAlphaBlending()
 end
