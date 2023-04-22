@@ -158,7 +158,6 @@ void ofxOfeliaDefine::setMethod(t_symbol *s, int argc, t_atom *argv)
 
 void ofxOfeliaDefine::saveMethod(t_object *ob, t_binbuf *bb)
 {
-    const ofxOfeliaLock ofxLock;
     const ofxOfeliaAudioLock audioLock;
     
     binbuf_addv(bb, const_cast<char *>("ssff"), &s__X, gensym("obj"),
