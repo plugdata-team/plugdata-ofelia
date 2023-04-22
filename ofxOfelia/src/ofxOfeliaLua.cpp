@@ -513,23 +513,30 @@ void ofxOfeliaLua::outletTable()
         }
         lua_pop(L, 1);
         const ofxOfeliaIO &io = dataPtr->io;
-        if (io.hasMultiControlOutlets)
         {
-            int last = (io.numOutlets >= ac ? ac : io.numOutlets) - 1;
-            for (int i = last; i >= 0; --i)
+            const ofxOfeliaAudioLock audioLock;
+            
+            if (io.hasMultiControlOutlets)
             {
-                if (av[i].a_type == A_FLOAT)
-                    outlet_float(io.outlets[i], av[i].a_w.w_float);
-                else if (av[i].a_type == A_SYMBOL)
-                    outlet_symbol(io.outlets[i], av[i].a_w.w_symbol);
-                else if (av[i].a_type == A_POINTER)
-                    outlet_pointer(io.outlets[i], av[i].a_w.w_gpointer);
+                
+                int last = (io.numOutlets >= ac ? ac : io.numOutlets) - 1;
+                for (int i = last; i >= 0; --i)
+                {
+                    if (av[i].a_type == A_FLOAT)
+                        outlet_float(io.outlets[i], av[i].a_w.w_float);
+                    else if (av[i].a_type == A_SYMBOL)
+                        outlet_symbol(io.outlets[i], av[i].a_w.w_symbol);
+                    else if (av[i].a_type == A_POINTER)
+                        outlet_pointer(io.outlets[i], av[i].a_w.w_gpointer);
+                }
             }
+            else
+                outlet_list(dataPtr->ob.ob_outlet, &s_list, ac, av);
         }
-        else
-            outlet_list(dataPtr->ob.ob_outlet, &s_list, ac, av);
+        
         for (const int i : userDataRef)
             luaL_unref(L, LUA_REGISTRYINDEX, i);
+
         freebytes(av, sizeof(t_atom) * ac);
     });
 }
@@ -540,6 +547,9 @@ void ofxOfeliaLua::outletRet(int nret)
         if (!nret) return;
         const ofxOfeliaIO &io = dataPtr->io;
         if (!io.hasControlOutlet) return;
+        
+        const ofxOfeliaAudioLock audioLock;
+        
         if (lua_isnil(L, -1))
             outlet_bang(io.outlets[0]);
         else if (lua_isboolean(L, -1))
