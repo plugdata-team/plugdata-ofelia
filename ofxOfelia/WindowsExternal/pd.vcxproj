@@ -256,7 +256,7 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\libs\ofxPd\libs\libpd\libpd_wrapper\x_libpd_ofelia.cpp" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\x_libpd_ofelia.cpp" />
     <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\d_arithmetic.c" />
     <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\d_array.c" />
     <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\src\d_ctl.c" />
