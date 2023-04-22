@@ -11,10 +11,8 @@ if [ "$(uname)" == "Darwin" ]; then
       xcodebuild -configuration Release -project ../../openFrameworks/libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj
       xcodebuild -configuration Release -project ./ofelia.xcodeproj
       # Copy fmod and external
-      cp -f ./bin/libfmod.dylib    ../../ofelia/libs/libfmod.dylib
-      cp -f ./bin/ofelia.pd_darwin ../../ofelia/ofelia.pd_darwin
-      # Tell dynamic library about the new location of fmod
-      install_name_tool -change @executable_path/../Frameworks/libfmod.dylib @loader_path/libs/libfmod.dylib ../../ofelia/ofelia.pd_darwin
+      cp -f ./bin/libs/libfmod.dylib ../../ofelia/libs/libfmod.dylib
+      cp -f ./bin/ofelia.pd_darwin   ../../ofelia/ofelia.pd_darwin
 # Build for Linux
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
       cd ./ofxOfelia/LinuxExternal
