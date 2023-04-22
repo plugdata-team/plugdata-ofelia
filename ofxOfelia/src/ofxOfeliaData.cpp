@@ -1,5 +1,6 @@
 #include "ofxOfeliaData.h"
 #include "ofxOfeliaDefine.h"
+#include "ofxOfeliaAsync.h"
 #include <iostream>
 #include <cstdio>
 #include <cstring>
@@ -16,6 +17,8 @@
 
 t_symbol *ofxOfeliaData::getUniqueSym()
 {
+    const ofxOfeliaAudioLock audioLock;
+    
     char buf[MAXPDSTRING];
     std::snprintf(buf, MAXPDSTRING, "__.x%lx.c", reinterpret_cast<unsigned long>(this));
     hasUniqueSym = true;
@@ -24,22 +27,27 @@ t_symbol *ofxOfeliaData::getUniqueSym()
 
 void ofxOfeliaData::initSym()
 {
+    const ofxOfeliaAudioLock audioLock;
     if (*sym->s_name && pd_findbyclass(sym, ofxOfeliaDefine::pdClass) == nullptr) return;
     sym = getUniqueSym();
 }
 
 void ofxOfeliaData::bindSym()
 {
+    const ofxOfeliaAudioLock audioLock;
     pd_bind(&ob.ob_pd, sym);
 }
 
 void ofxOfeliaData::unbindSym()
 {
+    const ofxOfeliaAudioLock audioLock;
     pd_unbind(&ob.ob_pd, sym);
 }
 
 void ofxOfeliaData::argParse(t_symbol *s, int argc, t_atom *argv, bool define)
 {
+    const ofxOfeliaAudioLock audioLock;
+    
     if (define)
     {
         canvas = canvas_getcurrent();
