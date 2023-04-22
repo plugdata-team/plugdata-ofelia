@@ -8,6 +8,7 @@ mkdir -p ./ofelia/libs
 # Build for macOS
 if [ "$(uname)" == "Darwin" ]; then
       cd ./ofxOfelia/macOSExternal
+      xcodebuild -configuration Release -project ../../openFrameworks/libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj
       xcodebuild -configuration Release -project ./ofelia.xcodeproj
       # Copy fmod and external
       cp -f ./bin/libfmod.dylib    ../../ofelia/libs/libfmod.dylib
