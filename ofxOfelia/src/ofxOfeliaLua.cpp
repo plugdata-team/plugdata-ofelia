@@ -942,7 +942,7 @@ void ofxOfeliaLua::setVariableByArgs(t_symbol *s, int argc, t_atom *argv)
 
 void ofxOfeliaLua::callOnMessageThread(std::function<void()> fn)
 {
-    ofxOfeliaAsync::callAsync([_this = WeakReference<ofxOfeliaLua>(this), fn]() {
+    ofxOfeliaAsync::callAsync([_this = ofxOfeliaWeakReference<ofxOfeliaLua>(this), fn]() {
         if(!_this) return;
         fn();
     });

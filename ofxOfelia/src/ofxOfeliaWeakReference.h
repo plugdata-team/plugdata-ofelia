@@ -9,15 +9,15 @@
     className& operator= (const className&) = delete;
 
 #define DECLARE_WEAK_REFERENCEABLE(Class) \
-    struct WeakRefMaster  : public WeakReference<Class>::Master { ~WeakRefMaster() { this->clear(); } }; \
+    struct WeakRefMaster  : public ofxOfeliaWeakReference<Class>::Master { ~WeakRefMaster() { this->clear(); } }; \
     WeakRefMaster masterReference; \
-    friend class WeakReference<Class>; \
+    friend class ofxOfeliaWeakReference<Class>; \
 
 // Some JUCE classes that help us to decide whether or not the object has been deallocated
 // Useful because we have a lot of async callbacks!
 
 
-class ReferenceCountedObject
+class ofxOfeliaReferenceCountedObject
 {
 public:
     //==============================================================================
@@ -59,19 +59,19 @@ public:
 protected:
     //==============================================================================
     /** Creates the reference-counted object (with an initial ref count of zero). */
-    ReferenceCountedObject() = default;
+    ofxOfeliaReferenceCountedObject() = default;
 
     /** Copying from another object does not affect this one's reference-count. */
-    ReferenceCountedObject (const ReferenceCountedObject&) noexcept {}
+    ofxOfeliaReferenceCountedObject (const ofxOfeliaReferenceCountedObject&) noexcept {}
     /** Copying from another object does not affect this one's reference-count. */
-    ReferenceCountedObject (ReferenceCountedObject&&) noexcept {}
+    ofxOfeliaReferenceCountedObject (ofxOfeliaReferenceCountedObject&&) noexcept {}
     /** Copying from another object does not affect this one's reference-count. */
-    ReferenceCountedObject& operator= (const ReferenceCountedObject&) noexcept  { return *this; }
+    ofxOfeliaReferenceCountedObject& operator= (const ofxOfeliaReferenceCountedObject&) noexcept  { return *this; }
     /** Copying from another object does not affect this one's reference-count. */
-    ReferenceCountedObject& operator= (ReferenceCountedObject&&) noexcept       { return *this; }
+    ofxOfeliaReferenceCountedObject& operator= (ofxOfeliaReferenceCountedObject&&) noexcept       { return *this; }
 
     /** Destructor. */
-    virtual ~ReferenceCountedObject()
+    virtual ~ofxOfeliaReferenceCountedObject()
     {
         // it's dangerous to delete an object that's still referenced by something else!
         assert (getReferenceCount() == 0);
@@ -91,7 +91,7 @@ private:
 };
 
 template <class ObjectType>
-class ReferenceCountedObjectPtr
+class ofxOfeliaReferenceCountedObjectPtr
 {
 public:
     /** The class being referenced by this pointer. */
@@ -99,15 +99,15 @@ public:
 
     //==============================================================================
     /** Creates a pointer to a null object. */
-    ReferenceCountedObjectPtr() = default;
+    ofxOfeliaReferenceCountedObjectPtr() = default;
 
     /** Creates a pointer to a null object. */
-    ReferenceCountedObjectPtr (decltype (nullptr)) noexcept {}
+    ofxOfeliaReferenceCountedObjectPtr (decltype (nullptr)) noexcept {}
 
     /** Creates a pointer to an object.
         This will increment the object's reference-count.
     */
-    ReferenceCountedObjectPtr (ReferencedType* refCountedObject) noexcept
+    ofxOfeliaReferenceCountedObjectPtr (ReferencedType* refCountedObject) noexcept
         : referencedObject (refCountedObject)
     {
         incIfNotNull (refCountedObject);
@@ -116,7 +116,7 @@ public:
     /** Creates a pointer to an object.
         This will increment the object's reference-count.
     */
-    ReferenceCountedObjectPtr (ReferencedType& refCountedObject) noexcept
+    ofxOfeliaReferenceCountedObjectPtr (ReferencedType& refCountedObject) noexcept
         : referencedObject (&refCountedObject)
     {
         refCountedObject.incReferenceCount();
@@ -125,14 +125,14 @@ public:
     /** Copies another pointer.
         This will increment the object's reference-count.
     */
-    ReferenceCountedObjectPtr (const ReferenceCountedObjectPtr& other) noexcept
+    ofxOfeliaReferenceCountedObjectPtr (const ofxOfeliaReferenceCountedObjectPtr& other) noexcept
         : referencedObject (other.referencedObject)
     {
         incIfNotNull (referencedObject);
     }
 
     /** Takes-over the object from another pointer. */
-    ReferenceCountedObjectPtr (ReferenceCountedObjectPtr&& other) noexcept
+    ofxOfeliaReferenceCountedObjectPtr (ofxOfeliaReferenceCountedObjectPtr&& other) noexcept
         : referencedObject (other.referencedObject)
     {
         other.referencedObject = nullptr;
@@ -142,7 +142,7 @@ public:
         This will increment the object's reference-count (if it is non-null).
     */
     template <typename Convertible>
-    ReferenceCountedObjectPtr (const ReferenceCountedObjectPtr<Convertible>& other) noexcept
+    ofxOfeliaReferenceCountedObjectPtr (const ofxOfeliaReferenceCountedObjectPtr<Convertible>& other) noexcept
         : referencedObject (other.get())
     {
         incIfNotNull (referencedObject);
@@ -152,7 +152,7 @@ public:
         The reference count of the old object is decremented, and it might be
         deleted if it hits zero. The new object's count is incremented.
     */
-    ReferenceCountedObjectPtr& operator= (const ReferenceCountedObjectPtr& other)
+    ofxOfeliaReferenceCountedObjectPtr& operator= (const ofxOfeliaReferenceCountedObjectPtr& other)
     {
         return operator= (other.referencedObject);
     }
@@ -162,7 +162,7 @@ public:
         deleted if it hits zero. The new object's count is incremented.
     */
     template <typename Convertible>
-    ReferenceCountedObjectPtr& operator= (const ReferenceCountedObjectPtr<Convertible>& other)
+    ofxOfeliaReferenceCountedObjectPtr& operator= (const ofxOfeliaReferenceCountedObjectPtr<Convertible>& other)
     {
         return operator= (other.get());
     }
@@ -172,7 +172,7 @@ public:
         The reference count of the old object is decremented, and it might be
         deleted if it hits zero. The new object's count is incremented.
     */
-    ReferenceCountedObjectPtr& operator= (ReferencedType* newObject)
+    ofxOfeliaReferenceCountedObjectPtr& operator= (ReferencedType* newObject)
     {
         if (newObject != nullptr)
             return operator= (*newObject);
@@ -186,7 +186,7 @@ public:
         The reference count of the old object is decremented, and it might be
         deleted if it hits zero. The new object's count is incremented.
     */
-    ReferenceCountedObjectPtr& operator= (ReferencedType& newObject)
+    ofxOfeliaReferenceCountedObjectPtr& operator= (ReferencedType& newObject)
     {
         if (referencedObject != &newObject)
         {
@@ -200,14 +200,14 @@ public:
     }
 
     /** Resets this pointer to a null pointer. */
-    ReferenceCountedObjectPtr& operator= (decltype (nullptr))
+    ofxOfeliaReferenceCountedObjectPtr& operator= (decltype (nullptr))
     {
         reset();
         return *this;
     }
 
     /** Takes-over the object from another pointer. */
-    ReferenceCountedObjectPtr& operator= (ReferenceCountedObjectPtr&& other) noexcept
+    ofxOfeliaReferenceCountedObjectPtr& operator= (ofxOfeliaReferenceCountedObjectPtr&& other) noexcept
     {
         std::swap (referencedObject, other.referencedObject);
         return *this;
@@ -217,7 +217,7 @@ public:
         This will decrement the object's reference-count, which will cause the
         object to be deleted when the ref-count hits zero.
     */
-    ~ReferenceCountedObjectPtr()
+    ~ofxOfeliaReferenceCountedObjectPtr()
     {
         decIfNotNull (referencedObject);
     }
@@ -253,14 +253,14 @@ public:
     /** Checks whether this pointer is null */
     bool operator!= (decltype (nullptr)) const noexcept     { return referencedObject != nullptr; }
 
-    /** Compares two ReferenceCountedObjectPtrs. */
+    /** Compares two ofxOfeliaReferenceCountedObjectPtrs. */
     bool operator== (const ObjectType* other) const noexcept                 { return referencedObject == other; }
-    /** Compares two ReferenceCountedObjectPtrs. */
-    bool operator== (const ReferenceCountedObjectPtr& other) const noexcept  { return referencedObject == other.get(); }
-    /** Compares two ReferenceCountedObjectPtrs. */
+    /** Compares two ofxOfeliaReferenceCountedObjectPtrs. */
+    bool operator== (const ofxOfeliaReferenceCountedObjectPtr& other) const noexcept  { return referencedObject == other.get(); }
+    /** Compares two ofxOfeliaReferenceCountedObjectPtrs. */
     bool operator!= (const ObjectType* other) const noexcept                 { return referencedObject != other; }
-    /** Compares two ReferenceCountedObjectPtrs. */
-    bool operator!= (const ReferenceCountedObjectPtr& other) const noexcept  { return referencedObject != other.get(); }
+    /** Compares two ofxOfeliaReferenceCountedObjectPtrs. */
+    bool operator!= (const ofxOfeliaReferenceCountedObjectPtr& other) const noexcept  { return referencedObject != other.get(); }
 
     /** Checks whether this pointer is null */
     explicit operator bool() const noexcept                 { return referencedObject != nullptr; }
@@ -302,30 +302,30 @@ private:
 };
 
 
-template <class ObjectType, class ReferenceCountingType = ReferenceCountedObject>
-class WeakReference
+template <class ObjectType, class ReferenceCountingType = ofxOfeliaReferenceCountedObject>
+class ofxOfeliaWeakReference
 {
 public:
-    /** Creates a null WeakReference. */
-    inline WeakReference() = default;
+    /** Creates a null ofxOfeliaWeakReference. */
+    inline ofxOfeliaWeakReference() = default;
 
-    /** Creates a WeakReference that points at the given object. */
-    WeakReference (ObjectType* object)  : holder (getRef (object)) {}
+    /** Creates a ofxOfeliaWeakReference that points at the given object. */
+    ofxOfeliaWeakReference (ObjectType* object)  : holder (getRef (object)) {}
 
-    /** Creates a copy of another WeakReference. */
-    WeakReference (const WeakReference& other) noexcept         : holder (other.holder) {}
+    /** Creates a copy of another ofxOfeliaWeakReference. */
+    ofxOfeliaWeakReference (const ofxOfeliaWeakReference& other) noexcept         : holder (other.holder) {}
 
     /** Move constructor */
-    WeakReference (WeakReference&& other) noexcept              : holder (std::move (other.holder)) {}
+    ofxOfeliaWeakReference (ofxOfeliaWeakReference&& other) noexcept              : holder (std::move (other.holder)) {}
 
     /** Copies another pointer to this one. */
-    WeakReference& operator= (const WeakReference& other)       { holder = other.holder; return *this; }
+    ofxOfeliaWeakReference& operator= (const ofxOfeliaWeakReference& other)       { holder = other.holder; return *this; }
 
     /** Copies another pointer to this one. */
-    WeakReference& operator= (ObjectType* newObject)            { holder = getRef (newObject); return *this; }
+    ofxOfeliaWeakReference& operator= (ObjectType* newObject)            { holder = getRef (newObject); return *this; }
 
     /** Move assignment operator */
-    WeakReference& operator= (WeakReference&& other) noexcept   { holder = std::move (other.holder); return *this; }
+    ofxOfeliaWeakReference& operator= (ofxOfeliaWeakReference&& other) noexcept   { holder = std::move (other.holder); return *this; }
 
     /** Returns the object that this pointer refers to, or null if the object no longer exists. */
     ObjectType* get() const noexcept                            { return holder != nullptr ? holder->get() : nullptr; }
@@ -346,9 +346,9 @@ public:
     bool wasObjectDeleted() const noexcept                      { return holder != nullptr && holder->get() == nullptr; }
 
     //==============================================================================
-    /** This class is used internally by the WeakReference class - don't use it directly
+    /** This class is used internally by the ofxOfeliaWeakReference class - don't use it directly
         in your code!
-        @see WeakReference
+        @see ofxOfeliaWeakReference
     */
     class SharedPointer   : public ReferenceCountingType
     {
@@ -364,13 +364,13 @@ public:
         DECLARE_NON_COPYABLE (SharedPointer)
     };
 
-    using SharedRef = ReferenceCountedObjectPtr<SharedPointer>;
+    using SharedRef = ofxOfeliaReferenceCountedObjectPtr<SharedPointer>;
 
     //==============================================================================
     /**
-        This class is embedded inside an object to which you want to attach WeakReference pointers.
-        See the WeakReference class notes for an example of how to use this class.
-        @see WeakReference
+        This class is embedded inside an object to which you want to attach ofxOfeliaWeakReference pointers.
+        See the ofxOfeliaWeakReference class notes for an example of how to use this class.
+        @see ofxOfeliaWeakReference
     */
     class Master
     {
@@ -380,7 +380,7 @@ public:
         ~Master() noexcept
         {
             // You must remember to call clear() in your source object's destructor! See the notes
-            // for the WeakReference class for an example of how to do this.
+            // for the ofxOfeliaWeakReference class for an example of how to do this.
             assert (sharedPointer == nullptr || sharedPointer->get() == nullptr);
         }
 
@@ -403,7 +403,7 @@ public:
         }
 
         /** The object that owns this master pointer should call this before it gets destroyed,
-            to zero all the references to this object that may be out there. See the WeakReference
+            to zero all the references to this object that may be out there. See the ofxOfeliaWeakReference
             class notes for an example of how to do this.
         */
         void clear() noexcept
@@ -412,8 +412,8 @@ public:
                 sharedPointer->clearPointer();
         }
 
-        /** Returns the number of WeakReferences that are out there pointing to this object. */
-        int getNumActiveWeakReferences() const noexcept
+        /** Returns the number of ofxOfeliaWeakReferences that are out there pointing to this object. */
+        int getNumActiveofxOfeliaWeakReferences() const noexcept
         {
             return sharedPointer == nullptr ? 0 : (sharedPointer->getReferenceCount() - 1);
         }
