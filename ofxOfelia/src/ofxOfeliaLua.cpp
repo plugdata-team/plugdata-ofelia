@@ -731,45 +731,44 @@ void ofxOfeliaLua::realizeDollar(char **bufp, int *lengthp)
     *lengthp = length;
 }
 
-void ofxOfeliaLua::doString(const char *str)
+void ofxOfeliaLua::doString(const char *s)
 {
-    ofxOfeliaAsync::callAsync([this, s = std::string(str)]() mutable {
-        
-        lua_settop(L, 0); /* empty the stack */
-        std::ostringstream ss;
-        const char *name = dataPtr->sym->s_name;
-        ss << "package.preload['" << name << "'] = nil package.loaded['" << name << "'] = nil\n"
-        << "package.preload['" << name << "'] = function(this) local ofelia = {} local M = ofelia\n";
-        if (!dataPtr->isFunctionMode)
-            ss << s;
-        else if (!dataPtr->isSignalObject)
+    const ofxOfeliaLock ofxLock;
+    
+    lua_settop(L, 0); /* empty the stack */
+    std::ostringstream ss;
+    const char *name = dataPtr->sym->s_name;
+    ss << "package.preload['" << name << "'] = nil package.loaded['" << name << "'] = nil\n"
+    << "package.preload['" << name << "'] = function(this) local ofelia = {} local M = ofelia\n";
+    if (!dataPtr->isFunctionMode)
+        ss << s;
+    else if (!dataPtr->isSignalObject)
+    {
+        ss << "function M.bang() return M.anything(nil) end function M.float(f) return M.anything(f) end function M.symbol(s) return M.anything(s) end function M.pointer(p) return M.anything(p) end function M.list(l) return M.anything(l) end function M.anything(a)\n" << s << "\nend";
+    }
+    else
+    {
+        ss << "function M.perform(";
+        const int numInlets = dataPtr->io.numInlets;
+        for (int i = 0; i < numInlets; ++i)
         {
-            ss << "function M.bang() return M.anything(nil) end function M.float(f) return M.anything(f) end function M.symbol(s) return M.anything(s) end function M.pointer(p) return M.anything(p) end function M.list(l) return M.anything(l) end function M.anything(a)\n" << s << "\nend";
+            if (i) ss << ',';
+            ss << 'a' << i + 1;
         }
-        else
-        {
-            ss << "function M.perform(";
-            const int numInlets = dataPtr->io.numInlets;
-            for (int i = 0; i < numInlets; ++i)
-            {
-                if (i) ss << ',';
-                ss << 'a' << i + 1;
-            }
-            ss << ")\n" << s << "\nend";
-        }
-        ss << "\nreturn M end";
-        /* run the lua chunk */
-        const int ret = luaL_dostring(L, ss.str().c_str());
-        if (ret != LUA_OK)
-        {
-            pd_error(NULL, "ofelia: %s", lua_tostring(L, -1));
-            lua_pop(L, 1);
-            return;
-        }
-        
-        /* call the new function */
-        doNewFunction();
-    });
+        ss << ")\n" << s << "\nend";
+    }
+    ss << "\nreturn M end";
+    /* run the lua chunk */
+    const int ret = luaL_dostring(L, ss.str().c_str());
+    if (ret != LUA_OK)
+    {
+        pd_error(NULL, "ofelia: %s", lua_tostring(L, -1));
+        lua_pop(L, 1);
+        return;
+    }
+    
+    /* call the new function */
+    doNewFunction();
 }
 
 void ofxOfeliaLua::doArgs(int argc, t_atom *argv)
