@@ -38,11 +38,11 @@ jobs:
 
         # Downloading additional libs for openFrameworks
         - name: Installing dependencies
-          run: arch -arm64 ./install_libs.sh
+          run: ./install_libs.sh
 
         # Building the project
         - name: Building Ofelia
-          run: arch -arm64 ./build.sh
+          run: ./build.sh
 
         # Upload executable binaries to GitHub
         - name: Uploading artifacts
@@ -50,7 +50,6 @@ jobs:
           with:
             name: plugdata-ofelia-macos
             path: ./ofelia
-
   build-ubuntu:
     runs-on: ubuntu-20.04
 

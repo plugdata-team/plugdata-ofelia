@@ -1,4 +1,3 @@
-#pragma once
 #include "ofxOfeliaAsync.h"
 
 extern void ofelia_set_run_loop(std::function<void()>);
