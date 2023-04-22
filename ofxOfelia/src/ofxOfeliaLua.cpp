@@ -392,20 +392,23 @@ void ofxOfeliaLua::setVariable(t_symbol *s, t_gpointer *p)
 
 void ofxOfeliaLua::setVariable(t_symbol *s, int argc, t_atom *argv)
 {
-    lua_newtable(L);
-    for (int i = 0; i < argc; ++i)
-    {
-        lua_pushinteger(L, static_cast<lua_Integer>(i + 1));
-        if (argv[i].a_type == A_FLOAT)
-            lua_pushnumber(L, static_cast<lua_Number>(argv[i].a_w.w_float));
-        else if (argv[i].a_type == A_SYMBOL)
-            lua_pushstring(L, argv[i].a_w.w_symbol->s_name);
-        else if (argv[i].a_type == A_POINTER)
-            pushUserData(argv[i].a_w.w_gpointer);
-        lua_settable(L, -3);
-    }
-    lua_setfield(L, -3, s->s_name);
-    lua_pop(L, 2);
+    auto args = std::vector<t_atom>(argv, argv + argc);
+    ofxOfeliaAsync::callAsync([this, s, args]() {
+        lua_newtable(L);
+        for (int i = 0; i < args.size(); ++i)
+        {
+            lua_pushinteger(L, static_cast<lua_Integer>(i + 1));
+            if (args[i].a_type == A_FLOAT)
+                lua_pushnumber(L, static_cast<lua_Number>(args[i].a_w.w_float));
+            else if (args[i].a_type == A_SYMBOL)
+                lua_pushstring(L, args[i].a_w.w_symbol->s_name);
+            else if (args[i].a_type == A_POINTER)
+                pushUserData(args[i].a_w.w_gpointer);
+            lua_settable(L, -3);
+        }
+        lua_setfield(L, -3, s->s_name);
+        lua_pop(L, 2);
+    });
 }
 
 void ofxOfeliaLua::doVariable(t_symbol *s)

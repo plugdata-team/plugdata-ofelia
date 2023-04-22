@@ -70,9 +70,6 @@ void ofxOfeliaIO::addSignalIO()
 
 void ofxOfeliaIO::freeControlIO()
 {
-    // TODO: this causes a deadlock, but not having this isn't thread safe either!
-    //const ofxOfeliaAudioLock audioLock;
-    
     int numInlets = this->numInlets;
     int numOutlets = this->numOutlets;
     freeIO(--numInlets, numOutlets);

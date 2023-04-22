@@ -158,8 +158,7 @@ void ofxOfeliaDefine::setMethod(t_symbol *s, int argc, t_atom *argv)
 
 void ofxOfeliaDefine::saveMethod(t_object *ob, t_binbuf *bb)
 {
-    const ofxOfeliaAudioLock audioLock;
-    
+    // No need to lock here, because the host should make sure this is thread safe
     binbuf_addv(bb, const_cast<char *>("ssff"), &s__X, gensym("obj"),
                 static_cast<float>(ob->te_xpix),
                 static_cast<float>(ob->te_ypix));

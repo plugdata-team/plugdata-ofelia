@@ -40,7 +40,6 @@ void ofxOfeliaData::bindSym()
 
 void ofxOfeliaData::unbindSym()
 {
-    // TODO: We should lock the audio thread here, but we can't because of deadlocks
     pd_unbind(&ob.ob_pd, sym);
 }
 
