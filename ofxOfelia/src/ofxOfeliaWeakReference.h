@@ -2,6 +2,7 @@
 #include <functional>
 #include <mutex>
 #include <atomic>
+#include <assert>
 
 #define DECLARE_NON_COPYABLE(className) \
     className (const className&) = delete;\
@@ -35,8 +36,6 @@ public:
     */
     void decReferenceCount() noexcept
     {
-        assert (getReferenceCount() > 0);
-
         if (--refCount == 0)
             delete this;
     }
@@ -47,7 +46,6 @@ public:
     */
     bool decReferenceCountWithoutDeleting() noexcept
     {
-        assert (getReferenceCount() > 0);
         return --refCount == 0;
     }
 
@@ -72,8 +70,6 @@ protected:
     /** Destructor. */
     virtual ~ReferenceCountedObject()
     {
-        // it's dangerous to delete an object that's still referenced by something else!
-        assert (getReferenceCount() == 0);
     }
 
     /** Resets the reference count to zero without deleting the object.
@@ -238,14 +234,13 @@ public:
     // the -> operator is called on the referenced object
     ReferencedType* operator->() const noexcept
     {
-        assert (referencedObject != nullptr); // null pointer method call!
         return referencedObject;
     }
 
     /** Dereferences the object that this pointer references.
         The pointer returned may be null, of course.
     */
-    ReferencedType& operator*() const noexcept              { assert (referencedObject != nullptr); return *referencedObject; }
+    ReferencedType& operator*() const noexcept              { return *referencedObject; }
 
     /** Checks whether this pointer is null */
     bool operator== (decltype (nullptr)) const noexcept     { return referencedObject == nullptr; }
@@ -378,9 +373,6 @@ public:
 
         ~Master() noexcept
         {
-            // You must remember to call clear() in your source object's destructor! See the notes
-            // for the WeakReference class for an example of how to do this.
-            assert (sharedPointer == nullptr || sharedPointer->get() == nullptr);
         }
 
         /** The first call to this method will create an internal object that is shared by all weak
