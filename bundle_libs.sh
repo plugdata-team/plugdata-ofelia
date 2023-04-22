@@ -19,3 +19,8 @@ rm ./ofelia/libs/libpthread.so.*
 rm ./ofelia/libs/libc.so.*
 rm ./ofelia/libs/libX11.so.*
 rm ./ofelia/libs/libstdc++.so.6
+rm ./ofelia/libs/libdl.so.*
+
+# These have a lot of annoying sub-dependencies, so we better not include them
+rm ./ofelia/libs/libfreeimage.so.*
+rm ./ofelia/libs/libglib-2.0.so.*
