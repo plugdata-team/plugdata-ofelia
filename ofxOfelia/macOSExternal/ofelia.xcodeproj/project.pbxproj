@@ -881,7 +881,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ofelia.macOSExternal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = macosx13.3;
+				SDKROOT = macosx;
 				STRIP_STYLE = all;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "arm64 x86_64";
@@ -991,7 +991,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ofelia.macOSExternal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = macosx13.3;
+				SDKROOT = macosx;
 				STRIP_STYLE = all;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "arm64 x86_64";
