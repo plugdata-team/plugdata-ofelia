@@ -460,6 +460,8 @@ void ofxOfeliaLua::doVariable(t_symbol *s, int argc, t_atom *argv)
 void ofxOfeliaLua::outletUserData()
 {
     ofxOfeliaAsync::callAsync([this]() {
+        const ofxOfeliaAudioLock audioLock;
+        
         int userDataRef = luaL_ref(L, LUA_REGISTRYINDEX);
         outlet_pointer(dataPtr->io.outlets[0], reinterpret_cast<t_gpointer *>(&userDataRef));
         luaL_unref(L, LUA_REGISTRYINDEX, userDataRef);
