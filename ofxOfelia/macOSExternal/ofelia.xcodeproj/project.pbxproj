@@ -827,6 +827,7 @@
 				ICON_NAME_DEBUG = "icon-debug.icns";
 				ICON_NAME_RELEASE = icon.icns;
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Ofelia would like to use the camera for video processing";
 				INFOPLIST_PREPROCESS = NO;
 				INSTALL_PATH = "$(SRCROOT)/bin/";
 				LD_RUNPATH_SEARCH_PATHS = $ORIGIN;
@@ -937,6 +938,7 @@
 				ICON_NAME_DEBUG = "icon-debug.icns";
 				ICON_NAME_RELEASE = icon.icns;
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Ofelia would like to use the camera for video processing";
 				INFOPLIST_PREPROCESS = NO;
 				INSTALL_PATH = "$(SRCROOT)/bin/";
 				LD_RUNPATH_SEARCH_PATHS = $ORIGIN;
