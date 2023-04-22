@@ -1,5 +1,7 @@
 #pragma once
 
+#include "ofxOfeliaWeakReference.h"
+
 #include "m_pd.h"
 #include "g_canvas.h"
 #include "lua.hpp"
@@ -61,7 +63,12 @@ public:
     static lua_State *L;
     bool isChunkRun; /* whether the chunk is run or not */
 private:
+    
+    void callOnMessageThread(std::function<void()> fn);
+    
     static void unpackModule(lua_State *L, const std::string &moduleName,  const std::string &prefix);
     static bool addGlobals(lua_State *L);
     ofxOfeliaData *dataPtr; /* pointer to data */
+    
+    DECLARE_WEAK_REFERENCEABLE(ofxOfeliaLua)
 };

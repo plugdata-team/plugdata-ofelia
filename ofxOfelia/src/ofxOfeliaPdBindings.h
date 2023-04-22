@@ -87,8 +87,9 @@ public:
     {
         if (owner || exists) return;
         
-        ofxOfeliaAsync::callAsync([this](){
+        ofxOfeliaAsync::callAsync([_this = WeakReference<pdWindow>(this), this](){
         
+            if(!_this) return;
 #if defined(TARGET_EXTERNAL)
 #if defined(TARGET_OPENGLES)
         ofGLESWindowSettings settings;
@@ -321,6 +322,8 @@ private:
     bool positionSet;
     bool sizeSet;
     bool owner;
+    
+    DECLARE_WEAK_REFERENCEABLE(pdWindow)
 };
 
 bool pdWindow::exists = false;

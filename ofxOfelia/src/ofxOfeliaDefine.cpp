@@ -25,8 +25,8 @@ void *ofxOfeliaDefine::newMethod(t_symbol *s, int argc, t_atom *argv)
 
 void ofxOfeliaDefine::bangMethod()
 {
-    ofxOfeliaAsync::callAsync([this]() {
-        
+    ofxOfeliaAsync::callAsync([_this = WeakReference<ofxOfeliaDefine>(this), this]() {
+        if(!_this) return;
         if (data.io.hasMultiControlInlets)
         {
             int ac = data.io.numInlets - 1;
@@ -42,8 +42,8 @@ void ofxOfeliaDefine::bangMethod()
 
 void ofxOfeliaDefine::floatMethod(t_floatarg f)
 {
-    ofxOfeliaAsync::callAsync([this, f]() {
-        
+    ofxOfeliaAsync::callAsync([_this = WeakReference<ofxOfeliaDefine>(this), this, f]() {
+        if(!_this) return;
         if (data.io.hasMultiControlInlets)
         {
             int ac = data.io.numInlets;
@@ -59,8 +59,8 @@ void ofxOfeliaDefine::floatMethod(t_floatarg f)
 
 void ofxOfeliaDefine::symbolMethod(t_symbol *s)
 {
-    ofxOfeliaAsync::callAsync([this, s]() {
-        
+    ofxOfeliaAsync::callAsync([_this = WeakReference<ofxOfeliaDefine>(this), this, s]() {
+        if(!_this) return;
         if (data.io.hasMultiControlInlets)
         {
             int ac = data.io.numInlets;
@@ -77,8 +77,8 @@ void ofxOfeliaDefine::symbolMethod(t_symbol *s)
 
 void ofxOfeliaDefine::pointerMethod(t_gpointer *p)
 {
-    ofxOfeliaAsync::callAsync([this, p]() {
-        
+    ofxOfeliaAsync::callAsync([_this = WeakReference<ofxOfeliaDefine>(this), this, p]() {
+        if(!_this) return;
         if (data.io.hasMultiControlInlets)
         {
             int ac = data.io.numInlets;
@@ -96,8 +96,8 @@ void ofxOfeliaDefine::pointerMethod(t_gpointer *p)
 void ofxOfeliaDefine::listMethod(t_symbol *s, int argc, t_atom *argv)
 {
     auto args = std::vector<t_atom>(argv, argv + argc);
-    ofxOfeliaAsync::callAsync([this, args]() mutable {
-        
+    ofxOfeliaAsync::callAsync([_this = WeakReference<ofxOfeliaDefine>(this), this, args]() mutable {
+        if(!_this) return;
         if (!args.size())
         {
             bangMethod();
@@ -130,15 +130,16 @@ void ofxOfeliaDefine::listMethod(t_symbol *s, int argc, t_atom *argv)
 void ofxOfeliaDefine::anythingMethod(t_symbol *s, int argc, t_atom *argv)
 {
     auto args = std::vector<t_atom>(argv, argv + argc);
-    ofxOfeliaAsync::callAsync([this, s, args]() mutable {
+    ofxOfeliaAsync::callAsync([_this = WeakReference<ofxOfeliaDefine>(this), this, s, args]() mutable {
+        if(!_this) return;
         data.lua.setVariableByArgs(s, args.size(), args.data());
     });
 }
 
 void ofxOfeliaDefine::clearMethod()
 {
-    ofxOfeliaAsync::callAsync([this]() {
-        if (data.isDirectMode) return;
+    ofxOfeliaAsync::callAsync([_this = WeakReference<ofxOfeliaDefine>(this), this]() {
+        if (!_this || data.isDirectMode) return;
         data.lua.doFreeFunction();
         binbuf_clear(data.binbuf);
         data.textBuf.senditup();
@@ -148,8 +149,8 @@ void ofxOfeliaDefine::clearMethod()
 void ofxOfeliaDefine::setMethod(t_symbol *s, int argc, t_atom *argv)
 {
     auto args = std::vector<t_atom>(argv, argv + argc);
-    ofxOfeliaAsync::callAsync([this, args]() mutable {
-        if (data.isDirectMode) return;
+    ofxOfeliaAsync::callAsync([_this = WeakReference<ofxOfeliaDefine>(this), this, args]() mutable {
+        if (!_this || data.isDirectMode) return;
         binbuf_restore(data.binbuf, args.size(), args.data());
         data.textBuf.senditup();
         data.lua.doText();
