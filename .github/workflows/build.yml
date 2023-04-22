@@ -12,6 +12,11 @@ jobs:
           with:
             submodules: recursive
 
+        - name: Import Code-Signing Certificates
+          uses: figleafteam/import-codesign-certs@v2
+          with:
+            p12-file-base64: ${{ secrets.APPLE_DEVELOPER_CERTIFICATE_P12_BASE64 }}
+            p12-password: ${{ secrets.APPLE_DEVELOPER_CERTIFICATE_PASSWORD }}
         # Downloading additional libs for openFrameworks
         - name: Installing dependencies
           run: ./install_libs.sh
@@ -20,12 +25,16 @@ jobs:
         - name: Building Ofelia
           run: ./build.sh
 
+        # Sign and notarise to make sure it works with gatekeeper
+        - name: Sign and notarise
+          run: .github/scripts/package-macOS.sh
+
         # Upload executable binaries to GitHub
         - name: Uploading artifacts
           uses: actions/upload-artifact@v2
           with:
             name: plugdata-ofelia-macos
-            path: ./ofelia
+            path: ./ofelia.zip
 
   build-ubuntu:
     runs-on: ubuntu-20.04
