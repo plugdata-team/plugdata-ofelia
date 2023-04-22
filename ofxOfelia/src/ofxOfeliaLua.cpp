@@ -731,7 +731,6 @@ void ofxOfeliaLua::realizeDollar(char **bufp, int *lengthp)
 void ofxOfeliaLua::doString(const char *str)
 {
     ofxOfeliaAsync::callAsync([this, s = std::string(str)]() {
-        
         lua_settop(L, 0); /* empty the stack */
         std::ostringstream ss;
         const char *name = dataPtr->sym->s_name;
