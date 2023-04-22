@@ -23,4 +23,3 @@ struct ofxOfeliaAsync
     static void callAsync(std::function<void()> fn);
 };
 
-

@@ -2,6 +2,7 @@
 
 #include "m_pd.h"
 #include "ofxOfeliaData.h"
+#include "ofxOfeliaWeakReference.h"
 
 class ofxOfeliaClient
 {
@@ -18,4 +19,6 @@ public:
     ofxOfeliaData data;
 private:
     bool isDataValid();
+    
+    DECLARE_WEAK_REFERENCEABLE(ofxOfeliaClient)
 };

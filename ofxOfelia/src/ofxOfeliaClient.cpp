@@ -13,8 +13,8 @@ bool ofxOfeliaClient::isDataValid()
 
 void ofxOfeliaClient::bangMethod()
 {
-    ofxOfeliaAsync::callAsync([this](){
-        if (!isDataValid()) return;
+    ofxOfeliaAsync::callAsync([_this = WeakReference<ofxOfeliaClient>(this), this](){
+        if (!_this || !isDataValid()) return;
         if (data.io.hasMultiControlInlets)
         {
             int ac = data.io.numInlets - 1;
@@ -29,8 +29,8 @@ void ofxOfeliaClient::bangMethod()
 
 void ofxOfeliaClient::floatMethod(t_floatarg f)
 {
-    ofxOfeliaAsync::callAsync([this, f](){
-        if (!isDataValid()) return;
+    ofxOfeliaAsync::callAsync([_this = WeakReference<ofxOfeliaClient>(this), this, f](){
+        if (!_this || !isDataValid()) return;
         if (data.io.hasMultiControlInlets)
         {
             int ac = data.io.numInlets;
@@ -46,8 +46,8 @@ void ofxOfeliaClient::floatMethod(t_floatarg f)
 
 void ofxOfeliaClient::symbolMethod(t_symbol *s)
 {
-    ofxOfeliaAsync::callAsync([this, s](){
-        if (!isDataValid()) return;
+    ofxOfeliaAsync::callAsync([_this = WeakReference<ofxOfeliaClient>(this), this, s](){
+        if (!_this || !isDataValid()) return;
         if (data.io.hasMultiControlInlets)
         {
             int ac = data.io.numInlets;
@@ -63,8 +63,8 @@ void ofxOfeliaClient::symbolMethod(t_symbol *s)
 
 void ofxOfeliaClient::pointerMethod(t_gpointer *p)
 {
-    ofxOfeliaAsync::callAsync([this, p](){
-        if (!isDataValid()) return;
+    ofxOfeliaAsync::callAsync([_this = WeakReference<ofxOfeliaClient>(this), this, p](){
+        if (!_this || !isDataValid()) return;
         if (data.io.hasMultiControlInlets)
         {
             int ac = data.io.numInlets;
@@ -81,8 +81,8 @@ void ofxOfeliaClient::pointerMethod(t_gpointer *p)
 void ofxOfeliaClient::listMethod(t_symbol *s, int argc, t_atom *argv)
 {
     auto args = std::vector<t_atom>(argv, argv + argc);
-    ofxOfeliaAsync::callAsync([this, s, args]() mutable {
-        if (!isDataValid()) return;
+    ofxOfeliaAsync::callAsync([_this = WeakReference<ofxOfeliaClient>(this), this, s, args]() mutable {
+        if (!_this || !isDataValid()) return;
         if (!args.size())
         {
             bangMethod();
@@ -114,8 +114,8 @@ void ofxOfeliaClient::listMethod(t_symbol *s, int argc, t_atom *argv)
 void ofxOfeliaClient::getVariableByArgs(t_symbol *s, int argc, t_atom *argv)
 {
     auto args = std::vector<t_atom>(argv, argv + argc);
-    ofxOfeliaAsync::callAsync([this, s, args]() mutable {
-        if (!isDataValid()) return;
+    ofxOfeliaAsync::callAsync([_this = WeakReference<ofxOfeliaClient>(this), this, s, args]() mutable {
+        if (!_this || !isDataValid()) return;
         data.lua.getVariableByArgs(s, args.size(), args.data());
     });
 }
@@ -123,8 +123,8 @@ void ofxOfeliaClient::getVariableByArgs(t_symbol *s, int argc, t_atom *argv)
 void ofxOfeliaClient::setVariableByArgs(t_symbol *s, int argc, t_atom *argv)
 {
     auto args = std::vector<t_atom>(argv, argv + argc);
-    ofxOfeliaAsync::callAsync([this, s, args]() mutable {
-        if (!isDataValid()) return;
+    ofxOfeliaAsync::callAsync([_this = WeakReference<ofxOfeliaClient>(this), this, s, args]() mutable {
+        if (!_this || !isDataValid()) return;
         data.lua.setVariableByArgs(s, args.size(), args.data());
     });
 }
@@ -138,8 +138,6 @@ void ofxOfeliaClient::dspMethod(t_signal **sp)
 
 void ofxOfeliaClient::freeMethod()
 {
-    ofxOfeliaAsync::callAsync([this](){
-        if (!data.isSignalObject) data.io.freeControlIO();
-        else data.io.freeSignalIO();
-    });
+    if (!data.isSignalObject) data.io.freeControlIO();
+    else data.io.freeSignalIO();
 }

@@ -3,6 +3,7 @@
 #include "m_pd.h"
 #include "ofxOfeliaData.h"
 #include "ofxOfeliaFunction.h"
+#include "ofxOfeliaWeakReference.h"
 
 class ofxOfeliaDefine
 {
@@ -46,4 +47,6 @@ public:
     ofxOfeliaData data;
     ofxOfeliaFunction function;
 private:
+    
+    DECLARE_WEAK_REFERENCEABLE(ofxOfeliaDefine)
 };

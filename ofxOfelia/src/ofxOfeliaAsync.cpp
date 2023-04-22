@@ -34,6 +34,7 @@ void ofxOfeliaAsync::setRunLoop(std::function<void()> fn)
     ofelia_set_run_loop(fn);
 }
 
+
 void ofxOfeliaAsync::callAsync(std::function<void()> fn)
 {
     ofelia_call_async([fn](){

@@ -383,7 +383,7 @@ void ofxOfeliaLua::setVariable(t_symbol *s, t_symbol *s2)
 
 void ofxOfeliaLua::setVariable(t_symbol *s, t_gpointer *p)
 {
-    ofxOfeliaAsync::callAsync([this, s, p]() {
+    callOnMessageThread([this, s, p]() {
         pushUserData(p);
         lua_setfield(L, -3, s->s_name);
         lua_pop(L, 2);
@@ -393,7 +393,7 @@ void ofxOfeliaLua::setVariable(t_symbol *s, t_gpointer *p)
 void ofxOfeliaLua::setVariable(t_symbol *s, int argc, t_atom *argv)
 {
     auto args = std::vector<t_atom>(argv, argv + argc);
-    ofxOfeliaAsync::callAsync([this, s, args]() {
+    callOnMessageThread([this, s, args]() {
         lua_newtable(L);
         for (int i = 0; i < args.size(); ++i)
         {
@@ -413,7 +413,7 @@ void ofxOfeliaLua::setVariable(t_symbol *s, int argc, t_atom *argv)
 
 void ofxOfeliaLua::doVariable(t_symbol *s)
 {
-    ofxOfeliaAsync::callAsync([this, s](){
+    callOnMessageThread([this, s](){
         if (!isNil(s)) return;
         setVariable(s);
     });
@@ -421,7 +421,7 @@ void ofxOfeliaLua::doVariable(t_symbol *s)
 
 void ofxOfeliaLua::doVariable(t_symbol *s, bool b)
 {
-    ofxOfeliaAsync::callAsync([this, s, b](){
+    callOnMessageThread([this, s, b](){
         if (!isBoolean(s)) return;
         setVariable(s, b);
     });
@@ -429,7 +429,7 @@ void ofxOfeliaLua::doVariable(t_symbol *s, bool b)
 
 void ofxOfeliaLua::doVariable(t_symbol *s, t_floatarg f)
 {
-    ofxOfeliaAsync::callAsync([this, s, f](){
+    callOnMessageThread([this, s, f](){
         if (!isNumber(s)) return;
         setVariable(s, f);
     });
@@ -437,7 +437,7 @@ void ofxOfeliaLua::doVariable(t_symbol *s, t_floatarg f)
 
 void ofxOfeliaLua::doVariable(t_symbol *s, t_symbol *s2)
 {
-    ofxOfeliaAsync::callAsync([this, s, s2](){
+    callOnMessageThread([this, s, s2](){
         if (!isString(s)) return;
         setVariable(s, s2);
     });
@@ -445,7 +445,7 @@ void ofxOfeliaLua::doVariable(t_symbol *s, t_symbol *s2)
 
 void ofxOfeliaLua::doVariable(t_symbol *s, t_gpointer *p)
 {
-    ofxOfeliaAsync::callAsync([this, s, p](){
+    callOnMessageThread([this, s, p](){
         if (!isString(s)) return;
         setVariable(s, p);
     });
@@ -454,7 +454,7 @@ void ofxOfeliaLua::doVariable(t_symbol *s, t_gpointer *p)
 void ofxOfeliaLua::doVariable(t_symbol *s, int argc, t_atom *argv)
 {
     auto args = std::vector<t_atom>(argv, argv + argc);
-    ofxOfeliaAsync::callAsync([this, s, args]() mutable {
+    callOnMessageThread([this, s, args]() mutable {
         if (!isTable(s)) return;
         setVariable(s, args.size(), args.data());
     });
@@ -462,7 +462,7 @@ void ofxOfeliaLua::doVariable(t_symbol *s, int argc, t_atom *argv)
 
 void ofxOfeliaLua::outletUserData()
 {
-    ofxOfeliaAsync::callAsync([this]() {
+    callOnMessageThread([this]() {
         const ofxOfeliaAudioLock audioLock;
         
         int userDataRef = luaL_ref(L, LUA_REGISTRYINDEX);
@@ -473,7 +473,7 @@ void ofxOfeliaLua::outletUserData()
 
 void ofxOfeliaLua::outletTable()
 {
-    ofxOfeliaAsync::callAsync([this]() {
+    callOnMessageThread([this]() {
         lua_pushvalue(L, -1);
         lua_pushnil(L);
         int ac = 0;
@@ -548,7 +548,7 @@ void ofxOfeliaLua::outletTable()
 
 void ofxOfeliaLua::outletRet(int nret)
 {
-    ofxOfeliaAsync::callAsync([this, nret]() {
+    callOnMessageThread([this, nret]() {
         if (!nret) return;
         const ofxOfeliaIO &io = dataPtr->io;
         if (!io.hasControlOutlet) return;
@@ -576,7 +576,7 @@ void ofxOfeliaLua::outletRet(int nret)
 
 void ofxOfeliaLua::callFunction(int top)
 {
-    ofxOfeliaAsync::callAsync([this, top]() {
+    callOnMessageThread([this, top]() {
         /* note: it currently passes only one argument */
         if (lua_pcall(L, 1, LUA_MULTRET, 0))
         {
@@ -591,7 +591,7 @@ void ofxOfeliaLua::callFunction(int top)
 
 void ofxOfeliaLua::setFunction(int top)
 {
-    ofxOfeliaAsync::callAsync([this, top]() {
+    callOnMessageThread([this, top]() {
         lua_pushnil(L);
         callFunction(top);
         lua_pop(L, 1);
@@ -600,7 +600,7 @@ void ofxOfeliaLua::setFunction(int top)
 
 void ofxOfeliaLua::setFunction(t_floatarg f, int top)
 {
-    ofxOfeliaAsync::callAsync([this, f, top]() {
+    callOnMessageThread([this, f, top]() {
         lua_pushnumber(L, static_cast<lua_Number>(f));
         callFunction(top);
         lua_pop(L, 1);
@@ -609,7 +609,7 @@ void ofxOfeliaLua::setFunction(t_floatarg f, int top)
 
 void ofxOfeliaLua::setFunction(t_symbol *s, int top)
 {
-    ofxOfeliaAsync::callAsync([this, s, top]() {
+    callOnMessageThread([this, s, top]() {
         lua_pushstring(L, s->s_name);
         callFunction(top);
         lua_pop(L, 1);
@@ -618,7 +618,7 @@ void ofxOfeliaLua::setFunction(t_symbol *s, int top)
 
 void ofxOfeliaLua::setFunction(t_gpointer *p, int top)
 {
-    ofxOfeliaAsync::callAsync([this, p, top]() {
+    callOnMessageThread([this, p, top]() {
         pushUserData(p);
         callFunction(top);
         lua_pop(L, 1);
@@ -628,7 +628,7 @@ void ofxOfeliaLua::setFunction(t_gpointer *p, int top)
 void ofxOfeliaLua::setFunction(int argc, t_atom *argv, int top)
 {
     auto args = std::vector<t_atom>(argv, argv + argc);
-    ofxOfeliaAsync::callAsync([this, args, top]() {
+    callOnMessageThread([this, args, top]() {
         lua_newtable(L);
         for (int i = 0; i < args.size(); ++i)
         {
@@ -648,7 +648,7 @@ void ofxOfeliaLua::setFunction(int argc, t_atom *argv, int top)
 
 void ofxOfeliaLua::doFunction(t_symbol *s)
 {
-    ofxOfeliaAsync::callAsync([this, s]() {
+    callOnMessageThread([this, s]() {
         int top; if (!isFunction(s, top)) return;
         setFunction(top);
     });
@@ -656,7 +656,7 @@ void ofxOfeliaLua::doFunction(t_symbol *s)
 
 void ofxOfeliaLua::doFunction(t_symbol *s, t_floatarg f)
 {
-    ofxOfeliaAsync::callAsync([this, s, f]() {
+    callOnMessageThread([this, s, f]() {
         int top; if (!isFunction(s, top)) return;
         setFunction(static_cast<lua_Number>(f), top);
     });
@@ -664,7 +664,7 @@ void ofxOfeliaLua::doFunction(t_symbol *s, t_floatarg f)
 
 void ofxOfeliaLua::doFunction(t_symbol *s, t_symbol *s2)
 {
-    ofxOfeliaAsync::callAsync([this, s, s2]() {
+    callOnMessageThread([this, s, s2]() {
         int top; if (!isFunction(s, top)) return;
         setFunction(s2, top);
     });
@@ -672,7 +672,7 @@ void ofxOfeliaLua::doFunction(t_symbol *s, t_symbol *s2)
 
 void ofxOfeliaLua::doFunction(t_symbol *s, t_gpointer *p)
 {
-    ofxOfeliaAsync::callAsync([this, s, p]() {
+    callOnMessageThread([this, s, p]() {
         int top; if (!isFunction(s, top)) return;
         setFunction(p, top);
     });
@@ -681,7 +681,7 @@ void ofxOfeliaLua::doFunction(t_symbol *s, t_gpointer *p)
 void ofxOfeliaLua::doFunction(t_symbol *s, int argc, t_atom *argv)
 {
     auto args = std::vector<t_atom>(argv, argv + argc);
-    ofxOfeliaAsync::callAsync([this, s, args]() mutable {
+    callOnMessageThread([this, s, args]() mutable {
         int top; if (!isFunction(s, top)) return;
         setFunction(args.size(), args.data(), top);
     });
@@ -745,7 +745,7 @@ void ofxOfeliaLua::realizeDollar(char **bufp, int *lengthp)
 
 void ofxOfeliaLua::doString(const char *str)
 {
-    ofxOfeliaAsync::callAsync([this, s = std::string(str)]() {
+    callOnMessageThread([this, s = std::string(str)]() {
         lua_settop(L, 0); /* empty the stack */
         std::ostringstream ss;
         const char *name = dataPtr->sym->s_name;
@@ -938,4 +938,12 @@ void ofxOfeliaLua::setVariableByArgs(t_symbol *s, int argc, t_atom *argv)
         default:
             break;
     }
+}
+
+void ofxOfeliaLua::callOnMessageThread(std::function<void()> fn)
+{
+    ofxOfeliaAsync::callAsync([_this = WeakReference<ofxOfeliaLua>(this), fn]() {
+        if(!_this) return;
+        fn();
+    });
 }

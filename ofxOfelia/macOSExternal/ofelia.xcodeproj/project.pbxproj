@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB4E9AEF29F4971900A3884D /* ofxOfeliaWeakReference.h in Headers */ = {isa = PBXBuildFile; fileRef = AB4E9AEE29F4971900A3884D /* ofxOfeliaWeakReference.h */; };
 		AB66733329F21E9500DD23A5 /* ofxOfeliaAsync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB66733129F21E9500DD23A5 /* ofxOfeliaAsync.cpp */; };
 		AB66733429F21E9500DD23A5 /* ofxOfeliaAsync.h in Headers */ = {isa = PBXBuildFile; fileRef = AB66733229F21E9500DD23A5 /* ofxOfeliaAsync.h */; };
 		FDD3AF5722F4777200A13F8B /* ofxOfeliaGet.h in Headers */ = {isa = PBXBuildFile; fileRef = FDD3AF2922F4777000A13F8B /* ofxOfeliaGet.h */; };
@@ -124,6 +125,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB4E9AEE29F4971900A3884D /* ofxOfeliaWeakReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxOfeliaWeakReference.h; path = ../src/ofxOfeliaWeakReference.h; sourceTree = "<group>"; };
 		AB66732D29F2144100DD23A5 /* libfmod.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfmod.dylib; path = ../../../../../Library/plugdata/Deken/ofelia/libs/libfmod.dylib; sourceTree = "<group>"; };
 		AB66733129F21E9500DD23A5 /* ofxOfeliaAsync.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxOfeliaAsync.cpp; path = ../src/ofxOfeliaAsync.cpp; sourceTree = "<group>"; };
 		AB66733229F21E9500DD23A5 /* ofxOfeliaAsync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxOfeliaAsync.h; path = ../src/ofxOfeliaAsync.h; sourceTree = "<group>"; };
@@ -479,6 +481,7 @@
 				FDD3AF2D22F4777000A13F8B /* ofxOfeliaTextBuf.h */,
 				AB66733129F21E9500DD23A5 /* ofxOfeliaAsync.cpp */,
 				AB66733229F21E9500DD23A5 /* ofxOfeliaAsync.h */,
+				AB4E9AEE29F4971900A3884D /* ofxOfeliaWeakReference.h */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				FDD3AF5B22F4777200A13F8B /* ofxOfeliaTextBuf.h in Headers */,
 				FDD3AF6122F4777200A13F8B /* ofxOfeliaData.h in Headers */,
 				FDD3AF6B22F4777200A13F8B /* ofxOfeliaEvents.h in Headers */,
+				AB4E9AEF29F4971900A3884D /* ofxOfeliaWeakReference.h in Headers */,
 				FDED15B922B4CD9F005D9D62 /* lapi.h in Headers */,
 				FDED15C822B4CD9F005D9D62 /* lua.hpp in Headers */,
 				FDED15B822B4CD9F005D9D62 /* lmem.h in Headers */,
