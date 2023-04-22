@@ -27,29 +27,6 @@ jobs:
             name: plugdata-ofelia-macos
             path: ./ofelia
 
-  build-mac-arm:
-      runs-on: macos-latest
-
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v2
-          with:
-            submodules: recursive
-
-        # Downloading additional libs for openFrameworks
-        - name: Installing dependencies
-          run: ./install_libs.sh
-
-        # Building the project
-        - name: Building Ofelia
-          run: ./build.sh
-
-        # Upload executable binaries to GitHub
-        - name: Uploading artifacts
-          uses: actions/upload-artifact@v2
-          with:
-            name: plugdata-ofelia-macos
-            path: ./ofelia
   build-ubuntu:
     runs-on: ubuntu-20.04
 
