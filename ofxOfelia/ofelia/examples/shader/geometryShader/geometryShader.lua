@@ -5,6 +5,7 @@ end
 local canvas = ofCanvas(this)
 local clock = ofClock(this, "setup")
 local shaderDir = canvas:getDir() .. "/data/shaders/"
+ofSetDataPathRoot(shaderDir)
 local shader = ofShader()
 local doShader = false
 local points = {}
@@ -38,7 +39,8 @@ function M.setup()
   shader:setGeometryInputType(GL_LINES)
   shader:setGeometryOutputType(GL_TRIANGLE_STRIP)
   shader:setGeometryOutputCount(4)
-  shader:load(shaderDir .. "vert.glsl", shaderDir .. "frag.glsl", shaderDir .. "geom.glsl")
+  
+  shader:load(ofToDataPath("vert.glsl"), ofToDataPath("frag.glsl"), ofToDataPath("geom.glsl"))
   local r = ofGetHeight()/2
   for i=1, 100 do
     points[i] = ofPoint(ofRandomf() * r, ofRandomf() * r, ofRandomf() * r)

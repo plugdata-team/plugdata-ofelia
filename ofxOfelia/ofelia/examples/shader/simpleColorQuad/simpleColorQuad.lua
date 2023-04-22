@@ -5,6 +5,7 @@ end
 local canvas = ofCanvas(this)
 local clock = ofClock(this, "setup")
 local shaderDir = canvas:getDir() .. "/data/"
+ofSetDataPathRoot(shaderDir)
 local shader = ofShader()
 
 function M.new()
@@ -32,11 +33,11 @@ function M.setup()
   ofBackground(255, 255, 255, 255)
   local platform = ofGetTargetPlatform()
   if platform == OF_TARGET_LINUXARMV6L or platform == OF_TARGET_LINUXARMV7L or platform == OF_TARGET_ANDROID or platform == OF_TARGET_IOS or platform == OF_TARGET_EMSCRIPTEN then
-    shader:load(shaderDir .. "shadersES2/shader")
+    shader:load(ofToDataPath("shadersES2/shader"))
   elseif ofIsGLProgrammableRenderer() then
-    shader:load(shaderDir .. "shadersGL3/shader")
+    shader:load(ofToDataPath("shadersGL3/shader"))
   else
-    shader:load(shaderDir .. "shadersGL2/shader")
+    shader:load(ofToDataPath("shadersGL2/shader"))
   end
 end
 
