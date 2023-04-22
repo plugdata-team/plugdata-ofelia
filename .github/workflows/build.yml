@@ -17,6 +17,7 @@ jobs:
           with:
             p12-file-base64: ${{ secrets.APPLE_DEVELOPER_CERTIFICATE_P12_BASE64 }}
             p12-password: ${{ secrets.APPLE_DEVELOPER_CERTIFICATE_PASSWORD }}
+
         # Downloading additional libs for openFrameworks
         - name: Installing dependencies
           run: ./install_libs.sh
@@ -28,6 +29,10 @@ jobs:
         # Sign and notarise to make sure it works with gatekeeper
         - name: Sign and notarise
           run: .github/scripts/package-macOS.sh
+          working-directory: ${{github.workspace}}
+          env:
+            AC_USERNAME: ${{ secrets.AC_USERNAME }}
+            AC_PASSWORD: ${{ secrets.AC_PASSWORD }}
 
         # Upload executable binaries to GitHub
         - name: Uploading artifacts

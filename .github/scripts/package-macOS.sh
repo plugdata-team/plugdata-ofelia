@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Sign plugins
+# Sign dynamic libraries
 /usr/bin/codesign --force -s "Developer ID Application: Timothy Schoen (7SV7JPRR2L)" ./ofelia/ofelia.pd_darwin
 /usr/bin/codesign --force -s "Developer ID Application: Timothy Schoen (7SV7JPRR2L)" ./ofelia/libs/libfmod.dylib
 
