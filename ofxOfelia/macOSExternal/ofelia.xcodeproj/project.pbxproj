@@ -626,7 +626,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# copy libfmod.dylib and change @executable_path to @loader_path\ncp -rf \"$SRCROOT/../../openFrameworks/libs/fmod/lib/osx/libfmod.dylib\" \"$SRCROOT/bin\"\ninstall_name_tool -change @executable_path/../Frameworks/libfmod.dylib @loader_path/libfmod.dylib $BUILT_PRODUCTS_DIR/ofelia.pd_darwin\n";
+			shellScript = "# copy libfmod.dylib and change @executable_path to @loader_path\nmkdir -p \"$SRCROOT/bin/libs\"\ncp -rf \"$SRCROOT/../../openFrameworks/libs/fmod/lib/osx/libfmod.dylib\" \"$SRCROOT/bin/libs\"\ninstall_name_tool -change @executable_path/../Frameworks/libfmod.dylib @loader_path/libs/libfmod.dylib $BUILT_PRODUCTS_DIR/ofelia.pd_darwin\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
