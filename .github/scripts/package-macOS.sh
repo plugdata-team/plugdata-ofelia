@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ENTITLEMENTS=-"./ofxOfelia/macOSExternal/Entitlements.plist"
+ENTITLEMENTS="./ofxOfelia/macOSExternal/Entitlements.plist"
 ID="Developer ID Application: Timothy Schoen (7SV7JPRR2L)"
 
 # Sign dynamic libraries
