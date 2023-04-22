@@ -674,23 +674,18 @@ void ofxOfeliaLua::doFunction(t_symbol *s, int argc, t_atom *argv)
 
 void ofxOfeliaLua::doNewFunction()
 {
-    ofxOfeliaAsync::callAsync([this]() {
-        isChunkRun = true;
-        doFunction(gensym("new")); /* isChunkRun will set to false if fail */
-    });
+    isChunkRun = true;
+    doFunction(gensym("new")); /* isChunkRun will set to false if fail */
 }
 
 void ofxOfeliaLua::doFreeFunction()
 {
-    ofxOfeliaAsync::callAsync([this]() {
-        doFunction(gensym("free"));
-        isChunkRun = false;
-    });
+    doFunction(gensym("free"));
+    isChunkRun = false;
 }
 
 void ofxOfeliaLua::realizeDollar(char **bufp, int *lengthp)
 {
-    // TODO: make async!
     char *buf = static_cast<char *>(getbytes(0)); /* output buffer */
     int length = 0; /* output length */
     for (int i = 0; i < *lengthp; ++i)
@@ -705,6 +700,8 @@ void ofxOfeliaLua::realizeDollar(char **bufp, int *lengthp)
             int tlen = dlen - 1; /* number of trailing digits */
             if (tlen)
             {
+                const ofxOfeliaAudioLock audioLock;
+                
                 dbuf[dlen] = '\0';
                 t_symbol *s = canvas_realizedollar(dataPtr->canvas, gensym(dbuf));
                 std::strcpy(dbuf, s->s_name);
@@ -731,44 +728,46 @@ void ofxOfeliaLua::realizeDollar(char **bufp, int *lengthp)
     *lengthp = length;
 }
 
-void ofxOfeliaLua::doString(const char *s)
+void ofxOfeliaLua::doString(const char *str)
 {
-    const ofxOfeliaLock ofxLock;
-    
-    lua_settop(L, 0); /* empty the stack */
-    std::ostringstream ss;
-    const char *name = dataPtr->sym->s_name;
-    ss << "package.preload['" << name << "'] = nil package.loaded['" << name << "'] = nil\n"
-    << "package.preload['" << name << "'] = function(this) local ofelia = {} local M = ofelia\n";
-    if (!dataPtr->isFunctionMode)
-        ss << s;
-    else if (!dataPtr->isSignalObject)
-    {
-        ss << "function M.bang() return M.anything(nil) end function M.float(f) return M.anything(f) end function M.symbol(s) return M.anything(s) end function M.pointer(p) return M.anything(p) end function M.list(l) return M.anything(l) end function M.anything(a)\n" << s << "\nend";
-    }
-    else
-    {
-        ss << "function M.perform(";
-        const int numInlets = dataPtr->io.numInlets;
-        for (int i = 0; i < numInlets; ++i)
+    ofxOfeliaAsync::callAsync([this, s = std::string(str)]() {
+        
+        lua_settop(L, 0); /* empty the stack */
+        std::ostringstream ss;
+        const char *name = dataPtr->sym->s_name;
+        ss << "package.preload['" << name << "'] = nil package.loaded['" << name << "'] = nil\n"
+        << "package.preload['" << name << "'] = function(this) local ofelia = {} local M = ofelia\n";
+        if (!dataPtr->isFunctionMode)
+            ss << s;
+        else if (!dataPtr->isSignalObject)
         {
-            if (i) ss << ',';
-            ss << 'a' << i + 1;
+            ss << "function M.bang() return M.anything(nil) end function M.float(f) return M.anything(f) end function M.symbol(s) return M.anything(s) end function M.pointer(p) return M.anything(p) end function M.list(l) return M.anything(l) end function M.anything(a)\n" << s << "\nend";
         }
-        ss << ")\n" << s << "\nend";
-    }
-    ss << "\nreturn M end";
-    /* run the lua chunk */
-    const int ret = luaL_dostring(L, ss.str().c_str());
-    if (ret != LUA_OK)
-    {
-        pd_error(NULL, "ofelia: %s", lua_tostring(L, -1));
-        lua_pop(L, 1);
-        return;
-    }
-    
-    /* call the new function */
-    doNewFunction();
+        else
+        {
+            ss << "function M.perform(";
+            const int numInlets = dataPtr->io.numInlets;
+            for (int i = 0; i < numInlets; ++i)
+            {
+                if (i) ss << ',';
+                ss << 'a' << i + 1;
+            }
+            ss << ")\n" << s << "\nend";
+        }
+        ss << "\nreturn M end";
+        /* run the lua chunk */
+        const int ret = luaL_dostring(L, ss.str().c_str());
+        if (ret != LUA_OK)
+        {
+            pd_error(NULL, "ofelia: %s", lua_tostring(L, -1));
+            lua_pop(L, 1);
+            return;
+        }
+        
+        /* call the new function */
+        doNewFunction();
+    });
+                              
 }
 
 void ofxOfeliaLua::doArgs(int argc, t_atom *argv)
