@@ -61,7 +61,6 @@ libkeyutils.so.1
 libresolv.so.2
 libXau.so.6
 libpcre2-8.so.0
-libselinux.so.1
 
 EOF
 
