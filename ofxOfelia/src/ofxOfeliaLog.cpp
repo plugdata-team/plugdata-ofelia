@@ -32,13 +32,9 @@ void ofxOfeliaLog::log(ofLogLevel level, const std::string &module, const char* 
 
 void ofxOfeliaLog::log(ofLogLevel level, const std::string &module, const char* format, std::va_list args)
 {
-    //const ofxOfeliaAudioLock audioLock;
+    const ofxOfeliaAudioLock audioLock;
     
-    // TODO: remove this, this is temp for debugging
-    //std::cout << "module: " << module << std::endl;
-    //std::cout << "format: " << format << std::endl;
-    
-    //char buf[MAXPDSTRING];
-    //std::snprintf(buf, MAXPDSTRING, "%s", ofVAArgsToString(format, args).c_str());
-    //logpost(NULL, 4 - level, "%s: %s", module.c_str(), buf);
+    char buf[MAXPDSTRING];
+    std::snprintf(buf, MAXPDSTRING, "%s", ofVAArgsToString(format, args).c_str());
+    logpost(NULL, 4 - level, "%s: %s", module.c_str(), buf);
 }
