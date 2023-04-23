@@ -870,7 +870,7 @@ private:
     };
 
     // This clock runs on the audio thread, but this may get deleted on the message thread
-    ofxOfeliaWeakReference<ofxOfeliaData> *x;
+    ofxOfeliaWeakReference<ofxOfeliaData> x;
     
     t_symbol *sym;
     t_clock *clock;
