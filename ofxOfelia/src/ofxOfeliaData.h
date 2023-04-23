@@ -52,4 +52,6 @@ public:
     ofxOfeliaIO io;
     ofxOfeliaTextBuf textBuf;
 private:
+    
+    DECLARE_WEAK_REFERENCEABLE(ofxOfeliaData)
 };
