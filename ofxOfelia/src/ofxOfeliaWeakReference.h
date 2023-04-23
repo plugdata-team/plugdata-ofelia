@@ -1,4 +1,7 @@
 #pragma once
+
+#include "ofxOfeliaAsync.h"
+
 #include <functional>
 #include <mutex>
 #include <atomic>
@@ -408,6 +411,8 @@ public:
         */
         void clear() noexcept
         {
+            const ofxOfeliaLock ofxLock;
+            
             if (sharedPointer != nullptr)
                 sharedPointer->clearPointer();
         }
