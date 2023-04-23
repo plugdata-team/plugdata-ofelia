@@ -35,8 +35,8 @@ public:
         if (!owner || !exists) return;
         removeWindowListeners();
         windowPtr->setWindowShouldClose();
-        mainLoop->loopOnce();
-        mainLoop->pollEvents();
+        //mainLoop->loopOnce(); // Not sure what to do with this, can't call it on audio thread though!
+        //mainLoop->pollEvents();
         clock_free(clock);
     };
     void setGLVersion(int major, int minor)
@@ -122,7 +122,13 @@ public:
         
         ofxOfeliaAsync::setRunLoop([this](){
             mainLoop->loopOnce();
-            mainLoop->pollEvents();
+            
+            // Somehow, Ofelia works much better in plugdata if we don't do this
+            // I think this is because JUCE is already polling for events,
+            // so by polling for events over here, we'd be polling for events inside a message loop run,
+            // which is probably bad
+            
+            //mainLoop->pollEvents();
         });
         });
 
