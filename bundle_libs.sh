@@ -46,6 +46,30 @@ libxml2.so.2
 
 
 #We can also exclude any dependencies that plugdata has:
+libasound.so.2
+libcurl.so.4
+libstdc++.so.6
+libbz2.so.1
+libpng16.so.16
+libharfbuzz.so.0
+libbrotlidec.so.1
+libnghttp2.so.14
+libidn2.so.0
+libssl.so.3
+libcrypto.so.3
+libgssapi_krb5.so.2
+libgraphite2.so.3
+libbrotlicommon.so.1
+libunistring.so.2
+libkrb5.so.3
+libk5crypto.so.3
+libcom_err.so.2
+libkrb5support.so.0
+libkeyutils.so.1
+libresolv.so.2
+libXau.so.6
+libpcre2-8.so.0
+libselinux.so.1
 
 EOF
 
