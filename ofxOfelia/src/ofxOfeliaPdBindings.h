@@ -89,7 +89,7 @@ public:
         
         ofxOfeliaAsync::callAsync([_this = ofxOfeliaWeakReference<pdWindow>(this), this](){
         
-            if(!_this) return;
+            if(_this.wasObjectDeleted()) return;
 #if defined(TARGET_EXTERNAL)
 #if defined(TARGET_OPENGLES)
         ofGLESWindowSettings settings;
