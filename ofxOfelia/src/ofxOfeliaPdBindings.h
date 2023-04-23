@@ -89,7 +89,7 @@ public:
         
         ofxOfeliaAsync::callAsync([_this = ofxOfeliaWeakReference<pdWindow>(this), this](){
         
-            if(_this.wasObjectDeleted()) return;
+        if(_this.wasObjectDeleted()) return;
 #if defined(TARGET_EXTERNAL)
 #if defined(TARGET_OPENGLES)
         ofGLESWindowSettings settings;
@@ -869,6 +869,7 @@ private:
         clock->x->lua.doFunction(clock->sym);
     };
 
+    // This clock runs on the audio thread, but this may get deleted on the message thread
     ofxOfeliaWeakReference<ofxOfeliaData> *x;
     
     t_symbol *sym;
