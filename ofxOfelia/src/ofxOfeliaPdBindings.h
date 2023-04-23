@@ -864,11 +864,13 @@ public:
 private:
     static void delayedFunction(pdClock *clock)
     {
-        if (clock->x == nullptr) return;
+        if (clock->x.wasObjectDeleted() || clock->x == nullptr) return;
         
         clock->x->lua.doFunction(clock->sym);
     };
-    ofxOfeliaData *x;
+
+    ofxOfeliaWeakReference<ofxOfeliaData> *x;
+    
     t_symbol *sym;
     t_clock *clock;
 };
