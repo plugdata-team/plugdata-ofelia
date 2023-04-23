@@ -27,5 +27,9 @@
 
 patchelf --set-rpath "\$ORIGIN/libs" "$1"
 
+for filename in /Data/*.txt; do
+    patchelf --set-rpath "\$ORIGIN" $filename
+done
+
 mkdir -p ./ofelia/libs/
 copydeps "$1" -d ./ofelia/libs/
