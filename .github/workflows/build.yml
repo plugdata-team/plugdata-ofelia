@@ -19,7 +19,7 @@ jobs:
             p12-password: ${{ secrets.APPLE_DEVELOPER_CERTIFICATE_PASSWORD }}
 
         # Downloading additional libs for openFrameworks
-        - name: Installing dependencies
+        - name: Installing openFrameworks dependencies
           run: ./install_libs.sh
 
         # Building the project
@@ -54,7 +54,7 @@ jobs:
           submodules: recursive
 
       # Downloading additional libs for openFrameworks
-      - name: Installing dependencies
+      - name: Installing openFrameworks dependencies
         run: ./install_libs.sh
 
       # Building the project
@@ -85,7 +85,7 @@ jobs:
             rsync
             wget
 
-      - name: Install dependencies
+      - name: Install openFrameworks dependencies
         shell: msys2 {0}
         working-directory: ${{github.workspace}}/openFrameworks
         run: ./scripts/ci/vs/install.sh
