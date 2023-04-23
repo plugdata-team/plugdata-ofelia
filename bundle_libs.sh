@@ -1,11 +1,4 @@
-
-
-patchelf --set-rpath "\$ORIGIN/libs" "$1"
-
-for filename in /Data/*.txt; do
-    patchelf --set-rpath "\$ORIGIN" $filename
-done
-
+# List of libraries not to copy
 cat > .exclude-list << EOF
 
 # These libs are required by LSB 5.0 Common - Core
@@ -44,11 +37,39 @@ libGL.so.1
 ## Skip libxml2, it is mandatory and shipping it means including extra versions of libicu
 libxml2.so.2
 
-
 #We can also exclude any dependencies that plugdata has:
+libasound.so.2
+libcurl.so.4
+libstdc++.so.6
+libbz2.so.1
+libpng16.so.16
+libharfbuzz.so.0
+libbrotlidec.so.1
+libnghttp2.so.14
+libidn2.so.0
+libssl.so.3
+libcrypto.so.3
+libgssapi_krb5.so.2
+libgraphite2.so.3
+libbrotlicommon.so.1
+libunistring.so.2
+libkrb5.so.3
+libk5crypto.so.3
+libcom_err.so.2
+libkrb5support.so.0
+libkeyutils.so.1
+libresolv.so.2
+libXau.so.6
+libpcre2-8.so.0
 
 EOF
 
 mkdir -p ./ofelia/libs/
 copydeps "$1" --exclude .exclude-list -d ./ofelia/libs/
+
+patchelf --set-rpath "\$ORIGIN/libs" "$1"
+
+for filename in ./ofelia/libs/*; do
+    patchelf --set-rpath "\$ORIGIN" $filename
+done
 
