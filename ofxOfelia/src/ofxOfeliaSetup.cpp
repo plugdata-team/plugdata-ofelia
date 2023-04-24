@@ -9,16 +9,46 @@
 #include "ofxOfeliaTextBuf.h"
 #include "ofxOfeliaLog.h"
 #include <cstdio>
+#include <cstdlib>
 #include <string>
 #include <iostream>
 #include <fstream>
+
+#ifdef __linux__
+#include <dlfcn.h>
+#endif
 
 int ofeliaVersionMajor = OFELIA_MAJOR_VERSION;
 int ofeliaVersionMinor = OFELIA_MINOR_VERSION;
 int ofeliaVersionBugFix = OFELIA_BUGFIX_VERSION;
 
+
+// On Linux, we need to set the library where we search for gstreamer plugins
+void setup_gstreamer_env()
+{
+#ifdef __linux__
+    
+    // Get location of this dynamic library
+    Dl_info dlInfo;
+    dladdr(ofelia_setup, &dlInfo);
+    if (dlInfo.dli_sname != NULL && dlInfo.dli_saddr != NULL)
+        
+    if (dlInfo.dli_sname != NULL && dlInfo.dli_saddr != NULL) {
+        auto envVariable = "GST_PLUGIN_PATH=" + std::string(dlInfo.dli_fname);
+        putenv(envVariable.c_str());
+    }
+    else {
+        std::cout << "Error loading gstreamer plugins" << std::endl;
+    }
+#endif
+}
+
+
 void ofelia_setup()
 {
+
+    setup_gstreamer_env();
+    
     /* check for pd version compatibility */
     int major, minor, bugfix;
     sys_getversion(&major, &minor, &bugfix);
@@ -36,6 +66,7 @@ void ofelia_setup()
     ofxOfeliaCreator::setup();
     ofxOfeliaTextBuf::loadScript();
     ofxOfeliaLog::setLoggerChannel();
+    
     const std::string &fileName = "ofelia/CHANGES.txt";
     std::string dirResult, fileNameResult;
     if (ofxOfeliaTextBuf::canvasOpen(canvas_getcurrent(), fileName, dirResult, fileNameResult))
