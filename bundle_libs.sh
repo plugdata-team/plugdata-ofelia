@@ -132,7 +132,7 @@ for filename in ./ofelia/libs/*; do
 done
 
 # Copy all gstreamer plugins
-cp -rf /usr/lib/x86_64-linux-gnu/gstreamer-1.0 ./ofelia/libs
+cp -rf /usr/lib/x86_64-linux-gnu/gstreamer-1.0/*.so ./ofelia/libs
 
 # Loop over plugins, add dependencies into same dir as ofelia's dependencies
 # This will ensure we don't get doubled dependencies
