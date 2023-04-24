@@ -20,7 +20,7 @@ jobs:
 
         # Downloading additional libs for openFrameworks
         - name: Installing openFrameworks dependencies
-          run: ./.github/scripts/install-libs.sh
+          run: ./openFrameworks/scripts/osx/download_libs.sh
 
         # Building the project
         - name: Building Ofelia
@@ -58,12 +58,8 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Installing base dependencies
-        run: ./.github/scripts/install-basic-libs.sh
-
-      # Downloading additional libs for openFrameworks
       - name: Installing openFrameworks dependencies
-        run: ./.github/scripts/install-libs.sh
+        run: ./.github/scripts/linux-install-libs.sh
 
       # Building the project
       - name: Building Ofelia
