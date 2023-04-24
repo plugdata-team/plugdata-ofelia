@@ -51,7 +51,7 @@ jobs:
     steps:
 
       - name: Update git
-        run: apt update && apt install git
+        run: apt update && apt install -y git
 
       - name: Checkout
         uses: actions/checkout@v2
