@@ -50,7 +50,7 @@ jobs:
         - /sys/fs/cgroup:/sys/fs/cgroup
     steps:
       - name: Installing base dependencies
-        run: sudo apt update && sudo DEBIAN_FRONTEND=noninteractive TZ="Europe/Amsterdam" apt install -y libunwind-dev clang git build-essential pkg-config wget rsync libassimp-dev libgstreamer1.0-0 gstreamer1.0-plugins-base libgstreamer-plugins-base1.0-dev gstreamer1.0-plugins-bad gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly libfreetype6-dev libx11-dev libxcomposite-dev libxcursor-dev libxcursor-dev libxext-dev libxinerama-dev libxrandr-dev libxrender-dev libglu1-mesa-dev mesa-common-dev pax-utils python3 python3-pip libcairo-dev lsb-release && pip3 install copydeps
+        run: apt update && DEBIAN_FRONTEND=noninteractive TZ="Europe/Amsterdam" apt install -y libunwind-dev clang git build-essential pkg-config wget rsync libassimp-dev libgstreamer1.0-0 gstreamer1.0-plugins-base libgstreamer-plugins-base1.0-dev gstreamer1.0-plugins-bad gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly libfreetype6-dev libx11-dev libxcomposite-dev libxcursor-dev libxcursor-dev libxext-dev libxinerama-dev libxrandr-dev libxrender-dev libglu1-mesa-dev mesa-common-dev pax-utils python3 python3-pip libcairo-dev lsb-release sudo && pip3 install copydeps
 
       - name: Checkout
         uses: actions/checkout@v2
