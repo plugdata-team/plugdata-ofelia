@@ -3,8 +3,10 @@
 export DEBIAN_FRONTEND=noninteractive
 export TZ="Europe/Amsterdam"
 
+# Install basics first, this can help to prevent package conflicts
 apt install -y build-essential ccache clang cmake curl git gstreamer1.0-plugins-bad gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly libasound2-dev libassimp-dev libcairo-dev libcurl4-openssl-dev libfreetype6-dev libglu1-mesa-dev libgstreamer-plugins-base1.0-dev libgstreamer1.0-0 libjack-jackd2-dev libudev-dev libunwind-dev libx11-dev libxcomposite-dev libxcursor-dev libxext-dev libxinerama-dev libxrandr-dev libxrender-dev lsb-release mesa-common-dev pax-utils pkg-config python3 python3-pip rsync sudo wget
 
+# Then we try to install all of OF's packages ourselves, their script can fail in noninteractive mode
 apt install --ignore-missing adwaita-icon-theme at-spi2-core default-libmysqlclient-dev freeglut3 \
 freeglut3-dev gconf-service gconf2-common gdal-data gfortran gfortran-8 \
 gir1.2-atk-1.0 gir1.2-atspi-2.0 gir1.2-freedesktop gir1.2-gdkpixbuf-2.0 \
@@ -74,4 +76,15 @@ gstreamer1.0-alsa gstreamer1.0-libav gstreamer1.0-pulseaudio libavfilter7 \
 libmysofa0 libnorm1 libpgm-5.2-0 libpostproc55 librubberband2 libsodium23 \
 libvidstab1.1 libzmq5 \
 
+# Make sure all OF packages are installed
+DEBIAN_FRONTEND=noninteractive ./openFrameworks/scripts/linux/debian/install_dependencies.sh -y
+
+# Download OF libraries
+./openFrameworks/scripts/linux/download_libs.sh
+
+# Manually build kissfft, because OF builds it without the fPIC flag
+rm -rf ./openFrameworks/libs/kiss
+./kiss/kiss.sh
+
+# Install copydeps python package for shared library packaging
 pip3 install copydeps
