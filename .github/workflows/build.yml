@@ -49,13 +49,17 @@ jobs:
       volumes:
         - /sys/fs/cgroup:/sys/fs/cgroup
     steps:
-      - name: Installing base dependencies
-        run: ./.github/scripts/install-basic-libs.sh
+
+      - name: Update git
+        run: apt install git
 
       - name: Checkout
         uses: actions/checkout@v2
         with:
           submodules: recursive
+
+      - name: Installing base dependencies
+        run: ./.github/scripts/install-basic-libs.sh
 
       # Downloading additional libs for openFrameworks
       - name: Installing openFrameworks dependencies
