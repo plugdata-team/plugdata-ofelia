@@ -34,7 +34,7 @@ void setup_gstreamer_env()
     if (dlInfo.dli_sname != NULL && dlInfo.dli_saddr != NULL)
         
     if (dlInfo.dli_sname != NULL && dlInfo.dli_saddr != NULL) {
-        auto envVariable = "GST_PLUGIN_PATH=" + std::string(dlInfo.dli_fname);
+        auto envVariable = "GST_PLUGIN_PATH=" + std::string(dlInfo.dli_fname) + "/libs/gstreamer-1.0";
         putenv(envVariable.c_str());
     }
     else {
