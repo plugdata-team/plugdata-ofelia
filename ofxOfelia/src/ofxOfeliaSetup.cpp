@@ -27,18 +27,9 @@ int ofeliaVersionBugFix = OFELIA_BUGFIX_VERSION;
 void setup_gstreamer_env()
 {
 #ifdef __linux__
-    
-    // Get location of this dynamic library
-    Dl_info dlInfo;
-    dladdr(reinterpret_cast<const void*>(&ofelia_setup), &dlInfo);
-    
-    if (dlInfo.dli_sname != NULL && dlInfo.dli_saddr != NULL) {
-        auto envVariable = "GST_PLUGIN_PATH=" + std::string(dlInfo.dli_fname) + "/libs/gstreamer-1.0";
-        putenv(const_cast<char*>(envVariable.c_str()));
-    }
-    else {
-        std::cout << "Error loading gstreamer plugins" << std::endl;
-    }
+    auto gstPath = g_getenv("GSTREAMER_1_0_ROOT_X86_64");
+    auto envVar = "GST_PLUGIN_PATH_1_0=" + ofFilePath::join(gst_path, "./gstreamer-1.0") + ";.";
+    putenv(const_cast<char*>(envVar.c_str()));
 #endif
 }
 

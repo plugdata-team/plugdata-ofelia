@@ -37,7 +37,7 @@ libGL.so.1
 ## Skip libxml2, it is mandatory and shipping it means including extra versions of libicu
 libxml2.so.2
 
-#We can also exclude any dependencies that plugdata has:
+# We can also exclude any dependencies that plugdata has:
 libapparmor.so.1.8.2
 libasound.so.2
 libasound.so.2.0.0
