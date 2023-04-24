@@ -59,7 +59,7 @@ jobs:
 
       # Downloading additional libs for openFrameworks
       - name: Installing openFrameworks dependencies
-        run: ./install_libs.sh
+        run: ./.github.scripts/install_libs.sh
 
       # Building the project
       - name: Building Ofelia
