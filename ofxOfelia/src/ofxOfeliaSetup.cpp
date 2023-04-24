@@ -27,8 +27,19 @@ int ofeliaVersionBugFix = OFELIA_BUGFIX_VERSION;
 void setup_gstreamer_env()
 {
 #ifdef __linux__
-    auto gstPath = g_getenv("GSTREAMER_1_0_ROOT_X86_64");
-    auto envVar = "GST_PLUGIN_PATH_1_0=" + ofFilePath::join(gst_path, "./gstreamer-1.0") + ";.";
+    
+    char buf[MAXPDSTRING];
+    
+    Dl_info info;
+    if (dladdr(static_cast<void*>(&ofeliaVersionMajor), &info))
+    {
+        resolved = realpath(info.dli_fname, buf);
+    }
+    
+    auto ofeliaPath = std::string(buf);
+    auto gstPath = ofFilePath::join(ofeliaPath, "./libs/gstreamer-1.0");
+    auto envVar = "GST_PLUGIN_PATH_1_0=" + gstPath + ";.";
+    
     putenv(const_cast<char*>(envVar.c_str()));
 #endif
 }
