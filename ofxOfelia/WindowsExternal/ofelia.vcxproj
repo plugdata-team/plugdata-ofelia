@@ -291,7 +291,7 @@
     <ClCompile Include="..\libs\ofxLua\src\ofxLua.cpp" />
     <ClCompile Include="..\libs\ofxLua\src\ofxLuaFileWriter.cpp" />
     <ClCompile Include="..\src\ofxOfelia.cpp" />
-    <ClCompile Include="..\src\ofxOfeliaAsync.cpp" />
+    <ClCompile Include="..\src\ofxOfeliaMessageManager.cpp" />
     <ClCompile Include="..\src\ofxOfeliaClient.cpp" />
     <ClCompile Include="..\src\ofxOfeliaCreator.cpp" />
     <ClCompile Include="..\src\ofxOfeliaData.cpp" />
@@ -341,7 +341,7 @@
     <ClInclude Include="..\libs\ofxLua\src\ofxLua.h" />
     <ClInclude Include="..\libs\ofxLua\src\ofxLuaFileWriter.h" />
     <ClInclude Include="..\src\ofxOfelia.h" />
-    <ClInclude Include="..\src\ofxOfeliaAsync.h" />
+    <ClInclude Include="..\src\ofxOfeliaMessageManager.h" />
     <ClInclude Include="..\src\ofxOfeliaClient.h" />
     <ClInclude Include="..\src\ofxOfeliaCreator.h" />
     <ClInclude Include="..\src\ofxOfeliaData.h" />
