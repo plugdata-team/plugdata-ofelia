@@ -28,19 +28,21 @@ void setup_gstreamer_env()
 {
 #ifdef __linux__
     
-    char buf[MAXPDSTRING];
+    char buf[PATH_MAX];
     
     Dl_info info;
     if (dladdr(static_cast<void*>(&ofeliaVersionMajor), &info))
     {
-        resolved = realpath(info.dli_fname, buf);
+        realpath(info.dli_fname, buf);
+        
+        auto ofeliaPath = std::string(buf);
+        auto gstPath = ofFilePath::join(ofeliaPath, "./libs/gstreamer-1.0");
+        auto envVar = "GST_PLUGIN_PATH_1_0=" + gstPath + ";.";
+
+        putenv(const_cast<char*>(envVar.c_str()));
     }
     
-    auto ofeliaPath = std::string(buf);
-    auto gstPath = ofFilePath::join(ofeliaPath, "./libs/gstreamer-1.0");
-    auto envVar = "GST_PLUGIN_PATH_1_0=" + gstPath + ";.";
-    
-    putenv(const_cast<char*>(envVar.c_str()));
+
 #endif
 }
 
