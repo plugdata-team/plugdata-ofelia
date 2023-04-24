@@ -42,31 +42,35 @@ jobs:
             path: ./ofelia.zip
 
   build-ubuntu:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
+    container:
+      image: debian:oldstable
+      options: --privileged
+      volumes:
+        - /sys/fs/cgroup:/sys/fs/cgroup
+      steps:
+        - name: Installing base dependencies
+          run: sudo apt update && sudo DEBIAN_FRONTEND=noninteractive TZ="Europe/Amsterdam" apt install -y libunwind-dev clang git build-essential pkg-config wget rsync libassimp-dev libgstreamer1.0-0 gstreamer1.0-plugins-base libgstreamer-plugins-base1.0-dev gstreamer1.0-plugins-bad gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly libfreetype6-dev libx11-dev libxcomposite-dev libxcursor-dev libxcursor-dev libxext-dev libxinerama-dev libxrandr-dev libxrender-dev libglu1-mesa-dev mesa-common-dev pax-utils python3 python3-pip libcairo-dev lsb-release && pip3 install copydeps
 
-    steps:
-      - name: Installing base dependencies
-        run: sudo apt update && sudo DEBIAN_FRONTEND=noninteractive TZ="Europe/Amsterdam" apt install -y libunwind-dev clang git build-essential pkg-config wget rsync libassimp-dev libgstreamer1.0-0 gstreamer1.0-plugins-base libgstreamer-plugins-base1.0-dev gstreamer1.0-plugins-bad gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly libfreetype6-dev libx11-dev libxcomposite-dev libxcursor-dev libxcursor-dev libxext-dev libxinerama-dev libxrandr-dev libxrender-dev libglu1-mesa-dev mesa-common-dev pax-utils python3 && pip3 install copydeps
+        - name: Checkout
+          uses: actions/checkout@v2
+          with:
+            submodules: recursive
 
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          submodules: recursive
+        # Downloading additional libs for openFrameworks
+        - name: Installing openFrameworks dependencies
+          run: ./install_libs.sh
 
-      # Downloading additional libs for openFrameworks
-      - name: Installing openFrameworks dependencies
-        run: ./install_libs.sh
+        # Building the project
+        - name: Building Ofelia
+          run: ./build.sh
 
-      # Building the project
-      - name: Building Ofelia
-        run: ./build.sh
-
-      # Upload executable binaries to GitHub
-      - name: Uploading artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: plugdata-ofelia-linux
-          path: ./ofelia
+        # Upload executable binaries to GitHub
+        - name: Uploading artifacts
+          uses: actions/upload-artifact@v2
+          with:
+            name: plugdata-ofelia-linux
+            path: ./ofelia
 
   build-windows:
       runs-on: windows-latest
