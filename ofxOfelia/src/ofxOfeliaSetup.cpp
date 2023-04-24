@@ -30,12 +30,11 @@ void setup_gstreamer_env()
     
     // Get location of this dynamic library
     Dl_info dlInfo;
-    dladdr(ofelia_setup, &dlInfo);
-    if (dlInfo.dli_sname != NULL && dlInfo.dli_saddr != NULL)
-        
+    dladdr(reinterpret_cast<const void*>(&ofelia_setup), &dlInfo);
+    
     if (dlInfo.dli_sname != NULL && dlInfo.dli_saddr != NULL) {
         auto envVariable = "GST_PLUGIN_PATH=" + std::string(dlInfo.dli_fname) + "/libs/gstreamer-1.0";
-        putenv(envVariable.c_str());
+        putenv(const_cast<char*>(envVariable.c_str()));
     }
     else {
         std::cout << "Error loading gstreamer plugins" << std::endl;
