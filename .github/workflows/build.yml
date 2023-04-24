@@ -44,7 +44,7 @@ jobs:
   build-ubuntu:
     runs-on: ubuntu-latest
     container:
-      image: debian:oldstable
+      image: debian:stretch
       options: --privileged
       volumes:
         - /sys/fs/cgroup:/sys/fs/cgroup
