@@ -24,6 +24,8 @@ int ofeliaVersionBugFix = OFELIA_BUGFIX_VERSION;
 
 
 // On Linux, we need to set the library where we search for gstreamer plugins
+// For now we'll do without this, and let the user install gstreamer plugins themselves
+/*
 void setup_gstreamer_env()
 {
 #ifdef __linux__
@@ -42,13 +44,13 @@ void setup_gstreamer_env()
     
     putenv(const_cast<char*>(envVar.c_str()));
 #endif
-}
+} */
 
 
 void ofelia_setup()
 {
 
-    setup_gstreamer_env();
+    //setup_gstreamer_env();
     
     /* check for pd version compatibility */
     int major, minor, bugfix;
