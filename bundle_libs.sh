@@ -73,3 +73,12 @@ for filename in ./ofelia/libs/*; do
     patchelf --set-rpath "\$ORIGIN" $filename
 done
 
+# Copy all gstreamer plugins
+cp -rf /usr/lib/gstreamer-1.0 ./ofelia/libs
+
+# Loop over plugins, add dependencies into same dir as ofelia's dependencies
+# This will ensure we don't get doubled dependencies
+for filename in ./ofelia/libs/gstreamer-1.0/*; do
+    copydeps $filename --exclude .exclude-list -d ./ofelia/libs/
+    patchelf --set-rpath "\$ORIGIN/.." $filename
+done
