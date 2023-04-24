@@ -70,5 +70,8 @@ libxtst-dev mariadb-common mysql-common nettle-dev ocl-icd-libopencl1 \
 odbcinst odbcinst1debian2 opencv-data openmpi-bin openmpi-common \
 pango1.0-tools poppler-data proj-bin proj-data wayland-protocols \
 x11proto-input-dev x11proto-record-dev xkb-data \
+gstreamer1.0-alsa gstreamer1.0-libav gstreamer1.0-pulseaudio libavfilter7 \
+libmysofa0 libnorm1 libpgm-5.2-0 libpostproc55 librubberband2 libsodium23 \
+libvidstab1.1 libzmq5 \
 
 pip3 install copydeps
