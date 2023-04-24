@@ -128,7 +128,7 @@ mkdir ./ofelia/libs/gstreamer-1.0
 copydeps "$1" --exclude .exclude-list -d ./ofelia/libs/
 
 # Copy all gstreamer plugins
-cp -rf /usr/lib/x86_64-linux-gnu/gstreamer-1.0/*.so ./ofelia/libs/
+cp -rf /usr/lib/x86_64-linux-gnu/gstreamer-1.0/*.so ./ofelia/libs/gstreamer-1.0/
 
 # Loop over plugins, add dependencies into same dir as ofelia's dependencies
 # This will ensure we don't get doubled dependencies
