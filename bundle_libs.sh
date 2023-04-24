@@ -125,12 +125,6 @@ EOF
 mkdir -p ./ofelia/libs/
 copydeps "$1" --exclude .exclude-list -d ./ofelia/libs/
 
-patchelf --set-rpath "\$ORIGIN/libs" "$1"
-
-for filename in ./ofelia/libs/*; do
-    patchelf --set-rpath "\$ORIGIN" $filename
-done
-
 # Copy all gstreamer plugins
 cp -rf /usr/lib/x86_64-linux-gnu/gstreamer-1.0/*.so ./ofelia/libs
 
@@ -140,3 +134,11 @@ for filename in ./ofelia/libs/gstreamer-1.0/*.so; do
     copydeps $filename --exclude .exclude-list -d ./ofelia/libs/
     patchelf --set-rpath "\$ORIGIN/.." $filename
 done
+
+# Loop over all dependencies and set their own folder as rpath
+for filename in ./ofelia/libs/*; do
+    patchelf --set-rpath "\$ORIGIN" $filename
+done
+
+# Set rpath for ofelia itself
+patchelf --set-rpath "\$ORIGIN/libs" "$1"
