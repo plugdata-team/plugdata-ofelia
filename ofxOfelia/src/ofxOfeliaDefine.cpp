@@ -1,5 +1,5 @@
 #include "ofxOfeliaDefine.h"
-#include "ofxOfeliaAsync.h"
+#include "ofxOfeliaMessageManager.h"
 #include <new>
 #include <cstring>
 #include <vector>
@@ -25,7 +25,7 @@ void *ofxOfeliaDefine::newMethod(t_symbol *s, int argc, t_atom *argv)
 
 void ofxOfeliaDefine::bangMethod()
 {
-    ofxOfeliaAsync::callAsync([_this = ofxOfeliaWeakReference<ofxOfeliaDefine>(this), this]() {
+    ofxOfeliaMessageManager::callOnMessageThread([_this = ofxOfeliaWeakReference<ofxOfeliaDefine>(this), this]() {
         if(_this.wasObjectDeleted()) return;
         if (data.io.hasMultiControlInlets)
         {
@@ -42,7 +42,7 @@ void ofxOfeliaDefine::bangMethod()
 
 void ofxOfeliaDefine::floatMethod(t_floatarg f)
 {
-    ofxOfeliaAsync::callAsync([_this = ofxOfeliaWeakReference<ofxOfeliaDefine>(this), this, f]() {
+    ofxOfeliaMessageManager::callOnMessageThread([_this = ofxOfeliaWeakReference<ofxOfeliaDefine>(this), this, f]() {
         if(_this.wasObjectDeleted()) return;
         if (data.io.hasMultiControlInlets)
         {
@@ -59,7 +59,7 @@ void ofxOfeliaDefine::floatMethod(t_floatarg f)
 
 void ofxOfeliaDefine::symbolMethod(t_symbol *s)
 {
-    ofxOfeliaAsync::callAsync([_this = ofxOfeliaWeakReference<ofxOfeliaDefine>(this), this, s]() {
+    ofxOfeliaMessageManager::callOnMessageThread([_this = ofxOfeliaWeakReference<ofxOfeliaDefine>(this), this, s]() {
         if(_this.wasObjectDeleted()) return;
         if (data.io.hasMultiControlInlets)
         {
@@ -77,7 +77,7 @@ void ofxOfeliaDefine::symbolMethod(t_symbol *s)
 
 void ofxOfeliaDefine::pointerMethod(t_gpointer *p)
 {
-    ofxOfeliaAsync::callAsync([_this = ofxOfeliaWeakReference<ofxOfeliaDefine>(this), this, p]() {
+    ofxOfeliaMessageManager::callOnMessageThread([_this = ofxOfeliaWeakReference<ofxOfeliaDefine>(this), this, p]() {
         if(_this.wasObjectDeleted()) return;
         if (data.io.hasMultiControlInlets)
         {
@@ -96,7 +96,7 @@ void ofxOfeliaDefine::pointerMethod(t_gpointer *p)
 void ofxOfeliaDefine::listMethod(t_symbol *s, int argc, t_atom *argv)
 {
     auto args = std::vector<t_atom>(argv, argv + argc);
-    ofxOfeliaAsync::callAsync([_this = ofxOfeliaWeakReference<ofxOfeliaDefine>(this), this, args]() mutable {
+    ofxOfeliaMessageManager::callOnMessageThread([_this = ofxOfeliaWeakReference<ofxOfeliaDefine>(this), this, args]() mutable {
         if(_this.wasObjectDeleted()) return;
         if (!args.size())
         {
@@ -130,7 +130,7 @@ void ofxOfeliaDefine::listMethod(t_symbol *s, int argc, t_atom *argv)
 void ofxOfeliaDefine::anythingMethod(t_symbol *s, int argc, t_atom *argv)
 {
     auto args = std::vector<t_atom>(argv, argv + argc);
-    ofxOfeliaAsync::callAsync([_this = ofxOfeliaWeakReference<ofxOfeliaDefine>(this), this, s, args]() mutable {
+    ofxOfeliaMessageManager::callOnMessageThread([_this = ofxOfeliaWeakReference<ofxOfeliaDefine>(this), this, s, args]() mutable {
         if(_this.wasObjectDeleted()) return;
         data.lua.setVariableByArgs(s, args.size(), args.data());
     });
@@ -138,7 +138,7 @@ void ofxOfeliaDefine::anythingMethod(t_symbol *s, int argc, t_atom *argv)
 
 void ofxOfeliaDefine::clearMethod()
 {
-    ofxOfeliaAsync::callAsync([_this = ofxOfeliaWeakReference<ofxOfeliaDefine>(this), this]() {
+    ofxOfeliaMessageManager::callOnMessageThread([_this = ofxOfeliaWeakReference<ofxOfeliaDefine>(this), this]() {
         if (_this.wasObjectDeleted() || data.isDirectMode) return;
         data.lua.doFreeFunction();
         binbuf_clear(data.binbuf);
@@ -149,7 +149,7 @@ void ofxOfeliaDefine::clearMethod()
 void ofxOfeliaDefine::setMethod(t_symbol *s, int argc, t_atom *argv)
 {
     auto args = std::vector<t_atom>(argv, argv + argc);
-    ofxOfeliaAsync::callAsync([_this = ofxOfeliaWeakReference<ofxOfeliaDefine>(this), this, args]() mutable {
+    ofxOfeliaMessageManager::callOnMessageThread([_this = ofxOfeliaWeakReference<ofxOfeliaDefine>(this), this, args]() mutable {
         if (_this.wasObjectDeleted() || data.isDirectMode) return;
         binbuf_restore(data.binbuf, args.size(), args.data());
         data.textBuf.senditup();

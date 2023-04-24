@@ -1,6 +1,6 @@
 #include "ofxOfeliaIO.h"
 #include "ofxOfeliaData.h"
-#include "ofxOfeliaAsync.h"
+#include "ofxOfeliaMessageManager.h"
 
 void ofxOfeliaIO::newIO(int numInlets, int numOutlets)
 {

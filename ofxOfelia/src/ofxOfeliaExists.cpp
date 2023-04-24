@@ -1,6 +1,6 @@
 #include "ofxOfeliaExists.h"
 #include "ofxOfeliaDefine.h"
-#include "ofxOfeliaAsync.h"
+#include "ofxOfeliaMessageManager.h"
 #include <new>
 
 t_class *ofxOfeliaExists::pdClass;

@@ -1,7 +1,7 @@
 #include "ofxOfeliaLua.h"
 #include "ofxOfeliaGL.h"
 #include "ofxOfeliaData.h"
-#include "ofxOfeliaAsync.h"
+#include "ofxOfeliaMessageManager.h"
 #include <algorithm>
 #include <cctype>
 #include <deque>
@@ -76,7 +76,7 @@ extern "C"
 /* redefined print function for the pd window */
 int l_my_print(lua_State *L)
 {
-    ofxOfeliaAsync::callAsync([L](){
+    ofxOfeliaMessageManager::callOnMessageThread([L](){
         int argc = lua_gettop(L);
         if (argc) startpost(luaL_tolstring(L, 1, nullptr));
         for (int i = 2; i <= argc; ++i)
@@ -98,7 +98,7 @@ const struct luaL_Reg printlib[] =
 
 int luaopen_print(lua_State *L)
 {
-    ofxOfeliaAsync::callAsync([L](){
+    ofxOfeliaMessageManager::callOnMessageThread([L](){
         
         lua_getglobal(L, "_G");
 #if LUA_VERSION_NUM < 502
@@ -113,7 +113,7 @@ int luaopen_print(lua_State *L)
 
 void ofxOfeliaLua::unpackModule(lua_State *L, const std::string &moduleName, const std::string &prefix)
 {
-    ofxOfeliaAsync::callAsync([L, moduleName, prefix]() mutable {
+    ofxOfeliaMessageManager::callOnMessageThread([L, moduleName, prefix]() mutable {
         std::string upperPrefix = prefix;
         std::transform(upperPrefix.begin(), upperPrefix.end(),upperPrefix.begin(), ::toupper);
         upperPrefix += "_"; /* prefix for constants and enums */
@@ -340,14 +340,14 @@ bool ofxOfeliaLua::isFunction(t_symbol *s, int &top)
 
 void ofxOfeliaLua::pushUserData(t_gpointer *p)
 {
-    ofxOfeliaAsync::callAsync([p]() {
+    ofxOfeliaMessageManager::callOnMessageThread([p]() {
         lua_rawgeti(L, LUA_REGISTRYINDEX, static_cast<lua_Integer>(*reinterpret_cast<int *>(p)));
     });
 }
 
 void ofxOfeliaLua::setVariable(t_symbol *s)
 {
-    ofxOfeliaAsync::callAsync([s]() {
+    ofxOfeliaMessageManager::callOnMessageThread([s]() {
         lua_pushnil(L);
         lua_setfield(L, -3, s->s_name);
         lua_pop(L, 2);
@@ -356,7 +356,7 @@ void ofxOfeliaLua::setVariable(t_symbol *s)
 
 void ofxOfeliaLua::setVariable(t_symbol *s, bool b)
 {
-    ofxOfeliaAsync::callAsync([s, b]() {
+    ofxOfeliaMessageManager::callOnMessageThread([s, b]() {
         lua_pushboolean(L, static_cast<int>(b));
         lua_setfield(L, -3, s->s_name);
         lua_pop(L, 2);
@@ -365,7 +365,7 @@ void ofxOfeliaLua::setVariable(t_symbol *s, bool b)
 
 void ofxOfeliaLua::setVariable(t_symbol *s, t_floatarg f)
 {
-    ofxOfeliaAsync::callAsync([s, f]() {
+    ofxOfeliaMessageManager::callOnMessageThread([s, f]() {
         lua_pushnumber(L, static_cast<lua_Number>(f));
         lua_setfield(L, -3, s->s_name);
         lua_pop(L, 2);
@@ -374,7 +374,7 @@ void ofxOfeliaLua::setVariable(t_symbol *s, t_floatarg f)
 
 void ofxOfeliaLua::setVariable(t_symbol *s, t_symbol *s2)
 {
-    ofxOfeliaAsync::callAsync([s, s2]() {
+    ofxOfeliaMessageManager::callOnMessageThread([s, s2]() {
         lua_pushstring(L, s2->s_name);
         lua_setfield(L, -3, s->s_name);
         lua_pop(L, 2);
@@ -942,7 +942,7 @@ void ofxOfeliaLua::setVariableByArgs(t_symbol *s, int argc, t_atom *argv)
 
 void ofxOfeliaLua::callOnMessageThread(std::function<void()> fn)
 {
-    ofxOfeliaAsync::callAsync([_this = ofxOfeliaWeakReference<ofxOfeliaLua>(this), fn]() {
+    ofxOfeliaMessageManager::callOnMessageThread([_this = ofxOfeliaWeakReference<ofxOfeliaLua>(this), fn]() {
         if(_this.wasObjectDeleted()) return;
         fn();
     });

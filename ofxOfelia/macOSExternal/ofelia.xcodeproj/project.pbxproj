@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		AB4E9AEF29F4971900A3884D /* ofxOfeliaWeakReference.h in Headers */ = {isa = PBXBuildFile; fileRef = AB4E9AEE29F4971900A3884D /* ofxOfeliaWeakReference.h */; };
-		AB66733329F21E9500DD23A5 /* ofxOfeliaAsync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB66733129F21E9500DD23A5 /* ofxOfeliaAsync.cpp */; };
-		AB66733429F21E9500DD23A5 /* ofxOfeliaAsync.h in Headers */ = {isa = PBXBuildFile; fileRef = AB66733229F21E9500DD23A5 /* ofxOfeliaAsync.h */; };
+		AB66733329F21E9500DD23A5 /* ofxOfeliaMessageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB66733129F21E9500DD23A5 /* ofxOfeliaMessageManager.cpp */; };
+		AB66733429F21E9500DD23A5 /* ofxOfeliaMessageManager.h in Headers */ = {isa = PBXBuildFile; fileRef = AB66733229F21E9500DD23A5 /* ofxOfeliaMessageManager.h */; };
 		FDD3AF5722F4777200A13F8B /* ofxOfeliaGet.h in Headers */ = {isa = PBXBuildFile; fileRef = FDD3AF2922F4777000A13F8B /* ofxOfeliaGet.h */; };
 		FDD3AF5922F4777200A13F8B /* ofxOfeliaClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FDD3AF2B22F4777000A13F8B /* ofxOfeliaClient.cpp */; };
 		FDD3AF5B22F4777200A13F8B /* ofxOfeliaTextBuf.h in Headers */ = {isa = PBXBuildFile; fileRef = FDD3AF2D22F4777000A13F8B /* ofxOfeliaTextBuf.h */; };
@@ -127,8 +127,8 @@
 /* Begin PBXFileReference section */
 		AB4E9AEE29F4971900A3884D /* ofxOfeliaWeakReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxOfeliaWeakReference.h; path = ../src/ofxOfeliaWeakReference.h; sourceTree = "<group>"; };
 		AB66732D29F2144100DD23A5 /* libfmod.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfmod.dylib; path = ../../../../../Library/plugdata/Deken/ofelia/libs/libfmod.dylib; sourceTree = "<group>"; };
-		AB66733129F21E9500DD23A5 /* ofxOfeliaAsync.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxOfeliaAsync.cpp; path = ../src/ofxOfeliaAsync.cpp; sourceTree = "<group>"; };
-		AB66733229F21E9500DD23A5 /* ofxOfeliaAsync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxOfeliaAsync.h; path = ../src/ofxOfeliaAsync.h; sourceTree = "<group>"; };
+		AB66733129F21E9500DD23A5 /* ofxOfeliaMessageManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxOfeliaMessageManager.cpp; path = ../src/ofxOfeliaMessageManager.cpp; sourceTree = "<group>"; };
+		AB66733229F21E9500DD23A5 /* ofxOfeliaMessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxOfeliaMessageManager.h; path = ../src/ofxOfeliaMessageManager.h; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../openFrameworks/libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E4EB691F138AFCF100A09F29 /* CoreOF.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = CoreOF.xcconfig; path = ../../openFrameworks/libs/openFrameworksCompiled/project/osx/CoreOF.xcconfig; sourceTree = SOURCE_ROOT; };
 		E4EB6923138AFD0F00A09F29 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
@@ -479,8 +479,8 @@
 				FDD3AF4D22F4777200A13F8B /* ofxOfeliaSignal.h */,
 				FDD3AF3E22F4777100A13F8B /* ofxOfeliaTextBuf.cpp */,
 				FDD3AF2D22F4777000A13F8B /* ofxOfeliaTextBuf.h */,
-				AB66733129F21E9500DD23A5 /* ofxOfeliaAsync.cpp */,
-				AB66733229F21E9500DD23A5 /* ofxOfeliaAsync.h */,
+				AB66733129F21E9500DD23A5 /* ofxOfeliaMessageManager.cpp */,
+				AB66733229F21E9500DD23A5 /* ofxOfeliaMessageManager.h */,
 				AB4E9AEE29F4971900A3884D /* ofxOfeliaWeakReference.h */,
 			);
 			name = src;
@@ -527,7 +527,7 @@
 				FDED15A522B4CD9F005D9D62 /* lprefix.h in Headers */,
 				FDED15B422B4CD9F005D9D62 /* llimits.h in Headers */,
 				FDD3AF6022F4777200A13F8B /* ofxOfeliaDefine.h in Headers */,
-				AB66733429F21E9500DD23A5 /* ofxOfeliaAsync.h in Headers */,
+				AB66733429F21E9500DD23A5 /* ofxOfeliaMessageManager.h in Headers */,
 				FDD3AF7E22F4777200A13F8B /* ofxOfeliaGL.h in Headers */,
 				FDD3AF6822F4777200A13F8B /* ofxOfeliaSet.h in Headers */,
 				FDD3AF7F22F4777200A13F8B /* ofxOfeliaExists.h in Headers */,
@@ -669,7 +669,7 @@
 				FDD3AF7722F4777200A13F8B /* ofxOfeliaData.cpp in Sources */,
 				FDED15CB22B4CD9F005D9D62 /* loslib.c in Sources */,
 				FDED15CC22B4CD9F005D9D62 /* ltablib.c in Sources */,
-				AB66733329F21E9500DD23A5 /* ofxOfeliaAsync.cpp in Sources */,
+				AB66733329F21E9500DD23A5 /* ofxOfeliaMessageManager.cpp in Sources */,
 				FDED15B522B4CD9F005D9D62 /* ltable.c in Sources */,
 				FDED15BD22B4CD9F005D9D62 /* lcode.c in Sources */,
 				FDED15AA22B4CD9F005D9D62 /* lctype.c in Sources */,

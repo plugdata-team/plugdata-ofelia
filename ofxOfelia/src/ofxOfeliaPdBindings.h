@@ -8,11 +8,13 @@
 #include "ofxOfeliaData.h"
 #include "ofxOfeliaEvents.h"
 #include "ofxOfeliaSetup.h"
-#include "ofxOfeliaAsync.h"
+#include "ofxOfeliaMessageManager.h"
 #include <cstdio>
 #include <utility>
 #include <vector>
 #include <deque>
+
+#include "GLFW/glfw3.h"
 
 class pdWindow
 {
@@ -87,52 +89,44 @@ public:
     {
         if (owner || exists) return;
         
-        ofxOfeliaAsync::callAsync([_this = ofxOfeliaWeakReference<pdWindow>(this), this](){
-        
-        if(_this.wasObjectDeleted()) return;
-#if defined(TARGET_EXTERNAL)
-#if defined(TARGET_OPENGLES)
-        ofGLESWindowSettings settings;
-        settings.setGLESVersion(glesVersion);
-#else
-        ofGLWindowSettings settings;
-        settings.setGLVersion(glVersionMajor, glVersionMinor);
-#endif
-        settings.title = title->s_name;
-        settings.windowMode = static_cast<ofWindowMode>(windowMode);
-        if (positionSet) settings.setPosition(position);
-        if (sizeSet) settings.setSize(width, height);
-        ofCreateWindow(settings);
-#elif defined(TARGET_STANDALONE)
-        ofSetWindowTitle(title->s_name);
-        ofSetWindowPosition(position.x, position.y);
-        ofSetWindowShape(width, height);
-#endif
-        mainLoop = ofGetMainLoop().get();
-        mainLoop->setEscapeQuitsLoop(false);
-        windowPtr = ofGetWindowPtr();
-        ofResetElapsedTimeCounter();
-        ofSetFrameRate(60);
-        ofDisableArbTex();
-        owner = true;
-        exists = true;
-#if defined(TARGET_EXTERNAL)
-        addWindowListeners();
-        windowPtr->events().notifySetup();
-        
-        ofxOfeliaAsync::setRunLoop([this](){
-            mainLoop->loopOnce();
+        ofxOfeliaMessageManager::callOnMessageThread([_this = ofxOfeliaWeakReference<pdWindow>(this), this](){
+            if(_this.wasObjectDeleted()) return;
+    #if defined(TARGET_EXTERNAL)
+    #if defined(TARGET_OPENGLES)
+            ofGLESWindowSettings settings;
+            settings.setGLESVersion(glesVersion);
+    #else
+            ofGLWindowSettings settings;
+            settings.setGLVersion(glVersionMajor, glVersionMinor);
+    #endif
+            settings.title = title->s_name;
+            settings.windowMode = static_cast<ofWindowMode>(windowMode);
+            if (positionSet) settings.setPosition(position);
+            if (sizeSet) settings.setSize(width, height);
+            ofCreateWindow(settings);
+    #elif defined(TARGET_STANDALONE)
+            ofSetWindowTitle(title->s_name);
+            ofSetWindowPosition(position.x, position.y);
+            ofSetWindowShape(width, height);
+    #endif
+            mainLoop = ofGetMainLoop().get();
+            mainLoop->setEscapeQuitsLoop(false);
+            windowPtr = ofGetWindowPtr();
+            ofResetElapsedTimeCounter();
+            ofSetFrameRate(60);
+            ofDisableArbTex();
+            owner = true;
+            exists = true;
+    #if defined(TARGET_EXTERNAL)
+            addWindowListeners();
+            windowPtr->events().notifySetup();
             
-            // Somehow, Ofelia works much better in plugdata if we don't do this
-            // I think this is because JUCE is already polling for events,
-            // so by polling for events over here, we'd be polling for events inside a message loop run,
-            // which is probably bad
-            
-            //mainLoop->pollEvents();
-        });
-        });
-
+            ofxOfeliaMessageManager::setRunLoop([this](){
+                mainLoop->loopOnce();
+                mainLoop->pollEvents();
+            });
 #endif
+        });
     }
     void destroy()
     {

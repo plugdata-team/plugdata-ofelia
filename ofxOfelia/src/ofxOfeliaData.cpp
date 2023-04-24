@@ -1,6 +1,6 @@
 #include "ofxOfeliaData.h"
 #include "ofxOfeliaDefine.h"
-#include "ofxOfeliaAsync.h"
+#include "ofxOfeliaMessageManager.h"
 #include <iostream>
 #include <cstdio>
 #include <cstring>

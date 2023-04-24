@@ -1,5 +1,5 @@
 #include "ofxOfeliaClient.h"
-#include "ofxOfeliaAsync.h"
+#include "ofxOfeliaMessageManager.h"
 #include <cstring>
 #include <vector>
 
@@ -13,7 +13,7 @@ bool ofxOfeliaClient::isDataValid()
 
 void ofxOfeliaClient::bangMethod()
 {
-    ofxOfeliaAsync::callAsync([_this = ofxOfeliaWeakReference<ofxOfeliaClient>(this), this](){
+    ofxOfeliaMessageManager::callOnMessageThread([_this = ofxOfeliaWeakReference<ofxOfeliaClient>(this), this](){
         if (_this.wasObjectDeleted() || !isDataValid()) return;
         if (data.io.hasMultiControlInlets)
         {
@@ -29,7 +29,7 @@ void ofxOfeliaClient::bangMethod()
 
 void ofxOfeliaClient::floatMethod(t_floatarg f)
 {
-    ofxOfeliaAsync::callAsync([_this = ofxOfeliaWeakReference<ofxOfeliaClient>(this), this, f](){
+    ofxOfeliaMessageManager::callOnMessageThread([_this = ofxOfeliaWeakReference<ofxOfeliaClient>(this), this, f](){
         if (_this.wasObjectDeleted() || !isDataValid()) return;
         if (data.io.hasMultiControlInlets)
         {
@@ -46,7 +46,7 @@ void ofxOfeliaClient::floatMethod(t_floatarg f)
 
 void ofxOfeliaClient::symbolMethod(t_symbol *s)
 {
-    ofxOfeliaAsync::callAsync([_this = ofxOfeliaWeakReference<ofxOfeliaClient>(this), this, s](){
+    ofxOfeliaMessageManager::callOnMessageThread([_this = ofxOfeliaWeakReference<ofxOfeliaClient>(this), this, s](){
         if (_this.wasObjectDeleted() || !isDataValid()) return;
         if (data.io.hasMultiControlInlets)
         {
@@ -63,7 +63,7 @@ void ofxOfeliaClient::symbolMethod(t_symbol *s)
 
 void ofxOfeliaClient::pointerMethod(t_gpointer *p)
 {
-    ofxOfeliaAsync::callAsync([_this = ofxOfeliaWeakReference<ofxOfeliaClient>(this), this, p](){
+    ofxOfeliaMessageManager::callOnMessageThread([_this = ofxOfeliaWeakReference<ofxOfeliaClient>(this), this, p](){
         if (_this.wasObjectDeleted() || !isDataValid()) return;
         if (data.io.hasMultiControlInlets)
         {
@@ -81,7 +81,7 @@ void ofxOfeliaClient::pointerMethod(t_gpointer *p)
 void ofxOfeliaClient::listMethod(t_symbol *s, int argc, t_atom *argv)
 {
     auto args = std::vector<t_atom>(argv, argv + argc);
-    ofxOfeliaAsync::callAsync([_this = ofxOfeliaWeakReference<ofxOfeliaClient>(this), this, s, args]() mutable {
+    ofxOfeliaMessageManager::callOnMessageThread([_this = ofxOfeliaWeakReference<ofxOfeliaClient>(this), this, s, args]() mutable {
         if (_this.wasObjectDeleted() || !isDataValid()) return;
         if (!args.size())
         {
@@ -114,7 +114,7 @@ void ofxOfeliaClient::listMethod(t_symbol *s, int argc, t_atom *argv)
 void ofxOfeliaClient::getVariableByArgs(t_symbol *s, int argc, t_atom *argv)
 {
     auto args = std::vector<t_atom>(argv, argv + argc);
-    ofxOfeliaAsync::callAsync([_this = ofxOfeliaWeakReference<ofxOfeliaClient>(this), this, s, args]() mutable {
+    ofxOfeliaMessageManager::callOnMessageThread([_this = ofxOfeliaWeakReference<ofxOfeliaClient>(this), this, s, args]() mutable {
         if (_this.wasObjectDeleted() || !isDataValid()) return;
         data.lua.getVariableByArgs(s, args.size(), args.data());
     });
@@ -123,7 +123,7 @@ void ofxOfeliaClient::getVariableByArgs(t_symbol *s, int argc, t_atom *argv)
 void ofxOfeliaClient::setVariableByArgs(t_symbol *s, int argc, t_atom *argv)
 {
     auto args = std::vector<t_atom>(argv, argv + argc);
-    ofxOfeliaAsync::callAsync([_this = ofxOfeliaWeakReference<ofxOfeliaClient>(this), this, s, args]() mutable {
+    ofxOfeliaMessageManager::callOnMessageThread([_this = ofxOfeliaWeakReference<ofxOfeliaClient>(this), this, s, args]() mutable {
         if (_this.wasObjectDeleted() || !isDataValid()) return;
         data.lua.setVariableByArgs(s, args.size(), args.data());
     });

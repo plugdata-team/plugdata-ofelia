@@ -1,6 +1,6 @@
 #include "ofxOfeliaSignal.h"
 #include "ofxOfeliaData.h"
-#include "ofxOfeliaAsync.h"
+#include "ofxOfeliaMessageManager.h"
 
 void ofxOfeliaSignal::addDsp(t_signal **sp)
 {

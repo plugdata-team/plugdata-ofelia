@@ -1,5 +1,5 @@
 #include "ofxOfeliaGet.h"
-#include "ofxOfeliaAsync.h"
+#include "ofxOfeliaMessageManager.h"
 #include <new>
 
 t_class *ofxOfeliaGet::pdClass;
