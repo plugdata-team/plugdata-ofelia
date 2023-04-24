@@ -42,12 +42,7 @@ jobs:
             path: ./ofelia.zip
 
   build-ubuntu:
-    runs-on: ubuntu-latest
-    container:
-      image: debian:oldstable
-      options: --privileged
-      volumes:
-        - /sys/fs/cgroup:/sys/fs/cgroup
+    runs-on: ubuntu-20.04
     steps:
 
       - name: Update git
