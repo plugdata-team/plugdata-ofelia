@@ -1,9 +1,9 @@
 #include "ofxOfeliaGL.h"
-#include "ofxOfeliaAsync.h"
+#include "ofxOfeliaMessageManager.h"
 
 void ofxOfeliaGL::addDefines(lua_State *L)
 {
-    ofxOfeliaAsync::callAsync([L](){
+    ofxOfeliaMessageManager::callOnMessageThread([L](){
         lua_pushnumber(L, 1);
         lua_setglobal(L, "GL_VERSION_1_1");
         lua_pushnumber(L, 0);

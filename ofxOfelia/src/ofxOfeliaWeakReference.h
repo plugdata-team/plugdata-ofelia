@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ofxOfeliaAsync.h"
+#include "ofxOfeliaMessageManager.h"
 
 #include <functional>
 #include <mutex>

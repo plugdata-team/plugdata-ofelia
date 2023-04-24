@@ -1,4 +1,4 @@
-#include "ofxOfeliaAsync.h"
+#include "ofxOfeliaMessageManager.h"
 
 extern void ofelia_set_run_loop(std::function<void()>);
 extern void ofelia_call_async(std::function<void()>);
@@ -28,14 +28,15 @@ ofxOfeliaLock::~ofxOfeliaLock()
 
 std::recursive_mutex ofxOfeliaLock::ofeliaLock;
 
-void ofxOfeliaAsync::setRunLoop(std::function<void()> fn)
+void ofxOfeliaMessageManager::setRunLoop(std::function<void()> fn)
 {
     const ofxOfeliaLock ofxLock;
     ofelia_set_run_loop(fn);
 }
 
 
-void ofxOfeliaAsync::callAsync(std::function<void()> fn)
+
+void ofxOfeliaMessageManager::callOnMessageThread(std::function<void()> fn)
 {
     ofelia_call_async([fn](){
         const ofxOfeliaLock ofxLock;

@@ -1,5 +1,5 @@
 #include "ofxOfeliaLog.h"
-#include "ofxOfeliaAsync.h"
+#include "ofxOfeliaMessageManager.h"
 #include "ofUtils.h"
 #include "m_pd.h"
 

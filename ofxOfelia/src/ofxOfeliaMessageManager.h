@@ -16,10 +16,10 @@ struct ofxOfeliaLock
     static std::recursive_mutex ofeliaLock;
 };
 
-struct ofxOfeliaAsync
+struct ofxOfeliaMessageManager
 {
     static void setRunLoop(std::function<void()> fn);
 
-    static void callAsync(std::function<void()> fn);
+    static void callOnMessageThread(std::function<void()> fn);
 };
 
