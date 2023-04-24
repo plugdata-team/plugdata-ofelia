@@ -46,7 +46,7 @@ jobs:
     steps:
 
       - name: Update git
-        run: apt update && apt install -y git
+        run: sudo apt update && sudo apt install -y git
 
       - name: Checkout
         uses: actions/checkout@v2
