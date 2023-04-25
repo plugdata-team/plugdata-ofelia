@@ -16,14 +16,6 @@ sudo DEBIAN_FRONTEND=noninteractive ./openFrameworks/scripts/linux/ubuntu/instal
 rm -rf ./openFrameworks/libs/kiss
 ./kiss/kiss.sh
 
-
-git clone --recursive https://gitlab.freedesktop.org/gstreamer/gstreamer.git gstreamer
-cd gstreamer
-meson setup build
-meson --default-library=static -Dgood=enabled -Dugly=enabled -Dbad=enabled build
-meson compile -C build
-
-
 # Install copydeps python package for shared library packaging
 pip3 install copydeps
 
