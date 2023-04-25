@@ -42,9 +42,8 @@ jobs:
             path: ./ofelia.zip
 
   build-ubuntu:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-
       - name: Update git
         run: sudo apt update && sudo apt install -y git
 
