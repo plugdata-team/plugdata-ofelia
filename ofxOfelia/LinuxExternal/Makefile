@@ -9,5 +9,7 @@ ifndef OF_ROOT
     OF_ROOT=$(realpath ../../openFrameworks)
 endif
 
+PLATFORM_PKG_CONFIG="pkg-config --static"
+
 # call the project makefile!
 include $(OF_ROOT)/libs/openFrameworksCompiled/project/makefileCommon/compile.project.mk
