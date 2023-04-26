@@ -119,12 +119,11 @@ libXinerama.so.1.0.0
 libXrandr.so.2.2.0
 libXrender.so.1.3.0
 libzstd.so.1.4.8
-
 EOF
 
 mkdir ./ofelia/libs/
 
-copydeps "$1" --exclude .exclude-list -d ./ofelia/libs/
+copydeps ./ofelia/ofelia.* --exclude .exclude-list -d ./ofelia/libs/
 
 # Copy all gstreamer plugins
 # mkdir ./ofelia/libs/gstreamer-1.0
