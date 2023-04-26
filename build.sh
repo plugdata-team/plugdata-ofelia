@@ -19,8 +19,4 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
       CC=clang CXX=clang++ CFLAGS=-fPIC make
       # Copy output file with either .l_arm and .pd_linux extensions
       cp -f ./bin/ofelia.* ../../ofelia
-      cd ../../
-       # Script that copies all non-system dynamic libraries, and copies them into a dir that gets added as rpath
-       # This should ensure that ofelia runs on any Linux distro, it's basically a flatpak
-      ./bundle_libs.sh ./ofelia/ofelia.pd_linux
 fi
