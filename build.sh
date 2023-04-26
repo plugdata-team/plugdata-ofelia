@@ -19,6 +19,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
       # Apply OF git patch for video playback
       pushd ./openFrameworks
       if [[-f gstreamer-fix.patch]]; then
+      echo "OF patch already applied"
       else
       wget https://github.com/openFrameworks/openFrameworks/commit/bd4042344dc9670770754374607d2ca8190f9476.patch -o gstreamer-fix.patch
       git apply gstreamer-fix.patch
