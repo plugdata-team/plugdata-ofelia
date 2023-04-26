@@ -142,4 +142,4 @@ for filename in ./ofelia/libs/*; do
 done
 
 # Set rpath for ofelia itself
-patchelf --set-rpath "\$ORIGIN/libs" "$1"
+patchelf --set-rpath "\$ORIGIN/libs" ./ofelia/ofelia.*
