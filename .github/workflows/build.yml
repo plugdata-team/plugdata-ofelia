@@ -28,7 +28,7 @@ jobs:
 
         # Sign and notarise to make sure it works with gatekeeper
         - name: Sign and notarise
-          run: .github/scripts/package-macOS.sh
+          run: .github/scripts/macOS-sign-and-notarise.sh
           working-directory: ${{github.workspace}}
           env:
             AC_USERNAME: ${{ secrets.AC_USERNAME }}
@@ -42,7 +42,7 @@ jobs:
             path: ./ofelia.zip
 
   build-ubuntu:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-20.04
     steps:
       - name: Update git
         run: sudo apt update && sudo apt install -y git
@@ -58,6 +58,11 @@ jobs:
       # Building the project
       - name: Building Ofelia
         run: ./build.sh
+
+     # Run script that copies all non-system dynamic libraries, and copies them into a dir that gets added as rpath
+     # This should ensure that ofelia runs on any Linux distro, it's basically a flatpak
+      - name: Packaging dependencies
+        run: ./.github/scripts/linux-bundle-libs.sh
 
       # Upload executable binaries to GitHub
       - name: Uploading artifacts
