@@ -18,7 +18,3 @@ rm -rf ./openFrameworks/libs/kiss
 
 # Install copydeps python package for shared library packaging
 pip3 install copydeps
-
-# Try removing these plugins, we probably don't need them and it bloats out package a lot!
-# Maybe later, we can delete plugins more selectively based on how essential vs large they are
-sudo apt remove gstreamer1.0-plugins-bad

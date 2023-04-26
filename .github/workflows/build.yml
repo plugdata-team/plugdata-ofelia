@@ -41,7 +41,7 @@ jobs:
             name: plugdata-ofelia-macos
             path: ./ofelia.zip
 
-  build-ubuntu:
+  build-ubuntu-old:
     runs-on: ubuntu-20.04
     steps:
       - name: Update git
@@ -68,7 +68,37 @@ jobs:
       - name: Uploading artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: plugdata-ofelia-linux
+          name: plugdata-ofelia-linux-old
+          path: ./ofelia
+
+  build-ubuntu-new:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Update git
+        run: sudo apt update && sudo apt install -y git
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Installing openFrameworks dependencies
+        run: ./.github/scripts/linux-install-libs.sh
+
+      # Building the project
+      - name: Building Ofelia
+        run: ./build.sh
+
+     # Run script that copies all non-system dynamic libraries, and copies them into a dir that gets added as rpath
+     # This should ensure that ofelia runs on any Linux distro, it's basically a flatpak
+      - name: Packaging dependencies
+        run: ./.github/scripts/linux-bundle-libs.sh
+
+      # Upload executable binaries to GitHub
+      - name: Uploading artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: plugdata-ofelia-linux-new
           path: ./ofelia
 
   build-windows:
