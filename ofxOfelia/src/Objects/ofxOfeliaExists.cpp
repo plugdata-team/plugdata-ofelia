@@ -1,15 +1,13 @@
 #include "ofxOfeliaExists.h"
+#include "ofxOfeliaLua.h"
 #include "ofxOfeliaDefine.h"
-#include "ofxOfeliaMessageManager.h"
 #include <new>
 
 t_class *ofxOfeliaExists::pdClass;
 
 void *ofxOfeliaExists::newMethod(t_symbol *s, int argc, t_atom *argv)
-{
-    const ofxOfeliaAudioLock audioLock;
-    
-    client.data.sym = &s_;
+{    
+    client.data.sym = gensym("");
     while (argc && argv->a_type == A_SYMBOL &&
            *argv->a_w.w_symbol->s_name == '-')
     {
@@ -28,22 +26,18 @@ void *ofxOfeliaExists::newMethod(t_symbol *s, int argc, t_atom *argv)
         postatom(argc, argv); endpost();
     }
     symbolinlet_new(&client.data.ob, &client.data.sym);
-    outlet_new(&client.data.ob, &s_float);
+    outlet_new(&client.data.ob, gensym("float"));
     return this;
 }
 
 void ofxOfeliaExists::bangMethod()
 {
-    const ofxOfeliaAudioLock audioLock;
-    
     ofxOfeliaData *y = reinterpret_cast<ofxOfeliaData *>(pd_findbyclass(client.data.sym, ofxOfeliaDefine::pdClass));
     outlet_float(client.data.ob.ob_outlet, static_cast<t_float>(y != nullptr));
 }
 
 void *ofxOfeliaExists::newWrapper(t_symbol *s, int argc, t_atom *argv)
 {
-    const ofxOfeliaLock ofxLock;
-    
     ofxOfeliaExists *x = reinterpret_cast<ofxOfeliaExists *>(pd_new(pdClass));
     new (x) ofxOfeliaExists();
     return x->newMethod(s, argc, argv);

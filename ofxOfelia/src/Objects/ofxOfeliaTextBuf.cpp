@@ -1,7 +1,7 @@
 #include "ofxOfeliaTextBuf.h"
+#include "ofxOfeliaLua.h"
 #include "ofxOfeliaData.h"
 #include "ofxOfeliaDefine.h"
-#include "ofUtils.h"
 #include <cstdio>
 #include <cctype>
 #include <cstring>
@@ -28,8 +28,8 @@ bool ofxOfeliaTextBuf::canvasOpen(const t_canvas *canvas, const std::string &fil
 {
     if (canvas == nullptr) return false;
     int fileDesc;
-    char buf[MAXPDSTRING], *bufPtr;
-    if ((fileDesc = canvas_open(canvas, fileName.c_str(), "", buf, &bufPtr, MAXPDSTRING, 0)) < 0)
+    char buf[MAXOFXSTRING], *bufPtr;
+    if ((fileDesc = canvas_open(canvas, fileName.c_str(), "", buf, &bufPtr, MAXOFXSTRING, 0)) < 0)
         return false;
 #if defined(TARGET_EXTERNAL)
 #ifdef _WIN32
@@ -74,9 +74,9 @@ void ofxOfeliaTextBuf::openMethod()
     }
     else
     {
-        char title[MAXPDSTRING] = "Untitled";
+        char title[MAXOFXSTRING] = "Untitled";
         if (!dataPtr->hasUniqueSym)
-            std::snprintf(title, MAXPDSTRING, "%s", dataPtr->sym->s_name);
+            std::snprintf(title, MAXOFXSTRING, "%s", dataPtr->sym->s_name);
         sys_vgui(const_cast<char *>("ofelia_textwindow_open .x%lx %dx%d {%s} %d\n"),
                  dataPtr, 600, 340, title,
                  sys_hostfontsize(glist_getfont(dataPtr->canvas),
@@ -111,7 +111,7 @@ void ofxOfeliaTextBuf::addLineMethod(t_symbol *s, int argc, t_atom *argv)
 void ofxOfeliaTextBuf::readMethod(t_symbol *s, int argc, t_atom *argv)
 {
     if (dataPtr->isDirectMode) return;
-    dataPtr->lua.doFreeFunction();
+    dataPtr->lua->doFreeFunction();
     int cr = 0;
     t_symbol *fileName;
     while (argc && argv->a_type == A_SYMBOL &&
@@ -142,7 +142,7 @@ void ofxOfeliaTextBuf::readMethod(t_symbol *s, int argc, t_atom *argv)
     if (binbuf_read_via_canvas(dataPtr->binbuf, fileName->s_name, dataPtr->canvas, cr))
         pd_error(NULL, "%s: read failed", fileName->s_name);
     senditup();
-    dataPtr->lua.doText();
+    dataPtr->lua->doText();
 }
 
 void ofxOfeliaTextBuf::writeMethod(t_symbol *s, int argc, t_atom *argv)
@@ -150,7 +150,7 @@ void ofxOfeliaTextBuf::writeMethod(t_symbol *s, int argc, t_atom *argv)
     if (dataPtr->isDirectMode) return;
     int cr = 0;
     t_symbol *fileName;
-    char buf[MAXPDSTRING];
+    char buf[MAXOFXSTRING];
     while (argc && argv->a_type == A_SYMBOL &&
            *argv->a_w.w_symbol->s_name == '-')
     {
@@ -176,7 +176,7 @@ void ofxOfeliaTextBuf::writeMethod(t_symbol *s, int argc, t_atom *argv)
         post("warning: ofelia define ignoring extra argument: ");
         postatom(argc, argv); endpost();
     }
-    canvas_makefilename(dataPtr->canvas, fileName->s_name, buf, MAXPDSTRING);
+    canvas_makefilename(dataPtr->canvas, fileName->s_name, buf, MAXOFXSTRING);
     if (binbuf_write(dataPtr->binbuf, buf, const_cast<char *>(""), cr))
         pd_error(NULL, "%s: write failed", fileName->s_name);
 }

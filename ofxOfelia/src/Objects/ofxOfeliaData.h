@@ -2,29 +2,16 @@
 
 #include "m_pd.h"
 #include "g_canvas.h"
-#include "ofxOfeliaLua.h"
-#include "ofxOfeliaSignal.h"
+//#include "ofxOfeliaSignal.h"
 #include "ofxOfeliaIO.h"
 #include "ofxOfeliaTextBuf.h"
 
+class ofxOfeliaLua;
 class ofxOfeliaData
 {
 public:
-    ofxOfeliaData()
-    :binbuf(nullptr)
-    ,canvas(nullptr)
-    ,guiconnect(nullptr)
-    ,sym(&s_)
-    ,embName(&s_)
-    ,isFunctionMode(false)
-    ,shouldKeep(false)
-    ,isSignalObject(false)
-    ,isDirectMode(false)
-    ,hasUniqueSym(false)
-    ,lua(this)
-    ,signal(this)
-    ,io(this)
-    ,textBuf(this){};
+
+    ofxOfeliaData();
     
     void initSym();
     void bindSym();
@@ -47,11 +34,8 @@ public:
     bool isDirectMode; /* whether to write script directly on object */
     bool hasUniqueSym; /* whether the object has a unique symbol */
     
-    ofxOfeliaLua lua;
-    ofxOfeliaSignal signal;
+    std::unique_ptr<ofxOfeliaLua> lua;
+    //ofxOfeliaSignal signal;
     ofxOfeliaIO io;
     ofxOfeliaTextBuf textBuf;
-private:
-    
-    DECLARE_WEAK_REFERENCEABLE(ofxOfeliaData)
 };

@@ -1,6 +1,7 @@
 #include "ofxOfeliaSignal.h"
-#include "ofxOfeliaData.h"
-#include "ofxOfeliaMessageManager.h"
+//#include "ofxOfeliaData.h"
+
+/*
 
 void ofxOfeliaSignal::addDsp(t_signal **sp)
 {
@@ -17,8 +18,6 @@ void ofxOfeliaSignal::addDsp(t_signal **sp)
 
 t_int *ofxOfeliaSignal::perform(t_int *w)
 {
-    const ofxOfeliaLock ofxLock;  // because we touch lua stuff
-    
     ofxOfeliaData *x = reinterpret_cast<ofxOfeliaData *>(w[1]);
     const int nsamples = static_cast<int>(w[2]);
     lua_State *L = x->lua.L;
@@ -39,7 +38,7 @@ t_int *ofxOfeliaSignal::perform(t_int *w)
         }
         if (lua_pcall(L, numInlets, numOutlets, 0))
         {
-            pd_error(NULL, "ofelia: %s", lua_tostring(L, -1));
+            error("ofelia: %s", lua_tostring(L, -1));
             lua_pop(L, 2);
             goto error;
         }
@@ -47,9 +46,9 @@ t_int *ofxOfeliaSignal::perform(t_int *w)
         {
             const char *s = "ofelia: 'perform' function should return";
             if (numOutlets == 1)
-                pd_error(NULL, "%s %s", s, "a table");
+                error("%s %s", s, "a table");
             else if (numOutlets > 1)
-                pd_error(NULL, "%s %d %s", s, numOutlets, "tables");
+                error("%s %d %s", s, numOutlets, "tables");
             lua_pop(L, 1 + numOutlets);
             goto error;
         }
@@ -74,7 +73,7 @@ t_int *ofxOfeliaSignal::perform(t_int *w)
     }
     else
     {
-    error: /* silence the audio if something is wrong */
+    error: // silence the audio if something is wrong
         for (int i = 0; i < numOutlets; ++i)
         {
             t_float *out = reinterpret_cast<t_float *>(w[i + 3 + numInlets]);
@@ -82,4 +81,4 @@ t_int *ofxOfeliaSignal::perform(t_int *w)
         }
     }
     return w + numInlets + numOutlets + 3;
-}
+} */

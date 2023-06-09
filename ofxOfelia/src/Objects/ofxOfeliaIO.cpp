@@ -1,6 +1,6 @@
 #include "ofxOfeliaIO.h"
+#include "ofxOfeliaLua.h"
 #include "ofxOfeliaData.h"
-#include "ofxOfeliaMessageManager.h"
 
 void ofxOfeliaIO::newIO(int numInlets, int numOutlets)
 {
@@ -18,8 +18,6 @@ void ofxOfeliaIO::freeIO(int numInlets, int numOutlets)
 
 void ofxOfeliaIO::newControlIO(int numInlets, int numOutlets)
 {
-    const ofxOfeliaAudioLock audioLock;
-    
     this->numInlets = numInlets;
     this->numOutlets = numOutlets;
     hasMultiControlInlets = numInlets > 1;
@@ -33,20 +31,17 @@ void ofxOfeliaIO::newControlIO(int numInlets, int numOutlets)
 
 void ofxOfeliaIO::newSignalIO(int numInlets, int numOutlets)
 {
-    const ofxOfeliaAudioLock audioLock;
-    
+    /*  TODO: Implement this!
     this->numInlets = numInlets;
     this->numOutlets = numOutlets;
     dataPtr->signal.w = static_cast<t_int **>(getbytes(sizeof(t_int *) * (numInlets + numOutlets + 2)));
     newIO(--numInlets, numOutlets);
     dataPtr->signal.f = 0;
-    dataPtr->isSignalObject = true;
+    dataPtr->isSignalObject = true; */
 }
 
 void ofxOfeliaIO::addControlIO()
-{
-    const ofxOfeliaAudioLock audioLock;
-    
+{    
     for (int i = 0; i < numInlets - 1; ++i)
     {
         if (av[i].a_type == A_FLOAT)
@@ -55,17 +50,15 @@ void ofxOfeliaIO::addControlIO()
             inlets[i] = symbolinlet_new(&dataPtr->ob, &av[i].a_w.w_symbol);
     }
     for (int i = 0; i < numOutlets; ++i)
-        outlets[i] = outlet_new(&dataPtr->ob, &s_list);
+        outlets[i] = outlet_new(&dataPtr->ob, gensym("list"));
 }
 
 void ofxOfeliaIO::addSignalIO()
 {
-    const ofxOfeliaAudioLock audioLock;
-    
     for (int i = 0; i < numInlets - 1; ++i)
-        inlets[i] = inlet_new(&dataPtr->ob, &dataPtr->ob.ob_pd, &s_signal, &s_signal);
+        inlets[i] = inlet_new(&dataPtr->ob, &dataPtr->ob.ob_pd, gensym("signal"), gensym("signal"));
     for (int i = 0; i < numOutlets; ++i)
-        outlets[i] = outlet_new(&dataPtr->ob, &s_signal);
+        outlets[i] = outlet_new(&dataPtr->ob, gensym("signal"));
 }
 
 void ofxOfeliaIO::freeControlIO()
@@ -78,12 +71,11 @@ void ofxOfeliaIO::freeControlIO()
 
 void ofxOfeliaIO::freeSignalIO()
 {
-    //const ofxOfeliaAudioLock audioLock;
-    
+    /* TODO: Implement this!
     int numInlets = this->numInlets;
     int numOutlets = this->numOutlets;
     freebytes(dataPtr->signal.w, sizeof(t_int *) * (numInlets + numOutlets + 2));
-    freeIO(--numInlets, numOutlets);
+    freeIO(--numInlets, numOutlets); */
 }
 
 void ofxOfeliaIO::doList(int argc, t_atom *argv)
@@ -92,5 +84,5 @@ void ofxOfeliaIO::doList(int argc, t_atom *argv)
     int first = argc - numInlets + 1;
     for (int i = first; i < argc; ++i)
         argv[i] = av[i - first];
-    dataPtr->lua.doFunction(&s_list, argc, argv);
+    dataPtr->lua->doFunction(gensym("list"), argc, argv);
 }

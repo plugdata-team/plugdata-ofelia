@@ -1,61 +1,54 @@
 #include "ofxOfeliaSet.h"
-#include "ofxOfeliaMessageManager.h"
+#include "ofxOfeliaLua.h"
 #include <new>
 
 t_class *ofxOfeliaSet::pdClass;
 
 void *ofxOfeliaSet::newMethod(t_symbol *s, int argc, t_atom *argv)
 {
-    const ofxOfeliaLock ofxLock;
     client.data.argParse(s, argc, argv, false);
+    client.data.lua->messageManager->sendMessage(ofx_lua_init_sym, std::string(client.data.getUniqueSym()->s_name), std::string(client.data.sym->s_name));
+    
     return this;
 }
 
 void ofxOfeliaSet::bangMethod()
 {
-    const ofxOfeliaLock ofxLock;
     client.bangMethod();
 }
 
 void ofxOfeliaSet::floatMethod(t_floatarg f)
 {
-    const ofxOfeliaLock ofxLock;
     client.floatMethod(f);
 }
 
 void ofxOfeliaSet::symbolMethod(t_symbol *s)
 {
-    const ofxOfeliaLock ofxLock;
     client.symbolMethod(s);
 }
 
 void ofxOfeliaSet::pointerMethod(t_gpointer *p)
 {
-    const ofxOfeliaLock ofxLock;
     client.pointerMethod(p);
 }
 
 void ofxOfeliaSet::listMethod(t_symbol *s, int argc, t_atom *argv)
 {
-    const ofxOfeliaLock ofxLock;
     client.listMethod(s, argc, argv);
 }
 
 void ofxOfeliaSet::anythingMethod(t_symbol *s, int argc, t_atom *argv)
 {
-    const ofxOfeliaLock ofxLock;
     client.setVariableByArgs(s, argc, argv);
 }
 
 void ofxOfeliaSet::dspMethod(t_signal **sp)
 {
-    const ofxOfeliaLock ofxLock;
     client.dspMethod(sp);
 }
 
 void ofxOfeliaSet::freeMethod()
 {
-    const ofxOfeliaLock ofxLock;
     client.freeMethod();
 }
 
@@ -113,7 +106,8 @@ void ofxOfeliaSet::setup()
                         reinterpret_cast<t_newmethod>(newWrapper),
                         reinterpret_cast<t_method>(freeWrapper),
                         sizeof(ofxOfeliaSet), 0, A_GIMME, 0);
-    CLASS_MAINSIGNALIN(pdClass, ofxOfeliaSet, client.data.signal.f);
+    // TODO: Implement this!
+    //CLASS_MAINSIGNALIN(pdClass, ofxOfeliaSet, client.data.signal.f);
     class_addbang(pdClass, bangWrapper);
     class_addfloat(pdClass, floatWrapper);
     class_addsymbol(pdClass, symbolWrapper);

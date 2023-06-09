@@ -37,88 +37,88 @@ ofxOfeliaEvents::DataPairVec ofxOfeliaEvents::backPressedVec;
 ofxOfeliaEvents::DataPairVec ofxOfeliaEvents::okPressedVec;
 ofxOfeliaEvents::DataPairVec ofxOfeliaEvents::cancelPressedVec;
 
-ofxOfeliaEvents::DataPairVec *ofxOfeliaEvents::getTargetDataPairVec(t_symbol *s)
+ofxOfeliaEvents::DataPairVec *ofxOfeliaEvents::getTargetDataPairVec(const char *s)
 {
-    if (!std::strcmp(s->s_name, "setup"))
+    if (!std::strcmp(s, "setup"))
         return &setupVec;
-    else if (!std::strcmp(s->s_name, "update"))
+    else if (!std::strcmp(s, "update"))
         return &updateVec;
-    else if (!std::strcmp(s->s_name, "draw"))
+    else if (!std::strcmp(s, "draw"))
         return &drawVec;
-    else if (!std::strcmp(s->s_name, "exit"))
+    else if (!std::strcmp(s, "exit"))
         return &exitVec;
-    else if (!std::strcmp(s->s_name, "keyPressed"))
+    else if (!std::strcmp(s, "keyPressed"))
         return &keyPressedVec;
-    else if (!std::strcmp(s->s_name, "keyReleased"))
+    else if (!std::strcmp(s, "keyReleased"))
         return &keyReleasedVec;
-    else if (!std::strcmp(s->s_name, "mouseMoved"))
+    else if (!std::strcmp(s, "mouseMoved"))
         return &mouseMovedVec;
-    else if (!std::strcmp(s->s_name, "mouseDragged"))
+    else if (!std::strcmp(s, "mouseDragged"))
         return &mouseDraggedVec;
-    else if (!std::strcmp(s->s_name, "mousePressed"))
+    else if (!std::strcmp(s, "mousePressed"))
         return &mousePressedVec;
-    else if (!std::strcmp(s->s_name, "mouseReleased"))
+    else if (!std::strcmp(s, "mouseReleased"))
         return &mouseReleasedVec;
-    else if (!std::strcmp(s->s_name, "mouseScrolled"))
+    else if (!std::strcmp(s, "mouseScrolled"))
         return &mouseScrolledVec;
-    else if (!std::strcmp(s->s_name, "mouseEntered"))
+    else if (!std::strcmp(s, "mouseEntered"))
         return &mouseEnteredVec;
-    else if (!std::strcmp(s->s_name, "mouseExited"))
+    else if (!std::strcmp(s, "mouseExited"))
         return &mouseExitedVec;
-    else if (!std::strcmp(s->s_name, "windowResized"))
+    else if (!std::strcmp(s, "windowResized"))
         return &windowResizedVec;
-    else if (!std::strcmp(s->s_name, "messageReceived"))
+    else if (!std::strcmp(s, "messageReceived"))
         return &messageReceivedVec;
-    else if (!std::strcmp(s->s_name, "dragged"))
+    else if (!std::strcmp(s, "dragged"))
         return &draggedVec;
-    else if (!std::strcmp(s->s_name, "touchCancelled"))
+    else if (!std::strcmp(s, "touchCancelled"))
         return &touchCancelledVec;
-    else if (!std::strcmp(s->s_name, "touchDoubleTap"))
+    else if (!std::strcmp(s, "touchDoubleTap"))
         return &touchDoubleTapVec;
-    else if (!std::strcmp(s->s_name, "touchDown"))
+    else if (!std::strcmp(s, "touchDown"))
         return &touchDownVec;
-    else if (!std::strcmp(s->s_name, "touchMoved"))
+    else if (!std::strcmp(s, "touchMoved"))
         return &touchMovedVec;
-    else if (!std::strcmp(s->s_name, "touchUp"))
+    else if (!std::strcmp(s, "touchUp"))
         return &touchUpVec;
-    else if (!std::strcmp(s->s_name, "lostFocus"))
+    else if (!std::strcmp(s, "lostFocus"))
         return &lostFocusVec;
-    else if (!std::strcmp(s->s_name, "gotFocus"))
+    else if (!std::strcmp(s, "gotFocus"))
         return &gotFocusVec;
-    else if (!std::strcmp(s->s_name, "gotMemoryWarning"))
+    else if (!std::strcmp(s, "gotMemoryWarning"))
         return &gotMemoryWarningVec;
-    else if (!std::strcmp(s->s_name, "deviceOrientationChanged"))
+    else if (!std::strcmp(s, "deviceOrientationChanged"))
         return &deviceOrientationChangedVec;
-    else if (!std::strcmp(s->s_name, "launchedWithURL"))
+    else if (!std::strcmp(s, "launchedWithURL"))
         return &launchedWithURLVec;
-    else if (!std::strcmp(s->s_name, "swipe"))
+    else if (!std::strcmp(s, "swipe"))
         return &swipeVec;
-    else if (!std::strcmp(s->s_name, "pause"))
+    else if (!std::strcmp(s, "pause"))
         return &pauseVec;
-    else if (!std::strcmp(s->s_name, "stop"))
+    else if (!std::strcmp(s, "stop"))
         return &stopVec;
-    else if (!std::strcmp(s->s_name, "resume"))
+    else if (!std::strcmp(s, "resume"))
         return &resumeVec;
-    else if (!std::strcmp(s->s_name, "reloadTextures"))
+    else if (!std::strcmp(s, "reloadTextures"))
         return &reloadTexturesVec;
-    else if (!std::strcmp(s->s_name, "backPressed"))
+    else if (!std::strcmp(s, "backPressed"))
         return &backPressedVec;
-    else if (!std::strcmp(s->s_name, "okPressed"))
+    else if (!std::strcmp(s, "okPressed"))
         return &okPressedVec;
-    else if (!std::strcmp(s->s_name, "cancelPressed"))
+    else if (!std::strcmp(s, "cancelPressed"))
         return &cancelPressedVec;
     else
-        pd_error(NULL, "ofelia: unknown listener method '%s'", s->s_name);
+        error("ofelia: unknown listener method '%s'", s);
     return nullptr;
 }
 
-ofxOfeliaEvents::DataPairVec::iterator ofxOfeliaEvents::findDataPair(DataPairVec &vec, ofxOfeliaData *dataPtr)
+ofxOfeliaEvents::DataPairVec::iterator ofxOfeliaEvents::findDataPair(DataPairVec &vec, ofxOfeliaLua *dataPtr)
 {
     return std::find_if(vec.begin(), vec.end(),
                         [&](const DataPair &ref) {return ref.first == dataPtr;});
 }
 
-void ofxOfeliaEvents::addDataPair(DataPairVec &vec, ofxOfeliaData *x, t_floatarg f)
+void ofxOfeliaEvents::addDataPair(DataPairVec &vec, ofxOfeliaLua *x, t_floatarg f)
 {
     auto it = findDataPair(vec, x);
     if (it != vec.end())
@@ -129,7 +129,7 @@ void ofxOfeliaEvents::addDataPair(DataPairVec &vec, ofxOfeliaData *x, t_floatarg
     vec.push_back(std::make_pair(x, f));
 }
 
-void ofxOfeliaEvents::removeDataPair(DataPairVec &vec, ofxOfeliaData *x)
+void ofxOfeliaEvents::removeDataPair(DataPairVec &vec, ofxOfeliaLua *x)
 {
     auto it = findDataPair(vec, x);
     if (it != vec.end())
@@ -142,15 +142,15 @@ void ofxOfeliaEvents::sortDataPairVec(DataPairVec &vec)
                      [](const DataPair &a, const DataPair &b) {return a.second < b.second;});
 }
 
-void ofxOfeliaEvents::callEventListener(ofxOfeliaData *x, t_symbol *s)
+void ofxOfeliaEvents::callEventListener(ofxOfeliaLua *x, const char *s)
 {
-    x->lua.doFunction(s);
+    x->doFunction(s);
 }
 
-void ofxOfeliaEvents::callEventListener(ofxOfeliaData *x, t_symbol *s, ofKeyEventArgs &e)
+void ofxOfeliaEvents::callEventListener(ofxOfeliaLua *x, const char *s, ofKeyEventArgs &e)
 {
-    int top; if (!x->lua.isFunction(s, top)) return;
-    lua_State *L = x->lua.L;
+    int top; if (!x->isFunction(s, top)) return;
+    lua_State *L = x->L;
     lua_newtable(L);
     lua_pushinteger(L, static_cast<lua_Integer>(e.type));
     lua_setfield(L, -2, "type");
@@ -166,14 +166,14 @@ void ofxOfeliaEvents::callEventListener(ofxOfeliaData *x, t_symbol *s, ofKeyEven
     lua_setfield(L, -2, "isRepeat");
     lua_pushinteger(L, static_cast<lua_Integer>(e.modifiers));
     lua_setfield(L, -2, "modifiers");
-    x->lua.callFunction(top);
+    x->callFunction(top);
     lua_pop(L, 1);
 }
 
-void ofxOfeliaEvents::callEventListener(ofxOfeliaData *x, t_symbol *s, ofMouseEventArgs &e)
+void ofxOfeliaEvents::callEventListener(ofxOfeliaLua *x, const char *s, ofMouseEventArgs &e)
 {
-    int top; if (!x->lua.isFunction(s, top)) return;
-    lua_State *L = x->lua.L;
+    int top; if (!x->isFunction(s, top)) return;
+    lua_State *L = x->L;
     lua_newtable(L);
     lua_pushinteger(L, static_cast<lua_Integer>(e.type));
     lua_setfield(L, -2, "type");
@@ -189,38 +189,38 @@ void ofxOfeliaEvents::callEventListener(ofxOfeliaData *x, t_symbol *s, ofMouseEv
     lua_setfield(L, -2, "scrollY");
     lua_pushinteger(L, static_cast<lua_Integer>(e.modifiers));
     lua_setfield(L, -2, "modifiers");
-    x->lua.callFunction(top);
+    x->callFunction(top);
     lua_pop(L, 1);
 }
 
-void ofxOfeliaEvents::callEventListener(ofxOfeliaData *x, t_symbol *s, ofResizeEventArgs &e)
+void ofxOfeliaEvents::callEventListener(ofxOfeliaLua *x, const char *s, ofResizeEventArgs &e)
 {
-    int top; if (!x->lua.isFunction(s, top)) return;
-    lua_State *L = x->lua.L;
+    int top; if (!x->isFunction(s, top)) return;
+    lua_State *L = x->L;
     lua_newtable(L);
     lua_pushinteger(L, static_cast<lua_Integer>(e.width));
     lua_setfield(L, -2, "width");
     lua_pushinteger(L, static_cast<lua_Integer>(e.height));
     lua_setfield(L, -2, "height");
-    x->lua.callFunction(top);
+    x->callFunction(top);
     lua_pop(L, 1);
 }
 
-void ofxOfeliaEvents::callEventListener(ofxOfeliaData *x, t_symbol *s, ofMessage &e)
+void ofxOfeliaEvents::callEventListener(ofxOfeliaLua *x, const char *s, ofMessage &e)
 {
-    int top; if (!x->lua.isFunction(s, top)) return;
-    lua_State *L = x->lua.L;
+    int top; if (!x->isFunction(s, top)) return;
+    lua_State *L = x->L;
     lua_newtable(L);
     lua_pushstring(L, e.message.c_str());
     lua_setfield(L, -2, "message");
-    x->lua.callFunction(top);
+    x->callFunction(top);
     lua_pop(L, 1);
 }
 
-void ofxOfeliaEvents::callEventListener(ofxOfeliaData *x, t_symbol *s, ofDragInfo &e)
+void ofxOfeliaEvents::callEventListener(ofxOfeliaLua *x, const char *s, ofDragInfo &e)
 {
-    int top; if (!x->lua.isFunction(s, top)) return;
-    lua_State *L = x->lua.L;
+    int top; if (!x->isFunction(s, top)) return;
+    lua_State *L = x->L;
     lua_newtable(L); /* outermost table */
     lua_newtable(L); /* subtable "files" */
     for (size_t i = 0; i < e.files.size(); ++i)
@@ -236,14 +236,14 @@ void ofxOfeliaEvents::callEventListener(ofxOfeliaData *x, t_symbol *s, ofDragInf
     lua_pushnumber(L, e.position.y);
     lua_setfield(L, -2, "y");
     lua_setfield(L, -2, "position");
-    x->lua.callFunction(top);
+    x->callFunction(top);
     lua_pop(L, 1);
 }
 
-void ofxOfeliaEvents::callEventListener(ofxOfeliaData *x, t_symbol *s, ofTouchEventArgs &e)
+void ofxOfeliaEvents::callEventListener(ofxOfeliaLua *x, const char *s, ofTouchEventArgs &e)
 {
-    int top; if (!x->lua.isFunction(s, top)) return;
-    lua_State *L = x->lua.L;
+    int top; if (!x->isFunction(s, top)) return;
+    lua_State *L = x->L;
     lua_newtable(L);
     lua_pushinteger(L, static_cast<lua_Integer>(e.type));
     lua_setfield(L, -2, "type");
@@ -277,29 +277,29 @@ void ofxOfeliaEvents::callEventListener(ofxOfeliaData *x, t_symbol *s, ofTouchEv
     lua_setfield(L, -2, "xaccel");
     lua_pushnumber(L, static_cast<lua_Number>(e.yaccel));
     lua_setfield(L, -2, "yaccel");
-    x->lua.callFunction(top);
+    x->callFunction(top);
     lua_pop(L, 1);
 }
 
-void ofxOfeliaEvents::callEventListener(ofxOfeliaData *x, t_symbol *s, const int e)
+void ofxOfeliaEvents::callEventListener(ofxOfeliaLua *x, const char *s, const int e)
 {
-    x->lua.doFunction(s, static_cast<t_floatarg>(e));
+    x->doFunction(s, static_cast<t_floatarg>(e));
 }
 
-void ofxOfeliaEvents::callEventListener(ofxOfeliaData *x, t_symbol *s, const std::string &e)
+void ofxOfeliaEvents::callEventListener(ofxOfeliaLua *x, const char *s, const std::string &e)
 {
-    x->lua.doFunction(s, gensym(e.c_str()));
+    x->doFunction(s, e.c_str());
 }
 
-void ofxOfeliaEvents::callEventListener(ofxOfeliaData *x, t_symbol *s, const std::pair<int, int> &e)
+void ofxOfeliaEvents::callEventListener(ofxOfeliaLua *x, const char *s, const std::pair<int, int> &e)
 {
-    int top; if (!x->lua.isFunction(s, top)) return;
-    lua_State *L = x->lua.L;
+    int top; if (!x->isFunction(s, top)) return;
+    lua_State *L = x->L;
     lua_newtable(L);
     lua_pushinteger(L, static_cast<lua_Integer>(e.first));
     lua_setfield(L, -2, "dir");
     lua_pushinteger(L, static_cast<lua_Integer>(e.second));
     lua_setfield(L, -2, "id");
-    x->lua.callFunction(top);
+    x->callFunction(top);
     lua_pop(L, 1);
 }

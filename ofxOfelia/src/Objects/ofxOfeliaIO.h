@@ -21,8 +21,8 @@ public:
     t_inlet **inlets;
     t_outlet **outlets;
     t_atom *av; /* variables for passive inlets */
-    int numInlets;
-    int numOutlets;
+    int numInlets = 0;
+    int numOutlets = 0;
     bool hasMultiControlInlets; /* whether an object has multiple control inlets */
     bool hasMultiControlOutlets; /* whether an object has multiple control outlets */
     bool hasControlOutlet; /* whether an object has any control outlet */

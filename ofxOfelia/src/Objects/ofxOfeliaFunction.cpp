@@ -1,4 +1,5 @@
 #include "ofxOfeliaFunction.h"
+#include "ofxOfeliaLua.h"
 #include "ofxOfeliaDefine.h"
 #include <new>
 

@@ -1,6 +1,7 @@
 #include "ofxOfeliaData.h"
 #include "ofxOfeliaDefine.h"
-#include "ofxOfeliaMessageManager.h"
+#include "ofxOfeliaLua.h"
+
 #include <iostream>
 #include <cstdio>
 #include <cstring>
@@ -15,26 +16,39 @@
 #endif
 #include <errno.h>
 
+ofxOfeliaData::ofxOfeliaData()
+:binbuf(nullptr)
+,canvas(nullptr)
+,guiconnect(nullptr)
+,sym(gensym(""))
+,embName(gensym(""))
+,isFunctionMode(false)
+,shouldKeep(false)
+,isSignalObject(false)
+,isDirectMode(false)
+,hasUniqueSym(false)
+//,signal(this)
+,lua(std::make_unique<ofxOfeliaLua>(this))
+,io(this)
+,textBuf(this){};
+
+
 t_symbol *ofxOfeliaData::getUniqueSym()
 {
-    const ofxOfeliaAudioLock audioLock;
-    
-    char buf[MAXPDSTRING];
-    std::snprintf(buf, MAXPDSTRING, "__.x%lx.c", reinterpret_cast<unsigned long>(this));
-    hasUniqueSym = true;
+    char buf[MAXOFXSTRING];
+    std::snprintf(buf, MAXOFXSTRING, "__.x%lx.c", reinterpret_cast<unsigned long>(this));
     return gensym(buf);
 }
 
 void ofxOfeliaData::initSym()
 {
-    const ofxOfeliaAudioLock audioLock;
     if (*sym->s_name && pd_findbyclass(sym, ofxOfeliaDefine::pdClass) == nullptr) return;
+    hasUniqueSym = true;
     sym = getUniqueSym();
 }
 
 void ofxOfeliaData::bindSym()
 {
-    const ofxOfeliaAudioLock audioLock;
     pd_bind(&ob.ob_pd, sym);
 }
 
@@ -45,8 +59,6 @@ void ofxOfeliaData::unbindSym()
 
 void ofxOfeliaData::argParse(t_symbol *s, int argc, t_atom *argv, bool define)
 {
-    const ofxOfeliaAudioLock audioLock;
-    
     if (define)
     {
         canvas = canvas_getcurrent();
@@ -94,11 +106,12 @@ void ofxOfeliaData::argParse(t_symbol *s, int argc, t_atom *argv, bool define)
             isDirectMode = true;
             goto directMode;
         }
+        /*
         if (isSignalObject)
         {
             signal.f = atom_getfloat(argv);
             argc--; argv++;
-        }
+        } */
         else
         {
             for (int i = 0; i < io.numInlets - 1; ++i)
@@ -162,7 +175,7 @@ directMode:
     {
         initSym();
         bindSym();
-        lua.doArgs(--argc, ++argv);
+        lua->doArgs(--argc, ++argv);
         return;
     }
     binbuf = binbuf_new();
