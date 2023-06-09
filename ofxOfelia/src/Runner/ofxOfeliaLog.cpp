@@ -1,7 +1,6 @@
 #include "ofxOfeliaLog.h"
 #include "ofxOfeliaMessageManager.h"
 #include "ofUtils.h"
-#include "m_pd.h"
 
 std::shared_ptr<ofxOfeliaLog> ofxOfeliaLog::loggerChannel;
 
@@ -13,28 +12,25 @@ void ofxOfeliaLog::setLoggerChannel()
 
 void ofxOfeliaLog::log(ofLogLevel level, const std::string &module, const std::string &message)
 {
-    const ofxOfeliaAudioLock audioLock;
-    
-    logpost(NULL, 4 - level, "%s: %s", module.c_str(), message.c_str());
+    ofxOfeliaMessageManager::instance->sendMessage(pd_log, false, std::string(module + ": " + message));
 }
 
 void ofxOfeliaLog::log(ofLogLevel level, const std::string &module, const char* format, ...)
 {
-    const ofxOfeliaAudioLock audioLock;
-    
-    char buf[MAXPDSTRING];
+    char buf[1024];
     std::va_list args;
     va_start(args, format);
-    std::vsnprintf(buf, MAXPDSTRING - 1, format, args);
+    std::vsnprintf(buf, 1023, format, args);
     va_end(args);
-    logpost(NULL, 4 - level, "%s: %s", module.c_str(), buf);
+    
+
+    ofxOfeliaMessageManager::instance->sendMessage(pd_log, false, std::string(module + ": " + std::string(buf)));
 }
 
 void ofxOfeliaLog::log(ofLogLevel level, const std::string &module, const char* format, std::va_list args)
 {
-    const ofxOfeliaAudioLock audioLock;
+    char buf[1024];
+    std::snprintf(buf, 1023, "%s", ofVAArgsToString(format, args).c_str());
     
-    char buf[MAXPDSTRING];
-    std::snprintf(buf, MAXPDSTRING, "%s", ofVAArgsToString(format, args).c_str());
-    logpost(NULL, 4 - level, "%s: %s", module.c_str(), buf);
+    ofxOfeliaMessageManager::instance->sendMessage(pd_log, false, std::string(module + ": " + std::string(buf)));
 }

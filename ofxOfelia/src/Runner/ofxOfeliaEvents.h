@@ -1,9 +1,8 @@
 #pragma once
 
-#include "m_pd.h"
+//#include "m_pd.h"
 #include "ofEvents.h"
-#include "ofxOfeliaData.h"
-#include "ofxOfelia.h"
+#include "ofxOfeliaLua.h"
 #include <vector>
 #include <string>
 #include <utility>
@@ -19,24 +18,24 @@
 class ofxOfeliaEvents
 {
 public:
-    typedef std::pair<ofxOfeliaData *, t_float> DataPair;
+    typedef std::pair<ofxOfeliaLua *, float> DataPair;
     typedef std::vector<DataPair> DataPairVec;
-    static DataPairVec *getTargetDataPairVec(t_symbol *s);
-    static DataPairVec::iterator findDataPair(DataPairVec &vec, ofxOfeliaData *dataPtr);
-    static void addDataPair(DataPairVec &vec, ofxOfeliaData *x, t_floatarg f);
-    static void removeDataPair(DataPairVec &vec, ofxOfeliaData *x);
+    static DataPairVec *getTargetDataPairVec(const char *s);
+    static DataPairVec::iterator findDataPair(DataPairVec &vec, ofxOfeliaLua *dataPtr);
+    static void addDataPair(DataPairVec &vec, ofxOfeliaLua *x, t_floatarg f);
+    static void removeDataPair(DataPairVec &vec, ofxOfeliaLua *x);
     static void sortDataPairVec(DataPairVec &vec);
-    static void callEventListener(ofxOfeliaData *x, t_symbol *s);
-    static void callEventListener(ofxOfeliaData *x, t_symbol *s, ofKeyEventArgs &e);
-    static void callEventListener(ofxOfeliaData *x, t_symbol *s, ofMouseEventArgs &e);
-    static void callEventListener(ofxOfeliaData *x, t_symbol *s, ofResizeEventArgs &e);
-    static void callEventListener(ofxOfeliaData *x, t_symbol *s, ofMessage &e);
-    static void callEventListener(ofxOfeliaData *x, t_symbol *s, ofDragInfo &e);
-    static void callEventListener(ofxOfeliaData *x, t_symbol *s, ofTouchEventArgs &e);
-    static void callEventListener(ofxOfeliaData *x, t_symbol *s, const int e);
-    static void callEventListener(ofxOfeliaData *x, t_symbol *s, const std::string &e);
-    static void callEventListener(ofxOfeliaData *x, t_symbol *s, const std::pair<int, int> &e);
-    static void callEventListeners(DataPairVec &vec, t_symbol *s)
+    static void callEventListener(ofxOfeliaLua *x, const char *s);
+    static void callEventListener(ofxOfeliaLua *x, const char *s, ofKeyEventArgs &e);
+    static void callEventListener(ofxOfeliaLua *x, const char *s, ofMouseEventArgs &e);
+    static void callEventListener(ofxOfeliaLua *x, const char *s, ofResizeEventArgs &e);
+    static void callEventListener(ofxOfeliaLua *x, const char *s, ofMessage &e);
+    static void callEventListener(ofxOfeliaLua *x, const char *s, ofDragInfo &e);
+    static void callEventListener(ofxOfeliaLua *x, const char *s, ofTouchEventArgs &e);
+    static void callEventListener(ofxOfeliaLua *x, const char *s, const int e);
+    static void callEventListener(ofxOfeliaLua *x, const char *s, const std::string &e);
+    static void callEventListener(ofxOfeliaLua *x, const char *s, const std::pair<int, int> &e);
+    static void callEventListeners(DataPairVec &vec, const char *s)
     {
         sortDataPairVec(vec);
         for (const auto &i : vec)
@@ -47,7 +46,7 @@ public:
         }
     }
     template<typename T>
-    static void callEventListeners(DataPairVec &vec, t_symbol *s, T &e)
+    static void callEventListeners(DataPairVec &vec, const char *s, T &e)
     {
         sortDataPairVec(vec);
         for (const auto &i : vec)

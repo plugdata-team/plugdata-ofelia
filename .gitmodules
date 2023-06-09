@@ -4,3 +4,6 @@
 [submodule "ofxOfelia/libs/ofxPd/libs/libpd/pure-data"]
 	path = ofxOfelia/libs/ofxPd/libs/libpd/pure-data
 	url = https://github.com/plugdata-team/plugdata-pd
+[submodule "JUCE"]
+	path = JUCE
+	url = https://github.com/juce-framework/JUCE.git

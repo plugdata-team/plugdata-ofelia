@@ -2,11 +2,11 @@
 
 #include "m_pd.h"
 #include "ofxOfeliaData.h"
-#include "ofxOfeliaWeakReference.h"
 
 class ofxOfeliaClient
 {
 public:
+    
     void bangMethod();
     void floatMethod(t_floatarg f);
     void symbolMethod(t_symbol *s);
@@ -19,6 +19,4 @@ public:
     ofxOfeliaData data;
 private:
     bool isDataValid();
-    
-    DECLARE_WEAK_REFERENCEABLE(ofxOfeliaClient)
 };

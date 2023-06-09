@@ -7,7 +7,6 @@
 #include "ofxOfeliaExists.h"
 #include "ofxOfeliaCreator.h"
 #include "ofxOfeliaTextBuf.h"
-#include "ofxOfeliaLog.h"
 #include <cstdio>
 #include <cstdlib>
 #include <string>
@@ -51,9 +50,6 @@ void setup_gstreamer_env()
 
 void ofelia_setup()
 {
-
-    //setup_gstreamer_env();
-    
     /* check for pd version compatibility */
     int major, minor, bugfix;
     sys_getversion(&major, &minor, &bugfix);
@@ -62,7 +58,7 @@ void ofelia_setup()
         pd_error(NULL, "ofelia requires Pd-%d.%d-0 or higher", PD_MAJOR_VERSION_REQUIRED, PD_MINOR_VERSION_REQUIRED);
         return;
     }
-    if (!ofxOfeliaLua::init()) return;
+
     ofxOfeliaDefine::setup();
     ofxOfeliaFunction::setup();
     ofxOfeliaGet::setup();
@@ -70,7 +66,7 @@ void ofelia_setup()
     ofxOfeliaExists::setup();
     ofxOfeliaCreator::setup();
     ofxOfeliaTextBuf::loadScript();
-    ofxOfeliaLog::setLoggerChannel();
+    //ofxOfeliaLog::setLoggerChannel();
     
     const std::string &fileName = "ofelia/CHANGES.txt";
     std::string dirResult, fileNameResult;

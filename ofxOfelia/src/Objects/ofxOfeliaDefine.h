@@ -1,15 +1,15 @@
 #pragma once
 
-#include "m_pd.h"
+#include <m_pd.h>
 #include "ofxOfeliaData.h"
 #include "ofxOfeliaFunction.h"
-#include "ofxOfeliaWeakReference.h"
 
 class ofxOfeliaDefine
 {
 public:
     ofxOfeliaDefine()
     :function(this){};
+    
     ~ofxOfeliaDefine(){};
     void *newMethod(t_symbol *s, int argc, t_atom *argv);
     void bangMethod();
@@ -46,7 +46,4 @@ public:
     static t_class *pdClass;
     ofxOfeliaData data;
     ofxOfeliaFunction function;
-private:
-    
-    DECLARE_WEAK_REFERENCEABLE(ofxOfeliaDefine)
 };

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FD0A0E721D7ECC3D0028453F"
-               BuildableName = "ofelia.pd_darwin"
+               BuildableName = "ofelia"
                BlueprintName = "ofelia"
                ReferencedContainer = "container:ofelia.xcodeproj">
             </BuildableReference>
@@ -41,6 +41,16 @@
       debugServiceExtension = "internal"
       enableGPUValidationMode = "1"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "FD0A0E721D7ECC3D0028453F"
+            BuildableName = "ofelia"
+            BlueprintName = "ofelia"
+            ReferencedContainer = "container:ofelia.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -52,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FD0A0E721D7ECC3D0028453F"
-            BuildableName = "ofelia.pd_darwin"
+            BuildableName = "ofelia"
             BlueprintName = "ofelia"
             ReferencedContainer = "container:ofelia.xcodeproj">
          </BuildableReference>
