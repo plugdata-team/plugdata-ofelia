@@ -238,7 +238,7 @@
 				ABCF244A2A32AF4B00EB1126 /* ofxRingBuffer.h */,
 			);
 			name = Runner;
-			path = "../../../plugdata/Libraries/plugdata-ofelia/ofxOfelia/src/Runner";
+			path = "../../Source/Runner";
 			sourceTree = "<group>";
 		};
 		BB4B014C10F69532006C3DED /* addons */ = {
