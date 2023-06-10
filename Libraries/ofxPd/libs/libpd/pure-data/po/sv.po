@@ -1,0 +1,1502 @@
+# Swedish translation of Pure Data.
+# This file is put in the public domain
+# Johannes Burström <johannes@ljud.org>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Pure Data 0.43\n"
+"Report-Msgid-Bugs-To: pd-dev@iem.at\n"
+"POT-Creation-Date: 2022-10-19 23:59+0200\n"
+"PO-Revision-Date: 2009-08-22 11:20+0100\n"
+"Last-Translator: Johannes Burström <johannes@ljud.org>\n"
+"Language-Team: Swedish <https://hosted.weblate.org/projects/pure-data/"
+"pure-data/sv/>\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Swedish\n"
+"X-Poedit-Country: Sweden\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+msgid "linear"
+msgstr ""
+
+msgid "logarithmic"
+msgstr ""
+
+msgid "new-only"
+msgstr ""
+
+msgid "new&old"
+msgstr ""
+
+#, fuzzy
+msgid "no scale"
+msgstr "Skala"
+
+#, fuzzy
+msgid "scale"
+msgstr "Skala"
+
+#, tcl-format
+msgid "Discard changes to '%s'?"
+msgstr "Förkasta ändringar i '%s'?"
+
+msgid "Undo clear"
+msgstr ""
+
+msgid "Undo connect"
+msgstr ""
+
+#, fuzzy
+msgid "Undo cut"
+msgstr "Ångra"
+
+msgid "Undo disconnect"
+msgstr ""
+
+#, fuzzy
+msgid "Undo duplicate"
+msgstr "Duplicera"
+
+msgid "Undo motion"
+msgstr ""
+
+msgid "Undo paste"
+msgstr ""
+
+msgid "Undo typing"
+msgstr ""
+
+msgid "Redo clear"
+msgstr ""
+
+msgid "Redo connect"
+msgstr ""
+
+#, fuzzy
+msgid "Redo cut"
+msgstr "Ångra"
+
+msgid "Redo disconnect"
+msgstr ""
+
+#, fuzzy
+msgid "Redo duplicate"
+msgstr "Duplicera"
+
+msgid "Redo motion"
+msgstr ""
+
+msgid "Redo paste"
+msgstr ""
+
+msgid "Redo typing"
+msgstr ""
+
+msgid "no Pd settings to clear"
+msgstr ""
+
+msgid "removed .pdsettings file"
+msgstr ""
+
+msgid "couldn't delete .pdsettings file"
+msgstr ""
+
+msgid "failed to erase Pd settings"
+msgstr ""
+
+msgid "erased Pd settings"
+msgstr ""
+
+msgid "no Pd settings to erase"
+msgstr ""
+
+msgid "skipping loading preferences... Pd seems to have crashed on startup"
+msgstr ""
+
+msgid "(re-save preferences to reinstate them)"
+msgstr ""
+
+msgid "File"
+msgstr "Fil"
+
+#, fuzzy
+msgid "Edit"
+msgstr "Redigera"
+
+msgid "Put"
+msgstr "Placera"
+
+msgid "Find"
+msgstr "Sök"
+
+msgid "Media"
+msgstr "Media"
+
+msgid "Window"
+msgstr "Fönster"
+
+msgid "Help"
+msgstr "Hjälp"
+
+msgid "Show &Hidden Files and Directories"
+msgstr ""
+
+msgid "Copy"
+msgstr "Kopiera"
+
+msgid "Paste"
+msgstr "Klistra in"
+
+#, fuzzy
+msgid "Array Properties"
+msgstr "Egenskaper för Array"
+
+msgid "Array"
+msgstr "Array"
+
+msgid "Name:"
+msgstr "Namn:"
+
+msgid "Size:"
+msgstr "Storlek:"
+
+msgid "Save contents"
+msgstr "Spara innehåll"
+
+msgid "Draw as:"
+msgstr "Rita som:"
+
+msgid "Polygon"
+msgstr "Polygon"
+
+msgid "Points"
+msgstr "Punkter"
+
+msgid "Bezier curve"
+msgstr "Bezier-kurva"
+
+#, fuzzy
+msgid "Put array into:"
+msgstr "Rita array i:"
+
+#, fuzzy
+msgid "New graph"
+msgstr "Ny graf"
+
+#, fuzzy
+msgid "Last graph"
+msgstr "Senaste graf"
+
+msgid "Options"
+msgstr ""
+
+msgid "Open List View..."
+msgstr "Öppna listvy..."
+
+#, fuzzy
+msgid "Delete array"
+msgstr "Radera array"
+
+msgid "Cancel"
+msgstr "Ångra"
+
+msgid "Apply"
+msgstr "Verkställ"
+
+msgid "OK"
+msgstr "Ok"
+
+msgid "Audio Settings"
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid "Sample rate:"
+msgstr ""
+
+msgid "Delay (msec):"
+msgstr ""
+
+msgid "48k"
+msgstr ""
+
+msgid "44.1k"
+msgstr ""
+
+msgid "96k"
+msgstr ""
+
+msgid "Block size:"
+msgstr ""
+
+msgid "Use callbacks"
+msgstr ""
+
+msgid "Input Devices"
+msgstr ""
+
+#, fuzzy
+msgid "Channels:"
+msgstr "Ångra"
+
+msgid "Output Devices"
+msgstr ""
+
+msgid "(same as input device)..."
+msgstr ""
+
+msgid "Use Multiple Devices"
+msgstr ""
+
+msgid "Save All Settings"
+msgstr ""
+
+msgid "WARNING: unknown graphme flags received in pdtk_canvas_dialog"
+msgstr ""
+
+#, fuzzy
+msgid "Canvas Properties"
+msgstr "Egenskaper för canvas"
+
+msgid "Scale"
+msgstr "Skala"
+
+#, fuzzy
+msgid "X units per pixel:"
+msgstr "X enheter per pixel:"
+
+#, fuzzy
+msgid "Y units per pixel:"
+msgstr "Y enheter per pixel:"
+
+#, fuzzy
+msgid "Appearance on parent patch"
+msgstr "Utseende på föräldrapatchen"
+
+#, fuzzy
+msgid "Graph-On-Parent"
+msgstr "Graph-On-Parent"
+
+msgid "Hide object name and arguments"
+msgstr "Göm objektnamn och argument"
+
+msgid "Range and size"
+msgstr "Omfång och storlek"
+
+#, fuzzy
+msgid "X range: from"
+msgstr "Omfång (x), från"
+
+msgid "to"
+msgstr "till"
+
+msgid "Margin:"
+msgstr "Marginal:"
+
+#, fuzzy
+msgid "Y range: from"
+msgstr "Omfång (y), från:"
+
+#, fuzzy
+msgid "Data Properties"
+msgstr "Egenskaper för canvas"
+
+msgid "Send"
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+#, tcl-format
+msgid "Found '%1$s' in %2$s"
+msgstr ""
+
+#, tcl-format
+msgid "Couldn't find '%1$s' in %2$s"
+msgstr ""
+
+#, fuzzy, tcl-format
+msgid "Search in %s for:"
+msgstr "Sök i"
+
+#, tcl-format
+msgid "Showed last '%1$s' in %2$s"
+msgstr ""
+
+#, tcl-format
+msgid "Showing '%1$d' out of %2$d items in %3$s"
+msgstr ""
+
+msgid "Pd window"
+msgstr "Huvudfönster"
+
+msgid "Match whole word only"
+msgstr "Endast hela ord"
+
+msgid "Close"
+msgstr "Stäng"
+
+#, fuzzy, tcl-format
+msgid "%s Font"
+msgstr "Typsnitt"
+
+msgid "Font"
+msgstr "Typsnitt"
+
+#, fuzzy
+msgid "Font Size"
+msgstr "Typsnittsstorlek:"
+
+#, fuzzy
+msgid "Stretch"
+msgstr "Sträck:"
+
+msgid "X and Y"
+msgstr "X och Y"
+
+msgid "X only"
+msgstr "Bara X"
+
+msgid "Y only"
+msgstr "Bara Y"
+
+#, fuzzy
+msgid "GUI Box Properties"
+msgstr "Egenskaper för Atom"
+
+msgid "Messages"
+msgstr "Meddelanden"
+
+#, fuzzy
+msgid "Send symbol:"
+msgstr "Sändsymbol:"
+
+msgid "Receive symbol:"
+msgstr "Mottagarsymbol:"
+
+msgid "Width:"
+msgstr "Bredd:"
+
+#, fuzzy
+msgid "Limits"
+msgstr "Gränser"
+
+msgid "Lower:"
+msgstr "Lägre:"
+
+msgid "Upper:"
+msgstr "Övre"
+
+#, fuzzy
+msgid "Label"
+msgstr "Text"
+
+#, fuzzy
+msgid "Left"
+msgstr "Vänster"
+
+msgid "Right"
+msgstr "Höger"
+
+msgid "Top"
+msgstr "Överkant"
+
+msgid "Bottom"
+msgstr "Underkant"
+
+msgid "Background color"
+msgstr "Bakgrundsfärg"
+
+msgid "Foreground color"
+msgstr "Förgrundsfärg"
+
+msgid "Label color"
+msgstr "Textfärg"
+
+msgid "Bang"
+msgstr "Bang"
+
+msgid "Flash Time (msec)"
+msgstr ""
+
+msgid "Min:"
+msgstr ""
+
+msgid "Max:"
+msgstr ""
+
+msgid "Toggle"
+msgstr "Toggle"
+
+msgid "Non Zero Value"
+msgstr ""
+
+msgid "Value:"
+msgstr ""
+
+msgid "Number2"
+msgstr "Number2"
+
+msgid "Width (digits):"
+msgstr ""
+
+#, fuzzy
+msgid "Height:"
+msgstr "Höger"
+
+msgid "Output Range"
+msgstr ""
+
+msgid "Log height:"
+msgstr ""
+
+msgid "Vslider"
+msgstr "Vslider"
+
+msgid "Hslider"
+msgstr "Hslider"
+
+msgid "Vradio"
+msgstr "Vradio"
+
+msgid "Num cells:"
+msgstr ""
+
+msgid "Hradio"
+msgstr "Hradio"
+
+msgid "VU Meter"
+msgstr "VU-mätare"
+
+msgid "Canvas"
+msgstr "Canvas"
+
+msgid "Visible Rectangle (pix)"
+msgstr ""
+
+#, tcl-format
+msgid "%s Properties"
+msgstr "Egenskaper för %s"
+
+msgid "Parameters"
+msgstr ""
+
+msgid "Init"
+msgstr "Initiera"
+
+msgid "No init"
+msgstr "Initiera inte"
+
+msgid "Jump on click"
+msgstr "Ändra värde vid klick"
+
+msgid "Steady on click"
+msgstr "Behåll värde vid klick"
+
+#, fuzzy
+msgid "X offset:"
+msgstr "x-position"
+
+#, fuzzy
+msgid "Y offset:"
+msgstr "y-position"
+
+msgid "Colors"
+msgstr "Färger"
+
+msgid "Background"
+msgstr "Bakgrund"
+
+msgid "Front"
+msgstr "Förgrund"
+
+msgid "Compose color"
+msgstr "Skapa ny färg"
+
+msgid "Test label"
+msgstr "Testtext"
+
+#, fuzzy
+msgid "Send a Pd message"
+msgstr "Sänd meddelande"
+
+msgid "(use arrow keys for history)"
+msgstr ""
+
+msgid "MIDI Settings"
+msgstr ""
+
+msgid "ALSA MIDI Settings"
+msgstr ""
+
+msgid "In Ports:"
+msgstr ""
+
+msgid "Out Ports:"
+msgstr ""
+
+msgid "Pd search path for objects, help, audio, text and other files"
+msgstr ""
+
+msgid "Use standard paths"
+msgstr ""
+
+msgid "Verbose"
+msgstr ""
+
+msgid "Pd Documents Directory"
+msgstr ""
+
+msgid "Browse"
+msgstr ""
+
+msgid "Reset"
+msgstr ""
+
+msgid "Disable"
+msgstr ""
+
+msgid "Externals Install Directory"
+msgstr ""
+
+#, fuzzy
+msgid "Clear"
+msgstr "Rensa konsoll"
+
+msgid "Choose Pd documents directory:"
+msgstr ""
+
+msgid "Install externals to directory:"
+msgstr ""
+
+msgid "Add a new path"
+msgstr ""
+
+#, tcl-format
+msgid "Edit existing path [%s]"
+msgstr ""
+
+msgid "Add new library"
+msgstr ""
+
+msgid "Edit library"
+msgstr ""
+
+msgid "Pd libraries to load on startup"
+msgstr ""
+
+msgid "Startup flags:"
+msgstr ""
+
+msgid "Defeat real-time scheduling"
+msgstr ""
+
+#, fuzzy
+msgid "Help Browser"
+msgstr "Bläddra..."
+
+msgid "Associated Files"
+msgstr ""
+
+#, fuzzy
+msgid "Pd Files"
+msgstr "Fil"
+
+msgid "Max Patch Files"
+msgstr ""
+
+#, fuzzy
+msgid "Max Text Files"
+msgstr "Fil"
+
+msgid "Max Patch Files (.pat)"
+msgstr ""
+
+msgid "Max Text Files (.mxt)"
+msgstr ""
+
+#, tcl-format
+msgid "detected font: %s"
+msgstr ""
+
+#, tcl-format
+msgid "WARNING: font family '%1$s' not found, using default (%2$s)"
+msgstr ""
+
+#, tcl-format
+msgid "WARNING: font weight '%1$s' not found, using default (%2$s)"
+msgstr ""
+
+#, tcl-format
+msgid "using font: %1$s %2$s"
+msgstr ""
+
+#, tcl-format
+msgid "'%1$s' already loaded, ignoring: '%2$s'"
+msgstr ""
+
+#, tcl-format
+msgid "Loading plugin: %s"
+msgstr ""
+
+#, tcl-format
+msgid "UNHANDLED ERROR: %s"
+msgstr ""
+
+#, tcl-format
+msgid "FAILED TO LOAD %s"
+msgstr ""
+
+#, tcl-format
+msgid "Failed to read plugin %s ...skipping!"
+msgstr ""
+
+#, tcl-format
+msgid "Failed to find plugins in %s ...skipping!"
+msgstr ""
+
+msgid "(Tcl) MISSING CLOSE-BRACE '}': "
+msgstr ""
+
+msgid "(Tcl) INVALID COMMAND NAME: "
+msgstr ""
+
+msgid "(Tcl) UNHANDLED ERROR: "
+msgstr ""
+
+#, tcl-format
+msgid "[deken] installed version [%1$s] > %2$s...skipping!"
+msgstr ""
+
+#, tcl-format
+msgid "[deken] installed version [%1$s] < %2$s...overwriting!"
+msgstr ""
+
+#, tcl-format
+msgid "[deken] installed version [%1$s] == %2$s...skipping!"
+msgstr ""
+
+#, tcl-format
+msgid "installing deken package '%s'"
+msgstr ""
+
+#, tcl-format
+msgid "ignoring '%s': doesn't look like a deken package"
+msgstr ""
+
+#, fuzzy, tcl-format
+msgid "Installing '%s'"
+msgstr "Förkasta ändringar i '%s'?"
+
+#, tcl-format
+msgid "Successfully unzipped %1$s into %2$s."
+msgstr ""
+
+msgid "Unable to extract package automatically."
+msgstr ""
+
+msgid "Please perform the following steps manually:"
+msgstr ""
+
+#, tcl-format
+msgid "1. Unzip %s."
+msgstr ""
+
+msgid "You might need to change the file-extension from .dek to .zip"
+msgstr ""
+
+#, tcl-format
+msgid "2. Copy the contents into %s."
+msgstr ""
+
+#, tcl-format
+msgid "3. Remove %s. (optional)"
+msgstr ""
+
+#, tcl-format
+msgid "Removing '%s'"
+msgstr ""
+
+#, tcl-format
+msgid "Uninstalling %1$s from %2$s failed!"
+msgstr ""
+
+#, tcl-format
+msgid "Skipping SHA256 verification of '%s'."
+msgstr ""
+
+#, tcl-format
+msgid "SHA256 verification of '%s'"
+msgstr ""
+
+#, tcl-format
+msgid "Unable to fetch reference SHA256 for '%s'."
+msgstr ""
+
+#, tcl-format
+msgid "Unable to perform SHA256 verification for '%s'."
+msgstr ""
+
+#, tcl-format
+msgid "Unable to download from %1$s [%2$s]"
+msgstr ""
+
+#, tcl-format
+msgid "Unable to download from '%s'!"
+msgstr ""
+
+msgid "Download failed"
+msgstr ""
+
+#, tcl-format
+msgid "Unable to remove stray file '%s'"
+msgstr ""
+
+#, tcl-format
+msgid "Unable to rename downloaded file to '%s'"
+msgstr ""
+
+msgid "Create"
+msgstr ""
+
+msgid "Check"
+msgstr ""
+
+msgid "Installation options:"
+msgstr ""
+
+msgid "Try to verify the libraries' checksum before (re)installing them"
+msgstr ""
+
+msgid "Try to remove libraries before (re)installing them"
+msgstr ""
+
+msgid "Show README of newly installed libraries (if present)"
+msgstr ""
+
+msgid "Keep package files after installation"
+msgstr ""
+
+msgid "Add newly installed libraries to Pd's search path"
+msgstr ""
+
+msgid "Platform settings:"
+msgstr ""
+
+#, tcl-format
+msgid "Default platform: %s"
+msgstr ""
+
+msgid "User-defined platform:"
+msgstr ""
+
+msgid "Hide foreign architectures"
+msgstr ""
+
+msgid ""
+"Only show the newest version of a library\n"
+"(treats other versions like foreign architectures)"
+msgstr ""
+
+#, fuzzy, tcl-format
+msgid "Deken %s Preferences"
+msgstr "Inställningar"
+
+#, tcl-format
+msgid "Platform re-detected: %s"
+msgstr ""
+
+msgid "Deken Packages"
+msgstr ""
+
+#, fuzzy
+msgid "ZIP Files"
+msgstr "ZIP-Filer"
+
+#, fuzzy
+msgid "TAR Files"
+msgstr "TAR-Filer"
+
+#, fuzzy
+msgid "All Files"
+msgstr "Alla filer"
+
+#, tcl-format
+msgid "Checksum mismatch for '%s'"
+msgstr ""
+
+#, tcl-format
+msgid "SHA256 verification of '%s' failed!"
+msgstr ""
+
+msgid "SHA256 verification failed"
+msgstr ""
+
+#, tcl-format
+msgid "Uninstalling previous installation of '%s'"
+msgstr ""
+
+#, tcl-format
+msgid "Temporarily moving %1$s into %2$s failed."
+msgstr ""
+
+#, tcl-format
+msgid "Installing package '%s'"
+msgstr ""
+
+msgid "Installation completed!"
+msgstr ""
+
+#, tcl-format
+msgid "Successfully installed '%s'!"
+msgstr ""
+
+msgid "Installation failed!"
+msgstr ""
+
+#, tcl-format
+msgid "Failed to install '%s'!"
+msgstr ""
+
+msgid "Package installation failed"
+msgstr ""
+
+#, tcl-format
+msgid ""
+"Failed to completely remove %1$s.\n"
+"Please manually remove the directory %2$s after quitting Pd."
+msgstr ""
+
+#, tcl-format
+msgid "Unable to add %s to search paths"
+msgstr ""
+
+#, tcl-format
+msgid "Add %s to the Pd search paths?"
+msgstr ""
+
+#, tcl-format
+msgid "Added %s to search paths"
+msgstr ""
+
+msgid "No packages selected for installation."
+msgstr ""
+
+#, tcl-format
+msgid "Processed %d packages selected for installation."
+msgstr ""
+
+msgid "Show all"
+msgstr ""
+
+#, fuzzy
+msgid "Search"
+msgstr "Sök i"
+
+#, tcl-format
+msgid "Install (%d)"
+msgstr ""
+
+msgid "Install"
+msgstr ""
+
+#, tcl-format
+msgid "%s%% of download completed"
+msgstr ""
+
+msgid "Enter an exact library or object name."
+msgstr ""
+
+msgid "e.g. 'freeverb~'"
+msgstr ""
+
+msgid "Use the '*' wildcard to match any number of characters."
+msgstr ""
+
+msgid "e.g. '*-plugin' will match 'deken-plugin' (and more)."
+msgstr ""
+
+msgid "You can restrict the search to only-libraries or only-objects."
+msgstr ""
+
+msgid "To get a list of all available externals, try an empty search."
+msgstr ""
+
+msgid "Right-clicking a search result will give you more options..."
+msgstr ""
+
+msgid "You can also search for libraries & objects via your web browser:"
+msgstr ""
+
+msgid "Find externals"
+msgstr ""
+
+msgid "Install DEK file..."
+msgstr ""
+
+msgid "Preferences..."
+msgstr "Inställningar..."
+
+#, fuzzy
+msgid "Search for: "
+msgstr "Sök i"
+
+msgid "libraries"
+msgstr ""
+
+#, fuzzy
+msgid "objects"
+msgstr "Objekt"
+
+msgid "both"
+msgstr ""
+
+msgid "translations"
+msgstr ""
+
+msgid "Only install externals uploaded by people you trust."
+msgstr ""
+
+msgid "Disabling tabbed view: incompatible Tcl/Tk detected"
+msgstr ""
+
+msgid "Library"
+msgstr ""
+
+msgid "Version"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "Uploader"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+#, fuzzy
+msgid "Search Results"
+msgstr "Sök i"
+
+msgid "Log"
+msgstr ""
+
+#, fuzzy, tcl-format
+msgid "Searching for \"%s\"..."
+msgstr "Förkasta ändringar i '%s'?"
+
+#, tcl-format
+msgid "online? %s"
+msgstr ""
+
+msgid "Unable to perform search. Are you online?"
+msgstr ""
+
+#, tcl-format
+msgid "Found %1$d usable packages (of %2$d packages in total)."
+msgstr ""
+
+msgid "It appears that there are no matching packages for your architecture."
+msgstr ""
+
+msgid "No matching externals found."
+msgstr ""
+
+msgid "Try using the full name e.g. 'freeverb~'."
+msgstr ""
+
+msgid "Or use wildcards like 'freeverb*'."
+msgstr ""
+
+msgid "Please select a (writable) installation directory!"
+msgstr ""
+
+#, tcl-format
+msgid "Install %1$s to %2$s?"
+msgstr ""
+
+#, tcl-format
+msgid "Cancelling download of '%s': No installation directory given."
+msgstr ""
+
+msgid "Installing to non-existant directory failed"
+msgstr ""
+
+#, tcl-format
+msgid "Unable to install to '%s'"
+msgstr ""
+
+msgid "Directory does not exist!"
+msgstr ""
+
+msgid "Directory is not writable!"
+msgstr ""
+
+#, tcl-format
+msgid "Downloading '%s'"
+msgstr ""
+
+#, tcl-format
+msgid "Commencing download of '%1$s' into '%2$s'..."
+msgstr ""
+
+msgid "aborting."
+msgstr ""
+
+#, tcl-format
+msgid "Downloading '%s' failed"
+msgstr ""
+
+msgid "Download failed!"
+msgstr ""
+
+msgid "Download completed! Verifying..."
+msgstr ""
+
+msgid "Ignoring checksum mismatch"
+msgstr ""
+
+#, tcl-format
+msgid "[deken] deken-plugin.tcl (Pd externals search) loaded from %s."
+msgstr ""
+
+#, tcl-format
+msgid "[deken] Platform detected: %s"
+msgstr ""
+
+#, fuzzy, tcl-format
+msgid "Searching on %s..."
+msgstr "Förkasta ändringar i '%s'?"
+
+#, tcl-format
+msgid "Searching on %1$s returned %2$d results"
+msgstr ""
+
+msgid "No usable servers for searching found..."
+msgstr ""
+
+#, tcl-format
+msgid "Uploaded by %1$s @ %2$s"
+msgstr ""
+
+#, fuzzy, tcl-format
+msgid "Searching for '%s' failed!"
+msgstr "Förkasta ändringar i '%s'?"
+
+#, fuzzy
+msgid "Search failed"
+msgstr "Sök i"
+
+msgid "Unable to perform search."
+msgstr ""
+
+msgid "Select package for installation"
+msgstr ""
+
+msgid "Deselect package"
+msgstr ""
+
+#, fuzzy
+msgid "Open package webpage"
+msgstr "Öppna senaste"
+
+msgid "Copy package URL"
+msgstr ""
+
+msgid "Copy SHA256 checksum URL"
+msgstr ""
+
+msgid "Copy OpenGPG signature URL"
+msgstr ""
+
+#, tcl-format
+msgid "Uninstall '%s'"
+msgstr ""
+
+#, tcl-format
+msgid ""
+"Do you want Pd to use the existing documents directory for patches and "
+"external libraries?\n"
+"\n"
+"Location: %s\n"
+"\n"
+"You can change or disable this later in the Path preferences."
+msgstr ""
+
+#, tcl-format
+msgid ""
+"Do you want Pd to create a documents directory for patches and external "
+"libraries?\n"
+"\n"
+"Location: %s\n"
+"\n"
+"You can change or disable this later in the Path preferences."
+msgstr ""
+
+#, tcl-format
+msgid ""
+"Pd documents directory cannot be found:\n"
+"\n"
+"%s\n"
+"\n"
+"Choose a new location?"
+msgstr ""
+
+#, tcl-format
+msgid "couldn't create Pd documents directory: %s"
+msgstr ""
+
+#, tcl-format
+msgid "couldn't create \"externals\" directory in: %s"
+msgstr ""
+
+msgid "refusing to delete empty domain"
+msgstr ""
+
+#, tcl-format
+msgid "Couldn't create preferences \"%1$s\" in %2$s"
+msgstr ""
+
+#, tcl-format
+msgid "ignoring '%s': doesn't exist"
+msgstr ""
+
+msgid "About Pd"
+msgstr "Om Pd"
+
+#, tcl-format
+msgid "couldn't read \"%s\" document"
+msgstr ""
+
+msgid "Save"
+msgstr "Spara"
+
+msgid "Save As..."
+msgstr "Spara som..."
+
+msgid "Print..."
+msgstr "Skriv ut..."
+
+msgid "Paste Replace"
+msgstr ""
+
+msgid "Duplicate"
+msgstr "Duplicera"
+
+#, fuzzy
+msgid "Zoom In"
+msgstr "Zooma"
+
+#, fuzzy
+msgid "Zoom Out"
+msgstr "Zooma"
+
+msgid "Tidy Up"
+msgstr "Städa upp"
+
+msgid "(Dis)Connect Selection"
+msgstr ""
+
+msgid "Triggerize"
+msgstr ""
+
+msgid "Edit Mode"
+msgstr "Redigeringsläge"
+
+msgid "Undo"
+msgstr "Ångra"
+
+msgid "Redo"
+msgstr "Gör om"
+
+msgid "New"
+msgstr "Ny"
+
+msgid "Open"
+msgstr "Öppna"
+
+#, fuzzy
+msgid "Message..."
+msgstr "Meddelande"
+
+msgid "Cut"
+msgstr "Klipp ut"
+
+msgid "Select All"
+msgstr "Markera allt"
+
+#, fuzzy
+msgid "Clear Console"
+msgstr "Rensa konsoll"
+
+msgid "Object"
+msgstr "Objekt"
+
+msgid "Message"
+msgstr "Meddelande"
+
+msgid "Number"
+msgstr "Number"
+
+msgid "List"
+msgstr ""
+
+msgid "Symbol"
+msgstr "Symbol"
+
+msgid "Comment"
+msgstr "Kommentar"
+
+msgid "Graph"
+msgstr "Graf"
+
+msgid "Find..."
+msgstr "Sök..."
+
+msgid "Find Again"
+msgstr "Sök igen"
+
+msgid "Find Last Error"
+msgstr "Sök senaste fel"
+
+msgid "DSP On"
+msgstr "DSP på"
+
+msgid "DSP Off"
+msgstr "DSP av"
+
+msgid "Test Audio and MIDI..."
+msgstr "Testa ljud och MIDI..."
+
+#, fuzzy
+msgid "Load Meter"
+msgstr "Belastningsmätare"
+
+msgid "Audio Settings..."
+msgstr ""
+
+msgid "MIDI Settings..."
+msgstr ""
+
+msgid "Minimize"
+msgstr "Minimera"
+
+msgid "Zoom"
+msgstr "Zooma"
+
+#, fuzzy
+msgid "Bring All to Front"
+msgstr "Lägg alla överst"
+
+#, fuzzy
+msgid "Next Window"
+msgstr "Föräldrafönster"
+
+#, fuzzy
+msgid "Previous Window"
+msgstr "Föräldrafönster"
+
+msgid "Parent Window"
+msgstr "Föräldrafönster"
+
+msgid "HTML Manual..."
+msgstr "HTML-manual..."
+
+msgid "Browser..."
+msgstr "Bläddra..."
+
+msgid "List of objects..."
+msgstr ""
+
+msgid "puredata.info"
+msgstr ""
+
+msgid "Check for updates"
+msgstr ""
+
+msgid "Report a bug"
+msgstr ""
+
+#, fuzzy
+msgid "Clear Menu"
+msgstr "Rensa konsoll"
+
+msgid ""
+"Delete all preferences?\n"
+"(takes effect when Pd is restarted)"
+msgstr ""
+
+msgid "removed GUI settings"
+msgstr ""
+
+msgid "no Pd-GUI settings to clear"
+msgstr ""
+
+msgid "Path..."
+msgstr ""
+
+msgid "Startup..."
+msgstr ""
+
+msgid "Audio..."
+msgstr ""
+
+msgid "MIDI..."
+msgstr ""
+
+#, fuzzy
+msgid "Zoom New Windows"
+msgstr "Föräldrafönster"
+
+#, fuzzy
+msgid "Save All Preferences"
+msgstr "Inställningar"
+
+#, fuzzy
+msgid "Save to..."
+msgstr "Spara som..."
+
+msgid "Load from..."
+msgstr ""
+
+msgid "Forget All..."
+msgstr ""
+
+msgid "Preferences"
+msgstr "Inställningar"
+
+msgid "Open Recent"
+msgstr "Öppna senaste"
+
+msgid "Quit"
+msgstr "Avsluta"
+
+#, tcl-format
+msgid "Do you want to save the changes you made in '%s'?"
+msgstr "Vill du spara dina ändringar i '%s'?"
+
+msgid "Properties"
+msgstr "Egenskaper"
+
+#, tcl-format
+msgid "dropped %d lines from the Pd window"
+msgstr ""
+
+#, tcl-format
+msgid "the Pd window filtered %d lines"
+msgstr ""
+
+msgid "Audio on"
+msgstr ""
+
+msgid "Audio off"
+msgstr ""
+
+msgid "(Tcl) MISSING CLOSE-BRACKET ']': "
+msgstr ""
+
+msgid "Tcl:"
+msgstr ""
+
+msgid "Pd"
+msgstr ""
+
+#, fuzzy
+msgid "DSP"
+msgstr "DSP på"
+
+msgid "Audio I/O error"
+msgstr ""
+
+msgid "Log:"
+msgstr ""
+
+msgid "fatal"
+msgstr ""
+
+msgid "error"
+msgstr ""
+
+msgid "normal"
+msgstr ""
+
+msgid "debug"
+msgstr ""
+
+msgid "all"
+msgstr ""
+
+msgid "New..."
+msgstr ""
+
+#, fuzzy
+msgid "Edit..."
+msgstr "Redigera"
+
+#, fuzzy
+msgid "Delete"
+msgstr "Radera array"
+
+#, tcl-format
+msgid "ignoring '%s': doesn't look like a Pd file"
+msgstr ""
+
+#, fuzzy
+#~ msgid "bottom:"
+#~ msgstr "Underkant"
+
+#, fuzzy
+#~ msgid "height:"
+#~ msgstr "Höger"
+
+#, fuzzy
+#~ msgid "right:"
+#~ msgstr "Höger"
+
+#, fuzzy
+#~ msgid "size:"
+#~ msgstr "Storlek:"
+
+#, fuzzy
+#~ msgid "width:"
+#~ msgstr "Bredd:"
+
+#, fuzzy
+#~ msgid "start searching for externals..."
+#~ msgstr "Förkasta ändringar i '%s'?"
+
+#~ msgid "for:"
+#~ msgstr "efter:"
+
+#~ msgid "Patch Font"
+#~ msgstr "Patchtypsnitt"
+
+#, fuzzy
+#~ msgid "Toggle Console"
+#~ msgstr "Växla visning av konsoll"
+
+#~ msgid "Text Editor"
+#~ msgstr "Textredigerare"
+
+#, fuzzy
+#~ msgid "Discard changes to this window??"
+#~ msgstr "Ignorera ändringar i detta fönster?"
+
+#, fuzzy
+#~ msgid "Font Properties"
+#~ msgstr "Egenskaper"
+
+#~ msgid "really quit?"
+#~ msgstr "Vill du avsluta?"
+
+#, fuzzy
+#~ msgid "Filters"
+#~ msgstr "Fil"
+
+#~ msgid "Close this window??"
+#~ msgstr "Stäng fönstret?"
