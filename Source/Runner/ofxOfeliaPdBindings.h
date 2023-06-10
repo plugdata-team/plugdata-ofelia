@@ -670,27 +670,25 @@ class pdValue
 public:
     pdValue(std::string s)
     :sym(s)
-    ,floatstar(/*value_get(sym)*/ 0.0f){};
     virtual ~pdValue()
     {
-        //value_release(sym);
     };
     float get()
     {
-//        return *floatstar;
-        return 0;
+        ofxOfeliaMessageManager::instance->sendMessage(pd_value_get, sym);
+        return ofxOfeliaMessageManager::instance->waitForReturnValue<float>();
     }
     void set(t_floatarg f)
     {
-        //*floatstar = f;
+        ofxOfeliaMessageManager::instance->sendMessage(pd_value_set, sym, f);
     }
 private:
     std::string sym;
-    float floatstar;
 };
 
 class pdArray
 {
+
 public:
     pdArray(std::string s)
     :sym(s){};
@@ -955,31 +953,42 @@ static bool pdIsBigOrSmall(t_floatarg f)
 
 static void pdSysGui(std::string str)
 {
+    // plugdata can't do this
 }
 
 static int pdGetBlockSize()
 {
-    return 0;
+    ofxOfeliaMessageManager::instance->sendMessage(pd_get_sys_info);
+    auto settings = ofxOfeliaMessageManager::instance->waitForReturnValue<int, int, int, int, int>();
+    return std:get<0>(settings);
 }
 
 static float pdGetSampleRate()
 {
-    return 0;
+    ofxOfeliaMessageManager::instance->sendMessage(pd_get_sys_info);
+    auto settings = ofxOfeliaMessageManager::instance->waitForReturnValue<int, int, int, int, int>();
+    return std:get<1>(settings);
 }
 
 static int pdGetNumInChannels()
 {
-    return 0;
+    ofxOfeliaMessageManager::instance->sendMessage(pd_get_sys_info);
+    auto settings = ofxOfeliaMessageManager::instance->waitForReturnValue<int, int, int, int, int>();
+    return std:get<2>(settings);
 }
 
 static int pdGetNumOutChannels()
 {
-    return 0;
+    ofxOfeliaMessageManager::instance->sendMessage(pd_get_sys_info);
+    auto settings = ofxOfeliaMessageManager::instance->waitForReturnValue<int, int, int, int, int>();
+    return std:get<3>(settings);
 }
 
 static bool pdGetDspState()
 {
-    return 0;
+    ofxOfeliaMessageManager::instance->sendMessage(pd_get_sys_info);
+    auto settings = ofxOfeliaMessageManager::instance->waitForReturnValue<int, int, int, int, int>();
+    return std:get<4>(settings);
 }
 
 static int pdGetMaxString()
@@ -1002,12 +1011,24 @@ static float pdGetMaxFloat()
     return std::numeric_limits<float>::max();
 }
 
+typedef union
+{
+    t_float f;
+    unsigned int ui;
+} t_bigorsmall32;
+
+
 static bool pdIsBadFloat(t_floatarg f)
 {
-    return 0;
+    t_bigorsmall32 pun;
+    pun.f = f;
+    pun.ui &= 0x7f800000;
+    return((pun.ui == 0) | (pun.ui == 0x7f800000));
 }
 
 static bool pdIsBigOrSmall(t_floatarg f)
 {
-    return 0;
+    t_bigorsmall32 pun;
+    pun.f = f;
+    return((pun.ui & 0x20000000) == ((pun.ui >> 1) & 0x20000000));
 }

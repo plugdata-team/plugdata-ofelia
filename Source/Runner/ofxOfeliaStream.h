@@ -93,6 +93,18 @@ enum ofxMessageType
     pd_pointer,
     pd_list,
     pd_anything,
+    
+    pd_array_get,
+    pd_array_set,
+    pd_array_get_size,
+    pd_array_set_size
+    
+    pd_inlet_set_float,
+    pd_inlet_set_symbol,
+    pd_inlet_set_inlets,
+    pd_inlet_set_signal,
+    
+    pd_get_sys_info
 };
 
 
