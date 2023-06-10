@@ -136,12 +136,12 @@ public:
                 
                 if(identifier != uid()) break;
                 auto* canvas = getParentCanvas(dataPtr->canvas, parent);
-                if (!canvas) return;
-                
-                auto* retsym = gensym("$0");
-                if(canvas) {
-                    retsym = canvas_realizedollar(canvas, retsym);
+                if (!canvas)  {
+                    messageManager->sendReturnValue(std::string("$0"));
+                    break;
                 }
+                
+                auto* retsym = canvas_realizedollar(canvas, gensym("$0"));
                 
                 messageManager->sendReturnValue(std::string(retsym->s_name));
                 break;
@@ -152,7 +152,10 @@ public:
                 
                 if(identifier != uid()) break;
                 auto* canvas = getParentCanvas(dataPtr->canvas, parent);
-                if (!canvas) return;
+                if (!canvas) {
+                    messageManager->sendReturnValue<std::string>(std::string(""));
+                    break;
+                }
                 
                 char buf[MAXPDSTRING];
                 std::snprintf(buf, MAXPDSTRING, ".x%lx.c", reinterpret_cast<unsigned long>(canvas));
@@ -164,8 +167,13 @@ public:
                 auto [identifier, parent] = messageManager->parseMessage<std::string, int>(message);
                 
                 if(identifier != uid()) break;
+
                 auto* canvas = getParentCanvas(dataPtr->canvas, parent);
-                if (!canvas) return;
+
+                if (!canvas) {
+                    messageManager->sendReturnValue(std::string(""), std::vector<t_atom>());
+                    break;
+                }
                 
                 int argcp;
                 t_atom* argvp;
@@ -194,7 +202,9 @@ public:
                 
                 if(identifier != uid()) break;
                 auto* canvas = getParentCanvas(dataPtr->canvas, parent);
-                if (canvas == nullptr) break;
+                if (!canvas) {
+                    break;
+                }
                 
                 t_binbuf *binbuf = canvas->gl_obj.te_binbuf;
                 if (!binbuf) return;
@@ -212,7 +222,10 @@ public:
                 
                 if(identifier != uid()) break;
                 auto* canvas = getParentCanvas(dataPtr->canvas, parent);
-                if (canvas == nullptr) break;
+                if (!canvas) {
+                    messageManager->sendReturnValue(std::string());
+                    break;
+                }
                 
                 auto* dir = canvas_getdir(canvas);
                 messageManager->sendReturnValue(std::string(dir->s_name));
@@ -224,7 +237,10 @@ public:
                 
                 if(identifier != uid()) break;
                 auto* canvas = getParentCanvas(dataPtr->canvas, parent);
-                if (canvas == nullptr) break;
+                if (!canvas) {
+                    messageManager->sendReturnValue(std::string());
+                    break;
+                }
                 
                 char buf[MAXPDSTRING];
                 canvas_makefilename(canvas, symbol.c_str(), buf, MAXPDSTRING);
@@ -237,8 +253,11 @@ public:
                 
                 if(identifier != uid()) break;
                 auto* canvas = getParentCanvas(dataPtr->canvas, parent);
-                if (canvas == nullptr) break;
-                
+                if (!canvas)
+                {
+                    messageManager->sendReturnValue(-1);
+                    break;
+                }
                 t_glist *glist = static_cast<t_glist*>(canvas);
                 t_gobj *obj;
                 int index = 0;
@@ -251,7 +270,11 @@ public:
                 
                 if(identifier != uid()) break;
                 auto* canvas = getParentCanvas(dataPtr->canvas, parent);
-                if (canvas == nullptr) break;
+                if (!canvas) 
+                {
+                     messageManager->sendReturnValue(0, 0);
+                    break;
+                }
                 
                 messageManager->sendReturnValue(static_cast<int>(canvas->gl_obj.te_xpix), static_cast<int>(canvas->gl_obj.te_ypix));
             }
@@ -261,8 +284,7 @@ public:
                 
                 if(identifier != uid()) break;
                 auto* canvas = getParentCanvas(dataPtr->canvas, parent);
-                if (canvas == nullptr) break;
-                
+                if (!canvas) break;
             
                 int dx = xpos - canvas->gl_obj.te_xpix;
                 int dy = ypos - canvas->gl_obj.te_ypix;
@@ -287,7 +309,7 @@ public:
     
     t_canvas* getParentCanvas(t_canvas* canvas, int index)
     {
-        if (!canvas) return;
+        if (!canvas) return nullptr;
         
         while (index)
         {
