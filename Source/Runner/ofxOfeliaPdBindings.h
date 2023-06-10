@@ -6,6 +6,7 @@
 #include "ofxOfeliaLua.h"
 #include "ofxOfeliaEvents.h"
 #include "ofxOfeliaMessageManager.h"
+#include "ofxPdInterface.h"
 #include <cstdio>
 #include <utility>
 #include <vector>
@@ -17,104 +18,7 @@
 void createWindow();
 void showWindow(glm::vec2 position, int width, int height);
 
-using t_canvas = std::string;
-using t_garray = void;
-using t_float = float;
 
-#define MAXPDSTRING 12000
-
-const char* gensym(const std::string& sym)
-{
-    return sym.c_str();
-}
-
-void freebytes(void *mem_to_free, size_t nbytes)
-{
-    free(mem_to_free);
-}
-
-void* getbytes(size_t nbytes)
-{
-    void *ret;
-    if (nbytes < 1) nbytes = 1;
-    ret = (void *)calloc(nbytes, 1);
-    return (ret);
-}
-
-void atom_string(const t_atom *a, char *buf, unsigned int bufsize)
-{
-    char tbuf[30];
-    switch(a->a_type)
-    {
-    case A_SEMI: strcpy(buf, ";"); break;
-    case A_COMMA: strcpy(buf, ","); break;
-    case A_POINTER:
-        strcpy(buf, "(pointer)");
-        break;
-    case A_FLOAT:
-        sprintf(tbuf, "%g", a->a_w.w_float);
-        if (strlen(tbuf) < bufsize-1) strcpy(buf, tbuf);
-        else if (a->a_w.w_float < 0) strcpy(buf, "-");
-        else  strcpy(buf, "+");
-        break;
-    case A_SYMBOL:
-    case A_DOLLSYM:
-    {
-        const char *sp;
-        unsigned int len;
-        int quote;
-        for (sp = a->a_w.w_symbol.c_str(), len = 0, quote = 0; *sp; sp++, len++)
-            if (*sp == ';' || *sp == ',' || *sp == '\\' || *sp == ' ' ||
-                (a->a_type == A_SYMBOL && *sp == '$' &&
-                    sp[1] >= '0' && sp[1] <= '9'))
-                        quote = 1;
-        if (quote)
-        {
-            char *bp = buf, *ep = buf + (bufsize-2);
-            sp = a->a_w.w_symbol.c_str();
-            while (bp < ep && *sp)
-            {
-                if (*sp == ';' || *sp == ',' || *sp == '\\' || *sp == ' ' ||
-                    (a->a_type == A_SYMBOL && *sp == '$' &&
-                        sp[1] >= '0' && sp[1] <= '9'))
-                            *bp++ = '\\';
-                *bp++ = *sp++;
-            }
-            if (*sp) *bp++ = '*';
-            *bp = 0;
-            /* post("quote %s -> %s", a->a_w.w_symbol.c_str(), buf); */
-        }
-        else
-        {
-            if (len < bufsize-1) strcpy(buf, a->a_w.w_symbol.c_str());
-            else
-            {
-                strncpy(buf, a->a_w.w_symbol.c_str(), bufsize - 2);
-                strcpy(buf + (bufsize - 2), "*");
-            }
-        }
-    }
-        break;
-    case A_DOLLAR:
-        sprintf(buf, "$%d", a->a_w.w_index);
-        break;
-    default: break;
-    }
-}
-
-
-std::string canvas_realizedollar(std::string name, std::string s)
-{
-    auto* mm = ofxOfeliaMessageManager::instance;
-    
-    if (s.find('$') == std::string::npos)
-    {
-        return s;
-    }
-    
-    mm->sendMessage(canvas_realise_dollar, name, s);
-    return std::get<0>(mm->waitForReturnValue<std::string>());
-}
 
 class pdWindow
 {
@@ -413,24 +317,24 @@ public:
     };
     std::string getDollarZero()
     {
-        x->messageManager->sendMessage(canvas_get_dir, x->getUniqueId(), parent);
-        return std::get<0>(x->messageManager->waitForReturnValue<std::string>());
+        ofxOfeliaMessageManager::sendMessage(canvas_get_dir, x->getUniqueId(), parent);
+        return std::get<0>(ofxOfeliaMessageManager::waitForReturnValue<std::string>());
     }
     std::string getName()
     {
-        x->messageManager->sendMessage(canvas_get_name, x->getUniqueId(), parent);
-        return std::get<0>(x->messageManager->waitForReturnValue<std::string>());
+        ofxOfeliaMessageManager::sendMessage(canvas_get_name, x->getUniqueId(), parent);
+        return std::get<0>(ofxOfeliaMessageManager::waitForReturnValue<std::string>());
     }
     int getIndex()
     {
-        x->messageManager->sendMessage(canvas_get_index, x->getUniqueId(), parent);
-        return std::get<0>(x->messageManager->waitForReturnValue<int>());
+        ofxOfeliaMessageManager::sendMessage(canvas_get_index, x->getUniqueId(), parent);
+        return std::get<0>(ofxOfeliaMessageManager::waitForReturnValue<int>());
     }
     
     void getArgs(int *argcp, t_atom **argvp, t_canvas* canvasp)
     {
-        x->messageManager->sendMessage(canvas_get_args, x->getUniqueId(), parent);
-        auto [canvasName, args] = x->messageManager->waitForReturnValue<std::string, std::vector<t_atom>>();
+        ofxOfeliaMessageManager::sendMessage(canvas_get_args, x->getUniqueId(), parent);
+        auto [canvasName, args] = ofxOfeliaMessageManager::waitForReturnValue<std::string, std::vector<t_atom>>();
         
         // Store on the class to prevent them from being deleted
         lastCanvasArgs = args;
@@ -441,12 +345,12 @@ public:
     }
     void setArgs(int argc, t_atom *argv, std::deque<int> userDataRef)
     {
-        x->messageManager->sendMessage(canvas_set_args, x->getUniqueId(), parent, std::vector<t_atom>(argv, argv + argc));
+        ofxOfeliaMessageManager::sendMessage(canvas_set_args, x->getUniqueId(), parent, std::vector<t_atom>(argv, argv + argc));
     }
     void getPosition(int **posp)
     {
-        x->messageManager->sendMessage(canvas_get_position, x->getUniqueId(), parent);
-        auto [xPos, yPos] = x->messageManager->waitForReturnValue<int, int>();
+        ofxOfeliaMessageManager::sendMessage(canvas_get_position, x->getUniqueId(), parent);
+        auto [xPos, yPos] = ofxOfeliaMessageManager::waitForReturnValue<int, int>();
         int *pos = static_cast<int *>(getbytes(2 * sizeof(int)));
         pos[0] = xPos;
         pos[1] = yPos;
@@ -455,17 +359,17 @@ public:
     
     void setPosition(int xpos, int ypos)
     {
-        x->messageManager->sendMessage(canvas_set_position, x->getUniqueId(), parent, xpos, ypos);
+        ofxOfeliaMessageManager::sendMessage(canvas_set_position, x->getUniqueId(), parent, xpos, ypos);
     }
     std::string getDir()
     {
-        x->messageManager->sendMessage(canvas_get_dir, x->getUniqueId(), parent);
-        return std::get<0>(x->messageManager->waitForReturnValue<std::string>());
+        ofxOfeliaMessageManager::sendMessage(canvas_get_dir, x->getUniqueId(), parent);
+        return std::get<0>(ofxOfeliaMessageManager::waitForReturnValue<std::string>());
     }
     std::string makeFileName(std::string s)
     {
-        x->messageManager->sendMessage(canvas_get_dir, x->getUniqueId(), parent, s);
-        return std::get<0>(x->messageManager->waitForReturnValue<std::string>());
+        ofxOfeliaMessageManager::sendMessage(canvas_get_dir, x->getUniqueId(), parent, s);
+        return std::get<0>(ofxOfeliaMessageManager::waitForReturnValue<std::string>());
     }
 
 private:
@@ -502,32 +406,32 @@ public:
 
     void sendBang()
     {
-        x->messageManager->sendMessage(pd_bang, x->getUniqueId(), sym);
+        ofxOfeliaMessageManager::sendMessage(pd_bang, sym);
     }
     void sendFloat(t_floatarg f)
     {
-          x->messageManager->sendMessage(pd_float, x->getUniqueId(), sym, f);
+          ofxOfeliaMessageManager::sendMessage(pd_float, sym, f);
     }
     void sendSymbol(std::string s)
     {
-        x->messageManager->sendMessage(pd_symbol, x->getUniqueId(), sym, s);
+        ofxOfeliaMessageManager::sendMessage(pd_symbol, sym, s);
     }
     void sendPointer(t_gpointer *p)
     {
         int userDataRef = luaL_ref(ofxOfeliaLua::L, LUA_REGISTRYINDEX);
-        x->messageManager->sendMessage(pd_pointer, x->getUniqueId(), sym, userDataRef);
+        ofxOfeliaMessageManager::sendMessage(pd_pointer, sym, userDataRef);
         luaL_unref(ofxOfeliaLua::L, LUA_REGISTRYINDEX, userDataRef);
     }
     void sendList(int argc, t_atom *argv, std::deque<int> userDataRef)
     {
-        x->messageManager->sendMessage(pd_list, x->getUniqueId(), sym, std::vector<t_atom>(argv, argv + argc), false);
+        ofxOfeliaMessageManager::sendMessage(pd_list, sym, std::vector<t_atom>(argv, argv + argc), false);
     }
     void sendAnything(int argc, t_atom *argv, std::deque<int> userDataRef)
     {
         if (argv[0].a_type == A_SYMBOL)
-            x->messageManager->sendMessage(pd_anything, x->getUniqueId(), sym,  argv[0].a_w.w_symbol, std::vector<t_atom>(argv + 1, argv + argc));
+            ofxOfeliaMessageManager::sendMessage(pd_anything, sym,  argv[0].a_w.w_symbol, std::vector<t_atom>(argv + 1, argv + argc));
         else if (argv[0].a_type == A_FLOAT)
-            x->messageManager->sendMessage(pd_anything, x->getUniqueId(), sym, std::vector<t_atom>(argv, argv + argc), false);
+            ofxOfeliaMessageManager::sendMessage(pd_anything, sym, std::vector<t_atom>(argv, argv + argc), false);
     }
     
 private:
@@ -633,32 +537,32 @@ public:
     
     void outletBang(int index)
     {
-        x->messageManager->sendMessage(pd_outlet_bang, x->getUniqueId(), index);
+        ofxOfeliaMessageManager::sendMessage(pd_outlet_bang, x->getUniqueId(), index);
     }
     void outletFloat(int index, t_floatarg f)
     {
-          x->messageManager->sendMessage(pd_outlet_float, x->getUniqueId(), index, f);
+          ofxOfeliaMessageManager::sendMessage(pd_outlet_float, x->getUniqueId(), index, f);
     }
     void outletSymbol(int index, std::string s)
     {
-        x->messageManager->sendMessage(pd_outlet_float, x->getUniqueId(), index, s);
+        ofxOfeliaMessageManager::sendMessage(pd_outlet_float, x->getUniqueId(), index, s);
     }
     void outletPointer(int index, t_gpointer *p)
     {
         int userDataRef = luaL_ref(ofxOfeliaLua::L, LUA_REGISTRYINDEX);
-        x->messageManager->sendMessage(pd_outlet_pointer, x->getUniqueId(), index, userDataRef);
+        ofxOfeliaMessageManager::sendMessage(pd_outlet_pointer, x->getUniqueId(), index, userDataRef);
         luaL_unref(ofxOfeliaLua::L, LUA_REGISTRYINDEX, userDataRef);
     }
     void outletList(int index, int argc, t_atom *argv, std::deque<int> userDataRef)
     {
-        x->messageManager->sendMessage(pd_outlet_list, x->getUniqueId(), index, std::vector<t_atom>(argv, argv + argc), false);
+        ofxOfeliaMessageManager::sendMessage(pd_outlet_list, x->getUniqueId(), index, std::vector<t_atom>(argv, argv + argc), false);
     }
     void outletAnything(int index, int argc, t_atom *argv, std::deque<int> userDataRef)
     {
         if (argv[0].a_type == A_SYMBOL)
-            x->messageManager->sendMessage(pd_outlet_anything, x->getUniqueId(), index,  argv[0].a_w.w_symbol, std::vector<t_atom>(argv + 1, argv + argc));
+            ofxOfeliaMessageManager::sendMessage(pd_outlet_anything, x->getUniqueId(), index,  argv[0].a_w.w_symbol, std::vector<t_atom>(argv + 1, argv + argc));
         else if (argv[0].a_type == A_FLOAT)
-            x->messageManager->sendMessage(pd_outlet_list, x->getUniqueId(), index, std::vector<t_atom>(argv, argv + argc), false);
+            ofxOfeliaMessageManager::sendMessage(pd_outlet_list, x->getUniqueId(), index, std::vector<t_atom>(argv, argv + argc), false);
     }
 private:
 
@@ -675,12 +579,12 @@ public:
     };
     float get()
     {
-        ofxOfeliaMessageManager::instance->sendMessage(pd_value_get, sym);
-        return ofxOfeliaMessageManager::instance->waitForReturnValue<float>();
+        ofxOfeliaMessageManager::sendMessage(pd_value_get, sym);
+        return ofxOfeliaMessageManager::waitForReturnValue<float>();
     }
     void set(t_floatarg f)
     {
-        ofxOfeliaMessageManager::instance->sendMessage(pd_value_set, sym, f);
+        ofxOfeliaMessageManager::sendMessage(pd_value_set, sym, f);
     }
 private:
     std::string sym;
@@ -725,6 +629,9 @@ public:
     }
     void get(t_word **vecp, int *sizep, int onset)
     {
+          ofxOfeliaMessageManager::sendMessage(pd_array_set, sym, std::vector<float>(f, f+n));
+        ofxOfeliaMessageManager::waitForReturnValue<<#typename Types#>>()
+        
 //        t_garray *a; int size; t_word *vec;
 //        if (exists(&a) && getData(a, &size, &vec))
 //        {
@@ -735,6 +642,8 @@ public:
     }
     void set(int n, t_floatarg *f, int onset)
     {
+        
+          ofxOfeliaMessageManager::sendMessage(pd_array_set, sym, std::vector<float>(f, f+n), onset);
 //        t_garray *a; int size; t_word *vec;
 //        if (exists(&a) && getData(a, &size, &vec))
 //        {
@@ -750,6 +659,8 @@ public:
     }
     int getSize()
     {
+        ofxOfeliaMessageManager::sendMessage(pd_array_get_size, sym);
+        return ofxOfeliaMessageManager::waitForReturnValue<int>()
 //        t_garray *a; int size; t_word *vec;
 //        if (exists(&a) && getData(a, &size, &vec))
 //            return size;
@@ -758,6 +669,7 @@ public:
     }
     void setSize(long n)
     {
+        ofxOfeliaMessageManager::sendMessage(pd_array_get_size, sym, n);
 //        t_garray *a; int size; t_word *vec;
 //        if (exists(&a) && getData(a, &size, &vec))
 //        {
@@ -855,11 +767,11 @@ class pdLog
 {
 public:
     pdLog()
-    :sym(""), messageManager(ofxOfeliaMessageManager::instance)
+    :sym("")
     {};
     
     pdLog(std::string s)
-    :sym(s), messageManager(ofxOfeliaMessageManager::instance)
+    :sym(s)
     {};
     
     void post(const std::string &str, int level = 2)
@@ -871,7 +783,7 @@ public:
         }
         message += str;
         
-        messageManager->sendMessage(pd_log, false, message);
+        ofxOfeliaMessageManager::sendMessage(pd_log, false, message);
     }
     void error(const std::string &str)
     {
@@ -882,74 +794,11 @@ public:
         }
         message += str;
         
-        messageManager->sendMessage(pd_log, true, message);
+        ofxOfeliaMessageManager::sendMessage(pd_log, true, message);
     }
 private:
     std::string sym; /* module name */
-    ofxOfeliaMessageManager* messageManager;
 };
-
-/*
-static void pdSysGui(std::string str)
-{
-    str += '\n';
-    sys_gui(const_cast<char*>(str.c_str()));
-}
-
-static int pdGetBlockSize()
-{
-    return sys_getblksize();
-}
-
-static t_float pdGetSampleRate()
-{
-    return sys_getsr();
-}
-
-static int pdGetNumInChannels()
-{
-    return sys_get_inchannels();
-}
-
-static int pdGetNumOutChannels()
-{
-    return sys_get_outchannels();
-}
-
-static bool pdGetDspState()
-{
-    return pd_getdspstate() != 0;
-}
-
-static int pdGetMaxString()
-{
-    return MAXPDSTRING;
-}
-
-static int pdGetFloatSize()
-{
-    return PD_FLOATSIZE;
-}
-
-static t_float pdGetMinFloat()
-{
-    return std::numeric_limits<t_float>::lowest();
-}
-
-static t_float pdGetMaxFloat()
-{
-    return std::numeric_limits<t_float>::max();
-}
-
-static bool pdIsBadFloat(t_floatarg f)
-{
-    return PD_BADFLOAT(f) != 0;
-}
-
-static bool pdIsBigOrSmall(t_floatarg f)
-{
-    return PD_BIGORSMALL(f) != 0;
-} */
 
 static void pdSysGui(std::string str)
 {
@@ -958,37 +807,37 @@ static void pdSysGui(std::string str)
 
 static int pdGetBlockSize()
 {
-    ofxOfeliaMessageManager::instance->sendMessage(pd_get_sys_info);
-    auto settings = ofxOfeliaMessageManager::instance->waitForReturnValue<int, int, int, int, int>();
-    return std:get<0>(settings);
+    ofxOfeliaMessageManager::sendMessage(pd_get_sys_info);
+    auto settings = ofxOfeliaMessageManager::waitForReturnValue<int, int, int, int, int>();
+    return std::get<0>(settings);
 }
 
 static float pdGetSampleRate()
 {
-    ofxOfeliaMessageManager::instance->sendMessage(pd_get_sys_info);
-    auto settings = ofxOfeliaMessageManager::instance->waitForReturnValue<int, int, int, int, int>();
-    return std:get<1>(settings);
+    ofxOfeliaMessageManager::sendMessage(pd_get_sys_info);
+    auto settings = ofxOfeliaMessageManager::waitForReturnValue<int, int, int, int, int>();
+    return std::get<1>(settings);
 }
 
 static int pdGetNumInChannels()
 {
-    ofxOfeliaMessageManager::instance->sendMessage(pd_get_sys_info);
-    auto settings = ofxOfeliaMessageManager::instance->waitForReturnValue<int, int, int, int, int>();
-    return std:get<2>(settings);
+    ofxOfeliaMessageManager::sendMessage(pd_get_sys_info);
+    auto settings = ofxOfeliaMessageManager::waitForReturnValue<int, int, int, int, int>();
+    return std::get<2>(settings);
 }
 
 static int pdGetNumOutChannels()
 {
-    ofxOfeliaMessageManager::instance->sendMessage(pd_get_sys_info);
-    auto settings = ofxOfeliaMessageManager::instance->waitForReturnValue<int, int, int, int, int>();
-    return std:get<3>(settings);
+    ofxOfeliaMessageManager::sendMessage(pd_get_sys_info);
+    auto settings = ofxOfeliaMessageManager::waitForReturnValue<int, int, int, int, int>();
+    return std::get<3>(settings);
 }
 
 static bool pdGetDspState()
 {
-    ofxOfeliaMessageManager::instance->sendMessage(pd_get_sys_info);
-    auto settings = ofxOfeliaMessageManager::instance->waitForReturnValue<int, int, int, int, int>();
-    return std:get<4>(settings);
+    ofxOfeliaMessageManager::sendMessage(pd_get_sys_info);
+    auto settings = ofxOfeliaMessageManager::waitForReturnValue<int, int, int, int, int>();
+    return std::get<4>(settings);
 }
 
 static int pdGetMaxString()

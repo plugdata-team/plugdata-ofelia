@@ -41,11 +41,8 @@
       debugServiceExtension = "internal"
       enableGPUValidationMode = "1"
       allowLocationSimulation = "YES">
-      <PathRunnable
-         runnableDebuggingMode = "0"
-         FilePath = "/Users/timschoen/Projecten/plugdata-ofelia/ofelia/ofelia">
-      </PathRunnable>
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FD0A0E721D7ECC3D0028453F"
@@ -53,7 +50,7 @@
             BlueprintName = "ofelia"
             ReferencedContainer = "container:ofelia.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

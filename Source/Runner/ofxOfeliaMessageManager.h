@@ -5,7 +5,8 @@
  */
 
 #pragma once
-#include "ofxOfeliaStream.h"
+#include "ofxPdInterface.h"
+#include "../Shared/ofxOfeliaStream.h"
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -25,9 +26,9 @@ struct ofxOfeliaMessageManager {
     
     // Formats message to stringstream and sends it to the other process
     template <typename... Types>
-    void sendMessage(Types... args)
+    static void sendMessage(Types... args)
     {
-        pipe.sendMessage(args...);
+        instance->pipe.sendMessage(args...);
     }
     
     template <typename... Types>
@@ -68,9 +69,9 @@ struct ofxOfeliaMessageManager {
     }
     
     template <typename... Types>
-    std::tuple<Types...> waitForReturnValue()
+    static std::tuple<Types...> waitForReturnValue()
     {
-        auto message = returnPipe.receive(true);
+        auto message = instance->returnPipe.receive(true);
         return ofxOfeliaStream::parseMessage<Types...>(message);
     }
     
