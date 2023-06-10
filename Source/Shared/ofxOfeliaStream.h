@@ -280,7 +280,11 @@ private:
                 }
                 else if(atom.a_type == A_SYMBOL)
                 {
-                    auto* symbol = gensym(atom.a_w.w_symbol);
+#if FAKE_PD_INTERFACE
+                    auto* symbol = atom.a_w.w_symbol.c_str();
+#else
+                    auto* symbol = atom.a_w.w_symbol->s_name;
+#endif
                     int length = strlen(symbol);
                     ostream.write(reinterpret_cast<char *>(&length), sizeof(int));
                     ostream.write(symbol, length);

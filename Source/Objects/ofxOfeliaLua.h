@@ -305,7 +305,7 @@ public:
                     canvas->gl_obj.te_ypix += dy;
                 }
             }
-            case pd_bang:
+            case pd_send_bang:
             {
                 auto [identifier, send] = messageManager->parseMessage<std::string, std::string>(message);
                 
@@ -316,7 +316,7 @@ public:
                 
                 break;
             }
-            case pd_float:
+            case pd_send_float:
             {
                 auto [identifier, send, value] = messageManager->parseMessage<std::string, std::string, float>(message);
                 
@@ -327,7 +327,7 @@ public:
                 
                 break;
             }
-            case pd_symbol:
+            case pd_send_symbol:
             {
                 auto [identifier, send, symbol] = messageManager->parseMessage<std::string, std::string, std::string>(message);
                 
@@ -340,7 +340,7 @@ public:
                 
                 break;
             }
-            case pd_pointer:
+            case pd_send_pointer:
             {
                 /* TODO: implement this!
                 auto [identifier, send, symbol] = messageManager->parseMessage<std::string, std::string, float>(message);
@@ -353,7 +353,7 @@ public:
                 
                 break;
             }
-            case pd_list:
+            case pd_send_list:
             {
                 auto [identifier, send, atoms, distribute] = messageManager->parseMessage<std::string, std::string, std::vector<t_atom>, bool>(message);
 
@@ -364,7 +364,7 @@ public:
                 
                 break;
             }
-            case pd_anything:
+            case pd_send_anything:
             {
                 auto [identifier, send, symbol, atoms] = messageManager->parseMessage<std::string, std::string, std::string, std::vector<t_atom>>(message);
                 
@@ -425,7 +425,7 @@ public:
             }
             case pd_get_sys_info:
             {
-                sendReturnValue<int, int, int, int, int>(sys_getblksize(), sys_getsr(), sys_get_inchannels(), sys_get_outchannels(), pd_getdspstate());
+                messageManager->sendReturnValue<int, int, int, int, int>(sys_getblksize(), sys_getsr(), sys_get_inchannels(), sys_get_outchannels(), pd_getdspstate());
                 break;
             }
 
