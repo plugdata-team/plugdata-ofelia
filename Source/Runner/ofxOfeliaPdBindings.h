@@ -501,40 +501,37 @@ class pdSend
 public:
     pdSend(std::string s)
     :sym(s){};
+
     void sendBang()
     {
-        //if (sym->s_thing) pd_bang(sym->s_thing);
+        x->messageManager->sendMessage(pd_bang, x->getUniqueId(), sym);
     }
-    void sendFloat(float f)
+    void sendFloat(t_floatarg f)
     {
-        //if (sym->s_thing) pd_float(sym->s_thing, f);
+          x->messageManager->sendMessage(pd_float, x->getUniqueId(), sym, f);
     }
     void sendSymbol(std::string s)
     {
-        //if (sym->s_thing) pd_symbol(sym->s_thing, s);
+        x->messageManager->sendMessage(pd_symbol, x->getUniqueId(), sym, s);
     }
     void sendPointer(t_gpointer *p)
     {
-        /*
         int userDataRef = luaL_ref(ofxOfeliaLua::L, LUA_REGISTRYINDEX);
-        if (sym->s_thing) pd_pointer(sym->s_thing, reinterpret_cast<t_gpointer *>(&userDataRef));
-        luaL_unref(ofxOfeliaLua::L, LUA_REGISTRYINDEX, userDataRef); */
+        x->messageManager->sendMessage(pd_pointer, x->getUniqueId(), sym, userDataRef);
+        luaL_unref(ofxOfeliaLua::L, LUA_REGISTRYINDEX, userDataRef);
     }
     void sendList(int argc, t_atom *argv, std::deque<int> userDataRef)
     {
-        //if (sym->s_thing) pd_list(sym->s_thing, &s_list, argc, argv);
+        x->messageManager->sendMessage(pd_list, x->getUniqueId(), sym, std::vector<t_atom>(argv, argv + argc), false);
     }
     void sendAnything(int argc, t_atom *argv, std::deque<int> userDataRef)
     {
-        /*
-        if (sym->s_thing)
-        {
-            if (argv[0].a_type == A_SYMBOL)
-                typedmess(sym->s_thing, argv[0].a_w.w_symbol, argc - 1, argv + 1);
-            else if (argv[0].a_type == A_FLOAT)
-                pd_list(sym->s_thing, &s_list, argc, argv);
-        } */
+        if (argv[0].a_type == A_SYMBOL)
+            x->messageManager->sendMessage(pd_anything, x->getUniqueId(), sym,  argv[0].a_w.w_symbol, std::vector<t_atom>(argv + 1, argv + argc));
+        else if (argv[0].a_type == A_FLOAT)
+            x->messageManager->sendMessage(pd_anything, x->getUniqueId(), sym, std::vector<t_atom>(argv, argv + argc), false);
     }
+    
 private:
     std::string sym;
 };

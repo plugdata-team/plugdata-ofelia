@@ -85,7 +85,14 @@ enum ofxMessageType
     canvas_make_filename,
     canvas_get_index,
     canvas_get_position,
-    canvas_set_position
+    canvas_set_position,
+    
+    pd_bang,
+    pd_float,
+    pd_symbol,
+    pd_pointer,
+    pd_list,
+    pd_anything,
 };
 
 

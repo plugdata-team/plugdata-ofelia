@@ -116,7 +116,11 @@ public:
             case pd_outlet_anything:
             {
                 auto [identifier, index, symbol, atoms] = messageManager->parseMessage<std::string, int, std::string, std::vector<t_atom>>(message);
-                outlet_anything(dataPtr->io.outlets[index], gensym(symbol.c_str()), atoms.size(), atoms.data());
+                
+                if(dataPtr->io.hasControlOutlet && dataPtr->io.numOutlets > index)
+                {
+                    outlet_anything(dataPtr->io.outlets[index], gensym(symbol.c_str()), atoms.size(), atoms.data());
+                }
                 break;
             }
             case canvas_realise_dollar:
@@ -301,7 +305,73 @@ public:
                     canvas->gl_obj.te_ypix += dy;
                 }
             }
+            case pd_bang:
+            {
+                auto [identifier, send] = messageManager->parseMessage<std::string, std::string>(message);
+                
+                if(identifier != uid()) break;
+                
+                auto* target = gensym(send.c_str());
+                if(target->s_thing) pd_bang(target->s_thing);
+                
+                break;
+            }
+            case pd_float:
+            {
+                auto [identifier, send, value] = messageManager->parseMessage<std::string, std::string, float>(message);
+                
+                if(identifier != uid()) return;
+                
+                auto* target = gensym(send.c_str());
+                if(target->s_thing) pd_float(target->s_thing, value);
+                
+                break;
+            }
+            case pd_symbol:
+            {
+                auto [identifier, send, symbol] = messageManager->parseMessage<std::string, std::string, std::string>(message);
+                
+                if(identifier != uid()) return;
+                
+                auto* target = gensym(send.c_str());
+                if(target->s_thing) pd_symbol(target->s_thing, gensym(symbol.c_str()));
+                
+                break;
+                
+                break;
+            }
+            case pd_pointer:
+            {
+                /* TODO: implement this!
+                auto [identifier, send, symbol] = messageManager->parseMessage<std::string, std::string, float>(message);
+                
+                if(identifier != uid()) return;
+                
+                 auto* target = gensym(send.c_str());
+                 if(target->s_thing) pd_symbol(target->s_thing, gensym(symbol.c_str()));
+                 */
+                
+                break;
+            }
+            case pd_list:
+            {
+                auto [identifier, send, atoms, distribute] = messageManager->parseMessage<std::string, std::string, std::vector<t_atom>, bool>(message);
 
+                if(identifier != uid()) return;
+                
+                auto* target = gensym(send.c_str());
+                if(target->s_thing) pd_list(target->s_thing, gensym("list"), atoms.size(), atoms.data());
+                
+                break;
+            }
+            case pd_anything:
+            {
+                auto [identifier, send, symbol, atoms] = messageManager->parseMessage<std::string, std::string, std::string, std::vector<t_atom>>(message);
+                
+                auto* target = gensym(send.c_str());
+                if(target->s_thing) pd_anything(target->s_thing, gensym(symbol.c_str()), atoms.size(), atoms.data());
+                break;
+            }
                 
             default: break;
         }
