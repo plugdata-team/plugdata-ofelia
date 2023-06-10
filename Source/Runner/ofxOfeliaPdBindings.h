@@ -418,32 +418,32 @@ public:
 
     void sendBang()
     {
-        ofxOfeliaMessageManager::sendMessage(pd_bang, sym);
+        ofxOfeliaMessageManager::sendMessage(pd_send_bang, sym);
     }
     void sendFloat(t_floatarg f)
     {
-          ofxOfeliaMessageManager::sendMessage(pd_float, sym, f);
+          ofxOfeliaMessageManager::sendMessage(pd_send_float, sym, f);
     }
     void sendSymbol(std::string s)
     {
-        ofxOfeliaMessageManager::sendMessage(pd_symbol, sym, s);
+        ofxOfeliaMessageManager::sendMessage(pd_send_symbol, sym, s);
     }
     void sendPointer(t_gpointer *p)
     {
         int userDataRef = luaL_ref(ofxOfeliaLua::L, LUA_REGISTRYINDEX);
-        ofxOfeliaMessageManager::sendMessage(pd_pointer, sym, userDataRef);
+        ofxOfeliaMessageManager::sendMessage(pd_send_pointer, sym, userDataRef);
         luaL_unref(ofxOfeliaLua::L, LUA_REGISTRYINDEX, userDataRef);
     }
     void sendList(int argc, t_atom *argv, std::deque<int> userDataRef)
     {
-        ofxOfeliaMessageManager::sendMessage(pd_list, sym, std::vector<t_atom>(argv, argv + argc), false);
+        ofxOfeliaMessageManager::sendMessage(pd_send_list, sym, std::vector<t_atom>(argv, argv + argc), false);
     }
     void sendAnything(int argc, t_atom *argv, std::deque<int> userDataRef)
     {
         if (argv[0].a_type == A_SYMBOL)
-            ofxOfeliaMessageManager::sendMessage(pd_anything, sym,  argv[0].a_w.w_symbol, std::vector<t_atom>(argv + 1, argv + argc));
+            ofxOfeliaMessageManager::sendMessage(pd_send_anything, sym,  argv[0].a_w.w_symbol, std::vector<t_atom>(argv + 1, argv + argc));
         else if (argv[0].a_type == A_FLOAT)
-            ofxOfeliaMessageManager::sendMessage(pd_anything, sym, std::vector<t_atom>(argv, argv + argc), false);
+            ofxOfeliaMessageManager::sendMessage(pd_send_anything, sym, std::vector<t_atom>(argv, argv + argc), false);
     }
     
 private:

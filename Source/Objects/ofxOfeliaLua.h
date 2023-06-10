@@ -274,7 +274,7 @@ public:
                 
                 if(identifier != uid()) break;
                 auto* canvas = getParentCanvas(dataPtr->canvas, parent);
-                if (!canvas) 
+                if (!canvas)
                 {
                      messageManager->sendReturnValue(0, 0);
                     break;
@@ -370,6 +370,57 @@ public:
                 
                 auto* target = gensym(send.c_str());
                 if(target->s_thing) pd_anything(target->s_thing, gensym(symbol.c_str()), atoms.size(), atoms.data());
+                break;
+            }
+                
+            case pd_value_get:
+            {
+                
+                break;
+            }
+            case pd_value_set:
+            {
+                
+                break;
+            }
+            case pd_array_get:
+            {
+                
+                break;
+            }
+            case pd_array_set:
+            {
+                
+                break;
+            }
+            case pd_array_get_size:
+            {
+                
+                break;
+            }
+            case pd_array_set_size:
+            {
+                
+                break;
+            }
+            case pd_inlet_set_float:
+            {
+                
+                break;
+            }
+            case pd_inlet_set_symbol:
+            {
+                
+                break;
+            }
+            case pd_inlet_set_inlets:
+            {
+                
+                break;
+            }
+            case pd_inlet_set_signal:
+            {
+                
                 break;
             }
             case pd_get_sys_info:
