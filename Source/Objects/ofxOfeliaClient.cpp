@@ -1,5 +1,6 @@
 #include "ofxOfeliaClient.h"
 #include "ofxOfeliaLua.h"
+
 #include <cstring>
 
 bool ofxOfeliaClient::isDataValid()

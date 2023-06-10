@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofxOfeliaMessageManager.h"
 #include "ofxOfeliaLua.h"
+#include "ofxOfeliaLog.h"
 #include "GLFW/glfw3.h"
 
 struct ofApp : public ofBaseApp, public ofxOfeliaMessageManager
@@ -136,6 +137,7 @@ void showWindow(glm::vec2 position, int width, int height)
  int main()
  {
      ofxOfeliaLua::init();
+     ofxOfeliaLog::setLoggerChannel();
      
      app = new ofApp();
      createWindow();
