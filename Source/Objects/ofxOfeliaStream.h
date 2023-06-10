@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <vector>
+#include <tuple>
 
 #ifdef _WIN32
 #include <winsock2.h>
