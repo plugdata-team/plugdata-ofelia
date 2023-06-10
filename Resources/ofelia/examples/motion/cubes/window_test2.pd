@@ -1,0 +1,5 @@
+#N canvas 827 239 527 327 12;
+#X obj 34 239 ofelia f \; window = ofWindow() \; window:create();
+#X f 22;
+#X obj 215 137 bng 25 250 50 0 empty empty empty 17 7 0 10 #191919 #ffffff #ffffff;
+#X connect 1 0 0 0 empty;
