@@ -388,8 +388,6 @@ private:
         ofxOfeliaEvents::callEventListeners(ofxOfeliaEvents::touchUpVec, "touchUp", e);
     }
     
-    //ofxOfeliaLua *x;
-    //t_clock *clock;
     ofMainLoop *mainLoop;
     ofAppBaseWindow *windowPtr;
     glm::vec2 position;

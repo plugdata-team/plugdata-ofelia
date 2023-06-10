@@ -21,7 +21,7 @@ elseif(UNIX)
     list(APPEND EXTERNAL_COMPILE_DEFINITIONS HAVE_LIBDL=1 HAVE_UNISTD_H=1)
 endif()
 
-file(GLOB ofelia_source ./Source/Objects/*.cpp)
+file(GLOB ofelia_source ./Source/Objects/*.cpp ./Source/Objects/*.h)
 add_library(ofelia STATIC ${ofelia_source})
 
 if(MSVC)
