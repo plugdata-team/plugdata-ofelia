@@ -18,12 +18,12 @@
 #include <thread>
 #include <z_libpd.h>
 
-class HighResolutionTimer
+class TimerThread
 {
 public:
-    HighResolutionTimer() : running(false) {}
+    TimerThread() : running(false) {}
 
-    virtual ~HighResolutionTimer() {}
+    virtual ~TimerThread() {}
 
     void startTimer(int intervalMillis)
     {
@@ -58,10 +58,10 @@ private:
     bool running;
 };
 
-class ChildProcess
+class OfeliaChildProcess
 {
 public:
-    ChildProcess() : running(false) {}
+    OfeliaChildProcess() : running(false) {}
     
     void start(const std::string& command)
     {
@@ -104,7 +104,7 @@ struct ofxOfeliaMessageListener {
     virtual void receiveMessage(ofxMessageType type, const std::string& message) = 0;
 };
 
-struct ofxOfeliaMessageManager : public HighResolutionTimer, public ofxOfeliaMessageListener {
+struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageListener {
     
     ofxOfeliaMessageManager()
     {
@@ -224,7 +224,7 @@ struct ofxOfeliaMessageManager : public HighResolutionTimer, public ofxOfeliaMes
     }
     
     t_pdinstance* pdthis;
-    ChildProcess ofelia;
+    OfeliaChildProcess ofelia;
     ofxOfeliaStream pipe;
     ofxOfeliaStream returnPipe;
     static inline ofxOfeliaMessageManager* instance = nullptr;
