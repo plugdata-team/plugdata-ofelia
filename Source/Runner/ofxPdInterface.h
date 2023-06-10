@@ -2,10 +2,14 @@
 #include <iostream>
 #include <string>
 
-#include "ofxOfeliaMessageManager.h"
-
 
 #define FAKE_PD_INTERFACE 1
+
+using t_gpointer = int;
+using t_canvas = std::string;
+using t_garray = void;
+using t_float = float;
+
 // Normally this is a union but we don't need to care about that here
 // Using a struct allows us to store std::strings, which is very convenient
 struct t_word
@@ -38,24 +42,21 @@ struct t_atom
     t_word a_w;
 };
 
-using t_gpointer = int;
-using t_canvas = std::string;
-using t_garray = void;
-using t_float = float;
+
 
 #define MAXPDSTRING 12000
 
-const char* gensym(const std::string& sym)
+static const char* gensym(const std::string& sym)
 {
     return sym.c_str();
 }
 
-void freebytes(void *mem_to_free, size_t nbytes)
+static void freebytes(void *mem_to_free, size_t nbytes)
 {
     free(mem_to_free);
 }
 
-void* getbytes(size_t nbytes)
+static void* getbytes(size_t nbytes)
 {
     void *ret;
     if (nbytes < 1) nbytes = 1;
@@ -63,7 +64,7 @@ void* getbytes(size_t nbytes)
     return (ret);
 }
 
-void atom_string(const t_atom *a, char *buf, unsigned int bufsize)
+static void atom_string(const t_atom *a, char *buf, unsigned int bufsize)
 {
     char tbuf[30];
     switch(a->a_type)
@@ -125,15 +126,3 @@ void atom_string(const t_atom *a, char *buf, unsigned int bufsize)
 }
 
 
-std::string canvas_realizedollar(std::string name, std::string s)
-{
-    auto* mm = ofxOfeliaMessageManager::instance;
-    
-    if (s.find('$') == std::string::npos)
-    {
-        return s;
-    }
-    
-    mm->sendMessage(canvas_realise_dollar, name, s);
-    return std::get<0>(mm->waitForReturnValue<std::string>());
-}

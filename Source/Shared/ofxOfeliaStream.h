@@ -1,4 +1,6 @@
 #pragma once
+#include "ofxPdInterface.h"
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -62,6 +64,9 @@ enum ofxMessageType
     pd_pointer,
     pd_list,
     pd_anything,
+    
+    pd_value_get,
+    pd_value_set,
     
     pd_array_get,
     pd_array_set,
