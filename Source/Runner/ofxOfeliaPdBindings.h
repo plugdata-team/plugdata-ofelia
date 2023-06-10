@@ -2,7 +2,7 @@
 
 #include "ofMain.h"
 #include "lua.hpp"
-#include "ofxOfeliaLua.h"
+#include "ofxPdInterface.h"
 #include "ofxOfeliaLua.h"
 #include "ofxOfeliaEvents.h"
 #include "ofxOfeliaMessageManager.h"
@@ -19,6 +19,18 @@ void createWindow();
 void showWindow(glm::vec2 position, int width, int height);
 
 
+std::string canvas_realizedollar(std::string name, std::string s)
+{
+    auto* mm = ofxOfeliaMessageManager::instance;
+    
+    if (s.find('$') == std::string::npos)
+    {
+        return s;
+    }
+    
+    mm->sendMessage(canvas_realise_dollar, name, s);
+    return std::get<0>(mm->waitForReturnValue<std::string>());
+}
 
 class pdWindow
 {
@@ -574,13 +586,15 @@ class pdValue
 public:
     pdValue(std::string s)
     :sym(s)
+    {}
+    
     virtual ~pdValue()
     {
     };
     float get()
     {
         ofxOfeliaMessageManager::sendMessage(pd_value_get, sym);
-        return ofxOfeliaMessageManager::waitForReturnValue<float>();
+        return std::get<0>(ofxOfeliaMessageManager::waitForReturnValue<float>());
     }
     void set(t_floatarg f)
     {
@@ -629,8 +643,8 @@ public:
     }
     void get(t_word **vecp, int *sizep, int onset)
     {
-          ofxOfeliaMessageManager::sendMessage(pd_array_set, sym, std::vector<float>(f, f+n));
-        ofxOfeliaMessageManager::waitForReturnValue<<#typename Types#>>()
+        //ofxOfeliaMessageManager::sendMessage(pd_array_set, sym, std::vector<float>(f, f+n));
+        //ofxOfeliaMessageManager::waitForReturnValue<<#typename Types#>>()
         
 //        t_garray *a; int size; t_word *vec;
 //        if (exists(&a) && getData(a, &size, &vec))
@@ -660,7 +674,7 @@ public:
     int getSize()
     {
         ofxOfeliaMessageManager::sendMessage(pd_array_get_size, sym);
-        return ofxOfeliaMessageManager::waitForReturnValue<int>()
+        return std::get<0>(ofxOfeliaMessageManager::waitForReturnValue<int>());
 //        t_garray *a; int size; t_word *vec;
 //        if (exists(&a) && getData(a, &size, &vec))
 //            return size;
