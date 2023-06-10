@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <vector>
+#include <tuple>
 
 #ifdef _WIN32
 #include <winsock2.h>
@@ -14,39 +16,6 @@
 #include <fcntl.h>
 #endif
 
-using t_gpointer = int;
-
-// Normally this is a union but we don't need to care about that here
-// Using a struct allows us to store std::strings, which is very convenient
-struct t_word
-{
-    float w_float;
-    std::string w_symbol;
-    t_gpointer* w_gpointer;
-    int w_index;
-} ;
-
-enum t_atomtype
-{
-    A_NULL,
-    A_FLOAT,
-    A_SYMBOL,
-    A_POINTER,
-    A_SEMI,
-    A_COMMA,
-    A_DEFFLOAT,
-    A_DEFSYM,
-    A_DOLLAR,
-    A_DOLLSYM,
-    A_GIMME,
-    A_CANT
-};
-
-struct t_atom
-{
-    t_atomtype a_type;
-    t_word a_w;
-};
 
 enum ofxMessageType
 {
@@ -97,7 +66,7 @@ enum ofxMessageType
     pd_array_get,
     pd_array_set,
     pd_array_get_size,
-    pd_array_set_size
+    pd_array_set_size,
     
     pd_inlet_set_float,
     pd_inlet_set_symbol,
@@ -181,9 +150,8 @@ public:
             int length;
             istream.read(reinterpret_cast<char *>(&length), sizeof(int));
 
-            auto buffer = std::vector<char>(length + 1);
+            auto buffer = std::vector<char>(length);
             istream.read(buffer.data(), length);
-            buffer[length] = '\0';
 
             currentValue = T(buffer.data(), length);
         }
@@ -207,14 +175,21 @@ public:
                 }
                 if(type == A_SYMBOL)
                 {
-                    int length;
-                    istream.read(reinterpret_cast<char *>(&length), sizeof(int));
-                    
-                    auto buffer = std::vector<char>(length + 1);
-                    istream.read(buffer.data(), length);
-                    buffer[length] = '\0';
-                    
-                    atoms[i].a_w.w_symbol = std::string(buffer.data(), buffer.size());
+                    #if FAKE_PD_INTERFACE
+                        int length;
+                        istream.read(reinterpret_cast<char *>(&length), sizeof(int));
+                        
+                        auto buffer = std::vector<char>(length);
+                        istream.read(buffer.data(), length);                        
+                        atoms[i].a_w.w_symbol = std::string(buffer.data(), buffer.size());
+                    #else
+                        int length;
+                        istream.read(reinterpret_cast<char *>(&length), sizeof(int));
+                        
+                        auto buffer = std::vector<char>(length);
+                        istream.read(buffer.data(), length);
+                        atoms[i].a_w.w_symbol = gensym(buffer.data());
+                    #endif
                 }
                 if(type == A_POINTER)
                 {
@@ -301,16 +276,20 @@ private:
                 }
                 else if(atom.a_type == A_SYMBOL)
                 {
-                    auto* symbol = atom.a_w.w_symbol.c_str();
+                    auto* symbol = gensym(atom.a_w.w_symbol);
                     int length = strlen(symbol);
                     ostream.write(reinterpret_cast<char *>(&length), sizeof(int));
                     ostream.write(symbol, length);
                 }
                 else if(atom.a_type == A_POINTER)
                 {
-                    std::cout << "pointer!" << std::endl;
                     // TODO: implement this!
+                    assert(false);
                 }
+                else {
+                    assert(false);
+                }
+
             }
         }
         else if constexpr (std::is_arithmetic<T>::value || std::is_same<T, ofxMessageType>())

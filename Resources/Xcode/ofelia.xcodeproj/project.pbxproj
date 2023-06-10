@@ -14,7 +14,6 @@
 		AB88A8562A32A803006E17E1 /* ofxOfeliaLog.h in Headers */ = {isa = PBXBuildFile; fileRef = AB88A8472A32A803006E17E1 /* ofxOfeliaLog.h */; };
 		AB88A8572A32A803006E17E1 /* ofxOfeliaSignal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB88A8482A32A803006E17E1 /* ofxOfeliaSignal.cpp */; };
 		AB88A8582A32A803006E17E1 /* ofxOfeliaMessageManager.h in Headers */ = {isa = PBXBuildFile; fileRef = AB88A8492A32A803006E17E1 /* ofxOfeliaMessageManager.h */; };
-		AB88A8592A32A803006E17E1 /* ofxOfeliaStream.h in Headers */ = {isa = PBXBuildFile; fileRef = AB88A84A2A32A803006E17E1 /* ofxOfeliaStream.h */; };
 		AB88A85A2A32A803006E17E1 /* ofxOfeliaPdBindings.h in Headers */ = {isa = PBXBuildFile; fileRef = AB88A84B2A32A803006E17E1 /* ofxOfeliaPdBindings.h */; };
 		AB88A85B2A32A803006E17E1 /* ofxOfeliaSignal.h in Headers */ = {isa = PBXBuildFile; fileRef = AB88A84C2A32A803006E17E1 /* ofxOfeliaSignal.h */; };
 		AB88A85C2A32A803006E17E1 /* ofxOfeliaEvents.h in Headers */ = {isa = PBXBuildFile; fileRef = AB88A84D2A32A803006E17E1 /* ofxOfeliaEvents.h */; };
@@ -117,7 +116,6 @@
 		AB88A8472A32A803006E17E1 /* ofxOfeliaLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOfeliaLog.h; sourceTree = "<group>"; };
 		AB88A8482A32A803006E17E1 /* ofxOfeliaSignal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOfeliaSignal.cpp; sourceTree = "<group>"; };
 		AB88A8492A32A803006E17E1 /* ofxOfeliaMessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOfeliaMessageManager.h; sourceTree = "<group>"; };
-		AB88A84A2A32A803006E17E1 /* ofxOfeliaStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOfeliaStream.h; sourceTree = "<group>"; };
 		AB88A84B2A32A803006E17E1 /* ofxOfeliaPdBindings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOfeliaPdBindings.h; sourceTree = "<group>"; };
 		AB88A84C2A32A803006E17E1 /* ofxOfeliaSignal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOfeliaSignal.h; sourceTree = "<group>"; };
 		AB88A84D2A32A803006E17E1 /* ofxOfeliaEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOfeliaEvents.h; sourceTree = "<group>"; };
@@ -227,7 +225,6 @@
 				AB88A8472A32A803006E17E1 /* ofxOfeliaLog.h */,
 				AB88A8482A32A803006E17E1 /* ofxOfeliaSignal.cpp */,
 				AB88A8492A32A803006E17E1 /* ofxOfeliaMessageManager.h */,
-				AB88A84A2A32A803006E17E1 /* ofxOfeliaStream.h */,
 				AB88A84B2A32A803006E17E1 /* ofxOfeliaPdBindings.h */,
 				AB88A84C2A32A803006E17E1 /* ofxOfeliaSignal.h */,
 				AB88A84D2A32A803006E17E1 /* ofxOfeliaEvents.h */,
@@ -238,7 +235,7 @@
 				ABCF244A2A32AF4B00EB1126 /* ofxRingBuffer.h */,
 			);
 			name = Runner;
-			path = "../../Source/Runner";
+			path = ../../Source/Runner;
 			sourceTree = "<group>";
 		};
 		BB4B014C10F69532006C3DED /* addons */ = {
@@ -428,7 +425,6 @@
 				FDED15AF22B4CD9F005D9D62 /* lua.h in Headers */,
 				FDED15A922B4CD9F005D9D62 /* ldebug.h in Headers */,
 				FDED15BF22B4CD9F005D9D62 /* lundump.h in Headers */,
-				AB88A8592A32A803006E17E1 /* ofxOfeliaStream.h in Headers */,
 				FDED15BA22B4CD9F005D9D62 /* lctype.h in Headers */,
 				FDED15A722B4CD9F005D9D62 /* ltable.h in Headers */,
 				FDED15B722B4CD9F005D9D62 /* lgc.h in Headers */,

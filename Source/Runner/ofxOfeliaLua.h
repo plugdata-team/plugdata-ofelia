@@ -1,6 +1,7 @@
 #pragma once
 
-#include "ofxOfeliaStream.h"
+#include "ofxPdInterface.h"
+#include "../Shared/ofxOfeliaStream.h"
 #include "lua.hpp"
 #include <string>
 #include <map>
