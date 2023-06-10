@@ -372,6 +372,12 @@ public:
                 if(target->s_thing) pd_anything(target->s_thing, gensym(symbol.c_str()), atoms.size(), atoms.data());
                 break;
             }
+            case pd_get_sys_info:
+            {
+                sendReturnValue<int, int, int, int, int>(sys_getblksize(), sys_getsr(), sys_get_inchannels(), sys_get_outchannels(), pd_getdspstate());
+                break;
+            }
+
                 
             default: break;
         }
