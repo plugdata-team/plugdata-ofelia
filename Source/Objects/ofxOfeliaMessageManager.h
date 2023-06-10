@@ -16,6 +16,8 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
+#include <vector>
+#include <tuple>
 #include <z_libpd.h>
 
 class TimerThread
