@@ -1,5 +1,4 @@
 #pragma once
-#include "ofxPdInterface.h"
 
 #include <iostream>
 #include <vector>
@@ -58,12 +57,12 @@ enum ofxMessageType
     canvas_get_position,
     canvas_set_position,
     
-    pd_bang,
-    pd_float,
-    pd_symbol,
-    pd_pointer,
-    pd_list,
-    pd_anything,
+    pd_send_bang,
+    pd_send_float,
+    pd_send_symbol,
+    pd_send_pointer,
+    pd_send_list,
+    pd_send_anything,
     
     pd_value_get,
     pd_value_set,

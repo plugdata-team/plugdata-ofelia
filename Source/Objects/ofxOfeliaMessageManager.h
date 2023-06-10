@@ -5,7 +5,7 @@
  */
 
 #pragma once
-#include "ofxOfeliaStream.h"
+#include "../Shared/ofxOfeliaStream.h"
 
 #ifdef _WIN32
 #include <Windows.h>
