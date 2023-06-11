@@ -193,6 +193,38 @@ bool ofxOfeliaLua::init()
     return true;
 }
 
+void ofxOfeliaLua::createInstance(ofxOfeliaMessageManager* messageMan, const std::string& uid)
+{
+    ofxLuaInstances[uid].reset(new ofxOfeliaLua(messageMan, uid));
+}
+
+ofxOfeliaLua* ofxOfeliaLua::getByName(const std::string& name)
+{
+    for(auto& [id, instance] : ofxLuaInstances)
+    {
+        if(instance->getName() == name)
+        {
+            return instance.get();
+        }
+    }
+    
+    return nullptr;
+}
+
+ofxOfeliaLua* ofxOfeliaLua::getPtr(const std::string& uid)
+{
+    if(ofxLuaInstances.count(uid))
+    {
+        return ofxLuaInstances[uid].get();
+    }
+    else {
+        std::cerr << "ofxOfeliaLua: instance not found" << std::endl;
+        return nullptr;
+    }
+    
+    return nullptr;
+}
+    
 bool ofxOfeliaLua::require()
 {
     if (!isChunkRun) return false;

@@ -4,15 +4,15 @@
 install_debian_packages() {
     export DEBIAN_FRONTEND=noninteractive
     export TZ="Europe/Amsterdam"
-    apt update
-    apt install -y gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly gstreamer1.0-vaapi libgstreamer-plugins-base1.0-dev libgstreamer1.0-0 freeglut3-dev libasound2-dev libxmu-dev libxxf86vm-dev g++ libgl1-mesa-dev libglu1-mesa-dev libraw1394-dev libudev-dev libdrm-dev libglew-dev libopenal-dev libsndfile-dev libfreeimage-dev libcairo2-dev libfreetype6-dev libssl-dev libpulse-dev libusb-1.0-0-dev libgtk3-dev libopencv-dev libegl1-mesa-dev libgles1 libgles2-mesa-dev libassimp-dev librtaudio-dev libboost-filesystem-dev libglfw3-dev liburiparser-dev libcurl4-openssl-dev libpugixml-dev libpoco-dev libgconf-2-4
-    /Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Libraries/openFrameworks/scripts/linux/debian/install_dependencies.sh
+    apt-get update
+    apt-get install -y gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly gstreamer1.0-vaapi libgstreamer-plugins-base1.0-dev libgstreamer1.0-0 freeglut3-dev libasound2-dev libxmu-dev libxxf86vm-dev g++ libgl1-mesa-dev libglu1-mesa-dev libraw1394-dev libudev-dev libdrm-dev libglew-dev libopenal-dev libsndfile-dev libfreeimage-dev libcairo2-dev libfreetype6-dev libssl-dev libpulse-dev libusb-1.0-0-dev libgtk${GTK_VERSION}-dev libopencv-dev libegl1-mesa-dev libgles1 libgles2-mesa-dev libassimp-dev librtaudio-dev libboost-filesystem-dev libglfw3-dev liburiparser-dev libcurl4-openssl-dev libpugixml-dev libpoco-dev libgconf-2-4
+    ./Libraries/openFrameworks/scripts/linux/debian/install_dependencies.sh
 }
 
 # Function to install packages on Fedora
 install_fedora_packages() {
     dnf install -y gstreamer1-plugins-base gstreamer1-plugins-good gstreamer1-plugins-ugly gstreamer1-vaapi alsa-lib-devel libassimp-devel cairo-devel libcurl-devel freetype-devel mesa-libGLU-devel gstreamer1-devel gstreamer1 jack-audio-connection-kit-devel systemd-devel libunwind-devel libX11-devel libXcomposite-devel libXcursor-devel libXext-devel libXinerama-devel libXrandr-devel libXrender-devel redhat-lsb mesa-libGL-devel pax-utils pkg-config python3 python3-pip rsync wget patchelf libsndfile-devel libXi-devel
-    /Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Libraries/openFrameworks/scripts/linux/fedora/install_dependencies.sh
+    ./Libraries/openFrameworks/scripts/linux/fedora/install_dependencies.sh
 }
 
 # Function to install packages on openSUSE
@@ -26,56 +26,19 @@ install_opensuse_packages() {
 
 # Function to install packages on openSUSE
 install_arch_packages() {
-   /Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Libraries/openFrameworks/scripts/linux/archlinux/install_dependencies.sh
+   ./Libraries/openFrameworks/scripts/linux/archlinux/install_dependencies.sh
 }
 
-install_dependencies() {
-    if [ -f /etc/os-release ]; then
-        # shellcheck disable=SC1091
-        source /etc/os-release
-        if [[ -n $ID ]]; then
-            echo "$ID"
-            return
-        fi
-    fi
 
-    if [ -f /etc/lsb-release ]; then
-        # shellcheck disable=SC1091
-        source /etc/lsb-release
-        if [[ -n $DISTRIB_ID ]]; then
-            echo "$DISTRIB_ID"
-            return
-        fi
-    fi
-
-    if [ -f /etc/fedora-release ]; then
-        install_fedora_packages
-        return
-    fi
-
-    if [ -f /etc/SuSE-release ] || [ -f /etc/os-release ]; then
-        # shellcheck disable=SC1091
-        source /etc/os-release
-        if [[ $ID = "opensuse" ]]; then
-            install_opensuse_packages
-            return
-        fi
-    fi
-
-    if [ -f /etc/arch-release ]; then
-        install_arch_packages
-        return
-    fi
-
-    if [ -f /etc/debian_version ]; then
-        install_debian_packages
-        return
-    fi
-
+if [ -f /etc/redhat-release ] ; then
+    install_fedora_packages
+elif [ -f /etc/SuSE-release ] ; then
+    install_opensuse_packages
+elif [ -f /etc/debian_version ] ; then	
     install_debian_packages
-}
-
-install_dependencies
+elif [ -f /etc/arch-release ] ; then
+    install_arch_packages
+fi
 
 # Manually build kissfft, because OF builds it without the fPIC flag
 rm -rf ./Libraries/openFrameworks/libs/kiss
@@ -83,3 +46,4 @@ rm -rf ./Libraries/openFrameworks/libs/kiss
 
 # Install copydeps python package for shared library packaging
 pip3 install copydeps
+

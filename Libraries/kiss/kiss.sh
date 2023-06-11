@@ -18,12 +18,12 @@ GIT_TAG=v$VER
 function download() {
     echo "Running: git clone --branch ${GIT_TAG} ${GIT_URL}"
     git clone --branch ${GIT_TAG} ${GIT_URL}
-    mv  kissfft kiss
+    mv kissfft kiss
 }
 
 # prepare the build environment, executed inside the lib src dir
 function prepare() {
-	cp -f Makefile ./kiss/Makefile
+	cp -f ./Makefile ./kiss/Makefile
 }
 
 # executed inside the lib src dir
@@ -31,7 +31,7 @@ function build() {
     make
 }
 
-OF_ROOT=$(realpath ./openFrameworks/libs)
+OF_ROOT=$(realpath ./Libraries/openFrameworks/libs)
 echo ${OF_ROOT}
 
 # executed inside the lib src dir, first arg $1 is the dest libs dir root
@@ -50,7 +50,7 @@ function copy() {
 	cp -v COPYING ${OF_ROOT}/kiss/license/
 }
 
-pushd kiss
+pushd Libraries/kiss
 
 download
 prepare

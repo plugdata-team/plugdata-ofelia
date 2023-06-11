@@ -1,5 +1,3 @@
-#pragma once
-
 #include "ofMain.h"
 #include "ofxOfeliaMessageManager.h"
 #include "ofxOfeliaLua.h"

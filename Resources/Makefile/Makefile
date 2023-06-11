@@ -1,5 +1,8 @@
 # Attempt to load a config.make file.
 # If none is found, project defaults in config.project.make will be used.
+
+PLATFORM_CXXFLAGS = -std=c++17
+	
 ifneq ($(wildcard config.make),)
 	include config.make
 endif
