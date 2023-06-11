@@ -10,7 +10,7 @@ if [ "$(uname)" == "Darwin" ]; then
       cd ./Resources/Xcode
       xcodebuild -configuration Release -project ../../Libraries/openFrameworks/libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj
       xcodebuild -configuration Release -project ./ofelia.xcodeproj
-      #cp -f ./bin/libs/libfmod.dylib ../../ofelia/libs/libfmod.dylib
+      cp -f ./bin/libs/libfmod.dylib ../../ofelia/libs/libfmod.dylib
       cp -f ./bin/ofelia   ../../ofelia/ofelia
 # Build for Linux
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then

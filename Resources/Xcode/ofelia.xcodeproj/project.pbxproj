@@ -569,7 +569,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# copy libfmod.dylib and change @executable_path to @loader_path\nmkdir -p \"$SRCROOT/bin/libs\"\ncp -rf \"$SRCROOT/../../Libraries/openFrameworks;/libs/fmod/lib/osx/libfmod.dylib\" \"$SRCROOT/bin/libs\"\ninstall_name_tool -change @executable_path/../Frameworks/libfmod.dylib @loader_path/libs/libfmod.dylib $BUILT_PRODUCTS_DIR/ofelia\n";
+			shellScript = "# copy libfmod.dylib and change @executable_path to @loader_path\nmkdir -p \"$SRCROOT/bin/libs\"\ncp -rf \"$SRCROOT/../../Libraries/openFrameworks/libs/fmod/lib/osx/libfmod.dylib\" \"$SRCROOT/bin/libs\"\ninstall_name_tool -change @executable_path/../Frameworks/libfmod.dylib @loader_path/libs/libfmod.dylib $BUILT_PRODUCTS_DIR/ofelia\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -708,7 +708,7 @@
 				CLANG_WARN_ENUM_CONVERSION = NO;
 				CLANG_WARN_INT_CONVERSION = NO;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = NO;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
 				CODE_SIGN_IDENTITY = "-";
 				CONFIGURATION_BUILD_DIR = "$(INSTALL_PATH)";
@@ -722,7 +722,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				ENABLE_TESTABILITY = NO;
 				EXCLUDED_SOURCE_FILE_NAMES = "";
-				EXECUTABLE_EXTENSION = pd_darwin;
+				EXECUTABLE_EXTENSION = "";
 				EXECUTABLE_PREFIX = "";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -809,7 +809,7 @@
 				CLANG_WARN_ENUM_CONVERSION = NO;
 				CLANG_WARN_INT_CONVERSION = NO;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = NO;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
 				CODE_SIGN_IDENTITY = "-";
 				CONFIGURATION_BUILD_DIR = "$(INSTALL_PATH)";
@@ -825,7 +825,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				ENABLE_TESTABILITY = NO;
 				EXCLUDED_SOURCE_FILE_NAMES = "";
-				EXECUTABLE_EXTENSION = pd_darwin;
+				EXECUTABLE_EXTENSION = "";
 				EXECUTABLE_PREFIX = "";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
