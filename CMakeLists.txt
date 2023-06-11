@@ -46,7 +46,6 @@ endforeach()
 # Create a static library target and include the generated C++ source files
 add_library(ofelia_binary_data STATIC ${GENERATED_SOURCE_FILES})
 
-
 # OFELIA EXTERNAL STATIC LIB
 # ------------------------------------------------------------------------------#
 
@@ -71,4 +70,6 @@ add_library(ofelia-external STATIC ${ofelia_source})
 
 target_include_directories(ofelia-external PRIVATE ./Libraries/ofxPd/libs/libpd/pure-data/src)
 target_compile_definitions(ofelia-external PRIVATE ${EXTERNAL_COMPILE_DEFINITIONS})
+target_include_directories(ofelia_binary_data INTERFACE ${CMAKE_CURRENT_BINARY_DIR}/src)
+
 add_dependencies(ofelia-external ofelia_binary_data)
