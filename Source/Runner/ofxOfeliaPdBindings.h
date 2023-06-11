@@ -454,11 +454,13 @@ class pdInlet
 {
 public:
     pdInlet(std::string s)
-    //:x(ofxOfeliaLua::getByName(s))
+    : x(ofxOfeliaLua::getByName(s))
     {};
     
     void setFloatInlet(int n, float f)
     {
+        
+        ofxOfeliaMessageManager::sendMessage(pd_inlet_set_float, x->getUniqueId(), n, f);
         /*
         if (!doesPassiveInletExist()) return;
 
@@ -472,6 +474,7 @@ public:
     }
     void setSymbolInlet(int n, std::string s)
     {
+        ofxOfeliaMessageManager::sendMessage(pd_inlet_set_symbol, x->getUniqueId(), n, s);
         /*
         if (!doesPassiveInletExist()) return;
 
@@ -485,6 +488,7 @@ public:
     }
     void setInlets(int argc, t_atom *argv, std::deque<int> userDataRef)
     {
+        ofxOfeliaMessageManager::sendMessage(pd_inlet_set_inlets, x->getUniqueId(), std::vector<t_atom>(argv, argv + argc));
         /*
         if (!doesPassiveInletExist()) return;
 
@@ -503,6 +507,7 @@ public:
     }
     void setSignalInlet(t_floatarg f)
     {
+        ofxOfeliaMessageManager::sendMessage(pd_inlet_set_signal, x->getUniqueId(), f);
         /*
         if (!doesSignalInletExist()) return;
 
@@ -537,7 +542,7 @@ private:
         //pd_error(NULL, "ofelia: wrong passive inlet argument type to set");
     }
     
-    //ofxOfeliaLua *x;
+    ofxOfeliaLua *x;
 };
 
 class pdOutlet
