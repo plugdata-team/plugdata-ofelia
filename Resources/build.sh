@@ -20,6 +20,10 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
       if [ ! -f gstreamer-fix.patch ]; then
       wget  -O gstreamer-fix.patch "https://github.com/openFrameworks/openFrameworks/commit/bd4042344dc9670770754374607d2ca8190f9476.patch"
       git apply gstreamer-fix.patch
+
+      wget  -O sndfile-fix.patch "https://github.com/openFrameworks/openFrameworks/commit/290dbfc23930425024c9456b5c5519611fb1990d.patch"
+      git apply sndfile-fix.patch
+
       fi
       popd
 
