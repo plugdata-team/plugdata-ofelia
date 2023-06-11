@@ -47,7 +47,7 @@ install_dependencies() {
     fi
 
     if [ -f /etc/fedora-release ]; then
-        install_fedora_packages()
+        install_fedora_packages();
         return
     fi
 
@@ -55,25 +55,25 @@ install_dependencies() {
         # shellcheck disable=SC1091
         source /etc/os-release
         if [[ $ID = "opensuse" ]]; then
-            install_opensuse_packages()
+            install_opensuse_packages();
             return
         fi
     fi
 
     if [ -f /etc/arch-release ]; then
-        install_arch_packages()
+        install_arch_packages();
         return
     fi
 
     if [ -f /etc/debian_version ]; then
-        install_ubuntu_packages()
+        install_ubuntu_packages();
         return
     fi
 
-    install_ubuntu_packages()
+    install_ubuntu_packages();
 }
 
-install_dependencies()
+install_dependencies();
 
 # Manually build kissfft, because OF builds it without the fPIC flag
 rm -rf ./openFrameworks/libs/kiss
