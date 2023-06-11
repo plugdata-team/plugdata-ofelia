@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/bash
+
 #
 # KissFFT
 # "Keep It Simple, Stupid" Fast Fourier Transform
