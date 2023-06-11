@@ -11,7 +11,7 @@ install_debian_packages() {
 
 # Function to install packages on Fedora
 install_fedora_packages() {
-    dnf install -y gstreamer1-plugins-base gstreamer1-plugins-good gstreamer1-plugins-ugly gstreamer1-vaapi alsa-lib-devel libassimp-devel cairo-devel libcurl-devel freetype-devel mesa-libGLU-devel gstreamer1-devel gstreamer1 jack-audio-connection-kit-devel systemd-devel libunwind-devel libX11-devel libXcomposite-devel libXcursor-devel libXext-devel libXinerama-devel libXrandr-devel libXrender-devel redhat-lsb mesa-libGL-devel pax-utils pkg-config python3 python3-pip rsync wget patchelf libsndfile-devel libXi-devel
+    dnf install -y gstreamer1-plugins-base gstreamer1-plugins-good gstreamer1-vaapi alsa-lib-devel cairo-devel libcurl-devel freetype-devel mesa-libGLU-devel gstreamer1-devel gstreamer1 jack-audio-connection-kit-devel systemd-devel libunwind-devel libX11-devel libXcomposite-devel libXcursor-devel libXext-devel libXinerama-devel libXrandr-devel libXrender-devel redhat-lsb mesa-libGL-devel pax-utils pkg-config python3 python3-pip rsync wget patchelf libsndfile-devel libXi-devel
     ./Libraries/openFrameworks/scripts/linux/fedora/install_dependencies.sh -y
 }
 
