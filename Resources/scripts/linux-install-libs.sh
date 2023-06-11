@@ -31,13 +31,20 @@ install_arch_packages() {
 
 
 if [ -f /etc/redhat-release ] ; then
+    echo "Installing Fedora packages..."
     install_fedora_packages
 elif [ -f /etc/SuSE-release ] ; then
+    echo "Installing SuSE packages..."
     install_opensuse_packages
 elif [ -f /etc/debian_version ] ; then	
+    echo "Installing Debian packages..."
     install_debian_packages
 elif [ -f /etc/arch-release ] ; then
+    echo "Installing Arch packages..."
     install_arch_packages
+else
+    echo "Installing Debian packages..."
+    install_debian_packages
 fi
 
 # Manually build kissfft, because OF builds it without the fPIC flag
