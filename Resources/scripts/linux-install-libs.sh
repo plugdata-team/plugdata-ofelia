@@ -43,6 +43,16 @@ elif [ -f /etc/debian_version ] ; then
 elif [ -f /etc/arch-release ] ; then
     echo "Installing Arch packages..."
     install_arch_packages
+elif [ -f /etc/SuSE-release ] || [ -f /etc/os-release ]; then
+    # shellcheck disable=SC1091
+    source /etc/os-release
+    if [[ $ID = "opensuse-leap" ]]; then
+        echo "Installing openSUSE packages..."
+        install_opensuse_packages
+    else
+        echo "Installing Debian packages..."
+        install_debian_packages
+    fi
 else
     echo "Installing Debian packages..."
     install_debian_packages
