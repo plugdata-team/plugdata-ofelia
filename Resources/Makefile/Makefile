@@ -6,7 +6,7 @@ endif
 
 # make sure the the OF_ROOT location is defined
 ifndef OF_ROOT
-    OF_ROOT=$(realpath ../../openFrameworks)
+    OF_ROOT=$(realpath ../../Libraries/openFrameworks)
 endif
 
 # PLATFORM_PKG_CONFIG="pkg-config --static"

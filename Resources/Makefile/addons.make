@@ -1,1 +1,1 @@
-../libs/ofxLua
+../../Libraries/ofxLua
