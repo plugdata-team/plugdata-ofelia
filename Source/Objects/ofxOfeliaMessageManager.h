@@ -15,9 +15,11 @@
 
 #include <iostream>
 #include <chrono>
+#include <algorithm>
 #include <thread>
 #include <vector>
 #include <tuple>
+#include <atomic>
 #include <z_libpd.h>
 
 class TimerThread
@@ -99,7 +101,7 @@ public:
     } */
     
 private:
-    std::atomic_bool running;
+    std::atomic<bool> running;
 };
 
 struct ofxOfeliaMessageListener {

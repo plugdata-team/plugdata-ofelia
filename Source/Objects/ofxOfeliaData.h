@@ -5,6 +5,7 @@
 //#include "ofxOfeliaSignal.h"
 #include "ofxOfeliaIO.h"
 #include "ofxOfeliaTextBuf.h"
+#include <memory>
 
 class ofxOfeliaLua;
 class ofxOfeliaData
