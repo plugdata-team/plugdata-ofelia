@@ -8,8 +8,8 @@ mkdir -p ./ofelia/libs
 # Build for macOS
 if [ "$(uname)" == "Darwin" ]; then
       cd ./Resources/Xcode
-      xcodebuild -configuration Debug -project ../../Libraries/openFrameworks/libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj
-      xcodebuild -configuration Debug -project ./ofelia.xcodeproj
+      xcodebuild -configuration Release -project ../../Libraries/openFrameworks/libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj
+      xcodebuild -configuration Release -project ./ofelia.xcodeproj
       #cp -f ./bin/libs/libfmod.dylib ../../ofelia/libs/libfmod.dylib
       cp -f ./bin/ofelia   ../../ofelia/ofelia
 # Build for Linux
