@@ -26,7 +26,7 @@ install_opensuse_packages() {
 
 # Function to install packages on openSUSE
 install_arch_packages() {
-    pacman -Sy --needed make pkgconf gcc openal glew freeglut freeimage gstreamer gst-plugins-base gst-plugins-good gst-plugins-bad gst-libav opencv libxcursor assimp boost glfw-x11 uriparser curl pugixml rtaudio poco sndfile rsync
+    pacman -Sy --needed make pkgconf gcc openal glew freeglut freeimage gstreamer gst-plugins-base gst-plugins-good gst-plugins-bad gst-libav opencv libxcursor assimp boost glfw-x11 uriparser curl pugixml rtaudio poco libsndfile rsync
    ./Libraries/openFrameworks/scripts/linux/archlinux/install_dependencies.sh -y
 }
 
