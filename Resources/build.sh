@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
  # Prepare ofelia folder
 rm -rf ./ofelia
