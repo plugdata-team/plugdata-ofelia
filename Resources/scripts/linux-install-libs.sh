@@ -11,7 +11,7 @@ install_debian_packages() {
 
 # Function to install packages on Fedora
 install_fedora_packages() {
-    dnf install -y gstreamer1-plugins-base gstreamer1-plugins-good gstreamer1-vaapi alsa-lib-devel cairo-devel libcurl-devel freetype-devel mesa-libGLU-devel gstreamer1-devel gstreamer1 jack-audio-connection-kit-devel systemd-devel libunwind-devel libX11-devel libXcomposite-devel libXcursor-devel libXext-devel libXinerama-devel libXrandr-devel libXrender-devel redhat-lsb mesa-libGL-devel pax-utils pkg-config python3 python3-pip rsync wget patchelf libsndfile-devel libXi-devel
+    dnf install -y gstreamer1-plugins-base-devel gstreamer1-plugins-good gstreamer1-vaapi alsa-lib-devel cairo-devel libcurl-devel freetype-devel mesa-libGLU-devel gstreamer1-devel gstreamer1 jack-audio-connection-kit-devel systemd-devel libunwind-devel libX11-devel libXcomposite-devel libXcursor-devel libXext-devel libXinerama-devel libXrandr-devel libXrender-devel redhat-lsb mesa-libGL-devel pax-utils pkg-config python3 python3-pip rsync wget patchelf libsndfile-devel libXi-devel freeglut-devel alsa-lib-devel libXmu-devel libXxf86vm-devel gcc-c++ libraw1394-devel gstreamer1-devel gstreamer1-plugins-base-devel libudev-devel libtheora-devel libvorbis-devel openal-soft-devel libsndfile-devel python-lxml glew-devel flac-devel freeimage-devel cairo-devel pulseaudio-libs-devel openssl-devel libusbx-devel gtk2-devel libXrandr-devel libXi-devel opencv-devel libX11-devel assimp-devel rtaudio-devel boost-devel gtk3-devel glfw-devel uriparser-devel curl-devel pugixml-devel jack-audio-connection-kit-dbus poco-devel
     ./Libraries/openFrameworks/scripts/linux/fedora/install_dependencies.sh -y
 }
 
@@ -26,6 +26,7 @@ install_opensuse_packages() {
 
 # Function to install packages on openSUSE
 install_arch_packages() {
+    pacman -Sy --needed make pkgconf gcc openal glew freeglut freeimage gstreamer gst-plugins-base gst-plugins-good gst-plugins-bad gst-libav opencv libxcursor assimp boost glfw-x11 uriparser curl pugixml rtaudio poco
    ./Libraries/openFrameworks/scripts/linux/archlinux/install_dependencies.sh -y
 }
 
