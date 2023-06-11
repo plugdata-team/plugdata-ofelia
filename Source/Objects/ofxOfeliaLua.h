@@ -375,52 +375,117 @@ public:
                 
             case pd_value_get:
             {
+                auto [name] = messageManager->parseMessage<std::string>(message);
+                auto* sym = gensym(name.c_str());
+                messageManager->sendReturnValue<float>(*value_get(sym));
                 
                 break;
             }
             case pd_value_set:
             {
-                
+                auto [name, value] = messageManager->parseMessage<std::string, float>(message);
+                auto* sym = gensym(name.c_str());
+                *value_get(sym) = value;
                 break;
             }
             case pd_array_get:
             {
-                
+                //        t_garray *a; int size; t_word *vec;
+                //        if (exists(&a) && getData(a, &size, &vec))
+                //        {
+                //            if (onset < 0) onset = 0;
+                //            *vecp = vec + onset;
+                //            *sizep = size - onset;
+                //        }
                 break;
             }
             case pd_array_set:
             {
-                
+                //        t_garray *a; int size; t_word *vec;
+                //        if (exists(&a) && getData(a, &size, &vec))
+                //        {
+                //            if (onset < 0) onset = 0;
+                //            for (int i = 0; i < n; ++i)
+                //            {
+                //                int io = i + onset;
+                //                if (io < size) vec[io].w_float = f[i];
+                //                else break;
+                //            }
+                //            garray_redraw(a);
+                //        }
                 break;
             }
             case pd_array_get_size:
             {
-                
+                //        t_garray *a; int size; t_word *vec;
+                //        if (exists(&a) && getData(a, &size, &vec))
+                //            return size;
+                //        return 0;
                 break;
             }
             case pd_array_set_size:
             {
-                
+                //        t_garray *a; int size; t_word *vec;
+                //        if (exists(&a) && getData(a, &size, &vec))
+                //        {
+                //            garray_resize_long(a, n);
+                //            garray_redraw(a);
+                //        }
                 break;
             }
             case pd_inlet_set_float:
             {
-                
+                /*
+                if (!doesPassiveInletExist()) return;
+
+                n = ofClamp(n, 0, x->io.numInlets - 2);
+                if (x->io.av[n].a_type != A_FLOAT)
+                {
+                    postWrongPassiveInletArgTypeError();
+                    return;
+                }
+                x->io.av[n].a_w.w_float = f; */
                 break;
             }
             case pd_inlet_set_symbol:
             {
-                
+                /*
+                if (!doesPassiveInletExist()) return;
+
+                n = ofClamp(n, 0, x->io.numInlets - 2);
+                if (x->io.av[n].a_type != A_SYMBOL)
+                {
+                    postWrongPassiveInletArgTypeError();
+                    return;
+                }
+                x->io.av[n].a_w.w_symbol = s; */
                 break;
             }
             case pd_inlet_set_inlets:
             {
-                
+                /*
+                if (!doesPassiveInletExist()) return;
+
+                const int numPassiveInlets = x->io.numInlets - 1;
+                if (argc > numPassiveInlets)
+                    argc = numPassiveInlets;
+                for (int i = 0; i < argc; ++i)
+                {
+                    if (x->io.av[i].a_type != argv[i].a_type)
+                    {
+                        postWrongPassiveInletArgTypeError();
+                        return;
+                    }
+                    x->io.av[i].a_w = argv[i].a_w;
+                } */
                 break;
             }
             case pd_inlet_set_signal:
             {
-                
+                /*
+                if (!doesSignalInletExist()) return;
+
+                x->signal.f = f; */
                 break;
             }
             case pd_get_sys_info:
