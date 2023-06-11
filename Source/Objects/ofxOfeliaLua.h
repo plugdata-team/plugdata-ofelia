@@ -5,7 +5,6 @@
 #include "m_pd.h"
 #include "g_canvas.h"
 #include <string>
-#include <format>
 
 #include "ofxOfeliaMessageManager.h"
 #include "ofxOfeliaData.h"
