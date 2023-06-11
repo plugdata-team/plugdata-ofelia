@@ -106,12 +106,13 @@ struct ofxOfeliaMessageListener {
     virtual void receiveMessage(ofxMessageType type, const std::string& message) = 0;
 };
 
+
+
 struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageListener {
     
     ofxOfeliaMessageManager()
     {
         pdthis = libpd_this_instance();
-        //ofelia.start("/Users/timschoen/Library/plugdata/0.8.0-0/ofelia");
         
         if (pipe.bind(12014, 12015)) {
             startTimer(5);
