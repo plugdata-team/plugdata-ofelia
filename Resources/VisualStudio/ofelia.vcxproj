@@ -97,7 +97,7 @@
       <PreprocessorDefinitions>TARGET_EXTERNAL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>..\..\Libraries\ofxLua\src;..\..\Libraries\ofxLua\src\bindings;..\..\Libraries\ofxLua\src\bindings\desktop;..\..\Libraries\ofxLua\src\bindings\ios;..\..\Libraries\ofxLua\src\bindings\linuxarm;..\..\Libraries\ofxLua\libs\lua;..\..\Libraries\ofxPd\libs\libpd\pure-data\src;..\..\Source\Runner;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Libraries\ofxLua\src;..\..\Libraries\ofxLua\src\bindings;..\..\Libraries\ofxLua\src\bindings\desktop;..\..\Libraries\ofxLua\src\bindings\ios;..\..\Libraries\ofxLua\src\bindings\linuxarm;..\..\Libraries\ofxLua\libs\lua;..\..\Source\Runner;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
@@ -117,7 +117,7 @@
       <PreprocessorDefinitions>TARGET_EXTERNAL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>..\..\Libraries\ofxLua\src;..\..\Libraries\ofxLua\src\bindings;..\..\Libraries\ofxLua\src\bindings\desktop;..\..\Libraries\ofxLua\src\bindings\ios;..\..\Libraries\ofxLua\src\bindings\linuxarm;..\..\Libraries\ofxLua\libs\lua;..\..\Libraries\ofxPd\libs\libpd\pure-data\src;..\..\Source\Runner;..\..\Libraries\openFrameworks\libs\fmod\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Libraries\ofxLua\src;..\..\Libraries\ofxLua\src\bindings;..\..\Libraries\ofxLua\src\bindings\desktop;..\..\Libraries\ofxLua\src\bindings\ios;..\..\Libraries\ofxLua\src\bindings\linuxarm;..\..\Libraries\ofxLua\libs\lua;..\..\Source\Runner;..\..\Libraries\openFrameworks\libs\fmod\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp14</LanguageStandard>
@@ -139,7 +139,7 @@
       <PreprocessorDefinitions>TARGET_EXTERNAL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>..\..\Libraries\ofxLua\src;..\..\Libraries\ofxLua\src\bindings;..\..\Libraries\ofxLua\src\bindings\desktop;..\..\Libraries\ofxLua\libs\lua;..\..\Libraries\ofxPd\libs\libpd\pure-data\src;..\..\Source\Runner;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Libraries\ofxLua\src;..\..\Libraries\ofxLua\src\bindings;..\..\Libraries\ofxLua\src\bindings\desktop;..\..\Libraries\ofxLua\libs\lua;..\..\Source\Runner;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>Default</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <Optimization>Full</Optimization>
@@ -164,7 +164,7 @@
       <PreprocessorDefinitions>TARGET_EXTERNAL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>..\..\Libraries\ofxLua\src;..\..\Libraries\ofxLua\src\bindings;..\..\Libraries\ofxLua\src\bindings\desktop;..\..\Libraries\ofxLua\libs\lua;..\..\Libraries\ofxPd\libs\libpd\pure-data\src;..\..\Libraries\openFrameworks\addons/ofxOfelia/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Libraries\ofxLua\src;..\..\Libraries\ofxLua\src\bindings;..\..\Libraries\ofxLua\src\bindings\desktop;..\..\Libraries\ofxLua\libs\lua;..\..\Libraries\openFrameworks\addons/ofxOfelia/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>Default</CompileAs>
       <Optimization>Full</Optimization>
       <OmitFramePointers>false</OmitFramePointers>
