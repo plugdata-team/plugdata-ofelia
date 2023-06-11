@@ -93,6 +93,7 @@
     <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\extra\pique\pique.c" />
     <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\extra\sigmund~\sigmund~.c" />
     <ClCompile Include="..\libs\ofxPd\libs\libpd\pure-data\extra\stdout\stdout.c" />
+    <ClCompile Include="..\libs\ofxPd\libs\libpd\x_libpd_ofelia.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\libs\ofxPd\libs\libpd\pure-data\src\g_all_guis.h" />
@@ -104,9 +105,6 @@
     <ClInclude Include="..\libs\ofxPd\libs\libpd\pure-data\src\s_net.h" />
     <ClInclude Include="..\libs\ofxPd\libs\libpd\pure-data\src\s_stuff.h" />
     <ClInclude Include="..\libs\ofxPd\libs\libpd\pure-data\src\s_utf8.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="C:\Users\timschoen\PlugData\Libraries\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="libpd">
