@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <cstring>
 
 
 #define FAKE_PD_INTERFACE 1

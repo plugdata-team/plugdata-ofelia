@@ -25,6 +25,5 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 
       cd ./Resources/Makefile
       CC=clang CXX=clang++ CFLAGS=-fPIC make
-      # Copy output file with either .l_arm and .pd_linux extensions
-      cp -f ./bin/ofelia.* ../../ofelia
+      cp -f ./bin/ofelia ../../ofelia
 fi

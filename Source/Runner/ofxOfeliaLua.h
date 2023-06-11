@@ -5,6 +5,7 @@
 #include "lua.hpp"
 #include <string>
 #include <map>
+#include <memory>
 
 using t_gpointer = int;
 using t_floatarg = float;
@@ -21,37 +22,10 @@ public:
     
     static bool init();
     
-    static void createInstance(ofxOfeliaMessageManager* messageMan, const std::string& uid)
-    {
-        ofxLuaInstances[uid] = std::make_unique<ofxOfeliaLua>(messageMan, uid);
-    }
+    static void createInstance(ofxOfeliaMessageManager* messageMan, const std::string& uid);
     
-    static ofxOfeliaLua* getByName(const std::string& name)
-    {
-        for(auto& [id, instance] : ofxLuaInstances)
-        {
-            if(instance->getName() == name)
-            {
-                return instance.get();
-            }
-        }
-        
-        return nullptr;
-    }
-    
-    static ofxOfeliaLua* getPtr(const std::string& uid)
-    {
-        if(ofxLuaInstances.count(uid))
-        {
-            return ofxLuaInstances[uid].get();
-        }
-        else {
-            std::cerr << "ofxOfeliaLua: instance not found" << std::endl;
-            return nullptr;
-        }
-        
-        return nullptr;
-    }
+    static ofxOfeliaLua* getByName(const std::string& name);
+    static ofxOfeliaLua* getPtr(const std::string& uid);
     
     bool require();
     int  getType(const char *s);
