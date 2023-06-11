@@ -436,7 +436,7 @@ public:
     }
     void sendList(int argc, t_atom *argv, std::deque<int> userDataRef)
     {
-        ofxOfeliaMessageManager::sendMessage(pd_send_list, sym, std::vector<t_atom>(argv, argv + argc), false);
+        ofxOfeliaMessageManager::sendMessage(pd_send_list, sym, std::vector<t_atom>(argv, argv + argc));
     }
     void sendAnything(int argc, t_atom *argv, std::deque<int> userDataRef)
     {
@@ -612,6 +612,7 @@ public:
     :sym(s){};
     float getAt(int n)
     {
+        
 //        t_garray *a; int size; t_word *vec;
 //        if (exists(&a) && getData(a, &size, &vec))
 //        {
@@ -643,33 +644,27 @@ public:
     }
     void get(t_word **vecp, int *sizep, int onset)
     {
-        //ofxOfeliaMessageManager::sendMessage(pd_array_set, sym, std::vector<float>(f, f+n));
-        //ofxOfeliaMessageManager::waitForReturnValue<<#typename Types#>>()
+        ofxOfeliaMessageManager::sendMessage(pd_array_get, sym);
+        auto [arr] = ofxOfeliaMessageManager::waitForReturnValue<std::vector<t_atom>>();
         
-//        t_garray *a; int size; t_word *vec;
-//        if (exists(&a) && getData(a, &size, &vec))
-//        {
-//            if (onset < 0) onset = 0;
-//            *vecp = vec + onset;
-//            *sizep = size - onset;
-//        }
+        *sizep = arr.size() - onset;
+        *vecp = new t_word[arr.size() - onset];
+        
+        for(int i = onset; i < arr.size(); i++)
+        {
+            *vecp[i] = arr[i].a_w;
+        }
     }
     void set(int n, t_floatarg *f, int onset)
     {
+        std::vector<t_atom> atoms(n);
+        for(int i = 0; i < n; i++)
+        {
+            atoms[i].a_type = A_FLOAT;
+            atoms[i].a_w.w_float = f[i];
+        }
         
-          ofxOfeliaMessageManager::sendMessage(pd_array_set, sym, std::vector<float>(f, f+n), onset);
-//        t_garray *a; int size; t_word *vec;
-//        if (exists(&a) && getData(a, &size, &vec))
-//        {
-//            if (onset < 0) onset = 0;
-//            for (int i = 0; i < n; ++i)
-//            {
-//                int io = i + onset;
-//                if (io < size) vec[io].w_float = f[i];
-//                else break;
-//            }
-//            garray_redraw(a);
-//        }
+        ofxOfeliaMessageManager::sendMessage(pd_array_set, sym, atoms, onset);
     }
     int getSize()
     {

@@ -138,9 +138,9 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
         if(!instance)
         {
             instance = new ofxOfeliaMessageManager();
+            addListener(instance);
         }
      
-        addListener(instance);
         return instance;
     }
 
@@ -219,6 +219,149 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
                 else {
                     logpost(NULL, 2, "%s", mess.c_str());
                 }
+                break;
+            }
+            case pd_send_bang:
+            {
+                auto [send] = parseMessage<std::string>(message);
+                
+                auto* target = gensym(send.c_str());
+                if(target->s_thing) pd_bang(target->s_thing);
+                
+                break;
+            }
+            case pd_send_float:
+            {
+                auto [send, value] = parseMessage<std::string, float>(message);
+                
+                auto* target = gensym(send.c_str());
+                if(target->s_thing) pd_float(target->s_thing, value);
+                
+                break;
+            }
+            case pd_send_symbol:
+            {
+                auto [send, symbol] = parseMessage<std::string, std::string>(message);
+                
+                auto* target = gensym(send.c_str());
+                if(target->s_thing) pd_symbol(target->s_thing, gensym(symbol.c_str()));
+                
+                break;
+                
+                break;
+            }
+            case pd_send_pointer:
+            {
+                /* TODO: implement this!
+                auto [identifier, send, symbol] = parseMessage<std::string, std::string, float>(message);
+                
+                if(identifier != uid()) return;
+                
+                 auto* target = gensym(send.c_str());
+                 if(target->s_thing) pd_symbol(target->s_thing, gensym(symbol.c_str()));
+                 */
+                
+                break;
+            }
+            case pd_send_list:
+            {
+                auto [identifier, send, atoms] = parseMessage<std::string, std::string, std::vector<t_atom>>(message);
+
+                auto* target = gensym(send.c_str());
+                if(target->s_thing) pd_list(target->s_thing, gensym("list"), atoms.size(), atoms.data());
+                
+                break;
+            }
+            case pd_send_anything:
+            {
+                auto [identifier, send, symbol, atoms] = parseMessage<std::string, std::string, std::string, std::vector<t_atom>>(message);
+                
+                auto* target = gensym(send.c_str());
+                if(target->s_thing) pd_anything(target->s_thing, gensym(symbol.c_str()), atoms.size(), atoms.data());
+                break;
+            }
+                
+            case pd_value_get:
+            {
+                auto [name] = parseMessage<std::string>(message);
+                auto* sym = gensym(name.c_str());
+                sendReturnValue<float>(*value_get(sym));
+                
+                break;
+            }
+            case pd_value_set:
+            {
+                auto [name, value] = parseMessage<std::string, float>(message);
+                auto* sym = gensym(name.c_str());
+                *value_get(sym) = value;
+                break;
+            }
+            case pd_array_get:
+            {
+                auto [name, values] = parseMessage<std::string, std::vector<t_atom>>(message);
+                
+                auto* sym = gensym(name.c_str());
+                auto* a = reinterpret_cast<t_garray *>(pd_findbyclass(sym, garray_class));
+                
+                int size; t_word *vec;
+                if (!a || !garray_getfloatwords(a, &size, &vec))
+                {
+                    pd_error(NULL, "ofelia: bad template for array '%s'", sym->s_name);
+                    sendReturnValue(std::vector<t_atom>());
+                    break;
+                }
+                std::vector<t_atom> atoms;
+                for(int i = 0; i < size; i++)
+                {
+                    atoms[i].a_type = A_FLOAT;
+                    atoms[i].a_w = vec[i];
+                }
+                
+                sendReturnValue(atoms);
+
+                break;
+            }
+            case pd_array_set:
+            {
+                auto [name, values, onset] = parseMessage<std::string, std::vector<t_atom>, int>(message);
+                
+                auto* sym = gensym(name.c_str());
+                auto* a = reinterpret_cast<t_garray *>(pd_findbyclass(sym, garray_class));
+                
+                int size; t_word *vec;
+                if (!a || !garray_getfloatwords(a, &size, &vec))
+                {
+                    pd_error(NULL, "ofelia: bad template for array '%s'", sym->s_name);
+                    break;
+                }
+                
+                if (onset < 0) onset = 0;
+                for (int i = 0; i < values.size(); ++i)
+                {
+                    int io = i + onset;
+                    if (io < size) vec[io].w_float = atom_getfloat(&values[i]);
+                    else break;
+                }
+                
+                garray_redraw(a);
+                break;
+            }
+            case pd_array_get_size:
+            {
+                //        t_garray *a; int size; t_word *vec;
+                //        if (exists(&a) && getData(a, &size, &vec))
+                //            return size;
+                //        return 0;
+                break;
+            }
+            case pd_array_set_size:
+            {
+                //        t_garray *a; int size; t_word *vec;
+                //        if (exists(&a) && getData(a, &size, &vec))
+                //        {
+                //            garray_resize_long(a, n);
+                //            garray_redraw(a);
+                //        }
                 break;
             }
                 
