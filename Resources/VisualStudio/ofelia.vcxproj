@@ -99,7 +99,7 @@
       <WarningLevel>Level3</WarningLevel>
       <AdditionalIncludeDirectories>..\..\Libraries\ofxLua\src;..\..\Libraries\ofxLua\src\bindings;..\..\Libraries\ofxLua\src\bindings\desktop;..\..\Libraries\ofxLua\src\bindings\ios;..\..\Libraries\ofxLua\src\bindings\linuxarm;..\..\Libraries\ofxLua\libs\lua;..\..\Source\Runner;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -121,7 +121,7 @@
       <AdditionalIncludeDirectories>..\..\Libraries\ofxLua\src;..\..\Libraries\ofxLua\src\bindings;..\..\Libraries\ofxLua\src\bindings\desktop;..\..\Libraries\ofxLua\src\bindings\ios;..\..\Libraries\ofxLua\src\bindings\linuxarm;..\..\Libraries\ofxLua\libs\lua;..\..\Source\Runner;..\..\Libraries\openFrameworks\libs\fmod\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -144,7 +144,7 @@
       <CompileAs>Default</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <Optimization>Full</Optimization>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
@@ -171,7 +171,7 @@
       <Optimization>Full</Optimization>
       <OmitFramePointers>false</OmitFramePointers>
       <AdditionalOptions>-DPD_LONGINTTYPE=__int64 %(AdditionalOptions)</AdditionalOptions>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
