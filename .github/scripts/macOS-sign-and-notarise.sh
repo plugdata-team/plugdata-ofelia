@@ -1,10 +1,10 @@
 #!/bin/bash
 
-ENTITLEMENTS="./ofxOfelia/macOSExternal/Entitlements.plist"
+ENTITLEMENTS="./Resources/Xcode/Entitlements.plist
 ID="Developer ID Application: Timothy Schoen (7SV7JPRR2L)"
 
 # Sign dynamic libraries
-/usr/bin/codesign --force -s $ID -entitlements $ENTITLEMENTS ./ofelia/ofelia.pd_darwin
+/usr/bin/codesign --force -s $ID -entitlements $ENTITLEMENTS ./ofelia/ofelia
 /usr/bin/codesign --force -s $ID -entitlements $ENTITLEMENTS ./ofelia/libs/libfmod.dylib
 
 zip -vr ofelia.zip ./ofelia -x "*.DS_Store"
