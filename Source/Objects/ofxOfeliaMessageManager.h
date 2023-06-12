@@ -227,8 +227,10 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
             {
                 auto [send] = parseMessage<std::string>(message);
                 
+                sys_lock();
                 auto* target = gensym(send.c_str());
                 if(target->s_thing) pd_bang(target->s_thing);
+                sys_unlock();
                 
                 break;
             }
@@ -236,8 +238,10 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
             {
                 auto [send, value] = parseMessage<std::string, float>(message);
                 
+                sys_lock();
                 auto* target = gensym(send.c_str());
                 if(target->s_thing) pd_float(target->s_thing, value);
+                sys_unlock();
                 
                 break;
             }
@@ -245,11 +249,11 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
             {
                 auto [send, symbol] = parseMessage<std::string, std::string>(message);
                 
+                sys_lock();
                 auto* target = gensym(send.c_str());
                 if(target->s_thing) pd_symbol(target->s_thing, gensym(symbol.c_str()));
-                
-                break;
-                
+                sys_unlock();
+
                 break;
             }
             case pd_send_pointer:
@@ -258,9 +262,10 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
                 auto [identifier, send, symbol] = parseMessage<std::string, std::string, float>(message);
                 
                 if(identifier != uid()) return;
-                
+                 sys_lock();
                  auto* target = gensym(send.c_str());
                  if(target->s_thing) pd_symbol(target->s_thing, gensym(symbol.c_str()));
+                 sys_unlock();
                  */
                 
                 break;
@@ -269,8 +274,10 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
             {
                 auto [identifier, send, atoms] = parseMessage<std::string, std::string, std::vector<t_atom>>(message);
 
+                sys_lock();
                 auto* target = gensym(send.c_str());
                 if(target->s_thing) pd_list(target->s_thing, gensym("list"), atoms.size(), atoms.data());
+                sys_unlock();
                 
                 break;
             }
@@ -278,30 +285,44 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
             {
                 auto [identifier, send, symbol, atoms] = parseMessage<std::string, std::string, std::string, std::vector<t_atom>>(message);
                 
+                sys_lock();
                 auto* target = gensym(send.c_str());
                 if(target->s_thing) pd_anything(target->s_thing, gensym(symbol.c_str()), atoms.size(), atoms.data());
+                sys_unlock();
+                
                 break;
             }
                 
             case pd_value_get:
             {
                 auto [name] = parseMessage<std::string>(message);
+                
+                sys_lock();
                 auto* sym = gensym(name.c_str());
-                sendReturnValue<float>(*value_get(sym));
+                float value = 0.0f;
+                if(auto* valPtr = value_get(sym)) value = *valPtr;
+                sys_unlock();
+                
+                sendReturnValue<float>(value);
                 
                 break;
             }
             case pd_value_set:
             {
                 auto [name, value] = parseMessage<std::string, float>(message);
+                
+                sys_lock();
                 auto* sym = gensym(name.c_str());
-                *value_get(sym) = value;
+                if(auto* valPtr = value_get(sym)) *valPtr = value;
+                sys_unlock();
+                
                 break;
             }
             case pd_array_get:
             {
                 auto [name, values] = parseMessage<std::string, std::vector<t_atom>>(message);
                 
+                sys_lock();
                 auto* sym = gensym(name.c_str());
                 auto* a = reinterpret_cast<t_garray *>(pd_findbyclass(sym, garray_class));
                 
@@ -309,15 +330,19 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
                 if (!a || !garray_getfloatwords(a, &size, &vec))
                 {
                     pd_error(NULL, "ofelia: bad template for array '%s'", sym->s_name);
+                    sys_unlock();
+                    
                     sendReturnValue(std::vector<t_atom>());
                     break;
                 }
+                
                 std::vector<t_atom> atoms;
                 for(int i = 0; i < size; i++)
                 {
                     atoms[i].a_type = A_FLOAT;
                     atoms[i].a_w = vec[i];
                 }
+                sys_unlock();
                 
                 sendReturnValue(atoms);
 
@@ -327,6 +352,7 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
             {
                 auto [name, values, onset] = parseMessage<std::string, std::vector<t_atom>, int>(message);
                 
+                sys_lock();
                 auto* sym = gensym(name.c_str());
                 auto* a = reinterpret_cast<t_garray *>(pd_findbyclass(sym, garray_class));
                 
@@ -334,6 +360,7 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
                 if (!a || !garray_getfloatwords(a, &size, &vec))
                 {
                     pd_error(NULL, "ofelia: bad template for array '%s'", sym->s_name);
+                    sys_unlock();
                     break;
                 }
                 
@@ -346,24 +373,49 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
                 }
                 
                 garray_redraw(a);
+                sys_unlock();
+                
                 break;
             }
             case pd_array_get_size:
             {
-                //        t_garray *a; int size; t_word *vec;
-                //        if (exists(&a) && getData(a, &size, &vec))
-                //            return size;
-                //        return 0;
+                auto [name] = parseMessage<std::string>(message);
+                
+                sys_lock();
+                auto* sym = gensym(name.c_str());
+                auto* a = reinterpret_cast<t_garray *>(pd_findbyclass(sym, garray_class));
+                
+                if(!a)
+                {
+                    sys_unlock();
+                    break;
+                }
+                
+                int size = garray_npoints(a);
+                sys_unlock();
+                
+                sendReturnValue(size);
+                
                 break;
             }
             case pd_array_set_size:
             {
-                //        t_garray *a; int size; t_word *vec;
-                //        if (exists(&a) && getData(a, &size, &vec))
-                //        {
-                //            garray_resize_long(a, n);
-                //            garray_redraw(a);
-                //        }
+                
+                auto [name, size] = parseMessage<std::string, int>(message);
+                
+                sys_lock();
+                auto* sym = gensym(name.c_str());
+                auto* a = reinterpret_cast<t_garray *>(pd_findbyclass(sym, garray_class));
+                
+                if(!a)
+                {
+                    sys_unlock();
+                    break;
+                }
+                
+                garray_resize_long(a, size)
+                sys_unlock();
+
                 break;
             }
                 
