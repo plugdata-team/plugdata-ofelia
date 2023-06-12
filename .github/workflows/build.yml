@@ -20,15 +20,15 @@ jobs:
 
         # Downloading additional libs for openFrameworks
         - name: Installing openFrameworks dependencies
-          run: ./openFrameworks/scripts/osx/download_libs.sh
+          run: ${{github.workspace}}/Libraries/openFrameworks/scripts/osx/download_libs.sh
 
         # Building the project
         - name: Building Ofelia
-          run: ./build.sh
+          run: ${{github.workspace}}/Resources/build.sh
 
         # Sign and notarise to make sure it works with gatekeeper
         - name: Sign and notarise
-          run: .github/scripts/macOS-sign-and-notarise.sh
+          run: ${{github.workspace}}/.github/scripts/macOS-sign-and-notarise.sh
           working-directory: ${{github.workspace}}
           env:
             AC_USERNAME: ${{ secrets.AC_USERNAME }}
@@ -39,7 +39,7 @@ jobs:
           uses: actions/upload-artifact@v2
           with:
             name: plugdata-ofelia-macos
-            path: ./ofelia.zip
+            path: ${{github.workspace}}/ofelia.zip
 
   build-ubuntu-old:
     runs-on: ubuntu-20.04
@@ -53,23 +53,27 @@ jobs:
           submodules: recursive
 
       - name: Installing openFrameworks dependencies
-        run: ./.github/scripts/linux-install-libs.sh
+        run: ${{github.workspace}}/.github/scripts/linux-install-libs.sh
+
+      # Downloading additional libs for openFrameworks
+      - name: Installing openFrameworks dependencies
+        run: ${{github.workspace}}/Libraries/openFrameworks/scripts/linux/download_libs.sh
 
       # Building the project
       - name: Building Ofelia
-        run: ./build.sh
+        run: ${{github.workspace}}/Libraries/build.sh
 
      # Run script that copies all non-system dynamic libraries, and copies them into a dir that gets added as rpath
      # This should ensure that ofelia runs on any Linux distro, it's basically a flatpak
       - name: Packaging dependencies
-        run: ./.github/scripts/linux-bundle-libs.sh
+        run: ${{github.workspace}}/.github/scripts/linux-bundle-libs.sh
 
       # Upload executable binaries to GitHub
       - name: Uploading artifacts
         uses: actions/upload-artifact@v2
         with:
           name: plugdata-ofelia-linux-old
-          path: ./ofelia
+          path: ${{github.workspace}}/ofelia
 
   build-ubuntu-new:
     runs-on: ubuntu-22.04
@@ -83,7 +87,11 @@ jobs:
           submodules: recursive
 
       - name: Installing openFrameworks dependencies
-        run: ./.github/scripts/linux-install-libs.sh
+        run: ${{github.workspace}}/.github/scripts/linux-install-libs.sh
+
+      # Downloading additional libs for openFrameworks
+      - name: Installing openFrameworks dependencies
+        run: ${{github.workspace}}/Libraries/openFrameworks/scripts/linux/download_libs.sh
 
       # Building the project
       - name: Building Ofelia
@@ -92,14 +100,14 @@ jobs:
      # Run script that copies all non-system dynamic libraries, and copies them into a dir that gets added as rpath
      # This should ensure that ofelia runs on any Linux distro, it's basically a flatpak
       - name: Packaging dependencies
-        run: ./.github/scripts/linux-bundle-libs.sh
+        run: ${{github.workspace}}/.github/scripts/linux-bundle-libs.sh
 
       # Upload executable binaries to GitHub
       - name: Uploading artifacts
         uses: actions/upload-artifact@v2
         with:
           name: plugdata-ofelia-linux-new
-          path: ./ofelia
+          path: ${{github.workspace}}/ofelia
 
   build-windows:
       runs-on: windows-latest
@@ -120,22 +128,22 @@ jobs:
 
       - name: Install openFrameworks dependencies
         shell: msys2 {0}
-        working-directory: ${{github.workspace}}/openFrameworks
-        run: ./scripts/ci/vs/install.sh
+        working-directory: ${{github.workspace}}/Libraries/openFrameworks
+        run: ${{github.workspace}}/scripts/ci/vs/install.sh
 
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1.1
 
       - name: Build
         working-directory: ${{github.workspace}}
-        run: ./build.bat
+        run: ${{github.workspace}}/build.bat
 
       # Upload executable binaries to GitHub
       - name: Uploading artifacts
         uses: actions/upload-artifact@v2
         with:
           name: plugdata-ofelia-windows
-          path: ./ofelia
+          path: ${{github.workspace}}/ofelia
 
 
   #  build-ubuntu-armv7:

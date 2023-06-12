@@ -5,6 +5,13 @@ rm -rf ./ofelia
 cp -rf ./Resources/ofelia ./ofelia
 mkdir -p ./ofelia/libs
 
+pushd Libraries
+git clone --recursive --shallow-submodules https://github.com/openframeworks/openFrameworks.git
+pushd openFrameworks
+git reset --hard ac69b2f
+popd
+popd
+
 # Build for macOS
 if [ "$(uname)" == "Darwin" ]; then
       cd ./Resources/Xcode
@@ -21,6 +28,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
       wget  -O gstreamer-fix.patch "https://github.com/openFrameworks/openFrameworks/commit/bd4042344dc9670770754374607d2ca8190f9476.patch"
       git apply gstreamer-fix.patch
 
+      # Apply OF git patch for recend sndfile versions
       wget  -O sndfile-fix.patch "https://github.com/openFrameworks/openFrameworks/commit/290dbfc23930425024c9456b5c5519611fb1990d.patch"
       git apply sndfile-fix.patch
 
