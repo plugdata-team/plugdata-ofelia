@@ -1,6 +1,3 @@
-[submodule "openFrameworks"]
-	path = Libraries/openFrameworks
-	url = https://github.com/openframeworks/openFrameworks.git
 [submodule "ofxOfelia/libs/ofxPd/libs/libpd/pure-data"]
 	path = ofxOfelia/libs/ofxPd/libs/libpd/pure-data
 	url = https://github.com/plugdata-team/plugdata-pd
