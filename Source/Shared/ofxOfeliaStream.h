@@ -5,6 +5,7 @@
 #include <string>
 #include <cstring>
 #include <cassert>
+#include <cstdint>
 #include <sstream>
 #include <vector>
 #include <tuple>
