@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ENTITLEMENTS="./Resources/Xcode/Entitlements.plist
+ENTITLEMENTS="./Resources/Xcode/Entitlements.plist"
 ID="Developer ID Application: Timothy Schoen (7SV7JPRR2L)"
 
 # Sign dynamic libraries

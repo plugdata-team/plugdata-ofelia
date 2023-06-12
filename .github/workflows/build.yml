@@ -124,6 +124,7 @@ jobs:
 
       - name: Clone openFrameworks
         working-directory: ${{github.workspace}}
+        shell: bash
         run: ${{github.workspace}}/.github/clone-openFrameworks.sh
 
       - name: Build
