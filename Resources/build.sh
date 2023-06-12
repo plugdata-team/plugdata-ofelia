@@ -14,6 +14,9 @@ popd
 
 # Build for macOS
 if [ "$(uname)" == "Darwin" ]; then
+
+      ./Libraries/openFrameworks/scripts/osx/download_libs.sh
+
       cd ./Resources/Xcode
       xcodebuild -configuration Release -project ../../Libraries/openFrameworks/libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj
       xcodebuild -configuration Release -project ./ofelia.xcodeproj
@@ -21,7 +24,6 @@ if [ "$(uname)" == "Darwin" ]; then
       cp -f ./bin/ofelia   ../../ofelia/ofelia
 
       cd ../..
-      ./Libraries/openFrameworks/scripts/osx/download_libs.sh
 # Build for Linux
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 
