@@ -122,6 +122,10 @@ jobs:
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1.1
 
+      - name: Clone openFrameworks
+        working-directory: ${{github.workspace}}
+        run: ${{github.workspace}}/.github/clone-openFrameworks.sh
+
       - name: Build
         working-directory: ${{github.workspace}}
         run: ${{github.workspace}}/Resources/build.bat
