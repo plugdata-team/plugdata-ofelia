@@ -413,7 +413,7 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
                     break;
                 }
                 
-                garray_resize_long(a, size)
+                garray_resize_long(a, size);
                 sys_unlock();
 
                 break;
