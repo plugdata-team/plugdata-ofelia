@@ -343,7 +343,7 @@ private:
         struct sockaddr_in srcAddr;
         socklen_t addrLen = sizeof(srcAddr);
 
-        ssize_t bytesRead = ::recvfrom(socket_, buffer, sizeof(buffer) - 1, 0,
+        int bytesRead = ::recvfrom(socket_, buffer, sizeof(buffer) - 1, 0,
                                        (struct sockaddr*)&srcAddr, &addrLen);
         if (bytesRead > 0) {
             return std::string(buffer, bytesRead);
@@ -365,7 +365,7 @@ private:
         struct sockaddr_in srcAddr;
         socklen_t addrLen = sizeof(srcAddr);
 
-        ssize_t bytesRead = ::recvfrom(socket_, buffer, sizeof(buffer) - 1, 0,
+        int bytesRead = ::recvfrom(socket_, buffer, sizeof(buffer) - 1, 0,
                                        (struct sockaddr*)&srcAddr, &addrLen);
 
     #ifdef _WIN32
