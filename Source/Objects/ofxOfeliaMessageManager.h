@@ -121,6 +121,9 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
         }
         
         returnPipe.bind(12016, 12017);
+        
+        // Blocking receive on returnPipe to wait for startup signal
+        returnPipe.receive(true);
     }
     
     template <typename... Types>
