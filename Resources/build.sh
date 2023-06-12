@@ -41,8 +41,6 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
       fi
       popd
 
-
-
       cd ./Resources/Makefile
       CFLAGS=-fPIC CXXFLAGS=-std=c++14 make
       cp -f ./bin/ofelia ../../ofelia

@@ -123,7 +123,7 @@ EOF
 
 mkdir ./ofelia/libs/
 
-copydeps ./ofelia/ofelia.* --exclude .exclude-list -d ./ofelia/libs/
+copydeps ./ofelia/ofelia --exclude .exclude-list -d ./ofelia/libs/
 
 # Copy all gstreamer plugins
 # mkdir ./ofelia/libs/gstreamer-1.0
@@ -142,4 +142,4 @@ for filename in ./ofelia/libs/*; do
 done
 
 # Set rpath for ofelia itself
-patchelf --set-rpath "\$ORIGIN/libs" ./ofelia/ofelia.*
+patchelf --set-rpath "\$ORIGIN/libs" ./ofelia/ofelia
