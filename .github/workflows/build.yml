@@ -56,12 +56,12 @@ jobs:
         run: ${{github.workspace}}/.github/scripts/linux-install-libs.sh
 
       # Downloading additional libs for openFrameworks
-      - name: Installing openFrameworks dependencies
+      - name: Downloading openFrameworks libraries
         run: ${{github.workspace}}/Libraries/openFrameworks/scripts/linux/download_libs.sh
 
       # Building the project
       - name: Building Ofelia
-        run: ${{github.workspace}}/Libraries/build.sh
+        run: ${{github.workspace}}/Resources/build.sh
 
      # Run script that copies all non-system dynamic libraries, and copies them into a dir that gets added as rpath
      # This should ensure that ofelia runs on any Linux distro, it's basically a flatpak
@@ -90,12 +90,12 @@ jobs:
         run: ${{github.workspace}}/.github/scripts/linux-install-libs.sh
 
       # Downloading additional libs for openFrameworks
-      - name: Installing openFrameworks dependencies
+      - name: Downloading openFrameworks libraries
         run: ${{github.workspace}}/Libraries/openFrameworks/scripts/linux/download_libs.sh
 
       # Building the project
       - name: Building Ofelia
-        run: ./build.sh
+        run: ${{github.workspace}}/Resources/build.sh
 
      # Run script that copies all non-system dynamic libraries, and copies them into a dir that gets added as rpath
      # This should ensure that ofelia runs on any Linux distro, it's basically a flatpak
@@ -136,7 +136,7 @@ jobs:
 
       - name: Build
         working-directory: ${{github.workspace}}
-        run: ${{github.workspace}}/build.bat
+        run: ${{github.workspace}}/Resources/build.bat
 
       # Upload executable binaries to GitHub
       - name: Uploading artifacts

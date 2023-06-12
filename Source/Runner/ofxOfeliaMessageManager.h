@@ -19,6 +19,9 @@ struct ofxOfeliaMessageManager {
         pipe.bind(12015, 12014); // TODO: terminate if this fails
         returnPipe.bind(12017, 12016);
         
+        // Let plugdata know we have started up
+        returnPipe.sendMessage(ofx_lua_init);
+        
         instance = this;
     }
     

@@ -23,7 +23,7 @@ elseif(UNIX)
 endif()
 
 file(GLOB ofelia_source ./Source/Objects/*.cpp ./Source/Objects/*.h)
-add_library(ofelia-external STATIC ${ofelia_source})
+add_library(ofelia STATIC ${ofelia_source})
 
-target_include_directories(ofelia-external PRIVATE ./Libraries/ofxPd/libs/libpd/pure-data/src)
-target_compile_definitions(ofelia-external PRIVATE ${EXTERNAL_COMPILE_DEFINITIONS})
+target_include_directories(ofelia PRIVATE ./Libraries/ofxPd/libs/libpd/pure-data/src)
+target_compile_definitions(ofelia PRIVATE ${EXTERNAL_COMPILE_DEFINITIONS})
