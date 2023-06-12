@@ -53,7 +53,7 @@ jobs:
           submodules: recursive
 
       - name: Installing openFrameworks dependencies
-        run: ${{github.workspace}}/.github/scripts/linux-install-libs.sh
+        run: ${{github.workspace}}/Resources/scripts/linux-install-libs.sh
 
       # Downloading additional libs for openFrameworks
       - name: Downloading openFrameworks libraries
@@ -87,7 +87,7 @@ jobs:
           submodules: recursive
 
       - name: Installing openFrameworks dependencies
-        run: ${{github.workspace}}/.github/scripts/linux-install-libs.sh
+        run: ${{github.workspace}}/Resources/scripts/linux-install-libs.sh
 
       # Downloading additional libs for openFrameworks
       - name: Downloading openFrameworks libraries
