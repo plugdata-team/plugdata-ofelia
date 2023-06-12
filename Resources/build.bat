@@ -3,7 +3,7 @@ cd Libraries
 git clone --recursive --shallow-submodules https://github.com/openframeworks/openFrameworks.git
 cd openFrameworks
 git reset --hard ac69b2f
-./scripts/ci/vs/install.sh
+scripts\ci\vs\install.sh
 cd ..\..
 
 
