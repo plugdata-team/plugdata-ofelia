@@ -18,10 +18,6 @@ jobs:
             p12-file-base64: ${{ secrets.APPLE_DEVELOPER_CERTIFICATE_P12_BASE64 }}
             p12-password: ${{ secrets.APPLE_DEVELOPER_CERTIFICATE_PASSWORD }}
 
-        # Downloading additional libs for openFrameworks
-        - name: Installing openFrameworks dependencies
-          run: ${{github.workspace}}/Libraries/openFrameworks/scripts/osx/download_libs.sh
-
         # Building the project
         - name: Building Ofelia
           run: ${{github.workspace}}/Resources/build.sh
@@ -55,10 +51,6 @@ jobs:
       - name: Installing openFrameworks dependencies
         run: ${{github.workspace}}/Resources/scripts/linux-install-libs.sh
 
-      # Downloading additional libs for openFrameworks
-      - name: Downloading openFrameworks libraries
-        run: ${{github.workspace}}/Libraries/openFrameworks/scripts/linux/download_libs.sh
-
       # Building the project
       - name: Building Ofelia
         run: ${{github.workspace}}/Resources/build.sh
@@ -88,10 +80,6 @@ jobs:
 
       - name: Installing openFrameworks dependencies
         run: ${{github.workspace}}/Resources/scripts/linux-install-libs.sh
-
-      # Downloading additional libs for openFrameworks
-      - name: Downloading openFrameworks libraries
-        run: ${{github.workspace}}/Libraries/openFrameworks/scripts/linux/download_libs.sh
 
       # Building the project
       - name: Building Ofelia
@@ -125,12 +113,7 @@ jobs:
             unzip
             rsync
             wget
-
-      - name: Install openFrameworks dependencies
-        shell: msys2 {0}
-        working-directory: ${{github.workspace}}/Libraries/openFrameworks
-        run: ${{github.workspace}}/scripts/ci/vs/install.sh
-
+            
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1.1
 

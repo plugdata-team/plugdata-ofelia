@@ -19,11 +19,17 @@ if [ "$(uname)" == "Darwin" ]; then
       xcodebuild -configuration Release -project ./ofelia.xcodeproj
       cp -f ./bin/libs/libfmod.dylib ../../ofelia/libs/libfmod.dylib
       cp -f ./bin/ofelia   ../../ofelia/ofelia
+
+      cd ../..
+      ./Libraries/openFrameworks/scripts/osx/download_libs.sh
 # Build for Linux
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 
       # Apply OF git patch for video playback
       pushd ./Libraries/openFrameworks
+      
+      ./scripts/linux/download_libs.sh
+
       if [ ! -f gstreamer-fix.patch ]; then
       wget  -O gstreamer-fix.patch "https://github.com/openFrameworks/openFrameworks/commit/bd4042344dc9670770754374607d2ca8190f9476.patch"
       git apply gstreamer-fix.patch
@@ -34,6 +40,8 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 
       fi
       popd
+
+
 
       cd ./Resources/Makefile
       CFLAGS=-fPIC CXXFLAGS=-std=c++14 make
