@@ -20,8 +20,7 @@ install_opensuse_packages() {
    DISTROVER=$(grep ^VERSION /etc/SuSE-release | tr -d ' ' | cut -d = -f 2)
    zypper addrepo obs://games/openSUSE_$DISTROVER games # for freeimage
    zypper refresh games
-   zypper install -y freeglut-devel alsa-devel libXmu-devel libXxf86vm-devel gcc-c++ libraw1394-devel gstreamer-devel gstreamer-plugins-base-devel libtheora-devel libvorbis-devel openal-soft-devel libsndfile-devel glew-devel flac-devel freeimage-devel cairo-devel libjack-devel portaudio-devel libpulse-devel rsync boost-base
-   zypper install -y ccache clang cmake curl gstreamer-plugins-good gstreamer-plugins-ugly libasound2 assimp-devel cairo-devel libcurl-devel freetype2-devel glu-devel gstreamer-devel gstreamer-plugins-base-devel libjack-devel libunwind-devel libX11-devel libXcomposite-devel libXcursor-devel libXext-devel libXinerama-devel libXrandr-devel libXrender-devel lsb-release Mesa-devel pax-utils pkg-config python3 python3-pip rsync wget patchelf libsndfile-devel libXi-devel
+   zypper install -y freeglut-devel alsa-devel libXmu-devel libXxf86vm-devel gcc-c++ libraw1394-devel gstreamer-devel gstreamer-plugins-base-devel libtheora-devel libvorbis-devel openal-soft-devel libsndfile-devel glew-devel flac-devel freeimage-devel cairo-devel libjack-devel portaudio-devel libpulse-devel rsync boost-base gstreamer-plugins-good gstreamer-plugins-ugly libasound2 assimp-devel cairo-devel libcurl-devel freetype2-devel glu-devel gstreamer-devel gstreamer-plugins-base-devel libjack-devel libunwind-devel libX11-devel libXcomposite-devel libXcursor-devel libXext-devel libXinerama-devel libXrandr-devel libXrender-devel lsb-release Mesa-devel pax-utils pkg-config python3 python3-pip rsync wget patchelf libsndfile-devel libXi-devel
 }
 
 # Function to install packages on openSUSE
