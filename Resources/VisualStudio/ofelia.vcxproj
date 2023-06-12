@@ -293,25 +293,13 @@
     <ClCompile Include="..\..\Libraries\ofxLua\src\bindings\glmBindings.cpp" />
     <ClCompile Include="..\..\Libraries\ofxLua\src\ofxLua.cpp" />
     <ClCompile Include="..\..\Libraries\ofxLua\src\ofxLuaFileWriter.cpp" />
-    <ClCompile Include="..\..\Source\Runner\ofxOfelia.cpp" />
-    <ClCompile Include="..\..\Source\Runner\ofxOfeliaMessageManager.cpp" />
-    <ClCompile Include="..\..\Source\Runner\ofxOfeliaClient.cpp" />
-    <ClCompile Include="..\..\Source\Runner\ofxOfeliaCreator.cpp" />
-    <ClCompile Include="..\..\Source\Runner\ofxOfeliaData.cpp" />
-    <ClCompile Include="..\..\Source\Runner\ofxOfeliaDefine.cpp" />
+    <ClCompile Include="..\..\Source\Runner\ofxOfeliaMain.cpp" />
     <ClCompile Include="..\..\Source\Runner\ofxOfeliaEvents.cpp" />
-    <ClCompile Include="..\..\Source\Runner\ofxOfeliaExists.cpp" />
-    <ClCompile Include="..\..\Source\Runner\ofxOfeliaFunction.cpp" />
-    <ClCompile Include="..\..\Source\Runner\ofxOfeliaGet.cpp" />
     <ClCompile Include="..\..\Source\Runner\ofxOfeliaGL.cpp" />
-    <ClCompile Include="..\..\Source\Runner\ofxOfeliaIO.cpp" />
     <ClCompile Include="..\..\Source\Runner\ofxOfeliaLog.cpp" />
     <ClCompile Include="..\..\Source\Runner\ofxOfeliaLua.cpp" />
     <ClCompile Include="..\..\Source\Runner\ofxOfeliaPdBindings.cpp" />
-    <ClCompile Include="..\..\Source\Runner\ofxOfeliaSet.cpp" />
-    <ClCompile Include="..\..\Source\Runner\ofxOfeliaSetup.cpp" />
     <ClCompile Include="..\..\Source\Runner\ofxOfeliaSignal.cpp" />
-    <ClCompile Include="..\..\Source\Runner\ofxOfeliaTextBuf.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Libraries\ofxLua\libs\lua\lapi.h" />
