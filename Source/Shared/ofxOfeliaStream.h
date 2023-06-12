@@ -12,12 +12,16 @@
 #ifdef _WIN32
 #include <winsock2.h>
 #pragma comment(lib, "ws2_32.lib")
+
+using socklen_t = int;
+
 #else
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <fcntl.h>
 #endif
+
 
 
 enum ofxMessageType
@@ -235,7 +239,19 @@ public:
         std::stringstream stream;
         writeToStream(stream, args...);
 
-        send(stream.str());
+        struct sockaddr_in destAddr;
+        destAddr.sin_family = AF_INET;
+        destAddr.sin_port = htons(send_port_);
+        if (inet_pton(AF_INET, "127.0.0.1", &(destAddr.sin_addr)) <= 0) {
+            std::cerr << "Failed to convert IP address." << std::endl;
+            return;
+        }
+
+        auto message = stream.str();
+        
+        ::sendto(socket_, message.c_str(), message.size(), 0,
+                        (struct sockaddr*)&destAddr, sizeof(destAddr));
+        
     }
     
     // Function for parsing messages
@@ -319,19 +335,7 @@ private:
         }
     }
     
-    
-    ssize_t send(const std::string& message) {
-        struct sockaddr_in destAddr;
-        destAddr.sin_family = AF_INET;
-        destAddr.sin_port = htons(send_port_);
-        if (inet_pton(AF_INET, "127.0.0.1", &(destAddr.sin_addr)) <= 0) {
-            std::cerr << "Failed to convert IP address." << std::endl;
-            return -1;
-        }
 
-        return ::sendto(socket_, message.c_str(), message.size(), 0,
-                        (struct sockaddr*)&destAddr, sizeof(destAddr));
-    }
 
     std::string receiveBlocking() {
         char buffer[buffer_size];
