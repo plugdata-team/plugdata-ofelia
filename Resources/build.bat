@@ -3,7 +3,6 @@ cd Libraries
 git clone --recursive --shallow-submodules https://github.com/openframeworks/openFrameworks.git
 cd openFrameworks
 git reset --hard ac69b2f
-C:\msys64\usr\bin\bash.exe scripts\ci\vs\install.sh
 cd ..\..
  
 cd .\Resources\VisualStudio
