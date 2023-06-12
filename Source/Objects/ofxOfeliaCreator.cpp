@@ -8,6 +8,7 @@
 #include <cstring>
 
 extern bool ofxOfeliaExecutableFound();
+extern void startOfelia();
 
 void *ofxOfeliaCreator::newWrapper(t_symbol *s, int argc, t_atom *argv)
 {
