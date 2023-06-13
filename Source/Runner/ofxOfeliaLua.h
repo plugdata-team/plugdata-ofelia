@@ -82,7 +82,7 @@ public:
     
 private:
     
-    static inline std::map<std::string, std::unique_ptr<ofxOfeliaLua>> ofxLuaInstances;
+    static std::map<std::string, std::unique_ptr<ofxOfeliaLua>> ofxLuaInstances;
     
     static void unpackModule(lua_State *L, const std::string &moduleName,  const std::string &prefix);
     static bool addGlobals(lua_State *L);

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB06DEEF2A37ECF7007B5984 /* ofxOfeliaMessageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB06DEEE2A37ECF7007B5984 /* ofxOfeliaMessageManager.cpp */; };
 		AB88A8522A32A803006E17E1 /* ofxOfeliaLua.h in Headers */ = {isa = PBXBuildFile; fileRef = AB88A8432A32A803006E17E1 /* ofxOfeliaLua.h */; };
 		AB88A8532A32A803006E17E1 /* ofxOfeliaMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB88A8442A32A803006E17E1 /* ofxOfeliaMain.cpp */; };
 		AB88A8542A32A803006E17E1 /* ofxOfeliaLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB88A8452A32A803006E17E1 /* ofxOfeliaLua.cpp */; };
@@ -109,6 +110,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB06DEEE2A37ECF7007B5984 /* ofxOfeliaMessageManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOfeliaMessageManager.cpp; sourceTree = "<group>"; };
 		AB66732D29F2144100DD23A5 /* libfmod.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfmod.dylib; path = ../../Libraries/openFrameworks/libs/fmod/lib/osx/libfmod.dylib; sourceTree = "<group>"; };
 		AB88A8432A32A803006E17E1 /* ofxOfeliaLua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOfeliaLua.h; sourceTree = "<group>"; };
 		AB88A8442A32A803006E17E1 /* ofxOfeliaMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOfeliaMain.cpp; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				AB88A8472A32A803006E17E1 /* ofxOfeliaLog.h */,
 				AB88A8482A32A803006E17E1 /* ofxOfeliaSignal.cpp */,
 				AB88A8492A32A803006E17E1 /* ofxOfeliaMessageManager.h */,
+				AB06DEEE2A37ECF7007B5984 /* ofxOfeliaMessageManager.cpp */,
 				AB88A84B2A32A803006E17E1 /* ofxOfeliaPdBindings.h */,
 				AB88A84C2A32A803006E17E1 /* ofxOfeliaSignal.h */,
 				AB88A84D2A32A803006E17E1 /* ofxOfeliaEvents.h */,
@@ -580,6 +583,7 @@
 			files = (
 				AB88A8542A32A803006E17E1 /* ofxOfeliaLua.cpp in Sources */,
 				FDED15D222B4CD9F005D9D62 /* lparser.c in Sources */,
+				AB06DEEF2A37ECF7007B5984 /* ofxOfeliaMessageManager.cpp in Sources */,
 				FDED15C622B4CD9F005D9D62 /* lopcodes.c in Sources */,
 				AB88A8602A32A803006E17E1 /* ofxOfeliaPdBindings.cpp in Sources */,
 				FDED15AE22B4CD9F005D9D62 /* ldo.c in Sources */,

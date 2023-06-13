@@ -78,7 +78,7 @@ struct ofxOfeliaMessageManager {
         return ofxOfeliaStream::parseMessage<Types...>(message);
     }
     
-    static inline ofxOfeliaMessageManager* instance;
+    static ofxOfeliaMessageManager* instance;
     
 private:
 

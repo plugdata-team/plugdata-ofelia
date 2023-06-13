@@ -769,6 +769,7 @@ void ofxOfeliaLua::setName(std::string& newName)
     name = newName;
 }
 
+std::map<std::string, std::unique_ptr<ofxOfeliaLua>> ofxOfeliaLua::ofxLuaInstances = std::map<std::string, std::unique_ptr<ofxOfeliaLua>>();
 
 void error(const char *fmt, ...)
 {
@@ -782,3 +783,4 @@ void error(const char *fmt, ...)
     
     fprintf(stderr, "error: %s", buf);
 }
+

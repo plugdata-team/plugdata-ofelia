@@ -18,7 +18,7 @@ void *ofxOfeliaCreator::newWrapper(t_symbol *s, int argc, t_atom *argv)
     {
         pd_error(NULL, "could not find ofelia");
         pdthis->pd_newest = 0;
-        return;
+        return pdthis->pd_newest;
     }
     
     startOfelia();
