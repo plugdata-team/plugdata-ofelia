@@ -93,7 +93,7 @@ private:
     int socket_;
     int send_port_;
     struct sockaddr_in address_;
-    static constexpr inline size_t buffer_size = 65500;
+    static constexpr size_t buffer_size = 65500;
     
 public:
     ofxOfeliaStream() {
