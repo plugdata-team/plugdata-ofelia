@@ -300,6 +300,7 @@
     <ClCompile Include="..\..\Source\Runner\ofxOfeliaLua.cpp" />
     <ClCompile Include="..\..\Source\Runner\ofxOfeliaPdBindings.cpp" />
     <ClCompile Include="..\..\Source\Runner\ofxOfeliaSignal.cpp" />
+    <ClCompile Include="..\..\Source\Runner\ofxOfeliaMessageManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Libraries\ofxLua\libs\lua\lapi.h" />
