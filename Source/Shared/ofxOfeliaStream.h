@@ -12,6 +12,7 @@
 
 #ifdef _WIN32
 #include <winsock2.h>
+#include <ws2tcpip.h>
 #pragma comment(lib, "ws2_32.lib")
 
 using socklen_t = int;
@@ -233,6 +234,16 @@ public:
         }
     }
     
+    bool convertAddress(struct sockaddr_in* destAddr) {
+    #ifdef _WIN32
+        int result = InetPton(AF_INET, "127.0.0.1", &(destAddr->sin_addr));
+        return (result == 1);
+    #else
+        int result = inet_pton(AF_INET, "127.0.0.1", &(destAddr->sin_addr));
+        return (result == 1);
+    #endif
+    }
+    
     // Formats message to stringstream and sends it to the other process
     template <typename... Types>
     void sendMessage(Types... args)
@@ -243,7 +254,7 @@ public:
         struct sockaddr_in destAddr;
         destAddr.sin_family = AF_INET;
         destAddr.sin_port = htons(send_port_);
-        if (inet_pton(AF_INET, "127.0.0.1", &(destAddr.sin_addr)) <= 0) {
+        if (convertAddress(&destAddr) <= 0) {
             std::cerr << "Failed to convert IP address." << std::endl;
             return;
         }
