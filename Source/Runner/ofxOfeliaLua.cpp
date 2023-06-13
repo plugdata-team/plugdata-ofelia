@@ -200,11 +200,12 @@ void ofxOfeliaLua::createInstance(ofxOfeliaMessageManager* messageMan, const std
 
 ofxOfeliaLua* ofxOfeliaLua::getByName(const std::string& name)
 {
-    for(auto& [id, instance] : ofxLuaInstances)
+    for(auto& idAndInstance : ofxLuaInstances)
     {
-        if(instance->getName() == name)
+        
+        if(std::get<1>(idAndInstance)->getName() == name)
         {
-            return instance.get();
+            return std::get<1>(idAndInstance).get();
         }
     }
     
