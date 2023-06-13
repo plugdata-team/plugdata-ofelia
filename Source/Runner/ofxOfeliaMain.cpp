@@ -8,6 +8,9 @@ struct ofApp : public ofBaseApp, public ofxOfeliaMessageManager
 {
     bool hideWindow = true;
     
+    ofApp(int portNumber) : ofxOfeliaMessageManager(portNumber)
+    {}
+    
     void update() override {
         if(hideWindow) {
             glfwHideWindow(window->getGLFWWindow());
@@ -206,8 +209,10 @@ void showWindow(glm::vec2 position, int width, int height)
 }
 
 
- int main()
+ int main(int argc, char* argv[])
  {
+     int port = std::atoi(argv[1]);
+     
      ofxOfeliaLua::init();
      ofxOfeliaLog::setLoggerChannel();
      
