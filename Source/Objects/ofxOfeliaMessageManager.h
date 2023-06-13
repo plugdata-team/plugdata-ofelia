@@ -19,6 +19,7 @@
 #include <thread>
 #include <vector>
 #include <tuple>
+#include <map>
 #include <atomic>
 #include <z_libpd.h>
 
@@ -112,15 +113,13 @@ struct ofxOfeliaMessageListener {
 
 struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageListener {
     
-    ofxOfeliaMessageManager()
+    ofxOfeliaMessageManager(int port, t_pdinstance* pdInstance) : pdthis(pdInstance)
     {
-        pdthis = libpd_this_instance();
-        
-        if (pipe.bind(12014, 12015)) {
+        if (pipe.bind(port + 1, port)) {
             startTimer(5);
         }
         
-        returnPipe.bind(12016, 12017);
+        returnPipe.bind(port + 3, port + 2);
         
         // Blocking receive on returnPipe to wait for startup signal
         returnPipe.receive(true);
@@ -138,34 +137,26 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
         return ofxOfeliaStream::parseMessage<Types...>(message);
     }
     
-    static ofxOfeliaMessageManager* getOrCreate()
+    static ofxOfeliaMessageManager* get()
     {
-        if(!instance)
-        {
-            instance = new ofxOfeliaMessageManager();
-            addListener(instance);
-        }
-     
-        return instance;
+        auto* pdthis = libpd_this_instance();
+        return instances[pdthis];
     }
-
-    ~ofxOfeliaMessageManager()
+    static void initialise(int port)
     {
-        //ofelia.kill();
+        auto* pdthis = libpd_this_instance();
+        
+        if(!instances.count(pdthis))
+        {
+            auto* messageManager = new ofxOfeliaMessageManager(port, pdthis);
+            instances[pdthis] = messageManager;
+            messageManager->addListener(messageManager);
+        }
     }
 
     void timerCallback() override
     {
         libpd_set_instance(pdthis);
-        /*
-        if(!ofelia.isRunning())
-        {
-            usleep(50000);
-            if(!ofelia.isRunning())
-            {
-                ofelia.start("/Users/timschoen/Library/plugdata/0.8.0-0/ofelia");
-            }
-        } */
         
         auto message = pipe.receive();
 
@@ -194,14 +185,14 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
         }
     }
     
-    static void addListener(ofxOfeliaMessageListener* listener)
+    void addListener(ofxOfeliaMessageListener* listener)
     {
-        instance->listeners.push_back(listener);
+        listeners.push_back(listener);
     }
     
-    static void removeListener(ofxOfeliaMessageListener* listener)
+    void removeListener(ofxOfeliaMessageListener* listener)
     {
-        instance->listeners.erase(std::remove(instance->listeners.begin(), instance->listeners.end(), listener), instance->listeners.end());
+        listeners.erase(std::remove(listeners.begin(), listeners.end(), listener), listeners.end());
     }
     
     template <typename... Types>
@@ -430,7 +421,7 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
     OfeliaChildProcess ofelia;
     ofxOfeliaStream pipe;
     ofxOfeliaStream returnPipe;
-    static inline ofxOfeliaMessageManager* instance = nullptr;
+    static inline std::map<t_pdinstance*, ofxOfeliaMessageManager*> instances;
     
 private:
     std::vector<ofxOfeliaMessageListener*> listeners;

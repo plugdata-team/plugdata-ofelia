@@ -17,7 +17,7 @@ public:
     ofxOfeliaLua(ofxOfeliaData *ptr)
     : dataPtr(ptr)
     {
-        messageManager = ofxOfeliaMessageManager::getOrCreate();
+        messageManager = ofxOfeliaMessageManager::get();
         messageManager->sendMessage(ofx_lua_init, uid());
         messageManager->addListener(this);
     }

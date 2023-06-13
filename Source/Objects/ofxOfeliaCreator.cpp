@@ -8,7 +8,6 @@
 #include <cstring>
 
 extern bool ofxOfeliaExecutableFound();
-extern void startOfelia();
 
 void *ofxOfeliaCreator::newWrapper(t_symbol *s, int argc, t_atom *argv)
 {
@@ -20,8 +19,7 @@ void *ofxOfeliaCreator::newWrapper(t_symbol *s, int argc, t_atom *argv)
         pdthis->pd_newest = 0;
         return pdthis->pd_newest;
     }
-    
-    startOfelia();
+
     
     if (!argc || argv[0].a_type != A_SYMBOL)
         pdthis->pd_newest = static_cast<t_pd *>(ofxOfeliaDefine::newWrapper(s, argc, argv));

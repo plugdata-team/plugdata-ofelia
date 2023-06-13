@@ -4,6 +4,10 @@
 #include "ofxOfeliaLog.h"
 #include "GLFW/glfw3.h"
 
+#if __APPLE__
+void toggleDockIconVisibility(bool showIcon);
+#endif
+
 struct ofApp : public ofBaseApp, public ofxOfeliaMessageManager
 {
     bool hideWindow = true;
@@ -198,6 +202,10 @@ void createWindow()
     ofResetElapsedTimeCounter();
     ofSetFrameRate(60);
     ofDisableArbTex();
+    
+#if __APPLE__
+    toggleDockIconVisibility(false);
+#endif
 }
 
 void showWindow(glm::vec2 position, int width, int height)
@@ -206,6 +214,10 @@ void showWindow(glm::vec2 position, int width, int height)
     ofSetWindowPosition(position.x, position.y);
     app->hideWindow = false;
     glfwShowWindow(app->window->getGLFWWindow());
+    
+#if __APPLE__
+    toggleDockIconVisibility(true);
+#endif
 }
 
 

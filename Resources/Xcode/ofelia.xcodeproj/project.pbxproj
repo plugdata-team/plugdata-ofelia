@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AB06DEEF2A37ECF7007B5984 /* ofxOfeliaMessageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB06DEEE2A37ECF7007B5984 /* ofxOfeliaMessageManager.cpp */; };
+		AB6863A92A38C12E00D3D0F7 /* ofxOfeliaMacOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB6863A82A38C12E00D3D0F7 /* ofxOfeliaMacOS.mm */; };
 		AB88A8522A32A803006E17E1 /* ofxOfeliaLua.h in Headers */ = {isa = PBXBuildFile; fileRef = AB88A8432A32A803006E17E1 /* ofxOfeliaLua.h */; };
 		AB88A8532A32A803006E17E1 /* ofxOfeliaMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB88A8442A32A803006E17E1 /* ofxOfeliaMain.cpp */; };
 		AB88A8542A32A803006E17E1 /* ofxOfeliaLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB88A8452A32A803006E17E1 /* ofxOfeliaLua.cpp */; };
@@ -112,6 +113,7 @@
 /* Begin PBXFileReference section */
 		AB06DEEE2A37ECF7007B5984 /* ofxOfeliaMessageManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOfeliaMessageManager.cpp; sourceTree = "<group>"; };
 		AB66732D29F2144100DD23A5 /* libfmod.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfmod.dylib; path = ../../Libraries/openFrameworks/libs/fmod/lib/osx/libfmod.dylib; sourceTree = "<group>"; };
+		AB6863A82A38C12E00D3D0F7 /* ofxOfeliaMacOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ofxOfeliaMacOS.mm; sourceTree = "<group>"; };
 		AB88A8432A32A803006E17E1 /* ofxOfeliaLua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOfeliaLua.h; sourceTree = "<group>"; };
 		AB88A8442A32A803006E17E1 /* ofxOfeliaMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOfeliaMain.cpp; sourceTree = "<group>"; };
 		AB88A8452A32A803006E17E1 /* ofxOfeliaLua.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOfeliaLua.cpp; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 		AB88A8422A32A803006E17E1 /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				AB6863A82A38C12E00D3D0F7 /* ofxOfeliaMacOS.mm */,
 				ABCF247C2A35416600EB1126 /* ofxPdInterface.h */,
 				AB88A8432A32A803006E17E1 /* ofxOfeliaLua.h */,
 				AB88A8442A32A803006E17E1 /* ofxOfeliaMain.cpp */,
@@ -600,6 +603,7 @@
 				FDED15C722B4CD9F005D9D62 /* lvm.c in Sources */,
 				FDED15D722B4CD9F005D9D62 /* lbitlib.c in Sources */,
 				AB88A8552A32A803006E17E1 /* ofxOfeliaEvents.cpp in Sources */,
+				AB6863A92A38C12E00D3D0F7 /* ofxOfeliaMacOS.mm in Sources */,
 				FDED156922B4CCEB005D9D62 /* ofBindings.cpp in Sources */,
 				FDED15CD22B4CD9F005D9D62 /* lmem.c in Sources */,
 				FDED15B222B4CD9F005D9D62 /* lobject.c in Sources */,
