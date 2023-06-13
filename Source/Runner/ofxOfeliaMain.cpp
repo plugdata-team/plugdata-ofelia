@@ -211,18 +211,20 @@ void showWindow(glm::vec2 position, int width, int height)
 
  int main(int argc, char* argv[])
  {
+     if(!argc) return 1;
+     
      int port = std::atoi(argv[1]);
      
      ofxOfeliaLua::init();
      ofxOfeliaLog::setLoggerChannel();
      
-     app = new ofApp();
+     app = new ofApp(port);
      createWindow();
      
      while(true)
      {
          ofRunApp(app);
-         app = new ofApp();
+         app = new ofApp(port);
          createWindow();
      }
  }
