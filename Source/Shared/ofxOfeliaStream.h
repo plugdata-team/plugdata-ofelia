@@ -198,8 +198,9 @@ public:
                         int length;
                         istream.read(reinterpret_cast<char *>(&length), sizeof(int));
                         
-                        auto buffer = std::vector<char>(length);
+                        auto buffer = std::vector<char>(length + 1);
                         istream.read(buffer.data(), length);
+                        buffer[length - 1] = '\0';
                         atoms[i].a_w.w_symbol = gensym(buffer.data());
                     #endif
                 }
