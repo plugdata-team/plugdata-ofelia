@@ -211,7 +211,7 @@ void showWindow(glm::vec2 position, int width, int height)
 
  int main(int argc, char* argv[])
  {
-     if(!argc) return 1;
+     if(argc < 2) return 1;
      
      int port = std::atoi(argv[1]);
      
