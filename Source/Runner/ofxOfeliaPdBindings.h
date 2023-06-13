@@ -346,14 +346,14 @@ public:
     void getArgs(int *argcp, t_atom **argvp, t_canvas* canvasp)
     {
         ofxOfeliaMessageManager::sendMessage(canvas_get_args, x->getUniqueId(), parent);
-        auto [canvasName, args] = ofxOfeliaMessageManager::waitForReturnValue<std::string, std::vector<t_atom>>();
+        auto retVal = ofxOfeliaMessageManager::waitForReturnValue<std::string, std::vector<t_atom>>();
         
         // Store on the class to prevent them from being deleted
-        lastCanvasArgs = args;
+        lastCanvasArgs = std::get<1>(retVal);
         
         *argcp = lastCanvasArgs.size();
         *argvp = lastCanvasArgs.data();
-        *canvasp = canvasName;
+        *canvasp = std::get<0>(retVal);
     }
     void setArgs(int argc, t_atom *argv, std::deque<int> userDataRef)
     {
@@ -362,10 +362,10 @@ public:
     void getPosition(int **posp)
     {
         ofxOfeliaMessageManager::sendMessage(canvas_get_position, x->getUniqueId(), parent);
-        auto [xPos, yPos] = ofxOfeliaMessageManager::waitForReturnValue<int, int>();
+        auto position = ofxOfeliaMessageManager::waitForReturnValue<int, int>();
         int *pos = static_cast<int *>(getbytes(2 * sizeof(int)));
-        pos[0] = xPos;
-        pos[1] = yPos;
+        pos[0] = std::get<0>(position);
+        pos[1] = std::get<1>(position);
         *posp = pos;
     }
     
@@ -650,8 +650,7 @@ public:
     void get(t_word **vecp, int *sizep, int onset)
     {
         ofxOfeliaMessageManager::sendMessage(pd_array_get, sym);
-        auto [arr] = ofxOfeliaMessageManager::waitForReturnValue<std::vector<t_atom>>();
-        
+        auto arr = std::get<0>(ofxOfeliaMessageManager::waitForReturnValue<std::vector<t_atom>>());
         *sizep = arr.size() - onset;
         *vecp = new t_word[arr.size() - onset];
         
