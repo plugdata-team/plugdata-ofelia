@@ -6,6 +6,7 @@
 #include <cstring>
 #include <cassert>
 #include <sstream>
+#include <tuple>
 
 enum ofxMessageType
 {
