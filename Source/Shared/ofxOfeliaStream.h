@@ -4,7 +4,6 @@
 #include <vector>
 #include <string>
 #include <sstream>
-#include "ofxPdInterface.h"
 
 enum ofxMessageType
 {

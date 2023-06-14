@@ -1,5 +1,3 @@
-#include "ofxOfeliaStream.h"
-
 #include <cstring>
 #include <cassert>
 #include <cstdint>
@@ -22,6 +20,8 @@
 #else
 #include "../Runner/ofxPdInterface.h"
 #endif
+
+#include "ofxOfeliaStream.h"
 
 ofxOfeliaStream::ofxOfeliaStream() {
 #ifdef _WIN32
