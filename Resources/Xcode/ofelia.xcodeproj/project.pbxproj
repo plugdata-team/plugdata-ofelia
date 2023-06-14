@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AB06DEEF2A37ECF7007B5984 /* ofxOfeliaMessageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB06DEEE2A37ECF7007B5984 /* ofxOfeliaMessageManager.cpp */; };
 		AB6863A92A38C12E00D3D0F7 /* ofxOfeliaMacOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB6863A82A38C12E00D3D0F7 /* ofxOfeliaMacOS.mm */; };
+		AB6863B52A3A4CFD00D3D0F7 /* ofxOfeliaStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB6863B42A3A4CFD00D3D0F7 /* ofxOfeliaStream.cpp */; };
 		AB88A8522A32A803006E17E1 /* ofxOfeliaLua.h in Headers */ = {isa = PBXBuildFile; fileRef = AB88A8432A32A803006E17E1 /* ofxOfeliaLua.h */; };
 		AB88A8532A32A803006E17E1 /* ofxOfeliaMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB88A8442A32A803006E17E1 /* ofxOfeliaMain.cpp */; };
 		AB88A8542A32A803006E17E1 /* ofxOfeliaLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB88A8452A32A803006E17E1 /* ofxOfeliaLua.cpp */; };
@@ -115,6 +116,7 @@
 		AB66732D29F2144100DD23A5 /* libfmod.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfmod.dylib; path = ../../Libraries/openFrameworks/libs/fmod/lib/osx/libfmod.dylib; sourceTree = "<group>"; };
 		AB6863A82A38C12E00D3D0F7 /* ofxOfeliaMacOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ofxOfeliaMacOS.mm; sourceTree = "<group>"; };
 		AB6863B02A39EF7900D3D0F7 /* ofelia.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ofelia.entitlements; sourceTree = "<group>"; };
+		AB6863B42A3A4CFD00D3D0F7 /* ofxOfeliaStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOfeliaStream.cpp; sourceTree = "<group>"; };
 		AB88A8432A32A803006E17E1 /* ofxOfeliaLua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOfeliaLua.h; sourceTree = "<group>"; };
 		AB88A8442A32A803006E17E1 /* ofxOfeliaMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOfeliaMain.cpp; sourceTree = "<group>"; };
 		AB88A8452A32A803006E17E1 /* ofxOfeliaLua.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOfeliaLua.cpp; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 		ABCF247E2A3541E100EB1126 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				AB6863B42A3A4CFD00D3D0F7 /* ofxOfeliaStream.cpp */,
 				ABCF247F2A3541E100EB1126 /* ofxOfeliaStream.h */,
 			);
 			name = Shared;
@@ -606,6 +609,7 @@
 				FDED15BC22B4CD9F005D9D62 /* lfunc.c in Sources */,
 				FDED15C722B4CD9F005D9D62 /* lvm.c in Sources */,
 				FDED15D722B4CD9F005D9D62 /* lbitlib.c in Sources */,
+				AB6863B52A3A4CFD00D3D0F7 /* ofxOfeliaStream.cpp in Sources */,
 				AB88A8552A32A803006E17E1 /* ofxOfeliaEvents.cpp in Sources */,
 				AB6863A92A38C12E00D3D0F7 /* ofxOfeliaMacOS.mm in Sources */,
 				FDED156922B4CCEB005D9D62 /* ofBindings.cpp in Sources */,
