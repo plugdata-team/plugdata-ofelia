@@ -20,7 +20,7 @@
 #ifdef PD
 #include <m_pd.h>
 #else
-#include "ofxPdInterface.h"
+#include "../Runner/ofxPdInterface.h"
 #endif
 
 ofxOfeliaStream::ofxOfeliaStream() {
