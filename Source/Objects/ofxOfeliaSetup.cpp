@@ -80,9 +80,5 @@ void ofelia_setup()
         input.close();
     }
     /* print version info if loaded successfully */
-    post("-------------------------------------------------------------------");
-    post("ofelia v%d.%d.%d : compiled on %s",
-         ofeliaVersionMajor, ofeliaVersionMinor, ofeliaVersionBugFix, __DATE__);
-    post("(c) 2018 Zack Lee <cuinjune@gmail.com>");
-    post("-------------------------------------------------------------------");
+    post("ofelia v%d.%d.%d", ofeliaVersionMajor, ofeliaVersionMinor, ofeliaVersionBugFix);
 }
