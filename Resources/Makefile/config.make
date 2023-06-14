@@ -15,8 +15,7 @@ ifeq ($(PLATFORM_OS),Linux)
     APPNAME = ofelia
     PROJECT_CFLAGS = -fPIC -Wall -Wno-sign-compare -Wno-unused-variable -Wno-maybe-uninitialized -I../libs/ofxPd/libs/libpd/pure-data/src
     PROJECT_LDFLAGS = -Wl,-Bsymbolic
-    PROJECT_EXTERNAL_SOURCE_PATHS = ../../Source/Runner
-    PROJECT_EXCLUSIONS = ../../Source/Runner/ofxOfeliaMacOS.mm
+    PROJECT_EXTERNAL_SOURCE_PATHS = ../../Source/Runner/*.cpp
     PROJECT_DEFINES = LUA_USE_LINUX HAVE_LIBDL TARGET_EXTERNAL
     PROJECT_OPTIMIZATION_CFLAGS_RELEASE = -O3 -DNDEBUG
 endif
