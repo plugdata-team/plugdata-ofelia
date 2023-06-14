@@ -1,1 +1,0 @@
-file(GLOB OFELIA_SOURCES ./Source/Objects/*.cpp ./Source/Objects/*.h)
