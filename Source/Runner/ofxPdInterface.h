@@ -3,9 +3,6 @@
 #include <string>
 #include <cstring>
 
-
-#define FAKE_PD_INTERFACE 1
-
 using t_gpointer = int;
 using t_canvas = std::string;
 using t_garray = void;

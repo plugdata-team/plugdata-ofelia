@@ -24,6 +24,8 @@ enum ofxMessageType
     
     ofx_lua_do_string,
     
+    //ofx_audio_block,
+    
     pd_outlet_bang,
     pd_outlet_float,
     pd_outlet_symbol,
@@ -151,6 +153,16 @@ public:
             
             currentValue = atoms;
         }
+        else if constexpr (std::is_same<T, std::vector<float>>())
+        {
+            int size;
+            istream.read(reinterpret_cast<char *>(&size), sizeof(int));
+
+            auto buffer = std::vector<float>(size);
+            istream.read(reinterpret_cast<char*>(buffer.data()), size * sizeof(float));
+
+            currentValue = buffer;
+        }
         // Read any kind of numeric type, this will work for at least: short, int, long, float, double, bool
         else if constexpr (std::is_arithmetic<T>::value)
         {
@@ -226,7 +238,7 @@ private:
                 }
                 else if(atom.a_type == A_SYMBOL)
                 {
-#if FAKE_PD_INTERFACE
+#ifndef PD
                     auto* symbol = atom.a_w.w_symbol.c_str();
 #else
                     auto* symbol = atom.a_w.w_symbol->s_name;
@@ -245,6 +257,14 @@ private:
                 }
 
             }
+        }
+        if constexpr (std::is_same<T, std::vector<float>>())
+        {
+            int size = static_cast<int>(arg.size());
+            auto* floatPtr = arg.data();
+            
+            ostream.write(reinterpret_cast<char *>(&size), sizeof(int));
+            ostream.write(floatPtr, size * sizeof(float));
         }
         else if constexpr (std::is_arithmetic<T>::value || std::is_same<T, ofxMessageType>())
         {

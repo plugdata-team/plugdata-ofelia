@@ -22,81 +22,87 @@ struct ofApp : public ofBaseApp, public ofxOfeliaMessageManager
     }
     
     void draw() override {
-        run();
+        dequeueMessages();
     }
     
-    void receiveMessage(ofxMessageType type, const std::string& message) override
+    void dequeueMessages()
     {
-        switch(type)
+        ofxMessageType type;
+        std::string message;
+        
+        while(receiveMessage(type, message))
         {
-            case ofx_lua_init:
+            switch(type)
             {
-                auto parsed = parseMessage<std::string>(message);
-                ofxOfeliaLua::createInstance(this, std::get<0>(parsed));
-                break;
-            }
-            case ofx_lua_init_sym:
-            {
-                auto parsed = parseMessage<std::string, std::string>(message);
-                if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->setName(std::get<1>(parsed));
-                break;
-            }
-            case ofx_lua_do_function_s:
-            {
-                auto parsed = parseMessage<std::string, std::string>(message);
-                if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->doFunction( std::get<1>(parsed).c_str());
-                break;
-            }
-            case ofx_lua_do_function_sp:
-            {
-                auto parsed = parseMessage<std::string, std::string, t_gpointer>(message);
-                if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->doFunction( std::get<1>(parsed).c_str(), std::get<2>(parsed));
-                break;
-            }
-            case ofx_lua_do_function_ss:
-            {
-                auto parsed = parseMessage<std::string, std::string, std::string>(message);
-                if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->doFunction( std::get<1>(parsed).c_str(), std::get<2>(parsed).c_str());
-                break;
-            }
-            case ofx_lua_do_function_sf:
-            {
-                auto parsed = parseMessage<std::string, std::string, float>(message);
-                if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->doFunction( std::get<1>(parsed).c_str(), std::get<2>(parsed));
-                break;
-            }
-            case ofx_lua_do_function_sa:
-            {
-                auto parsed = parseMessage<std::string, std::string, std::vector<t_atom>>(message);
-                if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->doFunction( std::get<1>(parsed).c_str(), std::get<2>(parsed));
-                break;
-            }
-            case ofx_lua_do_free_function:
-            {
-                auto parsed = parseMessage<std::string>(message);
-                if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->doFreeFunction();
-                break;
-            }
-            case ofx_lua_get_var_by_args:
-            {
-                auto parsed = parseMessage<std::string, std::string, std::vector<t_atom>>(message);
-                if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->getVariableByArgs(std::get<1>(parsed).c_str(), std::get<2>(parsed));
-                break;
-            }
-            case ofx_lua_set_var_by_args:
-            {
+                case ofx_lua_init:
+                {
+                    auto parsed = parseMessage<std::string>(message);
+                    ofxOfeliaLua::createInstance(this, std::get<0>(parsed));
+                    break;
+                }
+                case ofx_lua_init_sym:
+                {
+                    auto parsed = parseMessage<std::string, std::string>(message);
+                    if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->setName(std::get<1>(parsed));
+                    break;
+                }
+                case ofx_lua_do_function_s:
+                {
+                    auto parsed = parseMessage<std::string, std::string>(message);
+                    if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->doFunction( std::get<1>(parsed).c_str());
+                    break;
+                }
+                case ofx_lua_do_function_sp:
+                {
+                    auto parsed = parseMessage<std::string, std::string, t_gpointer>(message);
+                    if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->doFunction( std::get<1>(parsed).c_str(), std::get<2>(parsed));
+                    break;
+                }
+                case ofx_lua_do_function_ss:
+                {
+                    auto parsed = parseMessage<std::string, std::string, std::string>(message);
+                    if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->doFunction( std::get<1>(parsed).c_str(), std::get<2>(parsed).c_str());
+                    break;
+                }
+                case ofx_lua_do_function_sf:
+                {
+                    auto parsed = parseMessage<std::string, std::string, float>(message);
+                    if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->doFunction( std::get<1>(parsed).c_str(), std::get<2>(parsed));
+                    break;
+                }
+                case ofx_lua_do_function_sa:
+                {
                     auto parsed = parseMessage<std::string, std::string, std::vector<t_atom>>(message);
-                if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->setVariableByArgs(std::get<1>(parsed).c_str(), std::get<2>(parsed));
-                break;
+                    if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->doFunction( std::get<1>(parsed).c_str(), std::get<2>(parsed));
+                    break;
+                }
+                case ofx_lua_do_free_function:
+                {
+                    auto parsed = parseMessage<std::string>(message);
+                    if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->doFreeFunction();
+                    break;
+                }
+                case ofx_lua_get_var_by_args:
+                {
+                    auto parsed = parseMessage<std::string, std::string, std::vector<t_atom>>(message);
+                    if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->getVariableByArgs(std::get<1>(parsed).c_str(), std::get<2>(parsed));
+                    break;
+                }
+                case ofx_lua_set_var_by_args:
+                {
+                    auto parsed = parseMessage<std::string, std::string, std::vector<t_atom>>(message);
+                    if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->setVariableByArgs(std::get<1>(parsed).c_str(), std::get<2>(parsed));
+                    break;
+                }
+                case ofx_lua_do_string:
+                {
+                    auto parsed = parseMessage<std::string, std::string>(message);
+                    if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->doString(std::get<1>(parsed));
+                    break;
+                }
+                    
+                default: break;
             }
-            case ofx_lua_do_string:
-            {
-                auto parsed = parseMessage<std::string, std::string>(message);
-                if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->doString(std::get<1>(parsed));
-                break;
-            }
-                
-            default: break;
         }
     }
     
