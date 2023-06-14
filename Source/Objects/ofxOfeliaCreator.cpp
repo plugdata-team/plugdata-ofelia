@@ -7,19 +7,11 @@
 #include <z_libpd.h>
 #include <cstring>
 
-extern bool ofxOfeliaExecutableFound();
 
 void *ofxOfeliaCreator::newWrapper(t_symbol *s, int argc, t_atom *argv)
 {
     auto* pdthis = libpd_this_instance();
     
-    if(!ofxOfeliaExecutableFound())
-    {
-        pd_error(NULL, "could not find ofelia");
-        pdthis->pd_newest = 0;
-        return pdthis->pd_newest;
-    }
-
     if (!argc || argv[0].a_type != A_SYMBOL)
         pdthis->pd_newest = static_cast<t_pd *>(ofxOfeliaDefine::newWrapper(s, argc, argv));
     else
