@@ -6,6 +6,7 @@
 #include <string>
 #include <map>
 #include <memory>
+#include <cstring>
 
 using t_gpointer = int;
 using t_floatarg = float;
