@@ -20,7 +20,6 @@ void *ofxOfeliaCreator::newWrapper(t_symbol *s, int argc, t_atom *argv)
         return pdthis->pd_newest;
     }
 
-    
     if (!argc || argv[0].a_type != A_SYMBOL)
         pdthis->pd_newest = static_cast<t_pd *>(ofxOfeliaDefine::newWrapper(s, argc, argv));
     else
