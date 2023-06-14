@@ -21,6 +21,8 @@
 #include <tuple>
 #include <map>
 #include <atomic>
+#include <mutex>
+#include <condition_variable>
 #include <z_libpd.h>
 
 class TimerThread
@@ -63,53 +65,29 @@ private:
     bool running;
 };
 
-class OfeliaChildProcess
-{
+
+class Semaphore {
+    std::mutex mutex_;
+    std::condition_variable condition_;
+    bool isLocked_ = true; // Initialized as locked.
+
 public:
-    OfeliaChildProcess() : running(false) {}
-    
-    void start(const std::string& command)
-    {
-        if (!running)
-        {
-            running = true;
-            std::thread([this, command]() {
-                int exitCode = std::system(command.c_str());
-                //handleExit(exitCode);
-                running = false;
-            }).detach();
-        }
+    void release() {
+        std::lock_guard<decltype(mutex_)> lock(mutex_);
+        isLocked_ = false;
+        condition_.notify_one();
     }
 
-    /*
-    void kill()
-    {
-#ifdef _WIN32
-        if (processId > 0)
-        {
-            HANDLE processHandle = OpenProcess(PROCESS_TERMINATE, FALSE, processId);
-            if (processHandle != NULL)
-            {
-                TerminateProcess(processHandle, 0);
-                CloseHandle(processHandle);
-            }
-        }
-#else
-        if (processId > 0)
-            ::kill(processId, SIGTERM);
-#endif
-        running = false;
-    } */
-    
-private:
-    std::atomic<bool> running;
+    void acquire() {
+        std::unique_lock<decltype(mutex_)> lock(mutex_);
+        while (isLocked_)
+            condition_.wait(lock);
+    }
 };
 
 struct ofxOfeliaMessageListener {
     virtual void receiveMessage(ofxMessageType type, const std::string& message) = 0;
 };
-
-
 
 struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageListener {
     
@@ -123,6 +101,7 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
         
         // Blocking receive on returnPipe to wait for startup signal
         returnPipe.receive(true);
+        initWait.release();
     }
     
     template <typename... Types>
@@ -139,19 +118,22 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
     
     static ofxOfeliaMessageManager* get()
     {
+        
         auto* pdthis = libpd_this_instance();
-        return instances[pdthis];
+        auto* instance = instances[pdthis];
+        
+        // If necessary, wait until child process is initialised
+        instance->initWait.acquire();
+        
+        return instance;
     }
     static void initialise(int port)
     {
         auto* pdthis = libpd_this_instance();
         
-        if(!instances.count(pdthis))
-        {
-            auto* messageManager = new ofxOfeliaMessageManager(port, pdthis);
-            instances[pdthis] = messageManager;
-            messageManager->addListener(messageManager);
-        }
+        auto* messageManager = new ofxOfeliaMessageManager(port, pdthis);
+        instances[pdthis] = messageManager;
+        messageManager->addListener(messageManager);
     }
 
     void timerCallback() override
@@ -417,8 +399,8 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
         }
     }
     
+    Semaphore initWait;
     t_pdinstance* pdthis;
-    OfeliaChildProcess ofelia;
     ofxOfeliaStream pipe;
     ofxOfeliaStream returnPipe;
     static inline std::map<t_pdinstance*, ofxOfeliaMessageManager*> instances;

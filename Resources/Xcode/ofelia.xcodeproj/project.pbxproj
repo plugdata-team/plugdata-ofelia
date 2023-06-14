@@ -114,6 +114,7 @@
 		AB06DEEE2A37ECF7007B5984 /* ofxOfeliaMessageManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOfeliaMessageManager.cpp; sourceTree = "<group>"; };
 		AB66732D29F2144100DD23A5 /* libfmod.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfmod.dylib; path = ../../Libraries/openFrameworks/libs/fmod/lib/osx/libfmod.dylib; sourceTree = "<group>"; };
 		AB6863A82A38C12E00D3D0F7 /* ofxOfeliaMacOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ofxOfeliaMacOS.mm; sourceTree = "<group>"; };
+		AB6863B02A39EF7900D3D0F7 /* ofelia.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ofelia.entitlements; sourceTree = "<group>"; };
 		AB88A8432A32A803006E17E1 /* ofxOfeliaLua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOfeliaLua.h; sourceTree = "<group>"; };
 		AB88A8442A32A803006E17E1 /* ofxOfeliaMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOfeliaMain.cpp; sourceTree = "<group>"; };
 		AB88A8452A32A803006E17E1 /* ofxOfeliaLua.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOfeliaLua.cpp; sourceTree = "<group>"; };
@@ -277,6 +278,7 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
+				AB6863B02A39EF7900D3D0F7 /* ofelia.entitlements */,
 				E4EB6923138AFD0F00A09F29 /* Project.xcconfig */,
 				E4EEC9E9138DF44700A80321 /* openFrameworks */,
 				BB4B014C10F69532006C3DED /* addons */,
@@ -517,6 +519,8 @@
 				TargetAttributes = {
 					FD0A0E721D7ECC3D0028453F = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 7SV7JPRR2L;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -718,15 +722,19 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = NO;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_ENTITLEMENTS = ofelia.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CONFIGURATION_BUILD_DIR = "$(INSTALL_PATH)";
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
+				DEVELOPMENT_TEAM = 7SV7JPRR2L;
 				DSTROOT = /;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "$(INSTALL_PATH)";
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				ENABLE_TESTABILITY = NO;
 				EXCLUDED_SOURCE_FILE_NAMES = "";
@@ -787,6 +795,7 @@
 				PRIVATE_HEADERS_FOLDER_PATH = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ofelia.macOSExternal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SDKROOT = macosx;
 				STRIP_STYLE = all;
@@ -819,16 +828,20 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = NO;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_ENTITLEMENTS = ofelia.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CONFIGURATION_BUILD_DIR = "$(INSTALL_PATH)";
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
+				DEVELOPMENT_TEAM = 7SV7JPRR2L;
 				DSTROOT = /;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "$(INSTALL_PATH)";
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				ENABLE_TESTABILITY = NO;
@@ -887,6 +900,7 @@
 				PRIVATE_HEADERS_FOLDER_PATH = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ofelia.macOSExternal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SDKROOT = macosx;
 				STRIP_STYLE = all;
