@@ -69,15 +69,15 @@ void ofxOfeliaData::argParse(t_symbol *s, int argc, t_atom *argv, bool define)
            *argv->a_w.w_symbol->s_name == '-')
     {
         const char *flag = argv->a_w.w_symbol->s_name;
-        if (define && !std::strcmp(flag, "-k"))
+        if (define && !strcmp(flag, "-k"))
             shouldKeep = true;
-        else if (!ioAdded && !std::strncmp(flag, "-c", 2) && (std::strlen(flag) == 4) &&
+        else if (!ioAdded && !strncmp(flag, "-c", 2) && (strlen(flag) == 4) &&
                  std::isdigit(flag[2]) && std::isdigit(flag[3]) && (flag[2] - '0'))
         {
             io.newControlIO(flag[2] - '0', flag[3] - '0');
             ioAdded = true;
         }
-        else if (!ioAdded && !std::strncmp(flag, "-s", 2) && (std::strlen(flag) == 4) &&
+        else if (!ioAdded && !strncmp(flag, "-s", 2) && (strlen(flag) == 4) &&
                  std::isdigit(flag[2]) && std::isdigit(flag[3]) && (flag[2] - '0'))
         {
             io.newSignalIO(flag[2] - '0', flag[3] - '0');

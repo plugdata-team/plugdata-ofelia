@@ -501,11 +501,11 @@ public:
                 {
                     dbuf[dlen] = '\0';
                     t_symbol *s = canvas_realizedollar(dataPtr->canvas, gensym(dbuf));
-                    std::strcpy(dbuf, s->s_name);
-                    dlen = std::strlen(s->s_name);
+                    strcpy(dbuf, s->s_name);
+                    dlen = strlen(s->s_name);
                     int newlength = length + dlen;
                     buf = static_cast<char *>(resizebytes(buf, length, newlength));
-                    std::strcpy(buf + length, dbuf);
+                    strcpy(buf + length, dbuf);
                     length = newlength;
                     i += tlen;
                 }
