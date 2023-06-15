@@ -121,13 +121,15 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
         
         return instance;
     }
-    static void initialise(int port)
+    static void initialise(int port, t_class* pd_canvas_class)
     {
         auto* pdthis = libpd_this_instance();
         
+       
         auto* messageManager = new ofxOfeliaMessageManager(port, pdthis);
         instances[pdthis] = messageManager;
         messageManager->addListener(messageManager);
+        messageManager->canvas_class = pd_canvas_class;
     }
 
     void timerCallback() override
