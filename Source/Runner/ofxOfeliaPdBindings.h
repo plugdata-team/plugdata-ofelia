@@ -10,6 +10,7 @@
 #include <cstdio>
 #include <utility>
 #include <vector>
+#include <algorithm>
 #include <deque>
 
 #include "GLFW/glfw3.h"
@@ -564,7 +565,7 @@ public:
     }
     void setAt(int n, t_floatarg f)
     {
-        set(1, &f, n)
+        set(1, &f, n);
     }
     
     float __getitem__(int n)
