@@ -555,8 +555,9 @@ public:
         
         get(&words, &num_words, 0);
         
-        n = std::clamp(n, 0, size-1);
-
+        n = std::max(n, 0);
+        n = std::min(n, num_words - 1);
+        
         float retVal = words[n].w_float;
         
         free(words);
