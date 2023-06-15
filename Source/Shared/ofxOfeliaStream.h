@@ -7,6 +7,7 @@
 #include <cassert>
 #include <sstream>
 #include <tuple>
+#include <m_pd.h>
 
 enum ofxMessageType
 {

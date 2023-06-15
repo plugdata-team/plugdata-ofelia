@@ -116,21 +116,12 @@ public:
             {
                 auto [identifier, index, symbol, atoms] = messageManager->parseMessage<std::string, int, std::string, std::vector<t_atom>>(message);
                 
+                if(identifier != uid()) return;
+                
                 if(dataPtr->io.hasControlOutlet && dataPtr->io.numOutlets > index)
                 {
                     outlet_anything(dataPtr->io.outlets[index], gensym(symbol.c_str()), atoms.size(), atoms.data());
                 }
-                break;
-            }
-            case canvas_realise_dollar:
-            {
-                auto [name, symbol] = messageManager->parseMessage<std::string, std::string>(message);
-                auto* glist = reinterpret_cast<t_glist*>(pd_findbyclass(gensym(name.c_str()), canvas_class));
-                auto* retsym = gensym(symbol.c_str());
-                if(glist) {
-                    retsym = canvas_realizedollar(glist, retsym);
-                }
-                messageManager->sendReturnValue(std::string(retsym->s_name));
                 break;
             }
             case canvas_get_dollar_zero:
@@ -306,57 +297,62 @@ public:
             }
             case pd_inlet_set_float:
             {
-                /*
-                if (!doesPassiveInletExist()) return;
+                auto [identifier, n, f] = messageManager->parseMessage<std::string, int, float>(message);
 
-                n = ofClamp(n, 0, x->io.numInlets - 2);
-                if (x->io.av[n].a_type != A_FLOAT)
+                if(identifier != uid() || !doesPassiveInletExist()) break;
+                
+                n = std::clamp(n, 0, dataPtr->io.numInlets - 2);
+                if (dataPtr->io.av[n].a_type != A_FLOAT)
                 {
-                    postWrongPassiveInletArgTypeError();
+                    pd_error(nullptr, "ofelia: wrong passive inlet argument type to set");
                     return;
                 }
-                x->io.av[n].a_w.w_float = f; */
+                dataPtr->io.av[n].a_w.w_float = f;
                 break;
             }
             case pd_inlet_set_symbol:
             {
-                /*
-                if (!doesPassiveInletExist()) return;
+                auto [identifier, n, s] = messageManager->parseMessage<std::string, int, std::string>(message);
+                
+                if(identifier != uid() || !doesPassiveInletExist()) break;
 
-                n = ofClamp(n, 0, x->io.numInlets - 2);
-                if (x->io.av[n].a_type != A_SYMBOL)
+                if(identifier != uid()) break;
+                
+                n = std::clamp(n, 0, dataPtr->io.numInlets - 2);
+                if (dataPtr->io.av[n].a_type != A_SYMBOL)
                 {
-                    postWrongPassiveInletArgTypeError();
+                    pd_error(nullptr, "ofelia: wrong passive inlet argument type to set");
                     return;
                 }
-                x->io.av[n].a_w.w_symbol = s; */
+                dataPtr->io.av[n].a_w.w_symbol = gensym(s.c_str());
                 break;
             }
             case pd_inlet_set_inlets:
             {
-                /*
-                if (!doesPassiveInletExist()) return;
-
-                const int numPassiveInlets = x->io.numInlets - 1;
+                auto [identifier, types] = messageManager->parseMessage<std::string, std::vector<t_atom>>(message);
+                
+                if(identifier != uid() || !doesPassiveInletExist()) break;
+                
+                const int numPassiveInlets = dataPtr->io.numInlets - 1;
+                int argc = types.size();
                 if (argc > numPassiveInlets)
                     argc = numPassiveInlets;
                 for (int i = 0; i < argc; ++i)
                 {
-                    if (x->io.av[i].a_type != argv[i].a_type)
+                    if (dataPtr->io.av[i].a_type != types[i].a_type)
                     {
-                        postWrongPassiveInletArgTypeError();
+                        pd_error(nullptr, "ofelia: wrong passive inlet argument type to set");
                         return;
                     }
-                    x->io.av[i].a_w = argv[i].a_w;
-                } */
+                    dataPtr->io.av[i].a_w = types[i].a_w;
+                }
                 break;
             }
             case pd_inlet_set_signal:
             {
-                /*
-                if (!doesSignalInletExist()) return;
+                //if (!doesSignalInletExist()) return;
 
-                x->signal.f = f; */
+                //x->signal.f = f;
                 break;
             }
             case pd_get_sys_info:
@@ -518,6 +514,18 @@ public:
                 buf[length++] = (*bufp)[i];
             }
         }
+    }
+    
+    bool doesPassiveInletExist()
+    {
+        if (dataPtr == nullptr) return false;
+        
+        if (!dataPtr->io.hasMultiControlInlets)
+        {
+            pd_error(nullptr, "ofelia: passive inlet does not exist");
+            return false;
+        }
+        return true;
     }
 
     

@@ -47,7 +47,6 @@ void setup_gstreamer_env()
 #endif
 } */
 
-
 void ofelia_setup()
 {
     /* check for pd version compatibility */
@@ -66,7 +65,6 @@ void ofelia_setup()
     ofxOfeliaExists::setup();
     ofxOfeliaCreator::setup();
     ofxOfeliaTextBuf::loadScript();
-    //ofxOfeliaLog::setLoggerChannel();
     
     const std::string &fileName = "ofelia/CHANGES.txt";
     std::string dirResult, fileNameResult;

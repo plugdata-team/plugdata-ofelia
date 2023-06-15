@@ -67,7 +67,6 @@ public:
     void doFunction(const char *s, std::vector<t_atom> argv);
     void doNewFunction();
     void doFreeFunction();
-    void realizeDollar(char **bufp, int *lengthp);
     void doString(std::string s);
     void getVariableByArgs(const char *s, std::vector<t_atom> argv);
     void setVariableByArgs(const char *s, std::vector<t_atom> argv);

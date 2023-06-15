@@ -393,13 +393,15 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
         }
     }
     
-    Semaphore initWait;
-    t_pdinstance* pdthis;
-    ofxOfeliaStream pipe;
-    ofxOfeliaStream returnPipe;
-    static inline std::map<t_pdinstance*, ofxOfeliaMessageManager*> instances;
+    t_class* canvas_class;
     
 private:
+    ofxOfeliaStream pipe;
+    ofxOfeliaStream returnPipe;
+    
+    Semaphore initWait;
+    t_pdinstance* pdthis;
+    static inline std::map<t_pdinstance*, ofxOfeliaMessageManager*> instances;
     std::vector<ofxOfeliaMessageListener*> listeners;
     
 };
