@@ -459,87 +459,19 @@ public:
     
     void setFloatInlet(int n, float f)
     {
-        
         ofxOfeliaMessageManager::sendMessage(pd_inlet_set_float, x->getUniqueId(), n, f);
-        /*
-        if (!doesPassiveInletExist()) return;
-
-        n = ofClamp(n, 0, x->io.numInlets - 2);
-        if (x->io.av[n].a_type != A_FLOAT)
-        {
-            postWrongPassiveInletArgTypeError();
-            return;
-        }
-        x->io.av[n].a_w.w_float = f; */
     }
     void setSymbolInlet(int n, std::string s)
     {
         ofxOfeliaMessageManager::sendMessage(pd_inlet_set_symbol, x->getUniqueId(), n, s);
-        /*
-        if (!doesPassiveInletExist()) return;
-
-        n = ofClamp(n, 0, x->io.numInlets - 2);
-        if (x->io.av[n].a_type != A_SYMBOL)
-        {
-            postWrongPassiveInletArgTypeError();
-            return;
-        }
-        x->io.av[n].a_w.w_symbol = s; */
     }
     void setInlets(int argc, t_atom *argv, std::deque<int> userDataRef)
     {
         ofxOfeliaMessageManager::sendMessage(pd_inlet_set_inlets, x->getUniqueId(), std::vector<t_atom>(argv, argv + argc));
-        /*
-        if (!doesPassiveInletExist()) return;
-
-        const int numPassiveInlets = x->io.numInlets - 1;
-        if (argc > numPassiveInlets)
-            argc = numPassiveInlets;
-        for (int i = 0; i < argc; ++i)
-        {
-            if (x->io.av[i].a_type != argv[i].a_type)
-            {
-                postWrongPassiveInletArgTypeError();
-                return;
-            }
-            x->io.av[i].a_w = argv[i].a_w;
-        } */
     }
     void setSignalInlet(t_floatarg f)
     {
-        ofxOfeliaMessageManager::sendMessage(pd_inlet_set_signal, x->getUniqueId(), f);
-        /*
-        if (!doesSignalInletExist()) return;
-
-        x->signal.f = f; */
-    }
-private:
-    bool doesPassiveInletExist()
-    {
-        /*
-        if (x == nullptr) return false;
-        if (!x->io.hasMultiControlInlets)
-        {
-            pd_error(NULL, "ofelia: passive inlet does not exist");
-            return false;
-        } */
-        return true;
-    }
-    bool doesSignalInletExist()
-    {
-        /*
-        if (x == nullptr) return false;
-        if (!x->isSignalObject)
-        {
-            pd_error(NULL, "ofelia: signal inlet does not exist");
-            return false;
-        }
-        return true;  */
-        return false;
-    }
-    void postWrongPassiveInletArgTypeError()
-    {
-        //pd_error(NULL, "ofelia: wrong passive inlet argument type to set");
+        //ofxOfeliaMessageManager::sendMessage(pd_inlet_set_signal, x->getUniqueId(), f);
     }
     
     ofxOfeliaLua *x;
@@ -617,35 +549,31 @@ public:
     :sym(s){};
     float getAt(int n)
     {
+        int num_words;
+        t_word* words;
         
-//        t_garray *a; int size; t_word *vec;
-//        if (exists(&a) && getData(a, &size, &vec))
-//        {
-//            if (n < 0) n = 0;
-//            else if (n >= size) n = size - 1;
-//            return size ? vec[n].w_float : 0;
-//        }
-        return 0;
+        get(&words, &num_words, 0);
+        
+        n = std::clamp(n, 0, size-1);
+
+        float retVal = words[n].w_float;
+        
+        free(words);
+
+        return retVal;
     }
     void setAt(int n, t_floatarg f)
     {
-//        t_garray *a; int size; t_word *vec;
-//        if (exists(&a) && getData(a, &size, &vec))
-//        {
-//            if (n < 0) n = 0;
-//            else if (n >= size) n = size - 1;
-//            vec[n].w_float = f;
-//            garray_redraw(a);
-//        }
+        set(1, &f, n)
     }
+    
     float __getitem__(int n)
     {
-//        return getAt(n);
-        return 0.0f;
+        return getAt(n);
     }
     void __setitem__(int n, t_floatarg f)
     {
-//        setAt(n, f);
+        setAt(n, f);
     }
     void get(t_word **vecp, int *sizep, int onset)
     {
@@ -691,22 +619,7 @@ public:
 //        }
     }
 private:
-    bool exists(t_garray **a)
-    {
-//        *a = reinterpret_cast<t_garray *>(pd_findbyclass(sym, garray_class));
-//        return (*a != nullptr);
-        return false;
-    }
-    bool getData(t_garray *a, int *size, t_word **vec)
-    {
-//        if (!garray_getfloatwords(a, size, vec))
-//        {
-//            pd_error(NULL, "ofelia: bad template for array '%s'", sym);
-              return false;
-//        }
-        
-//        return true;
-    }
+
     std::string sym;
 };
 
