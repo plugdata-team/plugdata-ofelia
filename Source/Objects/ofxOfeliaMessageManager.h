@@ -16,6 +16,7 @@
 #include <map>
 #include <atomic>
 #include <mutex>
+#include <memory>
 #include <condition_variable>
 #include <z_libpd.h>
 
@@ -85,17 +86,36 @@ struct ofxOfeliaMessageListener {
 
 struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageListener {
     
-    ofxOfeliaMessageManager(int port, t_pdinstance* pdInstance) : pdthis(pdInstance)
+    ofxOfeliaMessageManager(t_pdinstance* pdInstance) : pdthis(pdInstance)
     {
-        if (pipe.bind(port + 1, port)) {
-            startTimer(5);
+    }
+    
+    ~ofxOfeliaMessageManager()
+    {
+        sendMessage(ofx_quit);
+    }
+    
+    bool bind(int port)
+    {
+        pipe.initialise(port + 1, port);
+        returnPipe.initialise(port + 3, port + 2);
+        
+        auto bound1 = pipe.bind();
+        auto bound2 = returnPipe.bind();
+        
+        auto success = bound1 && bound2;
+
+        if(success) {
+            
+            // Blocking receive on returnPipe to wait for startup signal
+            //returnPipe.receive(true);
+            initWaits[pdthis].release();
+            
+            
+            startTimer(3);
         }
         
-        returnPipe.bind(port + 3, port + 2);
-        
-        // Blocking receive on returnPipe to wait for startup signal
-        returnPipe.receive(true);
-        initWaits[pdInstance].release();
+        return success;
     }
     
     template <typename... Types>
@@ -118,19 +138,20 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
         // If necessary, wait until child process is initialised
         initWaits[pdthis].acquire();
         
-        auto* instance = instances[pdthis];
+        auto* instance = instances[pdthis].get();
         
         return instance;
     }
-    static void initialise(int port, t_class* pd_canvas_class)
+    static ofxOfeliaMessageManager* initialise(t_class* pd_canvas_class)
     {
         auto* pdthis = libpd_this_instance();
-        
-       
-        auto* messageManager = new ofxOfeliaMessageManager(port, pdthis);
-        instances[pdthis] = messageManager;
+    
+        auto* messageManager = new ofxOfeliaMessageManager(pdthis);
+        instances[pdthis].reset(messageManager);
         messageManager->addListener(messageManager);
         messageManager->canvas_class = pd_canvas_class;
+        
+        return messageManager;
     }
 
     void timerCallback() override
@@ -404,7 +425,7 @@ private:
     
     t_pdinstance* pdthis;
     static inline std::map<t_pdinstance*, Semaphore> initWaits;
-    static inline std::map<t_pdinstance*, ofxOfeliaMessageManager*> instances;
+    static inline std::map<t_pdinstance*, std::unique_ptr<ofxOfeliaMessageManager>> instances;
     std::vector<ofxOfeliaMessageListener*> listeners;
     
 };

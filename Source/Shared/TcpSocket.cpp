@@ -18,17 +18,23 @@
 #include <winsock2.h>
 #include <ws2tcpip.h>
 
-// Linux
+// Unix
 #else
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netdb.h>
 #include <unistd.h>
 #include <arpa/inet.h>
+#include <fcntl.h>
 static const int INVALID_SOCKET = -1;
 static const int SOCKET_ERROR   = -1;
 #endif
 
+#include <locale.h>
+#include <wchar.h>
+#include <iostream>
+#include <thread>
+#include <chrono>
 
 #ifndef _WIN32
 static void closesocket(int socket) { close(socket); }
@@ -36,14 +42,12 @@ static void closesocket(int socket) { close(socket); }
 
 // TcpSocket
 
-TcpSocket::TcpSocket(const short port)
+TcpSocket::TcpSocket(unsigned short port)
 {
-    sprintf_s(_port, "%d", port);
-
+    snprintf(_port, 10, "%d", port);
     // No connection yet
     _sock = INVALID_SOCKET;
     _connected = false;
-    *_message = 0;
 
     // Initialize Winsock, returning on failure
     if (!initWinsock()) return;
@@ -57,7 +61,7 @@ TcpSocket::TcpSocket(const short port)
     _addressInfo = NULL;
     int iResult = getaddrinfo("127.0.0.1", _port, &hints, &_addressInfo);
     if ( iResult != 0 ) {
-        sprintf_s(_message, "getaddrinfo() failed with error: %d", iResult);
+        std::cerr << "getaddrinfo() failed with error: %d" << std::endl;
         cleanup();
         return;
     }
@@ -65,59 +69,188 @@ TcpSocket::TcpSocket(const short port)
     // Create a SOCKET for connecting to server, returning on failure
     _sock = socket(_addressInfo->ai_family, _addressInfo->ai_socktype, _addressInfo->ai_protocol);
     if (_sock == INVALID_SOCKET) {
-        sprintf_s(_message, "socket() failed");
+        std::cerr << "socket() failed" << std::endl;
         cleanup();
         return;
     }
 }
 
-bool TcpSocket::sendData(const void *buf, size_t len)
+TcpSocket::~TcpSocket()
 {
-    return (size_t)send(_conn, (const char *)buf, len, 0) == len;
+#ifdef _WIN32
+    closesocket(_conn);
+#else
+    close(_conn);
+#endif
 }
 
-size_t TcpSocket::receiveData(void *buf, size_t len)
+bool TcpSocket::sendData(const char *buf, size_t len)
 {
-    return (size_t)recv(_conn, (char *)buf, len, 0);
+    uint32_t messageLength = htonl(static_cast<uint32_t>(len));
+    ssize_t bytesSent = send(_conn, reinterpret_cast<const char*>(&messageLength), sizeof(messageLength), 0);
+    if (bytesSent != sizeof(messageLength)) {
+        // Handle error or connection closed
+        return false;
+    }
+    
+    // Send the message content
+    ssize_t totalBytesSent = 0;
+    while (totalBytesSent < len) {
+        ssize_t bytesSent = send(_conn, buf + totalBytesSent, len - totalBytesSent, 0);
+        if (bytesSent <= 0) {
+            // Handle error or connection closed
+            return false;
+        }
+        totalBytesSent += bytesSent;
+    }
+
+    return true;
 }
+
+size_t TcpSocket::receiveData(char *buf, size_t len)
+{
+    uint32_t messageLength;
+    ssize_t bytesRead = recv(_conn, reinterpret_cast<char*>(&messageLength), sizeof(messageLength), 0);
+    if (bytesRead != sizeof(messageLength)) {
+        // Handle error or connection closed
+        return 0;
+    }
+    
+    messageLength = ntohl(messageLength);
+    
+    size_t totalBytesReceived = 0;
+    while (totalBytesReceived < messageLength) {
+        ssize_t bytesReceived = recv(_conn, &buf[totalBytesReceived], messageLength - totalBytesReceived, 0);
+        if (bytesReceived <= 0) {
+            // Handle error or connection closed
+            return 0;
+        }
+        totalBytesReceived += bytesReceived;
+    }
+
+    
+    return totalBytesReceived;
+}
+
+void TcpSocket::setBlocking(bool blocking) {
+    // Get the current socket flags
+#ifdef _WIN32
+    u_long mode = blocking ? 0 : 1;
+    if (ioctlsocket(_conn, FIONBIO, &mode) != 0) {
+        // Failed to set socket mode
+        return;
+    }
+#else
+    int flags = fcntl(_conn, F_GETFL, 0);
+    if (flags == -1) {
+        // Failed to get socket flags
+        return;
+    }
+
+    if (blocking) {
+        flags &= ~O_NONBLOCK;  // Clear non-blocking flag
+    } else {
+        flags |= O_NONBLOCK;  // Set non-blocking flag
+    }
+
+    if (fcntl(_conn, F_SETFL, flags) == -1) {
+        // Failed to set socket flags
+        return;
+    }
+#endif
+
+    return;
+}
+
 bool TcpSocket::isConnected()
 {
     return _connected;
 }
 
+bool TcpSocket::initWinsock(void)
+{
+#ifdef _WIN32
+        WSADATA wsaData;
+        int iResult = WSAStartup(MAKEWORD(2, 2), &wsaData);
+        if (iResult != 0) {
+        sprintf_s(_message, "WSAStartup() failed with error: %d\n", iResult);
+        return false;
+        }
+#endif
+        return true;
+}
+
+void TcpSocket::cleanup(void)
+{
+#ifdef _WIN32
+        WSACleanup();
+#endif
+}
+
+void TcpSocket::inetPton(const char * host, struct sockaddr_in & saddr_in)
+{
+#ifdef _WIN32
+        WCHAR wsz[64];
+        swprintf_s(wsz, L"%S", host);
+        InetPton(AF_INET, wsz,   &(saddr_in.sin_addr.s_addr));
+#else
+        inet_pton(AF_INET, host, &(saddr_in.sin_addr));
+#endif
+}
+
+
+void TcpSocket::closeConnection(void)
+{
+#ifdef _WIN32
+        closesocket(_sock);
+#else
+        close(_sock);
+#endif
+}
+
 
 // TcpClientSocket
 
-TcpClientSocket::TcpClientSocket(const short port)
+TcpClientSocket::TcpClientSocket(unsigned short port)
     : TcpSocket(port)
 {
 }
 
 void TcpClientSocket::openConnection(void)
 {
-    // Connect to server, returning on failure
-    if (connect(_sock, _addressInfo->ai_addr, (int)_addressInfo->ai_addrlen) == SOCKET_ERROR) {
-        closesocket(_sock);
-        _sock = INVALID_SOCKET;
-        sprintf_s(_message, "connect() failed; please make sure server is running");
+    int trials = 0;
+    while(!_connected && trials < 10) {
+        // Connect to server, returning on failure
+        if (connect(_sock, _addressInfo->ai_addr, (int)_addressInfo->ai_addrlen) == SOCKET_ERROR) {
+
+            trials++;
+            std::this_thread::sleep_for(std::chrono::milliseconds(trials * 50));
+            
+            continue;
+        }
+        
+        // For a client, the connection is the same as the main socket
+        _conn = _sock;
+        
+        // Success!
+        _connected = true;
         return;
     }
-
-    // For a client, the connection is the same as the main socket
-    _conn = _sock;
-
-    // Success!
-    _connected = true;
+    
+    closesocket(_sock);
+    _sock = INVALID_SOCKET;
+    std::cerr <<  "connect() failed; please make sure server is running" << std::endl;
+    
 }
 
-TcpServerSocket::TcpServerSocket(short port)
+TcpServerSocket::TcpServerSocket(unsigned short port)
     : TcpSocket(port)
 {
     // Bind socket to address
     if (bind(_sock, _addressInfo->ai_addr, (int)_addressInfo->ai_addrlen) == SOCKET_ERROR) {
         closesocket(_sock);
         _sock = INVALID_SOCKET;
-        sprintf_s(_message, "bind() failed");
+        std::cerr <<  "bind() failed" << std::endl;
         return;
     }
 }
@@ -126,18 +259,15 @@ void TcpServerSocket::acceptConnection(void)
 {
     // Listen for a connection, exiting on failure
     if (listen(_sock, 1)  == -1) {
-        sprintf_s(_message, "listen() failed");
+        std::cerr <<  "listen() failed" << std::endl;
         return;
     }
 
-    // Accept connection, exiting on failure
-    printf("Waiting for client to connect on %s:%s ... ", "127.0.0.1", _port);
     fflush(stdout);
     _conn = accept(_sock, (struct sockaddr *)NULL, NULL);
     if (_conn == SOCKET_ERROR) {
-        sprintf_s(_message, "accept() failed");
+        std::cerr <<  "accept() failed" << std::endl;
         return;
     }
-    printf("connected\n");
     fflush(stdout);
 }

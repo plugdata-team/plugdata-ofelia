@@ -8,30 +8,51 @@
 
 #pragma once
 
-#include "SocketCompat.h"
+#ifndef _WIN32
+#define sprintf_s sprintf
+typedef int SOCKET;
+#endif
 
-class TcpSocket : public Socket {
+#include <cstdint>
+#include <stdio.h>
 
-    protected:
-        char _port[10];
-        SOCKET _conn;
-        struct addrinfo * _addressInfo;
-        bool _connected;
+class TcpSocket
+{
 
-        TcpSocket(const short port);
+public:
 
-    public:
+    TcpSocket(unsigned short port);
+    
+    ~TcpSocket();
 
-        bool sendData(const void *buf, size_t len);
-        size_t receiveData(void *buf, size_t len);
-        bool isConnected();
+    bool sendData(const char *buf, size_t len);
+    size_t receiveData(char *buf, size_t len);
+    bool isConnected();
+    
+    void setBlocking(bool blocking);
+    
+private:
+
+    void closeConnection(void);
+    
+    bool initWinsock(void);
+    void cleanup(void);
+    void inetPton(const char * host, struct sockaddr_in & saddr_in);
+    void setUdpTimeout(uint32_t msec);
+    
+protected:
+    char _port[10];
+    SOCKET _conn;
+    struct addrinfo * _addressInfo;
+    bool _connected;
+    SOCKET _sock;
 };
 
 class TcpClientSocket : public TcpSocket {
 
     public:
 
-    TcpClientSocket(const short port);
+    TcpClientSocket(unsigned short port);
 
     void openConnection(void);
 };
@@ -40,7 +61,7 @@ class TcpServerSocket : public TcpSocket {
 
     public:
 
-    TcpServerSocket(short port);
+    TcpServerSocket(unsigned short port);
 
     void acceptConnection(void);
 };

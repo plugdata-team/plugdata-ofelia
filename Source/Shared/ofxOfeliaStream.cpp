@@ -18,36 +18,42 @@
 #include "ofxOfeliaStream.h"
 
 
-bool ofxOfeliaStream::bind(int recv_port, int snd_port) {
-    send_port = snd_port;
-    
+void ofxOfeliaStream::initialise(int recv_port, int snd_port)
+{
     sendSocket = std::make_unique<SocketType>(snd_port);
     receiveSocket = std::make_unique<SocketType>(recv_port);
+}
+
+bool ofxOfeliaStream::bind() {
     
 #ifdef PD
-    sendSocket->acceptConnction();
+    sendSocket->acceptConnection();
     receiveSocket->acceptConnection();
 #else
-    sendSocket->openConnection();
     receiveSocket->openConnection();
+    sendSocket->openConnection();
 #endif
     
     return true;
 }
 
+void ofxOfeliaStream::quit()
+{
+    receiveSocket->sendData(reinterpret_cast<char*>(ofx_quit), sizeof(ofxMessageType));
+}
+
 void ofxOfeliaStream::send(std::string toSend)
 {
-    sendSocket->sendData(reinterpret_cast<const void*>(toSend.data()), toSend.size());
+    sendSocket->sendData(toSend.data(), toSend.size());
 }
 
 std::string ofxOfeliaStream::receive(bool blocking)
 {
-    char data[60000];
-    auto receivedLength = receiveSocket->receiveData(data, 60000);
+    auto receivedLength = receiveSocket->receiveData(buffer, buffer_size);
         
     if(receivedLength > 0)
     {
-        return std::string(data, receivedLength);
+        return std::string(buffer, receivedLength);
     }
     
     return {};

@@ -9,13 +9,17 @@
 
 ofxOfeliaMessageManager::ofxOfeliaMessageManager(int portNumber)
 {
-    pipe.bind(portNumber, portNumber + 1); // TODO: terminate if this fails
-    returnPipe.bind(portNumber + 2, portNumber + 3);
+    pipe.initialise(portNumber, portNumber + 1);
+    returnPipe.initialise(portNumber + 2, portNumber + 3);
+        
+    // TODO: terminate if this fails
+    auto bound1 = pipe.bind();
+    auto bound2 = returnPipe.bind();
     
-    // Let plugdata know we have started up
-    returnPipe.sendMessage(ofx_lua_init);
+    //pipe.setBlocking(false);
+    //returnPipe.setBlocking(true);
     
-    shouldQuit = false;
+    shouldQuit = false;// !bound1 || !bound2;
     
     udpThread = std::thread(&ofxOfeliaMessageManager::run, this);
     
@@ -25,6 +29,7 @@ ofxOfeliaMessageManager::ofxOfeliaMessageManager(int portNumber)
 ofxOfeliaMessageManager::~ofxOfeliaMessageManager()
 {
     shouldQuit = true;
+    pipe.quit();
     udpThread.join();
 }
 
@@ -36,6 +41,12 @@ void ofxOfeliaMessageManager::run()
     {
         // Do a blocking receive
         message = pipe.receive();
+        
+        if(message.empty())
+        {
+            std::this_thread::sleep_for(std::chrono::milliseconds(2));
+            continue;
+        }
             
         std::string args;
         
@@ -45,8 +56,12 @@ void ofxOfeliaMessageManager::run()
         ofxMessageType messageType;
         istream.read(reinterpret_cast<char *>(&messageType), sizeof(ofxMessageType));
 
+        if(messageType == ofx_quit)
+        {
+            shouldQuit = true;
+        }
         /*
-        if (messageType == ofx_audio_block)
+        else if (messageType == ofx_audio_block)
         {
             signalQueue.enqueue();
             continue;

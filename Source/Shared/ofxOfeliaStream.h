@@ -5,6 +5,7 @@
 #include <string>
 #include <cstring>
 #include <cassert>
+#include <memory>
 #include <sstream>
 #include <tuple>
 
@@ -40,6 +41,8 @@ enum ofxMessageType
     ofx_lua_set_var_by_args,
     
     ofx_lua_do_string,
+    
+    ofx_quit,
     
     //ofx_audio_block,
     
@@ -93,8 +96,17 @@ using socklen_t = int;
 class ofxOfeliaStream {
     
 public:
+        
+    void initialise(int recv_port, int snd_port);
 
-    bool bind(int recv_port, int snd_port);
+    bool bind();
+    
+    void quit();
+    
+    void setBlocking(bool blocking)
+    {
+        if(receiveSocket) receiveSocket->setBlocking(blocking);
+    }
 
     std::string receive(bool blocking = false);
     void send(std::string toSend);
@@ -292,9 +304,10 @@ private:
             writeToStream(ostream, rest...);
         }
     }
-
-    int send_port;
+    
+    
     static constexpr size_t buffer_size = 65500;
+    char buffer[buffer_size];
     
     std::unique_ptr<SocketType> sendSocket;
     std::unique_ptr<SocketType> receiveSocket;

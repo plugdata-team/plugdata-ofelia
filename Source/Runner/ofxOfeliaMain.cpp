@@ -8,11 +8,11 @@
 void toggleDockIconVisibility(bool showIcon);
 #endif
 
-struct ofApp : public ofBaseApp, public ofxOfeliaMessageManager
+struct ofApp : public ofBaseApp
 {
     bool hideWindow = true;
     
-    ofApp(int portNumber) : ofxOfeliaMessageManager(portNumber)
+    ofApp(ofxOfeliaMessageManager& messageManager) : mm(messageManager)
     {}
     
     void update() override {
@@ -30,74 +30,73 @@ struct ofApp : public ofBaseApp, public ofxOfeliaMessageManager
         ofxMessageType type;
         std::string message;
         
-        while(receiveMessage(type, message))
+        while(mm.receiveMessage(type, message))
         {
             switch(type)
             {
-                std::cout << type << std::endl;
                 case ofx_lua_init:
                 {
-                    auto parsed = parseMessage<std::string>(message);
-                    ofxOfeliaLua::createInstance(this, std::get<0>(parsed));
+                    auto parsed = mm.parseMessage<std::string>(message);
+                    ofxOfeliaLua::createInstance(&mm, std::get<0>(parsed));
                     break;
                 }
                 case ofx_lua_init_sym:
                 {
-                    auto parsed = parseMessage<std::string, std::string>(message);
+                    auto parsed = mm.parseMessage<std::string, std::string>(message);
                     if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->setName(std::get<1>(parsed));
                     break;
                 }
                 case ofx_lua_do_function_s:
                 {
-                    auto parsed = parseMessage<std::string, std::string>(message);
+                    auto parsed = mm.parseMessage<std::string, std::string>(message);
                     if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->doFunction( std::get<1>(parsed).c_str());
                     break;
                 }
                 case ofx_lua_do_function_sp:
                 {
-                    auto parsed = parseMessage<std::string, std::string, t_gpointer>(message);
+                    auto parsed = mm.parseMessage<std::string, std::string, t_gpointer>(message);
                     if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->doFunction( std::get<1>(parsed).c_str(), std::get<2>(parsed));
                     break;
                 }
                 case ofx_lua_do_function_ss:
                 {
-                    auto parsed = parseMessage<std::string, std::string, std::string>(message);
+                    auto parsed = mm.parseMessage<std::string, std::string, std::string>(message);
                     if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->doFunction( std::get<1>(parsed).c_str(), std::get<2>(parsed).c_str());
                     break;
                 }
                 case ofx_lua_do_function_sf:
                 {
-                    auto parsed = parseMessage<std::string, std::string, float>(message);
+                    auto parsed = mm.parseMessage<std::string, std::string, float>(message);
                     if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->doFunction( std::get<1>(parsed).c_str(), std::get<2>(parsed));
                     break;
                 }
                 case ofx_lua_do_function_sa:
                 {
-                    auto parsed = parseMessage<std::string, std::string, std::vector<t_atom>>(message);
+                    auto parsed = mm.parseMessage<std::string, std::string, std::vector<t_atom>>(message);
                     if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->doFunction( std::get<1>(parsed).c_str(), std::get<2>(parsed));
                     break;
                 }
                 case ofx_lua_do_free_function:
                 {
-                    auto parsed = parseMessage<std::string>(message);
+                    auto parsed = mm.parseMessage<std::string>(message);
                     if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->doFreeFunction();
                     break;
                 }
                 case ofx_lua_get_var_by_args:
                 {
-                    auto parsed = parseMessage<std::string, std::string, std::vector<t_atom>>(message);
+                    auto parsed = mm.parseMessage<std::string, std::string, std::vector<t_atom>>(message);
                     if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->getVariableByArgs(std::get<1>(parsed).c_str(), std::get<2>(parsed));
                     break;
                 }
                 case ofx_lua_set_var_by_args:
                 {
-                    auto parsed = parseMessage<std::string, std::string, std::vector<t_atom>>(message);
+                    auto parsed = mm.parseMessage<std::string, std::string, std::vector<t_atom>>(message);
                     if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->setVariableByArgs(std::get<1>(parsed).c_str(), std::get<2>(parsed));
                     break;
                 }
                 case ofx_lua_do_string:
                 {
-                    auto parsed = parseMessage<std::string, std::string>(message);
+                    auto parsed = mm.parseMessage<std::string, std::string>(message);
                     if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->doString(std::get<1>(parsed));
                     break;
                 }
@@ -183,6 +182,7 @@ struct ofApp : public ofBaseApp, public ofxOfeliaMessageManager
         }
     } */
     
+    ofxOfeliaMessageManager& mm;
     ofAppGLFWWindow* window = nullptr;
 };
 
@@ -194,6 +194,11 @@ ofApp* app;
 
 void createWindow()
 {
+    
+#if __APPLE__
+    toggleDockIconVisibility(false);
+#endif
+    
     ofGLWindowSettings settings;
     settings.setGLVersion(2, 1);
     settings.windowMode = OF_WINDOW;
@@ -202,6 +207,7 @@ void createWindow()
     app->hideWindow = true;
     
     auto window = ofCreateWindow(settings);
+    
     app->window = dynamic_cast<ofAppGLFWWindow*>(window.get());
     
     auto* mainLoop = ofGetMainLoop().get();
@@ -210,9 +216,7 @@ void createWindow()
     ofSetFrameRate(60);
     ofDisableArbTex();
     
-#if __APPLE__
-    toggleDockIconVisibility(false);
-#endif
+
 }
 
 void showWindow(glm::vec2 position, int width, int height)
@@ -237,13 +241,12 @@ void showWindow(glm::vec2 position, int width, int height)
      ofxOfeliaLua::init();
      ofxOfeliaLog::setLoggerChannel();
      
-     app = new ofApp(port);
-     createWindow();
+     ofxOfeliaMessageManager messageManager(port);
      
      while(true)
      {
-         ofRunApp(app);
-         app = new ofApp(port);
+         app = new ofApp(messageManager);
          createWindow();
+         ofRunApp(app);
      }
  }
