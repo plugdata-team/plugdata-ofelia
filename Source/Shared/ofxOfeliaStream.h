@@ -267,7 +267,7 @@ private:
 
             }
         }
-        if constexpr (std::is_same<T, std::vector<float>>())
+        else if constexpr (std::is_same<T, std::vector<float>>())
         {
             int size = static_cast<int>(arg.size());
             auto* floatPtr = arg.data();
