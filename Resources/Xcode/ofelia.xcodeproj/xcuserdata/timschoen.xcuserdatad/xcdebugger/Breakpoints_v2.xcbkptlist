@@ -6437,8 +6437,8 @@
             filePath = "../../Source/Shared/ofxOfeliaStream.h"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "14"
-            endingLineNumber = "14"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
             landmarkName = "ofxMessageType"
             landmarkType = "13">
          </BreakpointContent>
@@ -6453,8 +6453,8 @@
             filePath = "../../Source/Shared/ofxOfeliaStream.h"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "15"
-            endingLineNumber = "15"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
             landmarkName = "ofxMessageType"
             landmarkType = "13">
          </BreakpointContent>

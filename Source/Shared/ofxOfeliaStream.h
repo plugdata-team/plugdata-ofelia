@@ -7,7 +7,12 @@
 #include <cassert>
 #include <sstream>
 #include <tuple>
+
+#ifdef PD
 #include <m_pd.h>
+#else
+#include "../Runner/ofxPdInterface.h"
+#endif
 
 enum ofxMessageType
 {

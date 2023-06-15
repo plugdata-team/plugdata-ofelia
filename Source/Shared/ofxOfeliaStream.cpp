@@ -15,12 +15,6 @@
 #include <fcntl.h>
 #endif
 
-#ifdef PD
-#include <m_pd.h>
-#else
-#include "../Runner/ofxPdInterface.h"
-#endif
-
 #include "ofxOfeliaStream.h"
 
 ofxOfeliaStream::ofxOfeliaStream() {
