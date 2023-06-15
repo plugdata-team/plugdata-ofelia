@@ -6383,7 +6383,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "067D2B3E-90A4-49D0-A3E8-183550CBAA68"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Source/Runner/ofxOfeliaPdBindings.h"
@@ -6437,8 +6437,8 @@
             filePath = "../../Source/Shared/ofxOfeliaStream.h"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
             landmarkName = "ofxMessageType"
             landmarkType = "13">
          </BreakpointContent>
@@ -6453,8 +6453,8 @@
             filePath = "../../Source/Shared/ofxOfeliaStream.h"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
             landmarkName = "ofxMessageType"
             landmarkType = "13">
          </BreakpointContent>
@@ -6489,6 +6489,1220 @@
             endingLineNumber = "25"
             landmarkName = "ofxOfeliaMessageManager"
             landmarkType = "14">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9276289C-B07C-4702-89EA-DC613A8086F1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaPdBindings.h"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "557"
+            endingLineNumber = "557"
+            landmarkName = "getAt(n)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5592F77A-071E-46D9-BC83-F0AEE1B61A40"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaMain.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "dequeueMessages()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EB606BB7-833D-4A59-B5EF-B4F09E2CCA4C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaMain.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "dequeueMessages()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A595B5C8-18D9-4DAA-8B71-8E1A01F35249"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaMain.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "dequeueMessages()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0C1CEF22-B938-4AE7-93BC-060BECA7A703"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaMain.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "dequeueMessages()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "592B64A0-0323-45B8-ABF7-B12977176016"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaMain.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "dequeueMessages()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "592B64A0-0323-45B8-ABF7-B12977176016 - 90efc041b58a3803"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "664">
+               </Location>
+               <Location
+                  uuid = "592B64A0-0323-45B8-ABF7-B12977176016 - 90efc041b58a3803"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "672">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "523B115F-71D9-4EC0-8C8C-D3A3C5A39BBF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaMain.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "dequeueMessages()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "523B115F-71D9-4EC0-8C8C-D3A3C5A39BBF - 90efc041b58a38dd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "528">
+               </Location>
+               <Location
+                  uuid = "523B115F-71D9-4EC0-8C8C-D3A3C5A39BBF - 90efc041b58a38dd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "536">
+               </Location>
+               <Location
+                  uuid = "523B115F-71D9-4EC0-8C8C-D3A3C5A39BBF - 90efc041b58a38fc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "528">
+               </Location>
+               <Location
+                  uuid = "523B115F-71D9-4EC0-8C8C-D3A3C5A39BBF - 90efc041b58a38fc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "536">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D2A783DF-DFA0-4DAB-8E15-4C08B2C85189"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaMain.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "dequeueMessages()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D2A783DF-DFA0-4DAB-8E15-4C08B2C85189 - 90efc041b58a3803"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "664">
+               </Location>
+               <Location
+                  uuid = "D2A783DF-DFA0-4DAB-8E15-4C08B2C85189 - 90efc041b58a3803"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "672">
+               </Location>
+               <Location
+                  uuid = "D2A783DF-DFA0-4DAB-8E15-4C08B2C85189 - 90efc041b58a3822"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "664">
+               </Location>
+               <Location
+                  uuid = "D2A783DF-DFA0-4DAB-8E15-4C08B2C85189 - 90efc041b58a3822"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "672">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B878D31C-4DF4-469F-839B-8C13A59C131C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaMain.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "dequeueMessages()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B878D31C-4DF4-469F-839B-8C13A59C131C - 90efc041b58a3797"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "576">
+               </Location>
+               <Location
+                  uuid = "B878D31C-4DF4-469F-839B-8C13A59C131C - 90efc041b58a3797"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "584">
+               </Location>
+               <Location
+                  uuid = "B878D31C-4DF4-469F-839B-8C13A59C131C - 90efc041b58a37b6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "576">
+               </Location>
+               <Location
+                  uuid = "B878D31C-4DF4-469F-839B-8C13A59C131C - 90efc041b58a37b6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "584">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "10AEFDAB-0B46-4F43-9205-C07EE343FCF2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaMain.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "dequeueMessages()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "10AEFDAB-0B46-4F43-9205-C07EE343FCF2 - 90efc041b58a37d5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "60"
+                  endingLineNumber = "60"
+                  offsetFromSymbolStart = "1860">
+               </Location>
+               <Location
+                  uuid = "10AEFDAB-0B46-4F43-9205-C07EE343FCF2 - 90efc041b58a37f4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
+                  offsetFromSymbolStart = "1860">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7DB94D8C-CF0C-44ED-B3D1-9DF6515568A6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaMain.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "dequeueMessages()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "7DB94D8C-CF0C-44ED-B3D1-9DF6515568A6 - 90efc041b58a36af"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "1832">
+               </Location>
+               <Location
+                  uuid = "7DB94D8C-CF0C-44ED-B3D1-9DF6515568A6 - 90efc041b58a36ce"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "1832">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CB30923B-BB25-4DAE-9618-6F6C3F99B219"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaMain.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "dequeueMessages()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "CB30923B-BB25-4DAE-9618-6F6C3F99B219 - 90efc041b58a3569"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "1908">
+               </Location>
+               <Location
+                  uuid = "CB30923B-BB25-4DAE-9618-6F6C3F99B219 - 90efc041b58a3588"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "73"
+                  endingLineNumber = "73"
+                  offsetFromSymbolStart = "1908">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8D2EDBC6-FAAA-471F-A63B-0697DA156017"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaMain.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "dequeueMessages()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8D2EDBC6-FAAA-471F-A63B-0697DA156017 - 90efc041b58a34bf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "632">
+               </Location>
+               <Location
+                  uuid = "8D2EDBC6-FAAA-471F-A63B-0697DA156017 - 90efc041b58a34bf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "640">
+               </Location>
+               <Location
+                  uuid = "8D2EDBC6-FAAA-471F-A63B-0697DA156017 - 90efc041b58a34de"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "632">
+               </Location>
+               <Location
+                  uuid = "8D2EDBC6-FAAA-471F-A63B-0697DA156017 - 90efc041b58a34de"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "640">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0749041F-0D6C-46D6-82B5-C901F2D0F373"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaMain.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "dequeueMessages()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0749041F-0D6C-46D6-82B5-C901F2D0F373 - 90efc041b58a3379"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "1060">
+               </Location>
+               <Location
+                  uuid = "0749041F-0D6C-46D6-82B5-C901F2D0F373 - 90efc041b58a3379"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "1072">
+               </Location>
+               <Location
+                  uuid = "0749041F-0D6C-46D6-82B5-C901F2D0F373 - 90efc041b58a3398"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "1060">
+               </Location>
+               <Location
+                  uuid = "0749041F-0D6C-46D6-82B5-C901F2D0F373 - 90efc041b58a3398"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "1072">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4923BDD3-44EA-4BE8-8A6C-BD852D257D35"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaMain.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "dequeueMessages()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4923BDD3-44EA-4BE8-8A6C-BD852D257D35 - 90efc041b58a3233"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "94"
+                  endingLineNumber = "94"
+                  offsetFromSymbolStart = "288">
+               </Location>
+               <Location
+                  uuid = "4923BDD3-44EA-4BE8-8A6C-BD852D257D35 - 90efc041b58a3233"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "94"
+                  endingLineNumber = "94"
+                  offsetFromSymbolStart = "300">
+               </Location>
+               <Location
+                  uuid = "4923BDD3-44EA-4BE8-8A6C-BD852D257D35 - 90efc041b58a3252"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
+                  offsetFromSymbolStart = "288">
+               </Location>
+               <Location
+                  uuid = "4923BDD3-44EA-4BE8-8A6C-BD852D257D35 - 90efc041b58a3252"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
+                  offsetFromSymbolStart = "300">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6B10CA49-187C-443E-A3AE-048F293C396E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaMain.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "dequeueMessages()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6B10CA49-187C-443E-A3AE-048F293C396E - 90efc041b58a310d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
+                  offsetFromSymbolStart = "992">
+               </Location>
+               <Location
+                  uuid = "6B10CA49-187C-443E-A3AE-048F293C396E - 90efc041b58a310d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
+                  offsetFromSymbolStart = "1004">
+               </Location>
+               <Location
+                  uuid = "6B10CA49-187C-443E-A3AE-048F293C396E - 90efc041b58a312c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "101"
+                  endingLineNumber = "101"
+                  offsetFromSymbolStart = "992">
+               </Location>
+               <Location
+                  uuid = "6B10CA49-187C-443E-A3AE-048F293C396E - 90efc041b58a312c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "101"
+                  endingLineNumber = "101"
+                  offsetFromSymbolStart = "1004">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "68C8643B-3A3F-4D37-AAF1-BA0B54BFFF9D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaMain.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "dequeueMessages()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0B246110-3E86-484C-9D25-BB7850A16DBA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaLua.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "616"
+            endingLineNumber = "616"
+            landmarkName = "ofxOfeliaLua::doFreeFunction()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "12053874-8E2A-4019-98A0-517C96B9419C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaMain.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "dequeueMessages()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "12053874-8E2A-4019-98A0-517C96B9419C - 90efc041b58a310d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
+                  offsetFromSymbolStart = "992">
+               </Location>
+               <Location
+                  uuid = "12053874-8E2A-4019-98A0-517C96B9419C - 90efc041b58a310d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
+                  offsetFromSymbolStart = "1004">
+               </Location>
+               <Location
+                  uuid = "12053874-8E2A-4019-98A0-517C96B9419C - 90efc041b58a312c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "101"
+                  endingLineNumber = "101"
+                  offsetFromSymbolStart = "992">
+               </Location>
+               <Location
+                  uuid = "12053874-8E2A-4019-98A0-517C96B9419C - 90efc041b58a312c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "101"
+                  endingLineNumber = "101"
+                  offsetFromSymbolStart = "1004">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DB66BAE3-D702-4A8C-BCFD-8A794ED01E45"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaMain.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "dequeueMessages()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DB66BAE3-D702-4A8C-BCFD-8A794ED01E45 - 90efc041b58a310d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
+                  offsetFromSymbolStart = "992">
+               </Location>
+               <Location
+                  uuid = "DB66BAE3-D702-4A8C-BCFD-8A794ED01E45 - 90efc041b58a310d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
+                  offsetFromSymbolStart = "1004">
+               </Location>
+               <Location
+                  uuid = "DB66BAE3-D702-4A8C-BCFD-8A794ED01E45 - 90efc041b58a312c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "101"
+                  endingLineNumber = "101"
+                  offsetFromSymbolStart = "992">
+               </Location>
+               <Location
+                  uuid = "DB66BAE3-D702-4A8C-BCFD-8A794ED01E45 - 90efc041b58a312c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "101"
+                  endingLineNumber = "101"
+                  offsetFromSymbolStart = "1004">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9096779A-C571-4FE2-978A-5339887B0EBE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaLua.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "622"
+            endingLineNumber = "622"
+            landmarkName = "ofxOfeliaLua::doString(s)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C30894E2-7704-4494-8452-538189B69DBD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaLua.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "623"
+            endingLineNumber = "623"
+            landmarkName = "ofxOfeliaLua::doString(s)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "51CF9070-FE73-4AD2-9774-11F77C8EB130"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaLua.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
+            landmarkName = "ofxOfeliaLua::getPtr(uid)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "38C9D149-A05F-4A40-ACD2-626B90E92718"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaLua.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
+            landmarkName = "ofxOfeliaLua::getPtr(uid)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "33FEA228-7484-4ECD-BEFF-7BA917650C10"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaLua.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
+            landmarkName = "ofxOfeliaLua::getPtr(uid)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EA7A586C-F051-49D7-80F9-B562A1C9CBCC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaMain.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "dequeueMessages()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ACAB7DA5-EB44-4D53-9BE0-D2CFDC5A7EEE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaLua.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
+            landmarkName = "ofxOfeliaLua::getPtr(uid)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "635D7AE1-DEC1-409B-9F32-29529143F502"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaLua.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
+            landmarkName = "ofxOfeliaLua::getPtr(uid)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F0E0E82D-3736-4377-B9AF-FD685C409BDC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaMain.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "dequeueMessages()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "95078994-4C0B-4A30-80DB-59CD81B0AD1D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaMessageManager.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "ofxOfeliaMessageManager::run()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6BCB76E9-F4C9-4B98-AD6A-D4A72E0F3427"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaMessageManager.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "ofxOfeliaMessageManager::run()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8A5AC9B1-E762-47DD-8A1D-172F4A2B365B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaMessageManager.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "ofxOfeliaMessageManager::run()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BF74740C-1E8F-49E8-8452-CA5D73518C91"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/Runner/ofxOfeliaMessageManager.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "ofxOfeliaMessageManager::run()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

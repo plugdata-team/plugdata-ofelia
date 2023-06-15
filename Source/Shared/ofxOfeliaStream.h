@@ -14,6 +14,14 @@
 #include "../Runner/ofxPdInterface.h"
 #endif
 
+#include "TcpSocket.h"
+
+#ifdef PD
+    using SocketType = TcpServerSocket;
+#else
+    using SocketType = TcpClientSocket;
+#endif
+
 enum ofxMessageType
 {
     // Message from plugdata to the ofxOfeliaLua class
@@ -83,20 +91,13 @@ using socklen_t = int;
 #endif
 
 class ofxOfeliaStream {
-private:
-    int socket_;
-    int send_port_;
-    static constexpr size_t buffer_size = 65500;
     
 public:
 
-    ofxOfeliaStream();
+    bool bind(int recv_port, int snd_port);
 
-    ~ofxOfeliaStream();
-    
-    bool bind(int receive_port, int send_port);
-    
     std::string receive(bool blocking = false);
+    void send(std::string toSend);
 
     // Internal function for parsing received messages from stringstream to any number of types
     template <int I, typename Result, typename T, typename... Types>
@@ -200,7 +201,7 @@ public:
         std::stringstream stream;
         writeToStream(stream, args...);
 
-        sendto(stream.str());        
+        send(stream.str());        
     }
     
     // Function for parsing messages
@@ -291,13 +292,12 @@ private:
             writeToStream(ostream, rest...);
         }
     }
+
+    int send_port;
+    static constexpr size_t buffer_size = 65500;
     
-    bool convertAddress(struct sockaddr_in* destAddr);
-
-    std::string receiveBlocking();
-    std::string receiveNonBlocking();
-
-    void sendto(std::string message);
+    std::unique_ptr<SocketType> sendSocket;
+    std::unique_ptr<SocketType> receiveSocket;
     
 };
 

@@ -34,13 +34,8 @@ void ofxOfeliaMessageManager::run()
     std::string message;
     while (!shouldQuit)
     {
+        // Do a blocking receive
         message = pipe.receive();
-        
-        if(message.empty())
-        {
-            std::this_thread::sleep_for(std::chrono::microseconds(500));
-            continue;
-        }
             
         std::string args;
         

@@ -34,6 +34,7 @@ struct ofApp : public ofBaseApp, public ofxOfeliaMessageManager
         {
             switch(type)
             {
+                std::cout << type << std::endl;
                 case ofx_lua_init:
                 {
                     auto parsed = parseMessage<std::string>(message);

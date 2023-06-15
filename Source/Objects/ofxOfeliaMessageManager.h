@@ -95,7 +95,7 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
         
         // Blocking receive on returnPipe to wait for startup signal
         returnPipe.receive(true);
-        initWait.release();
+        initWaits[pdInstance].release();
     }
     
     template <typename... Types>
@@ -114,10 +114,11 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
     {
         
         auto* pdthis = libpd_this_instance();
-        auto* instance = instances[pdthis];
         
         // If necessary, wait until child process is initialised
-        instance->initWait.acquire();
+        initWaits[pdthis].acquire();
+        
+        auto* instance = instances[pdthis];
         
         return instance;
     }
@@ -401,8 +402,8 @@ private:
     ofxOfeliaStream pipe;
     ofxOfeliaStream returnPipe;
     
-    Semaphore initWait;
     t_pdinstance* pdthis;
+    static inline std::map<t_pdinstance*, Semaphore> initWaits;
     static inline std::map<t_pdinstance*, ofxOfeliaMessageManager*> instances;
     std::vector<ofxOfeliaMessageListener*> listeners;
     

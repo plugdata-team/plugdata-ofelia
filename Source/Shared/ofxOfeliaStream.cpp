@@ -17,130 +17,39 @@
 
 #include "ofxOfeliaStream.h"
 
-ofxOfeliaStream::ofxOfeliaStream() {
-#ifdef _WIN32
-    WSADATA wsaData;
-    if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
-        std::cerr << "Failed to initialize Winsock." << std::endl;
-    }
-#endif
-    socket_ = socket(AF_INET, SOCK_DGRAM, 0);
-    if (socket_ < 0) {
-        std::cerr << "Failed to create socket." << std::endl;
-    }
-}
 
-ofxOfeliaStream::~ofxOfeliaStream() {
-#ifdef _WIN32
-    closesocket(socket_);
-    WSACleanup();
-#else
-    close(socket_);
-#endif
-}
-
-
-bool ofxOfeliaStream::bind(int receive_port, int send_port) {
-    send_port_ = send_port;
+bool ofxOfeliaStream::bind(int recv_port, int snd_port) {
+    send_port = snd_port;
     
-    struct sockaddr_in address_;
-    address_.sin_family = AF_INET;
-    address_.sin_addr.s_addr = htonl(INADDR_ANY);
-    address_.sin_port = htons(receive_port);
-
-    if (::bind(socket_, (struct sockaddr*)&address_, sizeof(address_)) < 0) {
-        std::cerr << "Failed to bind socket." << std::endl;
-        return false;
-    }
-
+    sendSocket = std::make_unique<SocketType>(snd_port);
+    receiveSocket = std::make_unique<SocketType>(recv_port);
+    
+#ifdef PD
+    sendSocket->acceptConnction();
+    receiveSocket->acceptConnection();
+#else
+    sendSocket->openConnection();
+    receiveSocket->openConnection();
+#endif
+    
     return true;
+}
+
+void ofxOfeliaStream::send(std::string toSend)
+{
+    sendSocket->sendData(reinterpret_cast<const void*>(toSend.data()), toSend.size());
 }
 
 std::string ofxOfeliaStream::receive(bool blocking)
 {
-    std::string rcvd;
-    if(blocking)
+    char data[60000];
+    auto receivedLength = receiveSocket->receiveData(data, 60000);
+        
+    if(receivedLength > 0)
     {
-        rcvd = receiveBlocking();
-    }
-    else
-    {
-        rcvd = receiveNonBlocking();
+        return std::string(data, receivedLength);
     }
     
-    return rcvd;
-}
-
-bool ofxOfeliaStream::convertAddress(struct sockaddr_in* destAddr) {
-#ifdef _WIN32
-#if PD
-    int result = InetPton(AF_INET, "127.0.0.1", &(destAddr->sin_addr));
-#else
-    int result = InetPton(AF_INET, L"127.0.0.1", &(destAddr->sin_addr));
-#endif
-    return (result == 1);
-#else
-    int result = inet_pton(AF_INET, "127.0.0.1", &(destAddr->sin_addr));
-    return (result == 1);
-#endif
-}
-
-std::string ofxOfeliaStream::receiveBlocking() {
-    char buffer[buffer_size];
-    struct sockaddr_in srcAddr;
-    socklen_t addrLen = sizeof(srcAddr);
-
-    int bytesRead = ::recvfrom(socket_, buffer, sizeof(buffer) - 1, 0,
-                                    (struct sockaddr*)&srcAddr, &addrLen);
-    if (bytesRead > 0) {
-        return std::string(buffer, bytesRead);
-    }
-
     return {};
 }
 
-std::string ofxOfeliaStream::receiveNonBlocking() {
-#ifdef _WIN32
-    u_long mode = 1;
-    ioctlsocket(socket_, FIONBIO, &mode);
-#else
-    int flags = fcntl(socket_, F_GETFL, 0);
-    fcntl(socket_, F_SETFL, flags | O_NONBLOCK);
-#endif
-
-    char buffer[buffer_size];
-    struct sockaddr_in srcAddr;
-    socklen_t addrLen = sizeof(srcAddr);
-
-    int bytesRead = ::recvfrom(socket_, buffer, sizeof(buffer) - 1, 0,
-                                    (struct sockaddr*)&srcAddr, &addrLen);
-
-#ifdef _WIN32
-    mode = 0;
-    ioctlsocket(socket_, FIONBIO, &mode);
-#else
-    flags = fcntl(socket_, F_GETFL, 0);
-    flags &= ~O_NONBLOCK;
-    fcntl(socket_, F_SETFL, flags);
-#endif
-
-    if (bytesRead > 0) {            
-        return std::string(buffer, bytesRead);
-    }
-
-    return {};
-}
-
-void ofxOfeliaStream::sendto(std::string message)
-{
-    struct sockaddr_in destAddr;
-    destAddr.sin_family = AF_INET;
-    destAddr.sin_port = htons(send_port_);
-    if (convertAddress(&destAddr) <= 0) {
-        std::cerr << "Failed to convert IP address." << std::endl;
-        return;
-    }
-    
-    ::sendto(socket_, message.c_str(), message.size(), 0,
-                    (struct sockaddr*)&destAddr, sizeof(destAddr));
-}

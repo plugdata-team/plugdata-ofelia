@@ -4,3 +4,6 @@
 [submodule "JUCE"]
 	path = JUCE
 	url = https://github.com/juce-framework/JUCE.git
+[submodule "Libraries/CppSockets"]
+	path = Libraries/CppSockets
+	url = https://github.com/simondlevy/CppSockets.git
