@@ -8,11 +8,7 @@
 
 #pragma once
 
-#ifndef _WIN32
-#define sprintf_s sprintf
 typedef int SOCKET;
-#endif
-
 #include <cstdint>
 #include <stdio.h>
 
