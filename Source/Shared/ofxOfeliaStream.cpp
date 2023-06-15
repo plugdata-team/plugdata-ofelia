@@ -79,7 +79,7 @@ std::string ofxOfeliaStream::receive(bool blocking)
 
 bool ofxOfeliaStream::convertAddress(struct sockaddr_in* destAddr) {
 #ifdef _WIN32
-    int result = InetPton(AF_INET, L"127.0.0.1", &(destAddr->sin_addr));
+    int result = InetPton(AF_INET, "127.0.0.1", &(destAddr->sin_addr));
     return (result == 1);
 #else
     int result = inet_pton(AF_INET, "127.0.0.1", &(destAddr->sin_addr));
