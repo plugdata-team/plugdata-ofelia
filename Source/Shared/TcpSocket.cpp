@@ -37,6 +37,7 @@ using SOCKET = int;
 #include <iostream>
 #include <thread>
 #include <chrono>
+#include <cstdint>
 
 #ifndef _WIN32
 static void closesocket(int socket) { close(socket); }
