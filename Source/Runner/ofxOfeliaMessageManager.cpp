@@ -16,13 +16,7 @@ ofxOfeliaMessageManager::ofxOfeliaMessageManager(int portNumber)
     auto bound1 = pipe.bind();
     auto bound2 = returnPipe.bind();
     
-    if(!(bound1 && bound2))
-    {
-        // Could not establish connection
-        throw;
-    }
-    
-    shouldQuit = false;// !bound1 || !bound2;
+    shouldQuit = !(bound1 && bound2);
     
     udpThread = std::thread(&ofxOfeliaMessageManager::run, this);
     
@@ -47,8 +41,8 @@ void ofxOfeliaMessageManager::run()
         
         if(message.empty())
         {
-            std::this_thread::sleep_for(std::chrono::milliseconds(2));
-            continue;
+            // Error or connection closed!
+            shouldQuit = true;
         }
             
         std::string args;

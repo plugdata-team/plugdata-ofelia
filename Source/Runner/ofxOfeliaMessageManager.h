@@ -45,6 +45,7 @@ struct ofxOfeliaMessageManager {
     }
     
     static ofxOfeliaMessageManager* instance;
+    std::atomic<bool> shouldQuit;
     
 private:
     std::thread udpThread;
@@ -53,6 +54,5 @@ private:
     
     ofxOfeliaStream pipe;
     ofxOfeliaStream returnPipe;
-    
-    std::atomic<bool> shouldQuit;
+
 };

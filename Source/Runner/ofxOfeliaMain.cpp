@@ -19,6 +19,11 @@ struct ofApp : public ofBaseApp
         if(hideWindow) {
             glfwHideWindow(window->getGLFWWindow());
         }
+        
+        if(mm.shouldQuit)
+        {
+            ofExit();
+        }
     }
     
     void draw() override {
@@ -32,6 +37,7 @@ struct ofApp : public ofBaseApp
         
         while(mm.receiveMessage(type, message))
         {
+            
             switch(type)
             {
                 case ofx_lua_init:
@@ -243,7 +249,7 @@ void showWindow(glm::vec2 position, int width, int height)
      
      ofxOfeliaMessageManager messageManager(port);
      
-     while(true)
+     while(!messageManager.shouldQuit)
      {
          app = new ofApp(messageManager);
          createWindow();
