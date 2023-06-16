@@ -439,6 +439,8 @@ public:
         ss << "package.preload['" << name << "'] = nil package.loaded['" << name << "'] = nil\n"
         << "package.preload['" << name << "'] = function(this) local ofelia = {} local M = ofelia\n";
         
+        std::cout << name << std::endl;
+        
         auto isSignalObject = false;
         
         if (!dataPtr->isFunctionMode)

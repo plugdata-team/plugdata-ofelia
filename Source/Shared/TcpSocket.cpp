@@ -2,6 +2,7 @@
  * Cross-platform compatibility superclass for sockets
  *
  * Copyright (C) 2019 Simon D. Levy
+ * Modified by Timothy Schoen in 2023
  *
  * MIT License
  */
@@ -28,6 +29,7 @@
 #include <fcntl.h>
 static const int INVALID_SOCKET = -1;
 static const int SOCKET_ERROR   = -1;
+using SOCKET = int;
 #endif
 
 #include <locale.h>
@@ -78,16 +80,16 @@ TcpSocket::TcpSocket(unsigned short port)
 TcpSocket::~TcpSocket()
 {
 #ifdef _WIN32
-    closesocket(_conn);
+    closesocket(static_cast<SOCKET>(_conn));
 #else
-    close(_conn);
+    close(static_cast<SOCKET>(_conn));
 #endif
 }
 
 bool TcpSocket::sendData(const char *buf, size_t len)
 {
     uint32_t messageLength = htonl(static_cast<uint32_t>(len));
-    ssize_t bytesSent = send(_conn, reinterpret_cast<const char*>(&messageLength), sizeof(messageLength), 0);
+    ssize_t bytesSent = send(static_cast<SOCKET>(_conn), reinterpret_cast<const char*>(&messageLength), sizeof(messageLength), 0);
     if (bytesSent != sizeof(messageLength)) {
         // Handle error or connection closed
         return false;
@@ -96,7 +98,7 @@ bool TcpSocket::sendData(const char *buf, size_t len)
     // Send the message content
     ssize_t totalBytesSent = 0;
     while (totalBytesSent < len) {
-        ssize_t bytesSent = send(_conn, buf + totalBytesSent, len - totalBytesSent, 0);
+        ssize_t bytesSent = send(static_cast<SOCKET>(_conn), buf + totalBytesSent, len - totalBytesSent, 0);
         if (bytesSent <= 0) {
             // Handle error or connection closed
             return false;
@@ -110,7 +112,7 @@ bool TcpSocket::sendData(const char *buf, size_t len)
 size_t TcpSocket::receiveData(char *buf, size_t len)
 {
     uint32_t messageLength;
-    ssize_t bytesRead = recv(_conn, reinterpret_cast<char*>(&messageLength), sizeof(messageLength), 0);
+    ssize_t bytesRead = recv(static_cast<SOCKET>(_conn), reinterpret_cast<char*>(&messageLength), sizeof(messageLength), 0);
     if (bytesRead != sizeof(messageLength)) {
         // Handle error or connection closed
         return 0;
@@ -120,7 +122,7 @@ size_t TcpSocket::receiveData(char *buf, size_t len)
     
     size_t totalBytesReceived = 0;
     while (totalBytesReceived < messageLength) {
-        ssize_t bytesReceived = recv(_conn, &buf[totalBytesReceived], messageLength - totalBytesReceived, 0);
+        ssize_t bytesReceived = recv(static_cast<SOCKET>(_conn), &buf[totalBytesReceived], messageLength - totalBytesReceived, 0);
         if (bytesReceived <= 0) {
             // Handle error or connection closed
             return 0;
@@ -136,12 +138,12 @@ void TcpSocket::setBlocking(bool blocking) {
     // Get the current socket flags
 #ifdef _WIN32
     u_long mode = blocking ? 0 : 1;
-    if (ioctlsocket(_conn, FIONBIO, &mode) != 0) {
+    if (ioctlsocket(static_cast<SOCKET>(_conn), FIONBIO, &mode) != 0) {
         // Failed to set socket mode
         return;
     }
 #else
-    int flags = fcntl(_conn, F_GETFL, 0);
+    int flags = fcntl(static_cast<SOCKET>(_conn), F_GETFL, 0);
     if (flags == -1) {
         // Failed to get socket flags
         return;
@@ -153,7 +155,7 @@ void TcpSocket::setBlocking(bool blocking) {
         flags |= O_NONBLOCK;  // Set non-blocking flag
     }
 
-    if (fcntl(_conn, F_SETFL, flags) == -1) {
+    if (fcntl(static_cast<SOCKET>(_conn), F_SETFL, flags) == -1) {
         // Failed to set socket flags
         return;
     }
@@ -221,7 +223,7 @@ void TcpClientSocket::openConnection(void)
     int trials = 0;
     while(!_connected && trials < 10) {
         // Connect to server, returning on failure
-        if (connect(_sock, _addressInfo->ai_addr, (int)_addressInfo->ai_addrlen) == SOCKET_ERROR) {
+        if (connect(static_cast<SOCKET>(_sock), _addressInfo->ai_addr, (int)_addressInfo->ai_addrlen) == SOCKET_ERROR) {
 
             trials++;
             std::this_thread::sleep_for(std::chrono::milliseconds(trials * 50));
@@ -237,7 +239,7 @@ void TcpClientSocket::openConnection(void)
         return;
     }
     
-    closesocket(_sock);
+    closesocket(static_cast<SOCKET>(_sock));
     _sock = INVALID_SOCKET;
     std::cerr <<  "connect() failed; please make sure server is running" << std::endl;
     
@@ -247,8 +249,8 @@ TcpServerSocket::TcpServerSocket(unsigned short port)
     : TcpSocket(port)
 {
     // Bind socket to address
-    if (bind(_sock, _addressInfo->ai_addr, (int)_addressInfo->ai_addrlen) == SOCKET_ERROR) {
-        closesocket(_sock);
+    if (bind(static_cast<SOCKET>(_sock), _addressInfo->ai_addr, (int)_addressInfo->ai_addrlen) == SOCKET_ERROR) {
+        closesocket(static_cast<SOCKET>(_sock));
         _sock = INVALID_SOCKET;
         std::cerr <<  "bind() failed" << std::endl;
         return;
@@ -258,13 +260,13 @@ TcpServerSocket::TcpServerSocket(unsigned short port)
 void TcpServerSocket::acceptConnection(void)
 {
     // Listen for a connection, exiting on failure
-    if (listen(_sock, 1)  == -1) {
+    if (listen(static_cast<SOCKET>(_sock), 1)  == -1) {
         std::cerr <<  "listen() failed" << std::endl;
         return;
     }
 
     fflush(stdout);
-    _conn = accept(_sock, (struct sockaddr *)NULL, NULL);
+    _conn = accept(static_cast<SOCKET>(_sock), (struct sockaddr *)NULL, NULL);
     if (_conn == SOCKET_ERROR) {
         std::cerr <<  "accept() failed" << std::endl;
         return;

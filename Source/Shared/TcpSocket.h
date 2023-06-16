@@ -2,13 +2,13 @@
  * Cross-platform compatibility superclass for sockets
  *
  * Copyright (C) 2019 Simon D. Levy
+ * Modified by Timothy Schoen in 2023
  *
  * MIT License
  */
 
 #pragma once
 
-typedef int SOCKET;
 #include <cstdint>
 #include <stdio.h>
 
@@ -38,15 +38,15 @@ private:
     
 protected:
     char _port[10];
-    SOCKET _conn;
     struct addrinfo * _addressInfo;
     bool _connected;
-    SOCKET _sock;
+    int _conn;
+    int _sock;
 };
 
 class TcpClientSocket : public TcpSocket {
 
-    public:
+public:
 
     TcpClientSocket(unsigned short port);
 
@@ -55,7 +55,7 @@ class TcpClientSocket : public TcpSocket {
 
 class TcpServerSocket : public TcpSocket {
 
-    public:
+public:
 
     TcpServerSocket(unsigned short port);
 
