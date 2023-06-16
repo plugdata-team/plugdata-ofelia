@@ -1,8 +1,0 @@
-#N canvas 827 239 527 327 12;
-#X declare -path ofelia/abs;
-#X obj 334 134 declare -path ofelia/abs;
-#X obj 108 255 ofWindow;
-#X msg 108 200 create;
-#X msg 239 209 setPosition 30 100 \, setSize 1024 768 \, create;
-#X connect 2 0 1 0 empty;
-#X connect 3 0 1 0 empty;

@@ -45,6 +45,7 @@ void ofxOfeliaData::initSym()
     if (*sym->s_name && pd_findbyclass(sym, ofxOfeliaDefine::pdClass) == nullptr) return;
     hasUniqueSym = true;
     sym = getUniqueSym();
+    lua->messageManager->sendMessage(ofx_lua_init_sym, std::string(getUniqueSym()->s_name), std::string(sym->s_name));
 }
 
 void ofxOfeliaData::bindSym()
@@ -96,6 +97,7 @@ void ofxOfeliaData::argParse(t_symbol *s, int argc, t_atom *argv, bool define)
             goto directMode;
         }
         sym = argv->a_w.w_symbol;
+        lua->messageManager->sendMessage(ofx_lua_init_sym, std::string(getUniqueSym()->s_name), std::string(sym->s_name));
         argc--; argv++;
     }
     if (argc) /* handle inlet arguments */

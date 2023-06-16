@@ -167,8 +167,8 @@ public:
                 }
                 if(type == A_POINTER)
                 {
-                    int value;
-                    istream.read(reinterpret_cast<char *>(&value), sizeof(int));
+                    intptr_t value;
+                    istream.read(reinterpret_cast<char *>(&value), sizeof(intptr_t));
                     atoms[i].a_w.w_gpointer = reinterpret_cast<t_gpointer*>(value);
                 }
             }

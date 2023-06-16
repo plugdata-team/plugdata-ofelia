@@ -16,9 +16,8 @@
 #X obj 484 29 declare -path ofelia/abs;
 #X msg 28 170 bang;
 #X obj 28 232 ofelia f \; ofBackground(0) \; local particleSystem = a \; ps = particleSystem.new(ofVec2f(ofGetWidth() / 2 \, 50)) \;;
-#X obj 484 142 ofelia f \; ps.addParticle() \; ps.run() \;;
+#X obj 484 187 ofelia f \; ps.addParticle() \; ps.run() \;;
 #X connect 0 0 4 0 empty;
-#X connect 1 0 14 0 empty;
 #X connect 2 0 12 0 empty;
 #X connect 4 0 3 0 empty;
 #X connect 5 0 6 0 empty;

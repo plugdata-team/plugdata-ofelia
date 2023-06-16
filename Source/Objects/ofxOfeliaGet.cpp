@@ -7,7 +7,6 @@ t_class *ofxOfeliaGet::pdClass;
 void *ofxOfeliaGet::newMethod(t_symbol *s, int argc, t_atom *argv)
 {
     client.data.argParse(s, argc, argv, false);
-    client.data.lua->messageManager->sendMessage(ofx_lua_init_sym, std::string(client.data.getUniqueSym()->s_name), std::string(client.data.sym->s_name));
    
     
     return this;

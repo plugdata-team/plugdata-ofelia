@@ -55,7 +55,7 @@ struct ofApp : public ofBaseApp
                 case ofx_lua_do_function_sp:
                 {
                     auto parsed = mm.parseMessage<std::string, std::string, t_gpointer>(message);
-                    if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->doFunction( std::get<1>(parsed).c_str(), std::get<2>(parsed));
+                    if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->doFunction( std::get<1>(parsed).c_str(), reinterpret_cast<t_gpointer*>(std::get<2>(parsed)));
                     break;
                 }
                 case ofx_lua_do_function_ss:

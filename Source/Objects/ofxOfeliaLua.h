@@ -74,15 +74,17 @@ public:
             }
             case pd_outlet_pointer:
             {
-                /*
-                auto [identifier, index, symbol] = messageManager->parseMessage<std::string, int, float>(message);
+                auto [identifier, index, pointer] = messageManager->parseMessage<std::string, int, intptr_t>(message);
                 
                 if(identifier != uid()) return;
                 
                 if(dataPtr->io.hasControlOutlet && dataPtr->io.numOutlets > index)
                 {
-                    outlet_symbol(dataPtr->io.outlets[index], gensym(symbol.c_str()));
-                } */
+                    t_gpointer gpointer;
+                    gpointer_init(&gpointer);
+                    gpointer.gp_stub = reinterpret_cast<t_gstub*>(pointer);
+                    outlet_pointer(dataPtr->io.outlets[index], &gpointer);
+                }
                 
                 break;
             }
@@ -104,7 +106,7 @@ public:
                         else if (atoms[i].a_type == A_SYMBOL)
                             outlet_symbol(io.outlets[i], atoms[i].a_w.w_symbol);
                         else if (atoms[i].a_type == A_POINTER)
-                            outlet_pointer(io.outlets[i], reinterpret_cast<t_gpointer*>(atoms[i].a_w.w_gpointer));
+                            outlet_pointer(io.outlets[i], atoms[i].a_w.w_gpointer);
                     }
                 }
                 else
@@ -387,7 +389,7 @@ public:
     
     void doFunction(t_symbol* symbol, t_gpointer* pointer)
     {
-        messageManager->sendMessage(ofx_lua_do_function_sp, uid(), std::string(symbol->s_name));
+        messageManager->sendMessage(ofx_lua_do_function_sp, uid(), std::string(symbol->s_name), reinterpret_cast<intptr_t>(pointer->gp_stub));
     }
     void doFunction(t_symbol* symbol1, t_symbol* symbol2)
     {
@@ -459,7 +461,7 @@ public:
             }
             ss << ")\n" << s << "\nend";
         }
-        ss << "\nreturn M\n end";
+        ss << "\nreturn M end";
         
         messageManager->sendMessage(ofx_lua_do_string, uid(), ss.str());
     }

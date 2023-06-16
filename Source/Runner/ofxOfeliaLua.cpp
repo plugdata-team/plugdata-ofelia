@@ -342,7 +342,20 @@ bool ofxOfeliaLua::isFunction(const char *s, int &top)
 
 void ofxOfeliaLua::pushUserData(t_gpointer *p)
 {
-    lua_rawgeti(L, LUA_REGISTRYINDEX, static_cast<lua_Integer>(*reinterpret_cast<int *>(p)));
+    lua_rawgeti(L, LUA_REGISTRYINDEX, reinterpret_cast<lua_Integer>(p));
+}
+
+void ofxOfeliaLua::deleteUserData(t_gpointer *p)
+{
+    lua_rawgeti(L, LUA_REGISTRYINDEX, reinterpret_cast<lua_Integer>(p));
+    
+    if (lua_isuserdata(L, -1)) {
+        luaL_unref(L, LUA_REGISTRYINDEX, reinterpret_cast<lua_Integer>(p));
+    }
+
+    // Remove the retrieved userdata from the stack
+    lua_pop(L, 1);
+
 }
 
 void ofxOfeliaLua::setVariable(const char *s)
@@ -438,7 +451,9 @@ void ofxOfeliaLua::outletUserData()
 {
     int userDataRef = luaL_ref(L, LUA_REGISTRYINDEX);
     messageManager->sendMessage(pd_outlet_pointer, uniqueId, 0, userDataRef);
-    luaL_unref(L, LUA_REGISTRYINDEX, userDataRef);
+    // TODO: this is a memory leak!!
+    // The problem is that due to our IPC structure, we are never sure when this pointer is not used anymore...
+    //luaL_unref(L, LUA_REGISTRYINDEX, userDataRef);
 }
 
 void ofxOfeliaLua::outletTable()
@@ -618,6 +633,8 @@ void ofxOfeliaLua::doFreeFunction()
 
 void ofxOfeliaLua::doString(std::string s)
 {
+    std::cout << s << std::endl;
+    
     lua_settop(L, 0); // empty the stack
     // run the lua chunk
     const int ret = luaL_dostring(L, s.c_str());
@@ -782,6 +799,7 @@ void error(const char *fmt, ...)
     va_end(ap);
     strcat(buf, "\n");
     
-    fprintf(stderr, "error: %s", buf);
+    std::string message = "error: " + std::string(buf);
+    ofxOfeliaMessageManager::instance->sendMessage(pd_log, true, message);
 }
 

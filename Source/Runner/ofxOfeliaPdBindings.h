@@ -432,7 +432,7 @@ public:
     void sendPointer(t_gpointer *p)
     {
         int userDataRef = luaL_ref(ofxOfeliaLua::L, LUA_REGISTRYINDEX);
-        ofxOfeliaMessageManager::sendMessage(pd_send_pointer, sym, userDataRef);
+        ofxOfeliaMessageManager::sendMessage(pd_send_pointer, sym, reinterpret_cast<t_gpointer>(userDataRef));
         luaL_unref(ofxOfeliaLua::L, LUA_REGISTRYINDEX, userDataRef);
     }
     void sendList(int argc, t_atom *argv, std::deque<int> userDataRef)

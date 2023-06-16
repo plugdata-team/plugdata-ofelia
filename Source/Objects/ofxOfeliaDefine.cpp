@@ -10,7 +10,6 @@ void *ofxOfeliaDefine::newMethod(t_symbol *s, int argc, t_atom *argv)
     t_symbol *asym = gensym("#A");
     data.argParse(s, argc, argv, true);
     
-    data.lua->messageManager->sendMessage(ofx_lua_init_sym, std::string(data.getUniqueSym()->s_name), std::string(data.sym->s_name));
     /* bashily unbind #A -- this would create garbage if #A were
      multiply bound but we believe in this context it's at most
      bound to whichever ofelia_define or array was created most recently */

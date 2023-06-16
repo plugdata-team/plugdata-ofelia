@@ -252,15 +252,16 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
             }
             case pd_send_pointer:
             {
-                /* TODO: implement this!
-                auto [identifier, send, symbol] = parseMessage<std::string, std::string, float>(message);
+                auto [identifier, send, ptr] = parseMessage<std::string, std::string, intptr_t>(message);
                 
-                if(identifier != uid()) return;
-                 sys_lock();
-                 auto* target = gensym(send.c_str());
-                 if(target->s_thing) pd_symbol(target->s_thing, gensym(symbol.c_str()));
-                 sys_unlock();
-                 */
+                t_gpointer gpointer;
+                gpointer_init(&gpointer);
+                gpointer.gp_stub = reinterpret_cast<t_gstub*>(ptr);
+                
+                sys_lock();
+                auto* target = gensym(send.c_str());
+                if(target->s_thing) pd_pointer(target->s_thing, &gpointer);
+                sys_unlock();
                 
                 break;
             }

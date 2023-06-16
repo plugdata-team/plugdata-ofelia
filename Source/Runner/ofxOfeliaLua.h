@@ -39,6 +39,7 @@ public:
     bool isTable(const char *s);
     bool isFunction(const char *s, int &top);
     void pushUserData(t_gpointer *p);
+    void deleteUserData(t_gpointer *p);
     void setVariable(const char *s);
     void setVariable(const char *s, bool b);
     void setVariable(const char *s, t_floatarg f);
