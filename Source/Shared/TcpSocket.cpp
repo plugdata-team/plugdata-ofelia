@@ -175,7 +175,7 @@ bool TcpSocket::initWinsock(void)
         WSADATA wsaData;
         int iResult = WSAStartup(MAKEWORD(2, 2), &wsaData);
         if (iResult != 0) {
-        sprintf_s(_message, "WSAStartup() failed with error: %d\n", iResult);
+        std::cerr << "WSAStartup() failed with error: " << iResult << std::endl;
         return false;
         }
 #endif
