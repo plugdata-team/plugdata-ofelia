@@ -16,8 +16,11 @@ ofxOfeliaMessageManager::ofxOfeliaMessageManager(int portNumber)
     auto bound1 = pipe.bind();
     auto bound2 = returnPipe.bind();
     
-    //pipe.setBlocking(false);
-    //returnPipe.setBlocking(true);
+    if(!(bound1 && bound2))
+    {
+        // Could not establish connection
+        throw;
+    }
     
     shouldQuit = false;// !bound1 || !bound2;
     
