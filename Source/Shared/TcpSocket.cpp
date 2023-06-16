@@ -30,6 +30,7 @@
 static const int INVALID_SOCKET = -1;
 static const int SOCKET_ERROR   = -1;
 using SOCKET = int;
+typedef SSIZE_T ssize_t;
 #endif
 
 #include <locale.h>
@@ -37,7 +38,6 @@ using SOCKET = int;
 #include <iostream>
 #include <thread>
 #include <chrono>
-#include <cstdint>
 
 #ifndef _WIN32
 static void closesocket(int socket) { close(socket); }
