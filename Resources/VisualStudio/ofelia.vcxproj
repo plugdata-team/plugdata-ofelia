@@ -302,6 +302,7 @@
     <ClCompile Include="..\..\Source\Runner\ofxOfeliaSignal.cpp" />
     <ClCompile Include="..\..\Source\Runner\ofxOfeliaMessageManager.cpp" />
     <ClCompile Include="..\..\Source\Shared\ofxOfeliaStream.cpp" />
+    <ClCompile Include="..\..\Source\Shared\TcpSocket.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Libraries\ofxLua\libs\lua\lapi.h" />
