@@ -53,8 +53,12 @@ TcpSocket::TcpSocket(unsigned short port)
     // Initialize Winsock, returning on failure
     if (!initWinsock()) return;
 
+#ifndef _WIN32
     // Don't crash on pipe errors
     signal(SIGPIPE, SIG_IGN);
+    // TODO: how can we do that on Windows?
+#endif
+
 
     // Set up client address info
     struct addrinfo hints = {0};
