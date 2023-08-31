@@ -7,8 +7,6 @@
  * MIT License
  */
 
-#pragma once
-
 #include "TcpSocket.h"
 
 // Windows
@@ -37,6 +35,7 @@ using SOCKET = int;
 #include <iostream>
 #include <thread>
 #include <chrono>
+#include <signal.h>
 
 #ifndef _WIN32
 static void closesocket(int socket) { close(socket); }
