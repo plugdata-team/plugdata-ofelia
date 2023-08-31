@@ -30,6 +30,7 @@ ofxOfeliaData::ofxOfeliaData()
 //,signal(this)
 ,lua(std::make_unique<ofxOfeliaLua>(this))
 ,io(this)
+,signal(this)
 ,textBuf(this){};
 
 
@@ -108,12 +109,11 @@ void ofxOfeliaData::argParse(t_symbol *s, int argc, t_atom *argv, bool define)
             isDirectMode = true;
             goto directMode;
         }
-        /*
         if (isSignalObject)
         {
             signal.f = atom_getfloat(argv);
             argc--; argv++;
-        } */
+        }
         else
         {
             for (int i = 0; i < io.numInlets - 1; ++i)

@@ -2,7 +2,7 @@
 
 #include "m_pd.h"
 #include "g_canvas.h"
-//#include "ofxOfeliaSignal.h"
+#include "ofxOfeliaSignal.h"
 #include "ofxOfeliaIO.h"
 #include "ofxOfeliaTextBuf.h"
 #include <memory>
@@ -36,7 +36,7 @@ public:
     bool hasUniqueSym; /* whether the object has a unique symbol */
     
     std::unique_ptr<ofxOfeliaLua> lua;
-    //ofxOfeliaSignal signal;
+    ofxOfeliaSignal signal;
     ofxOfeliaIO io;
     ofxOfeliaTextBuf textBuf;
 };

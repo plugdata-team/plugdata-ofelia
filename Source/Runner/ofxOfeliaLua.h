@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofxPdInterface.h"
+#include "ofxOfeliaSignal.h"
 #include "../Shared/ofxOfeliaStream.h"
 #include "lua.hpp"
 #include <string>
@@ -18,7 +19,7 @@ class ofxOfeliaLua
 {
 public:
     ofxOfeliaLua(ofxOfeliaMessageManager* messageMan, const std::string& uid)
-    : isChunkRun(false), uniqueId(uid), messageManager(messageMan), name(uid)
+    : isChunkRun(false), uniqueId(uid), messageManager(messageMan), name(uid), signal(this)
     {};
     
     static bool init();
@@ -80,6 +81,8 @@ public:
     static lua_State *L;
     bool isChunkRun; /* whether the chunk is run or not */
     ofxOfeliaMessageManager* messageManager;
+    
+    ofxOfeliaSignal signal;
     
 private:
     

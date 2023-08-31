@@ -1,35 +1,25 @@
 #include "ofxOfeliaSignal.h"
-//#include "ofxOfeliaData.h"
+#include "ofxOfeliaLua.h"
+#include "ofxOfeliaMessageManager.h"
 
-/*
 
-void ofxOfeliaSignal::addDsp(t_signal **sp)
+void ofxOfeliaSignal::perform(std::vector<std::vector<float>> input, int numOutlets)
 {
-    dataPtr->lua.doFunction(gensym("dsp"));
-    const ofxOfeliaIO &io = dataPtr->io;
-    int sum = io.numInlets + io.numOutlets;
-    t_int **w = this->w;
-    w[0] = reinterpret_cast<t_int *>(dataPtr);
-    w[1] = reinterpret_cast<t_int *>(sp[0]->s_n);
-    for (int i = 0; i < sum; i++)
-        w[i + 2] = reinterpret_cast<t_int *>(sp[i]->s_vec);
-    dsp_addv(perform, sum + 2, reinterpret_cast<t_int *>(w));
-}
-
-t_int *ofxOfeliaSignal::perform(t_int *w)
-{
-    ofxOfeliaData *x = reinterpret_cast<ofxOfeliaData *>(w[1]);
-    const int nsamples = static_cast<int>(w[2]);
-    lua_State *L = x->lua.L;
-    const int numInlets = x->io.numInlets;
-    const int numOutlets = x->io.numOutlets;
-    int top; if (x->lua.isFunction(gensym("perform"), top))
+    lua_State *L = x->L;
+    
+    int numInlets = input.size();
+    int nSamples = input.empty() ? 0 : input[0].size();
+    
+    auto output = std::vector<std::vector<float>>(numOutlets, std::vector<float>(nSamples));
+    
+    int top;
+    if (x->isFunction(gensym("perform"), top))
     {
         for (int i = 0; i < numInlets; ++i)
         {
             lua_newtable(L);
-            t_float *in = reinterpret_cast<t_float *>(w[i + 3]);
-            for (int j = 0; j < nsamples; ++j)
+            auto& in = input[i];
+            for (int j = 0; j < nSamples; ++j)
             {
                 lua_pushinteger(L, static_cast<lua_Integer>(j + 1));
                 lua_pushnumber(L, static_cast<lua_Number>(in[j]));
@@ -54,8 +44,8 @@ t_int *ofxOfeliaSignal::perform(t_int *w)
         }
         for (int i = numOutlets - 1; i >= 0; --i)
         {
-            t_float *out = reinterpret_cast<t_float *>(w[i + 3 + numInlets]);
-            for (int j = 0; j < nsamples; ++j)
+            auto& out = output[i];
+            for (int j = 0; j < nSamples; ++j)
             {
                 lua_pushinteger(L, static_cast<lua_Integer>(j + 1));
                 lua_gettable(L, -2);
@@ -76,9 +66,10 @@ t_int *ofxOfeliaSignal::perform(t_int *w)
     error: // silence the audio if something is wrong
         for (int i = 0; i < numOutlets; ++i)
         {
-            t_float *out = reinterpret_cast<t_float *>(w[i + 3 + numInlets]);
-            for (int j = 0; j < nsamples; ++j) out[j] = 0;
+            auto& out = output[i];
+            for (int j = 0; j < nSamples; ++j) out[j] = 0;
         }
     }
-    return w + numInlets + numOutlets + 3;
-} */
+    
+    x->messageManager->sendMessage(pd_audio_block, x->getUniqueId(), output);
+}

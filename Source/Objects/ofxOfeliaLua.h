@@ -126,6 +126,15 @@ public:
                 }
                 break;
             }
+            case pd_audio_block:
+            {
+                auto [identifier, block] = messageManager->parseMessage<std::string, std::vector<std::vector<float>>>(message);
+                
+                if(identifier != uid()) return;
+                
+                dataPtr->signal.receiveAudioSamples(block);
+                break;
+            }
             case canvas_get_dollar_zero:
             {
                 auto [identifier, parent] = messageManager->parseMessage<std::string, int>(message);
@@ -440,17 +449,13 @@ public:
         auto* name = dataPtr->sym->s_name;
         ss << "package.preload['" << name << "'] = nil package.loaded['" << name << "'] = nil\n"
         << "package.preload['" << name << "'] = function(this) local ofelia = {} local M = ofelia\n";
-        
-        std::cout << name << std::endl;
-        
-        auto isSignalObject = false;
-        
+                        
         if (!dataPtr->isFunctionMode)
             ss << s;
-        else if (!isSignalObject)
-            {
-                ss << "function M.bang() return M.anything(nil) end function M.float(f) return M.anything(f) end function M.symbol(s) return M.anything(s) end function M.pointer(p) return M.anything(p) end function M.list(l) return M.anything(l) end function M.anything(a)\n" << s << "\nend";
-            }
+        else if (!dataPtr->isSignalObject)
+        {
+            ss << "function M.bang() return M.anything(nil) end function M.float(f) return M.anything(f) end function M.symbol(s) return M.anything(s) end function M.pointer(p) return M.anything(p) end function M.list(l) return M.anything(l) end function M.anything(a)\n" << s << "\nend";
+        }
         else
         {
             ss << "function M.perform(";

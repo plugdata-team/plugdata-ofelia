@@ -1,19 +1,18 @@
 #pragma once
 
-//#include "m_pd.h"
+#include <vector>
 
-/*
-class ofxOfeliaData;
+
+class ofxOfeliaLua;
 class ofxOfeliaSignal
 {
 public:
-    ofxOfeliaSignal(ofxOfeliaData *dataPtr)
-    :dataPtr(dataPtr){};
-    void addDsp(t_signal **sp);
-    static t_int *perform(t_int *w);
-    t_int **w;
-    t_float f; // variable for main signal inlet
+    ofxOfeliaSignal(ofxOfeliaLua *lua)
+    : x(lua){};
+    
+    void perform(std::vector<std::vector<float>> input, int numOutlets);
+    
 private:
-    ofxOfeliaData *dataPtr; // pointer to data
+    
+    ofxOfeliaLua *x;
 };
-*/

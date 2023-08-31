@@ -144,9 +144,8 @@ void ofxOfeliaDefine::saveMethod(t_object *ob, t_binbuf *bb)
 
 void ofxOfeliaDefine::dspMethod(t_signal **sp)
 {
-    // TODO: Implement this!
-    //if (!data.isSignalObject) return;
-    //data.signal.addDsp(sp);
+    if (!data.isSignalObject) return;
+    data.signal.addDsp(sp);
 }
 
 /* notification from GUI that we've been updated */
@@ -267,8 +266,7 @@ void ofxOfeliaDefine::setup()
                         reinterpret_cast<t_method>(freeWrapper),
                         sizeof(ofxOfeliaDefine), 0, A_GIMME, 0);
     class_setsavefn(pdClass, saveWrapper);
-    //  TODO: Implement this!
-    //CLASS_MAINSIGNALIN(pdClass, ofxOfeliaDefine, data.signal.f);
+    CLASS_MAINSIGNALIN(pdClass, ofxOfeliaDefine, data.signal.f);
     class_addbang(pdClass, bangWrapper);
     class_addfloat(pdClass, floatWrapper);
     class_addsymbol(pdClass, symbolWrapper);

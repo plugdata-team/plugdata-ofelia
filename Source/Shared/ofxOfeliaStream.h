@@ -41,11 +41,10 @@ enum ofxMessageType
     ofx_lua_set_var_by_args,
     
     ofx_lua_do_string,
+    ofx_lua_audio_block,
     
     ofx_quit,
-    
-    //ofx_audio_block,
-    
+        
     pd_outlet_bang,
     pd_outlet_float,
     pd_outlet_symbol,
@@ -85,6 +84,8 @@ enum ofxMessageType
     pd_inlet_set_symbol,
     pd_inlet_set_inlets,
     pd_inlet_set_signal,
+    
+    pd_audio_block,
     
     pd_get_sys_info
 };
@@ -185,6 +186,25 @@ public:
 
             currentValue = buffer;
         }
+        else if constexpr (std::is_same<T, std::vector<std::vector<float>>>())
+        {
+            int outerSize;
+            istream.read(reinterpret_cast<char*>(&outerSize), sizeof(int));
+
+            currentValue.clear(); // Clear the current value to populate it with new data
+            
+            for (int i = 0; i < outerSize; ++i)
+            {
+                int innerSize;
+                istream.read(reinterpret_cast<char*>(&innerSize), sizeof(int));
+
+                std::vector<float> innerVector(innerSize);
+                istream.read(reinterpret_cast<char*>(innerVector.data()), innerSize * sizeof(float));
+
+                currentValue.push_back(innerVector);
+            }
+        }
+
         // Read any kind of numeric type, this will work for at least: short, int, long, float, double, bool
         else if constexpr (std::is_arithmetic<T>::value)
         {
@@ -287,6 +307,19 @@ private:
             
             ostream.write(reinterpret_cast<char *>(&size), sizeof(int));
             ostream.write(floatPtr, size * sizeof(float));
+        }
+        else if constexpr (std::is_same<T, std::vector<std::vector<float>>>())
+        {
+            int outerSize = static_cast<int>(arg.size());
+            ostream.write(reinterpret_cast<const char*>(&outerSize), sizeof(int));
+
+            for (const auto& innerVector : arg)
+            {
+                int innerSize = static_cast<int>(innerVector.size());
+                ostream.write(reinterpret_cast<const char*>(&innerSize), sizeof(int));
+
+                ostream.write(reinterpret_cast<const char*>(innerVector.data()), innerSize * sizeof(float));
+            }
         }
         else if constexpr (std::is_arithmetic<T>::value || std::is_same<T, ofxMessageType>())
         {

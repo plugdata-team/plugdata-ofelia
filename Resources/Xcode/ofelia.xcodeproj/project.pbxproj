@@ -26,7 +26,6 @@
 		AB88A8602A32A803006E17E1 /* ofxOfeliaPdBindings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB88A8512A32A803006E17E1 /* ofxOfeliaPdBindings.cpp */; };
 		ABA2C9ED2A3B66A000C1D766 /* TcpSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = ABA2C9E92A3B66A000C1D766 /* TcpSocket.h */; };
 		ABA2C9EE2A3B66A000C1D766 /* TcpSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABA2C9EA2A3B66A000C1D766 /* TcpSocket.cpp */; };
-		ABCF244D2A32AF4B00EB1126 /* ofxRingBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = ABCF244A2A32AF4B00EB1126 /* ofxRingBuffer.h */; };
 		ABCF247D2A35416600EB1126 /* ofxPdInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = ABCF247C2A35416600EB1126 /* ofxPdInterface.h */; };
 		FDED156022B4CCD4005D9D62 /* ofxLuaFileWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FDED155C22B4CCD3005D9D62 /* ofxLuaFileWriter.cpp */; };
 		FDED156122B4CCD4005D9D62 /* ofxLuaFileWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = FDED155D22B4CCD3005D9D62 /* ofxLuaFileWriter.h */; };
@@ -135,7 +134,6 @@
 		AB88A8512A32A803006E17E1 /* ofxOfeliaPdBindings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOfeliaPdBindings.cpp; sourceTree = "<group>"; };
 		ABA2C9E92A3B66A000C1D766 /* TcpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TcpSocket.h; sourceTree = "<group>"; };
 		ABA2C9EA2A3B66A000C1D766 /* TcpSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TcpSocket.cpp; sourceTree = "<group>"; };
-		ABCF244A2A32AF4B00EB1126 /* ofxRingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxRingBuffer.h; sourceTree = "<group>"; };
 		ABCF247C2A35416600EB1126 /* ofxPdInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxPdInterface.h; sourceTree = "<group>"; };
 		ABCF247F2A3541E100EB1126 /* ofxOfeliaStream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxOfeliaStream.h; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../Libraries/openFrameworks; sourceTree = SOURCE_ROOT; };
@@ -249,7 +247,6 @@
 				AB88A8482A32A803006E17E1 /* ofxOfeliaSignal.cpp */,
 				AB88A84C2A32A803006E17E1 /* ofxOfeliaSignal.h */,
 				ABCF247C2A35416600EB1126 /* ofxPdInterface.h */,
-				ABCF244A2A32AF4B00EB1126 /* ofxRingBuffer.h */,
 			);
 			name = Runner;
 			path = ../../Source/Runner;
@@ -466,7 +463,6 @@
 				FDED15C822B4CD9F005D9D62 /* lua.hpp in Headers */,
 				FDED15B822B4CD9F005D9D62 /* lmem.h in Headers */,
 				AB88A8562A32A803006E17E1 /* ofxOfeliaLog.h in Headers */,
-				ABCF244D2A32AF4B00EB1126 /* ofxRingBuffer.h in Headers */,
 				FDED15C922B4CD9F005D9D62 /* lzio.h in Headers */,
 				AB88A85B2A32A803006E17E1 /* ofxOfeliaSignal.h in Headers */,
 				AB88A8582A32A803006E17E1 /* ofxOfeliaMessageManager.h in Headers */,

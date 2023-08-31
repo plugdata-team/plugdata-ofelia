@@ -472,7 +472,7 @@ public:
     }
     void setSignalInlet(t_floatarg f)
     {
-        //ofxOfeliaMessageManager::sendMessage(pd_inlet_set_signal, x->getUniqueId(), f);
+        ofxOfeliaMessageManager::sendMessage(pd_inlet_set_signal, x->getUniqueId(), f);
     }
     
     ofxOfeliaLua *x;

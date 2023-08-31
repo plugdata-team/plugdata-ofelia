@@ -114,11 +114,9 @@ void ofxOfeliaClient::setVariableByArgs(t_symbol *s, int argc, t_atom *argv)
 
 void ofxOfeliaClient::dspMethod(t_signal **sp)
 {
-    //  TODO: Implement this!
-    /*
     if (!data.isSignalObject) return;
     if (!isDataValid()) return;
-    data.signal.addDsp(sp); */
+    data.signal.addDsp(sp);
 }
 
 void ofxOfeliaClient::freeMethod()

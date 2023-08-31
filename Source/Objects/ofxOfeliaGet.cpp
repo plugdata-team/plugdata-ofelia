@@ -106,8 +106,8 @@ void ofxOfeliaGet::setup()
                         reinterpret_cast<t_newmethod>(newWrapper),
                         reinterpret_cast<t_method>(freeWrapper),
                         sizeof(ofxOfeliaGet), 0, A_GIMME, 0);
-    // TODO: Implement this!
-    //CLASS_MAINSIGNALIN(pdClass, ofxOfeliaGet, client.data.signal.f);
+
+    CLASS_MAINSIGNALIN(pdClass, ofxOfeliaGet, client.data.signal.f);
     class_addbang(pdClass, bangWrapper);
     class_addfloat(pdClass, floatWrapper);
     class_addsymbol(pdClass, symbolWrapper);

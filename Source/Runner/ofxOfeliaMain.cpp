@@ -106,6 +106,13 @@ struct ofApp : public ofBaseApp
                     if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed))) ofxLua->doString(std::get<1>(parsed));
                     break;
                 }
+                case ofx_lua_audio_block:
+                {
+                    auto parsed = mm.parseMessage<std::string, std::vector<std::vector<float>>, int>(message);
+                    if(auto* ofxLua = ofxOfeliaLua::getPtr(std::get<0>(parsed)))
+                        ofxLua->signal.perform(std::get<1>(parsed), std::get<2>(parsed));
+                    break;
+                }
                     
                 default: break;
             }

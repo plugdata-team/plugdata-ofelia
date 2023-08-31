@@ -31,13 +31,12 @@ void ofxOfeliaIO::newControlIO(int numInlets, int numOutlets)
 
 void ofxOfeliaIO::newSignalIO(int numInlets, int numOutlets)
 {
-    /*  TODO: Implement this!
     this->numInlets = numInlets;
     this->numOutlets = numOutlets;
     dataPtr->signal.w = static_cast<t_int **>(getbytes(sizeof(t_int *) * (numInlets + numOutlets + 2)));
     newIO(--numInlets, numOutlets);
     dataPtr->signal.f = 0;
-    dataPtr->isSignalObject = true; */
+    dataPtr->isSignalObject = true;
 }
 
 void ofxOfeliaIO::addControlIO()
@@ -71,11 +70,10 @@ void ofxOfeliaIO::freeControlIO()
 
 void ofxOfeliaIO::freeSignalIO()
 {
-    /* TODO: Implement this!
     int numInlets = this->numInlets;
     int numOutlets = this->numOutlets;
-    freebytes(dataPtr->signal.w, sizeof(t_int *) * (numInlets + numOutlets + 2));
-    freeIO(--numInlets, numOutlets); */
+    //freebytes(dataPtr->signal.w, sizeof(t_int *) * (numInlets + numOutlets + 2));
+    freeIO(--numInlets, numOutlets);
 }
 
 void ofxOfeliaIO::doList(int argc, t_atom *argv)
