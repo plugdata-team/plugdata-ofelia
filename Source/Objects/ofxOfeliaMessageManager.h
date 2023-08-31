@@ -25,7 +25,9 @@ class TimerThread
 public:
     TimerThread() : running(false) {}
 
-    virtual ~TimerThread() {}
+    virtual ~TimerThread() {
+        stop();
+    }
 
     void startTimer(int intervalMillis)
     {
