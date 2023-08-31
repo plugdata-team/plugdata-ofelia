@@ -34,7 +34,7 @@ public:
         if (!running)
         {
             running = true;
-            std::thread([this, intervalMillis]() {
+            timerThread = std::thread([this, intervalMillis]() {
                 while (running)
                 {
                     auto start = std::chrono::high_resolution_clock::now();
@@ -47,19 +47,21 @@ public:
                     if (sleepTime > std::chrono::milliseconds::zero())
                         std::this_thread::sleep_for(sleepTime);
                 }
-            }).detach();
+            });
         }
     }
 
     void stop()
     {
         running = false;
+        timerThread.join();
     }
 
     virtual void timerCallback() = 0;
 
 private:
-    bool running;
+    std::thread timerThread;
+    std::atomic<bool> running;
 };
 
 
