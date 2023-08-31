@@ -54,6 +54,9 @@ TcpSocket::TcpSocket(unsigned short port)
     // Initialize Winsock, returning on failure
     if (!initWinsock()) return;
 
+    // Don't crash on pipe errors
+    signal(SIGPIPE, SIG_IGN);
+
     // Set up client address info
     struct addrinfo hints = {0};
     hints.ai_family = AF_INET;
