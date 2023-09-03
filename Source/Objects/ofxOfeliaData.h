@@ -12,9 +12,6 @@ class ofxOfeliaData
 {
 public:
     
-    // This needs to be deallocated first
-    std::unique_ptr<ofxOfeliaLua> lua;
-
     ofxOfeliaData();
     
     void initSym();
@@ -37,7 +34,8 @@ public:
     bool isSignalObject; /* whether the object is a signal object or not */
     bool isDirectMode; /* whether to write script directly on object */
     bool hasUniqueSym; /* whether the object has a unique symbol */
-    
+
+    std::unique_ptr<ofxOfeliaLua> lua;
     ofxOfeliaSignal signal;
     ofxOfeliaIO io;
     ofxOfeliaTextBuf textBuf;
