@@ -633,14 +633,11 @@ void ofxOfeliaLua::doFreeFunction()
 
 void ofxOfeliaLua::doString(std::string s)
 {
-    std::cout << s << std::endl;
-    
     lua_settop(L, 0); // empty the stack
     // run the lua chunk
     const int ret = luaL_dostring(L, s.c_str());
     if (ret != LUA_OK)
     {
-        std::cout << s << std::endl;
         error("ofelia: %s", lua_tostring(L, -1));
         lua_pop(L, 1);
         return;
