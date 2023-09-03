@@ -6,7 +6,7 @@
 template <typename T, size_t Size>
 class RingBuffer {
 public:
-    RingBuffer() : buffer_(Size), head_(0), tail_(0), count_(0) {}
+    RingBuffer() : buffer_(Size), head_(0), tail_(Size / 2), count_(0) {}
 
     bool isEmpty() const {
         return count_ == 0;

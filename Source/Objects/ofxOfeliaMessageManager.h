@@ -113,8 +113,9 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
             
             // Blocking receive on returnPipe to wait for startup signal
             //returnPipe.receive(true);
+            instancesLock.lock();
             initWaits[pdthis].release();
-            
+            instancesLock.unlock();
             
             startTimer(3);
         }
@@ -140,9 +141,15 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
         auto* pdthis = libpd_this_instance();
         
         // If necessary, wait until child process is initialised
-        initWaits[pdthis].acquire();
+        instancesLock.lock();
+        auto& instanceWait = initWaits[pdthis];
+        instancesLock.unlock();
         
+        instanceWait.acquire();
+        
+        instancesLock.lock();
         auto* instance = instances[pdthis].get();
+        instancesLock.unlock();
         
         return instance;
     }
@@ -151,7 +158,11 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
         auto* pdthis = libpd_this_instance();
     
         auto* messageManager = new ofxOfeliaMessageManager(pdthis);
+        
+        instancesLock.lock();
         instances[pdthis].reset(messageManager);
+        instancesLock.unlock();
+        
         messageManager->addListener(messageManager);
         messageManager->canvas_class = pd_canvas_class;
         
@@ -431,6 +442,8 @@ private:
     t_pdinstance* pdthis;
     static inline std::map<t_pdinstance*, Semaphore> initWaits;
     static inline std::map<t_pdinstance*, std::unique_ptr<ofxOfeliaMessageManager>> instances;
+    static inline std::mutex instancesLock;
+    
     std::vector<ofxOfeliaMessageListener*> listeners;
     
 };
