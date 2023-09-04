@@ -361,9 +361,11 @@ public:
             }
             case pd_inlet_set_signal:
             {
-                //if (!doesSignalInletExist()) return;
+                auto [identifier, f] = messageManager->parseMessage<std::string, float>(message);
+                                
+                if (identifier != uid() || !dataPtr->isSignalObject) return;
 
-                //x->signal.f = f;
+                dataPtr->signal.f = f;
                 break;
             }
             case pd_get_sys_info:

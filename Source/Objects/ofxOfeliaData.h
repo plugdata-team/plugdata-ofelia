@@ -25,7 +25,6 @@ public:
     t_canvas *canvas;
     t_guiconnect *guiconnect;
     t_symbol *sym;
-    t_symbol *embName;
     t_symbol *getUniqueSym();
     
     /* states */

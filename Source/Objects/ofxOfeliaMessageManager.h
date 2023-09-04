@@ -153,7 +153,7 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
         
         return instance;
     }
-    static ofxOfeliaMessageManager* initialise(t_class* pd_canvas_class)
+    static ofxOfeliaMessageManager* initialise()
     {
         auto* pdthis = libpd_this_instance();
     
@@ -164,7 +164,6 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
         instancesLock.unlock();
         
         messageManager->addListener(messageManager);
-        messageManager->canvas_class = pd_canvas_class;
         
         return messageManager;
     }
@@ -191,10 +190,12 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
                 args += ch;  // Append each character to the string
             }
             
+            listenerLock.lock();
             for(auto listener : listeners)
             {
                 listener->receiveMessage(messageType, args);
             }
+            listenerLock.unlock();
            
             message = pipe.receive();
         }
@@ -202,12 +203,16 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
     
     void addListener(ofxOfeliaMessageListener* listener)
     {
+        listenerLock.lock();
         listeners.push_back(listener);
+        listenerLock.unlock();
     }
     
     void removeListener(ofxOfeliaMessageListener* listener)
     {
+        listenerLock.lock();
         listeners.erase(std::remove(listeners.begin(), listeners.end(), listener), listeners.end());
+        listenerLock.unlock();
     }
     
     template <typename... Types>
@@ -432,9 +437,7 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
             default: break;
         }
     }
-    
-    t_class* canvas_class;
-    
+        
 private:
     ofxOfeliaStream pipe;
     ofxOfeliaStream returnPipe;
@@ -444,6 +447,7 @@ private:
     static inline std::map<t_pdinstance*, std::unique_ptr<ofxOfeliaMessageManager>> instances;
     static inline std::mutex instancesLock;
     
+    std::recursive_mutex listenerLock;
     std::vector<ofxOfeliaMessageListener*> listeners;
     
 };
