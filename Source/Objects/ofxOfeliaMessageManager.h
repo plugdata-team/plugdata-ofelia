@@ -438,6 +438,8 @@ struct ofxOfeliaMessageManager : public TimerThread, public ofxOfeliaMessageList
         }
     }
         
+    std::recursive_mutex listenerLock;
+    
 private:
     ofxOfeliaStream pipe;
     ofxOfeliaStream returnPipe;
@@ -447,7 +449,6 @@ private:
     static inline std::map<t_pdinstance*, std::unique_ptr<ofxOfeliaMessageManager>> instances;
     static inline std::mutex instancesLock;
     
-    std::recursive_mutex listenerLock;
     std::vector<ofxOfeliaMessageListener*> listeners;
     
 };

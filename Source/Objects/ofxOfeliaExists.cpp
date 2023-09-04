@@ -50,7 +50,10 @@ void ofxOfeliaExists::bangWrapper(ofxOfeliaExists *x)
 
 void ofxOfeliaExists::freeWrapper(ofxOfeliaExists *x)
 {
+    auto& listenerLock = ofxOfeliaMessageManager::get()->listenerLock;
+    listenerLock.lock();
     x->~ofxOfeliaExists();
+    listenerLock.unlock();
 }
 
 void ofxOfeliaExists::setup()

@@ -96,7 +96,11 @@ void ofxOfeliaSet::dspWrapper(ofxOfeliaSet *x, t_signal **sp)
 void ofxOfeliaSet::freeWrapper(ofxOfeliaSet *x)
 {
     x->freeMethod();
+    
+    auto& listenerLock = ofxOfeliaMessageManager::get()->listenerLock;
+    listenerLock.lock();
     x->~ofxOfeliaSet();
+    listenerLock.unlock();
 }
 
 void ofxOfeliaSet::setup()

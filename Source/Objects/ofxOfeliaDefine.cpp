@@ -256,7 +256,11 @@ void ofxOfeliaDefine::writeWrapper(ofxOfeliaData *x, t_symbol *s, int argc, t_at
 void ofxOfeliaDefine::freeWrapper(ofxOfeliaDefine *x)
 {
     x->freeMethod();
+    
+    auto& listenerLock = ofxOfeliaMessageManager::get()->listenerLock;
+    listenerLock.lock();
     x->~ofxOfeliaDefine();
+    listenerLock.unlock();
 }
 
 void ofxOfeliaDefine::setup()
