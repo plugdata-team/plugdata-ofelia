@@ -80,13 +80,6 @@ TcpSocket::TcpSocket(unsigned short port)
     int timeout = 5000;  // 5 seconds timeout
     setsockopt(_sock, SOL_SOCKET, SO_RCVTIMEO, (const char*)&timeout, sizeof(timeout));
     setsockopt(_sock, SOL_SOCKET, SO_SNDTIMEO, (const char*)&timeout, sizeof(timeout));
-
-    DWORD dwMode = PIPE_NOWAIT;
-    if (!SetNamedPipeHandleState(hNamedPipe, &dwMode, NULL, NULL)) {
-        std::cerr << "Failed to set named pipe handle state." << std::endl;
-        CloseHandle(hNamedPipe);
-        return 1;
-    }
 #else
     // Don't crash on pipe errors
     signal(SIGPIPE, SIG_IGN);
