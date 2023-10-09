@@ -13,6 +13,7 @@ extern int ofeliaVersionMajor;
 extern int ofeliaVersionMinor;
 extern int ofeliaVersionBugFix;
 
+#undef PD_INTERNAL
 #include "m_pd.h"
 
 extern "C"

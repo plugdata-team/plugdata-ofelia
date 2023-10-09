@@ -2,6 +2,7 @@
 
 #define MAXOFXSTRING 12000
 
+#undef PD_INTERNAL
 #include "m_pd.h"
 #include "g_canvas.h"
 #include <string>

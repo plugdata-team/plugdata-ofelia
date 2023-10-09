@@ -1,5 +1,6 @@
 #pragma once
 
+#undef PD_INTERNAL
 #include "m_pd.h"
 #include <vector>
 
