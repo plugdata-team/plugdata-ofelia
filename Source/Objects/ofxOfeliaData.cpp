@@ -27,8 +27,8 @@ ofxOfeliaData::ofxOfeliaData()
 ,isDirectMode(false)
 ,hasUniqueSym(false)
 ,lua(std::make_unique<ofxOfeliaLua>(this))
-,io(this)
 ,signal(this)
+,io(this)
 ,textBuf(this){};
 
 

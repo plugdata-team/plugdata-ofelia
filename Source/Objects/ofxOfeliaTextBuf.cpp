@@ -82,7 +82,7 @@ void ofxOfeliaTextBuf::openMethod()
                  sys_hostfontsize(glist_getfont(dataPtr->canvas),
                                   glist_getzoom(dataPtr->canvas)));
         char buf[40];
-        std::sprintf(buf, ".x%lx", reinterpret_cast<unsigned long>(dataPtr));
+        std::snprintf(buf, 40, ".x%lx", reinterpret_cast<unsigned long>(dataPtr));
         dataPtr->guiconnect = guiconnect_new(&dataPtr->ob.ob_pd, gensym(buf));
         senditup();
     }
