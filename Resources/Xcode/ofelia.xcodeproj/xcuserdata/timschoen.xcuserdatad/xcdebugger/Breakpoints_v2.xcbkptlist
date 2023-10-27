@@ -269,6 +269,36 @@
                   endingLineNumber = "64"
                   offsetFromSymbolStart = "812">
                </Location>
+               <Location
+                  uuid = "E5424FE7-238F-437E-ADEE-A1B00140A131 - 90efc041b58a3651"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "272">
+               </Location>
+               <Location
+                  uuid = "E5424FE7-238F-437E-ADEE-A1B00140A131 - 90efc041b58a3651"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "280">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -346,6 +376,36 @@
                   startingLineNumber = "64"
                   endingLineNumber = "64"
                   offsetFromSymbolStart = "812">
+               </Location>
+               <Location
+                  uuid = "3E9B4E66-D2BA-46D8-B867-A17DC6FB5751 - 90efc041b58a3651"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "272">
+               </Location>
+               <Location
+                  uuid = "3E9B4E66-D2BA-46D8-B867-A17DC6FB5751 - 90efc041b58a3651"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofApp::dequeueMessages()"
+                  moduleName = "ofelia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/timschoen/Projecten/plugdata/Libraries/plugdata-ofelia/Source/Runner/ofxOfeliaMain.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "280">
                </Location>
             </Locations>
          </BreakpointContent>

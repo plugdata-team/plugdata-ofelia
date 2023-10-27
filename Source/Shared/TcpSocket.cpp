@@ -52,7 +52,30 @@ TcpSocket::TcpSocket(unsigned short port)
 
     // Initialize Winsock, returning on failure
     if (!initWinsock()) return;
-
+    
+#ifdef _WIN32
+        int timeout = 5000;  // 5 seconds timeout
+        setsockopt(_sock, SOL_SOCKET, SO_RCVTIMEO, (const char*)&timeout, sizeof(timeout));
+        setsockopt(_sock, SOL_SOCKET, SO_SNDTIMEO, (const char*)&timeout, sizeof(timeout));
+#else
+        // Don't crash on pipe errors
+        signal(SIGHUP, SIG_IGN);
+        signal(SIGINT, SIG_IGN);
+        signal(SIGQUIT, SIG_IGN);
+    #ifdef SIGIOT
+        signal(SIGIOT, SIG_IGN);
+    #endif
+        signal(SIGFPE, SIG_IGN);
+        signal(SIGPIPE, SIG_IGN);
+        signal(SIGALRM, SIG_IGN);
+        
+        struct timeval timeout;
+        timeout.tv_sec = 5;  // 5 seconds
+        timeout.tv_usec = 0;
+        
+        setsockopt(_sock, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
+        setsockopt(_sock, SOL_SOCKET, SO_SNDTIMEO, &timeout, sizeof(timeout));
+#endif
 
     // Set up client address info
     struct addrinfo hints = {0};
@@ -75,22 +98,6 @@ TcpSocket::TcpSocket(unsigned short port)
         cleanup();
         return;
     }
-    
-#ifdef _WIN32
-    int timeout = 5000;  // 5 seconds timeout
-    setsockopt(_sock, SOL_SOCKET, SO_RCVTIMEO, (const char*)&timeout, sizeof(timeout));
-    setsockopt(_sock, SOL_SOCKET, SO_SNDTIMEO, (const char*)&timeout, sizeof(timeout));
-#else
-    // Don't crash on pipe errors
-    signal(SIGPIPE, SIG_IGN);
-    
-    struct timeval timeout;
-    timeout.tv_sec = 5;  // 5 seconds
-    timeout.tv_usec = 0;
-    
-    setsockopt(_sock, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
-    setsockopt(_sock, SOL_SOCKET, SO_SNDTIMEO, &timeout, sizeof(timeout));
-#endif
 }
 
 TcpSocket::~TcpSocket()
