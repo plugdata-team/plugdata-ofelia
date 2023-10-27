@@ -38,7 +38,9 @@ public:
                 while (running)
                 {
                     auto start = std::chrono::high_resolution_clock::now();
+                    callbackLock.lock();
                     timerCallback();
+                    callbackLock.unlock();
                     auto end = std::chrono::high_resolution_clock::now();
 
                     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
@@ -54,7 +56,9 @@ public:
     void stop()
     {
         running = false;
+        callbackLock.lock();
         timerThread.join();
+        callbackLock.unlock();
     }
 
     virtual void timerCallback() = 0;
@@ -62,6 +66,7 @@ public:
 private:
     std::thread timerThread;
     std::atomic<bool> running;
+    std::mutex callbackLock;
 };
 
 
