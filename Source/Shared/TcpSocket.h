@@ -11,6 +11,7 @@
 
 #include <cstdint>
 #include <stdio.h>
+#include <vector>
 
 class TcpSocket
 {
@@ -22,7 +23,7 @@ public:
     ~TcpSocket();
 
     bool sendData(const char *buf, size_t len);
-    size_t receiveData(char *buf, size_t len);
+    size_t receiveData(std::vector<char>& buffer);
     bool isConnected();
     
     void setBlocking(bool blocking);
@@ -37,7 +38,7 @@ private:
     void setUdpTimeout(uint32_t msec);
     
 protected:
-    char _port[10];
+    char _port[16];
     struct addrinfo * _addressInfo;
     bool _connected;
     int _conn;

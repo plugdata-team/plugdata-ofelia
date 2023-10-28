@@ -41,8 +41,7 @@ void ofxOfeliaMessageManager::run()
         
         if(message.empty())
         {
-            // Error or connection closed!
-            shouldQuit = true;
+            continue;
         }
             
         std::string args;
@@ -57,12 +56,6 @@ void ofxOfeliaMessageManager::run()
         {
             shouldQuit = true;
         }
-        /*
-        else if (messageType == ofx_audio_block)
-        {
-            signalQueue.enqueue();
-            continue;
-        } */
         
         // Put args into string
         char ch;

@@ -109,7 +109,7 @@ public:
         if(receiveSocket) receiveSocket->setBlocking(blocking);
     }
 
-    std::string receive(bool blocking = false);
+    std::string receive();
     void send(std::string toSend);
 
     // Internal function for parsing received messages from stringstream to any number of types
@@ -129,7 +129,7 @@ public:
 
             currentValue = T(buffer.data(), length);
         }
-        // Handle parsing a list of strings
+        // Handle parsing a list of atoms
         else if constexpr (std::is_same<T, std::vector<t_atom>>())
         {
             int listLength;
@@ -338,12 +338,11 @@ private:
         }
     }
     
-    
-    static constexpr size_t buffer_size = 65500;
-    char buffer[buffer_size];
-    
+        
     std::unique_ptr<SocketType> sendSocket;
     std::unique_ptr<SocketType> receiveSocket;
     
+    static constexpr size_t buffer_size = 65500;
+    std::vector<char> buffer = std::vector<char>(buffer_size, 0);
 };
 

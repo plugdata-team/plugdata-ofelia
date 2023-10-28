@@ -40,7 +40,7 @@ struct ofxOfeliaMessageManager {
     template <typename... Types>
     static std::tuple<Types...> waitForReturnValue()
     {
-        auto message = instance->returnPipe.receive(true);
+        auto message = instance->returnPipe.receive();
         return ofxOfeliaStream::parseMessage<Types...>(message);
     }
     

@@ -1,5 +1,4 @@
 #include <cstring>
-#include <cassert>
 #include <cstdint>
 #include <vector>
 #include <tuple>
@@ -47,13 +46,13 @@ void ofxOfeliaStream::send(std::string toSend)
     sendSocket->sendData(toSend.data(), toSend.size());
 }
 
-std::string ofxOfeliaStream::receive(bool blocking)
+std::string ofxOfeliaStream::receive()
 {
-    auto receivedLength = receiveSocket->receiveData(buffer, buffer_size);
+    auto receivedLength = receiveSocket->receiveData(buffer);
         
     if(receivedLength > 0)
     {
-        return std::string(buffer, receivedLength);
+        return std::string(buffer.data(), receivedLength);
     }
     
     return {};

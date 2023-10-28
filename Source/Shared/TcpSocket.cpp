@@ -42,7 +42,6 @@ static void closesocket(int socket) { close(socket); }
 #endif
 
 // TcpSocket
-
 TcpSocket::TcpSocket(unsigned short port)
 {
     snprintf(_port, 10, "%d", port);
@@ -111,7 +110,9 @@ TcpSocket::~TcpSocket()
 
 bool TcpSocket::sendData(const char *buf, size_t len)
 {
-    uint32_t messageLength = htonl(static_cast<uint32_t>(len));
+    if(len <= 0) return true;
+
+    int64_t messageLength = static_cast<int64_t>(len);
     ssize_t bytesSent = send(static_cast<SOCKET>(_conn), reinterpret_cast<const char*>(&messageLength), sizeof(messageLength), 0);
     if (bytesSent != sizeof(messageLength)) {
         // Handle error or connection closed
@@ -132,20 +133,23 @@ bool TcpSocket::sendData(const char *buf, size_t len)
     return true;
 }
 
-size_t TcpSocket::receiveData(char *buf, size_t len)
+size_t TcpSocket::receiveData(std::vector<char>& buffer)
 {
-    uint32_t messageLength;
+    int64_t messageLength = 0;
     ssize_t bytesRead = recv(static_cast<SOCKET>(_conn), reinterpret_cast<char*>(&messageLength), sizeof(messageLength), 0);
-    if (bytesRead != sizeof(messageLength)) {
+    if (bytesRead != sizeof(messageLength) || messageLength <= 0 || bytesRead <= 0 || messageLength >= buffer.size()) {
         // Handle error or connection closed
         return 0;
     }
     
-    messageLength = ntohl(messageLength);
+    if(messageLength >= buffer.size())
+    {
+        buffer.resize(messageLength);
+    }
     
     size_t totalBytesReceived = 0;
     while (totalBytesReceived < messageLength) {
-        ssize_t bytesReceived = recv(static_cast<SOCKET>(_conn), &buf[totalBytesReceived], messageLength - totalBytesReceived, 0);
+        ssize_t bytesReceived = recv(static_cast<SOCKET>(_conn), &buffer[totalBytesReceived], messageLength - totalBytesReceived, 0);
         if (bytesReceived <= 0) {
             // Handle error or connection closed
             return 0;
@@ -153,7 +157,6 @@ size_t TcpSocket::receiveData(char *buf, size_t len)
         totalBytesReceived += bytesReceived;
     }
 
-    
     return totalBytesReceived;
 }
 
