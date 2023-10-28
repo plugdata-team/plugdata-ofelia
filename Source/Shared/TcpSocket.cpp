@@ -112,7 +112,7 @@ bool TcpSocket::sendData(const char *buf, size_t len)
 {
     if(len <= 0) return true;
 
-    int64_t messageLength = static_cast<int64_t>(len);
+    uint32_t messageLength = static_cast<uint32_t>(len);
     ssize_t bytesSent = send(static_cast<SOCKET>(_conn), reinterpret_cast<const char*>(&messageLength), sizeof(messageLength), 0);
     if (bytesSent != sizeof(messageLength)) {
         // Handle error or connection closed
@@ -135,7 +135,7 @@ bool TcpSocket::sendData(const char *buf, size_t len)
 
 size_t TcpSocket::receiveData(std::vector<char>& buffer)
 {
-    int64_t messageLength = 0;
+    uint32_t messageLength = 0;
     ssize_t bytesRead = recv(static_cast<SOCKET>(_conn), reinterpret_cast<char*>(&messageLength), sizeof(messageLength), 0);
     if (bytesRead != sizeof(messageLength) || messageLength <= 0 || bytesRead <= 0 || messageLength >= buffer.size()) {
         // TODO: this also handles messages that are larger than buffer size
