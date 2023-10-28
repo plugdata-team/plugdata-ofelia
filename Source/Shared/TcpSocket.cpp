@@ -138,7 +138,10 @@ size_t TcpSocket::receiveData(std::vector<char>& buffer)
     int64_t messageLength = 0;
     ssize_t bytesRead = recv(static_cast<SOCKET>(_conn), reinterpret_cast<char*>(&messageLength), sizeof(messageLength), 0);
     if (bytesRead != sizeof(messageLength) || messageLength <= 0 || bytesRead <= 0 || messageLength >= buffer.size()) {
-        // Handle error or connection closed
+        // TODO: this also handles messages that are larger than buffer size
+        // sometimes we randomly get very large numbers for messageLength... seems like some kind of socket corruption
+        // returning here seems to handle this fine, which is a miracle I cannot understand
+
         return 0;
     }
     
