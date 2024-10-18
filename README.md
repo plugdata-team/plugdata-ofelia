@@ -1,3 +1,5 @@
+NOTE: plugdata-ofelia is discontinued, since it was always plagued with issues. Gem will be available in plugdata soon.
+
 # plugdata-ofelia
 Port of the [Ofelia](https://github.com/cuinjune/Ofelia) graphics library for [plugdata](https://github.com/plugdata-team/plugdata)
 
